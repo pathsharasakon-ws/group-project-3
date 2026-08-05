@@ -1,48 +1,120 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>OCCASION</title>
     <link
       href="https://fonts.googleapis.com/css?family=Prompt:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #0046a7;
+        --color-secondary: #495f8f;
+        --color-accent: #e2156d;
+        --color-background: #fcf4ee;
+        --font-sans: "Prompt", sans-serif;
+        --font-display: "Prompt", sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>OCCASION</title>
+  <body class="w-full">
+    <!-- navbar -->
+    <div id="navbar-placeholder"></div>
+    <!-- hero -->
+    <section id="Hero" class="flex item-center text-blue-300 w-7xl m-auto">
+      <div class="flex flex-col w-full">
+        <div class="flex bg-accent justify-between">
+          <div class="flex flex-col justify-center item-center m-auto">
+            <div class="my-10">
+              <p class="text-4xl text-white font-bold tracking-tighter">
+                ช็อบถูกใจในราคาสบายกระเป๋า
+              </p>
+              <p
+                class="text-3xl text-white mt-5 font-semibold tracking-tighter"
+              >
+                พร้อมลุคที่ถูกใจวัยทีน
+              </p>
+            </div>
+            <div>
+              <button
+                class="bg-secondary text-white font-semibold px-5 py-4 text-lg rounded hover:bg-gray-100 hover:text-primary transition rounded-md shadow-md"
+              >
+                ช็อปสินค้าทั้งหมด
+              </button>
+              <button
+                class="bg-secondary text-white font-semibold px-5 py-4 text-lg rounded hover:bg-gray-100 hover:text-primary transition rounded-md shadow-md"
+              >
+                ลองจัดเซ็ตลุค
+              </button>
+            </div>
+          </div>
+          <div><img src="./assets/house.jpg" alt="" /></div>
+        </div>
+      </div>
+    </section>
+    <!-- main section -->
+    <section
+      id="main"
+      class="py-5 flex flex-col m-auto item-center justify-center w-7xl"
+    >
+      <div>
+        <!-- recommend section -->
+        <div class="text-primary">
+          <h3 class="text-2xl text-bold">RECOMMEND PRODUCT</h3>
+          <p class="text-bold text-xl">สินค้าแนะนำเลือกช็อปตามใจ</p>
+        </div>
+        <!-- Card-->
+        <div class="grid grid-cols-3 gap-2 my-5">
+          <div class="max-w-sm rounded-md relative overflow-hidden">
+            <img
+              src="./assets/dog1.jpg"
+              alt=""
+              class="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 rounded-md"
+            />
+            <div
+              class="absolute bottom-4 left-4 text-white font-bold text-xl drop-shadow-md"
+            >
+              <h4 class="text-3xl">เสื้อ</h4>
+              <h6>สำรวจหมวดหมู่</h6>
+            </div>
+          </div>
+          <div class="max-w-sm rounded-md relative overflow-hidden">
+            <img
+              src="./assets/dog2.jpg"
+              alt=""
+              class="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 rounded-md"
+            />
+            <div
+              class="absolute bottom-4 left-4 text-white font-bold text-xl drop-shadow-md"
+            >
+              <h4 class="text-3xl">กางเกง</h4>
+              <h6>สำรวจหมวดหมู่</h6>
+            </div>
+          </div>
+          <div class="max-w-sm rounded-md relative overflow-hidden">
+            <img
+              src="./assets/dog3.jpg"
+              alt=""
+              class="transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 rounded-md"
+            />
+            <div
+              class="absolute bottom-4 left-4 text-white font-bold text-xl drop-shadow-md"
+            >
+              <h4 class="text-3xl">กระโปรง</h4>
+              <h6>สำรวจหมวดหมู่</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="footer-placeholder"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-      </head>
-      <body class="w-full">
-        <!-- navbar -->
-        <div id="navbar-placeholder"></div>
-        <!-- main -->
-        <section
-          id="Hero"
-          class="flex item-center text-blue-300 h-lvh bg-red-300 w-7xl m-auto"
-        >
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum sit
-            blanditiis nam sed explicabo nemo obcaecati accusamus hic quis esse
-            tempora, pariatur quidem deserunt ipsam adipisci alias dolores
-            repellat. Minima.
-          </p>
-          <p>Hello World</p>
-        </section>
+    <!--Container Footer -->
 
-        <div id="footer-placeholder"></div>
-
-        <!--Container Footer -->
-
-        <!-- script -->
-        <script src="script.js"></script>
-      </body>
-    </html>
+    <!-- script -->
+    <script src="script.js"></script>
   </body>
 </html>
