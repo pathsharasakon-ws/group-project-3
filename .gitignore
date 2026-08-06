@@ -1,0 +1,14 @@
+# Operating System Files (Mac/Windows system files)
+.DS_Store
+Thumbs.db
+
+# Secret Keys & Environment Variables (Never upload these!)
+.env
+.env.local
+
+# IDE & Code Editor Folders (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+
+# Common Log Files
+*.log
