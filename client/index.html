@@ -1,341 +1,353 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OCCASION</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#0046a7",
-              secondary: "#495f8f",
-              accent: "#e2156d",
-              background: "#fcf4ee",
-            },
-            fontFamily: {
-              sans: ["Prompt", "sans-serif"],
-            },
-            keyframes: {
-              fadeInUp: {
-                "0%": { opacity: "0", transform: "translateY(20px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
-            animation: {
-              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCCASION</title>
+  <link href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0046a7",
+            secondary: "#495f8f",
+            accent: "#e2156d",
+            background: "#fcf4ee",
+          },
+          fontFamily: {
+            sans: ["Prompt", "sans-serif"],
+          },
+          keyframes: {
+            fadeInUp: {
+              "0%": { opacity: "0", transform: "translateY(20px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
             },
           },
+          animation: {
+            "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+          },
         },
-      };
-    </script>
-    <style>
-      .animate-gradient {
-        background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
-        background-size: 300% 100%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        animation: gradientMove 3s ease infinite;
+      },
+    };
+  </script>
+  <style>
+    .animate-gradient {
+      background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      animation: gradientMove 3s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
       }
 
-      @keyframes gradientMove {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+      50% {
+        background-position: 100% 50%;
       }
-    </style>
-  </head>
-  <body class="w-full bg-background font-sans">
-    <!-- navbar -->
-    <div id="navbar-container"></div>
 
-    <!-- hero -->
-    <section
-      id="Hero"
-      class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12"
-    >
-      <div
-        class="flex flex-col md:flex-row items-center justify-between bg-accent rounded-2xl overflow-hidden gap-8 p-6 sm:p-10 md:p-12"
-      >
-        <!-- ฝั่งข้อความ -->
+      100% {
+        background-position: 0% 50%;
+      }
+      
+    }
+    @keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* เลื่อนไปครึ่งหนึ่งของความกว้างทั้งหมด */
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite; /* ปรับความเร็วตรง 25s */
+}
+  </style>
+</head>
+
+<body class="w-full bg-background font-sans">
+  <!-- navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- hero -->
+  <section id="Hero" class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-7 py-3 md:py-12">
+    <div
+      class="flex flex-col md:flex-row items-center justify-between bg-accent rounded-2xl overflow-hidden gap-8 p-6 sm:p-10 md:p-12">
+      <!-- ฝั่งข้อความ -->
+      <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full md:w-1/2">
+        <div class="mb-6">
+          <!-- ลบ text-white และ drop-shadow-sm ออกเพื่อให้ Gradient แสดงผลได้ถูกต้อง -->
+          <h1
+            class="animate-fade-in-up animate-gradient text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            ช็อบถูกใจในราคาสบายกระเป๋า
+          </h1>
+          <p class="animate-fade-in-up text-lg sm:text-xl md:text-2xl text-white/90 mt-3 font-semibold tracking-tight"
+            style="animation-delay: 0.2s">
+            พร้อมลุคที่ถูกใจวัยทีน
+          </p>
+        </div>
+
+        <!-- ปุ่มกด -->
+        <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-3 justify-center md:justify-start">
+          <button
+            class="w-full sm:w-auto bg-secondary text-white font-semibold px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md">
+            ช็อปสินค้าทั้งหมด
+          </button>
+          <button
+            class="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border border-white/20 font-semibold px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md">
+            ลองจัดเซ็ตลุค
+          </button>
+        </div>
+      </div>
+
+      <!-- ฝั่งรูปภาพ -->
+      <div class="w-full md:w-1/2 flex justify-center items-center">
+        <!-- แก้ไข class เลเยอร์เรืองแสงรอบรูปภาพ -->
+
+        <img src="./assets/house.jpg" alt="Hero Image"
+          class="w-full max-w-sm md:max-w-md h-64 sm:h-80 md:h-auto object-cover rounded-xl shadow-lg relative" />
+      </div>
+    </div>
+  </section>
+
+  <!-- main section -->
+  <section id="main" class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <!-- recommend section -->
+    <div class="text-primary my-6 text-center md:text-left">
+      <h3 class="text-2xl font-bold">RECOMMEND PRODUCT</h3>
+      <p class="font-semibold text-xl text-gray-700">
+        สินค้าแนะนำเลือกช็อปตามใจ
+      </p>
+    </div>
+
+    <!-- Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 ">
+      <!-- Card 1 -->
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+        <img src="./assets/dog1.jpg" alt="เสื้อ"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">เสื้อ</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+        <img src="./assets/dog2.jpg" alt="กางเกง"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">กางเกง</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+        <img src="./assets/dog3.jpg" alt="กระโปรง"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">กระโปรง</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mix and Match Section -->
+    <div class="bg-accent rounded-2xl flex flex-col lg:flex-row justify-between p-6 sm:p-10 gap-8 my-12">
+      <div class="flex flex-col p-9 lg:w-2/3">
+        <div class="text-white mb-6">
+          <p class="text-sm font-bold tracking-wider opacity-80">
+            MIX AND MATCH
+          </p>
+          <h2 class="text-2xl sm:text-3xl font-bold mt-1">
+            หมดปัญหาซื้อเสื้อไปแล้วไม่รู้จะแมตช์กับกางเกงตัวไหน!
+          </h2>
+          <p class="mt-2 text-white/90">
+            ทดลองจับคู่ลุคโปรดของคุณในระบบจำลองห้องแต่งตัวก่อนสั่งซื้อ
+          </p>
+        </div>
+        <ol class="text-white flex flex-col gap-4">
+          <li class="flex items-center gap-3">
+            <span
+              class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold">
+              1
+            </span>
+            <span>เลือกชิ้นส่วนเสื้อผ้า เลือกเสื้อ ท่อนล่าง
+              และเครื่องประดับที่คุณชอบ</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span
+              class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold">
+              2
+            </span>
+            <span>ดูพรีวิวบนหุ่นจำลอง
+              ระบบจะจัดเรียงชุดให้เห็นสไตล์โดยรวมทันที</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span
+              class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold">
+              3
+            </span>
+            <span>เพิ่มลงตะกร้าพร้อมกันทั้งเซ็ต รับส่วนลดพิเศษทันที 10%
+              เมื่อซื้อยกเซ็ต</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Dropzone -->
+      <div class="flex flex-col sm:flex-row lg:flex-col justify-center gap-4 lg:w-1/3">
         <div
-          class="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full md:w-1/2"
-        >
-          <div class="mb-6">
-            <!-- ลบ text-white และ drop-shadow-sm ออกเพื่อให้ Gradient แสดงผลได้ถูกต้อง -->
-            <h1
-              class="animate-fade-in-up animate-gradient text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
-            >
-              ช็อบถูกใจในราคาสบายกระเป๋า
-            </h1>
-            <p
-              class="animate-fade-in-up text-lg sm:text-xl md:text-2xl text-white/90 mt-3 font-semibold tracking-tight"
-              style="animation-delay: 0.2s"
-            >
-              พร้อมลุคที่ถูกใจวัยทีน
-            </p>
-          </div>
-
-          <!-- ปุ่มกด -->
-          <div
-            class="flex flex-col sm:flex-row w-full sm:w-auto gap-3 justify-center md:justify-start"
-          >
-            <button
-              class="w-full sm:w-auto bg-secondary text-white font-semibold px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md"
-            >
-              ช็อปสินค้าทั้งหมด
-            </button>
-            <button
-              class="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border border-white/20 font-semibold px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md"
-            >
-              ลองจัดเซ็ตลุค
-            </button>
+          class="bg-secondary/80 border-2 border-dashed border-white/40 flex items-center justify-center rounded-xl p-12 cursor-pointer hover:bg-secondary transition">
+          <div class="flex items-center text-white gap-3">
+            <img src="./assets/camera.png" alt="icon" class="w-6 h-6 object-contain" />
+            <span class="font-medium">ลากรูปมาที่นี่</span>
           </div>
         </div>
-
-        <!-- ฝั่งรูปภาพ -->
-        <div class="w-full md:w-1/2 flex justify-center items-center">
-          <!-- แก้ไข class เลเยอร์เรืองแสงรอบรูปภาพ -->
-
-          <img
-            src="./assets/house.jpg"
-            alt="Hero Image"
-            class="w-full max-w-sm md:max-w-md h-64 sm:h-80 md:h-auto object-cover rounded-xl shadow-lg relative"
-          />
+        <div
+          class="bg-secondary/80 border-2 border-dashed border-white/40 flex items-center justify-center rounded-xl p-12 cursor-pointer hover:bg-secondary transition">
+          <div class="flex items-center text-white gap-3">
+            <img src="./assets/camera.png" alt="icon" class="w-6 h-6 object-contain" />
+            <span class="font-medium">ลากรูปมาที่นี่</span>
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- main section -->
-    <section
-      id="main"
-      class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8"
-    >
-      <!-- recommend section -->
-      <div class="text-primary my-6 text-center md:text-left">
-        <h3 class="text-2xl font-bold">RECOMMEND PRODUCT</h3>
-        <p class="font-semibold text-xl text-gray-700">
-          สินค้าแนะนำเลือกช็อปตามใจ
-        </p>
+    </div>
+    <div>
+      <div class="py-5 text-primary">
+        <h2 class="text-2xl font-bold ">RECOMMEND LOOKBOOK</h2>
+        <p class="font-semibold text-xl text-gray-700">Mix and Match ลุคสุดพิเศษที่ได้รับความนิยม</p>
       </div>
-
-      <!-- Card Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
         <!-- Card 1 -->
-        <div
-          class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-        >
-          <img
-            src="./assets/dog1.jpg"
-            alt="เสื้อ"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-          />
-          <div
-            class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-          >
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+          <img src="./assets/dog1.jpg" alt="เสื้อ"
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
             <h4 class="text-3xl">เสื้อ</h4>
             <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div
-          class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-        >
-          <img
-            src="./assets/dog2.jpg"
-            alt="กางเกง"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-          />
-          <div
-            class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-          >
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+          <img src="./assets/dog2.jpg" alt="กางเกง"
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
             <h4 class="text-3xl">กางเกง</h4>
             <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div
-          class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-        >
-          <img
-            src="./assets/dog3.jpg"
-            alt="กระโปรง"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-          />
-          <div
-            class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-          >
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+          <img src="./assets/dog3.jpg" alt="กระโปรง"
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
             <h4 class="text-3xl">กระโปรง</h4>
             <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
       </div>
-
-      <!-- Mix and Match Section -->
-      <div
-        class="bg-accent rounded-2xl flex flex-col lg:flex-row justify-between p-6 sm:p-10 gap-8 my-12"
-      >
-        <div class="flex flex-col p-9 lg:w-2/3">
-          <div class="text-white mb-6">
-            <p class="text-sm font-bold tracking-wider opacity-80">
-              MIX AND MATCH
-            </p>
-            <h2 class="text-2xl sm:text-3xl font-bold mt-1">
-              หมดปัญหาซื้อเสื้อไปแล้วไม่รู้จะแมตช์กับกางเกงตัวไหน!
-            </h2>
-            <p class="mt-2 text-white/90">
-              ทดลองจับคู่ลุคโปรดของคุณในระบบจำลองห้องแต่งตัวก่อนสั่งซื้อ
-            </p>
-          </div>
-          <ol class="text-white flex flex-col gap-4">
-            <li class="flex items-center gap-3">
-              <span
-                class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold"
-              >
-                1
-              </span>
-              <span
-                >เลือกชิ้นส่วนเสื้อผ้า เลือกเสื้อ ท่อนล่าง
-                และเครื่องประดับที่คุณชอบ</span
-              >
-            </li>
-            <li class="flex items-center gap-3">
-              <span
-                class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold"
-              >
-                2
-              </span>
-              <span
-                >ดูพรีวิวบนหุ่นจำลอง
-                ระบบจะจัดเรียงชุดให้เห็นสไตล์โดยรวมทันที</span
-              >
-            </li>
-            <li class="flex items-center gap-3">
-              <span
-                class="inline-flex items-center justify-center min-w-10 h-10 rounded-full bg-primary text-white font-bold"
-              >
-                3
-              </span>
-              <span
-                >เพิ่มลงตะกร้าพร้อมกันทั้งเซ็ต รับส่วนลดพิเศษทันที 10%
-                เมื่อซื้อยกเซ็ต</span
-              >
-            </li>
-          </ol>
+    </div>
+<!-- 1. คอนเทนเนอร์หลัก: ต้องมี w-full และ overflow-hidden เพื่อซ่อนส่วนที่เกินขอบจอ -->
+   <div class="py-5">
+    <h2 class="text-2xl font-bold text-primary">Special Product</h2>
+   <p class="text-xl text-primary ">สินค้าพิเศษเฉพาะช่วงนี้เท่านั้น</p>
+   </div>
+<div class="max-w-7xl w-full mx-auto py-4 px-4 sm:px-6 lg:px-8 py-8 h-auto bg-accent text-white font-bold text-lg overflow-hidden relative">
+  
+  <!-- 2. คอนเทนเนอร์ของรูป: ใส่ animation, w-max และ whitespace-nowrap เพื่อให้รูปเรียงกันไม่สะดุด -->
+  <div class="flex gap-4 w-max whitespace-nowrap animate-marquee">
+    
+    <!-- === ชุดรูปภาพที่ 1 === -->
+    <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer ">
+      <img src="./assets/dog1.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <a href="/product/1" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">
+          ดูสินค้า
+        </span>
+      </a>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
+       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">เครื่องประดับ</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
         </div>
+    </div>
 
-        <!-- Dropzone -->
-        <div
-          class="flex flex-col sm:flex-row lg:flex-col justify-center gap-4 lg:w-1/3"
-        >
-          <div
-            class="bg-secondary/80 border-2 border-dashed border-white/40 flex items-center justify-center rounded-xl p-12 cursor-pointer hover:bg-secondary transition"
-          >
-            <div class="flex items-center text-white gap-3">
-              <img
-                src="./assets/camera.png"
-                alt="icon"
-                class="w-6 h-6 object-contain"
-              />
-              <span class="font-medium">ลากรูปมาที่นี่</span>
-            </div>
-          </div>
-          <div
-            class="bg-secondary/80 border-2 border-dashed border-white/40 flex items-center justify-center rounded-xl p-12 cursor-pointer hover:bg-secondary transition"
-          >
-            <div class="flex items-center text-white gap-3">
-              <img
-                src="./assets/camera.png"
-                alt="icon"
-                class="w-6 h-6 object-contain"
-              />
-              <span class="font-medium">ลากรูปมาที่นี่</span>
-            </div>
-          </div>
+    <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer ">
+      <img src="./assets/dog2.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <a href="/product/2" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">
+          ดูสินค้า
+        </span>
+      </a>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
+
+       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">กางเกง</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
         </div>
-      </div>
-      <div>
-        <div class="py-5 text-primary">
-          <h2 class="text-bold">RECOMMEND LOOKBOOK</h2>
-          <p>Mix and Match ลุคสุดพิเศษที่ได้รับความนิยม</p>
+    </div>
+    
+    <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer ">
+      <img src="./assets/dog2.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
+      <a href="/product/3" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">
+          ดูสินค้า
+        </span>
+      </a>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
+
+       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">เสื้อ</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-          <!-- Card 1 -->
-          <div
-            class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-          >
-            <img
-              src="./assets/dog1.jpg"
-              alt="เสื้อ"
-              class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-            />
-            <div
-              class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-            >
-              <h4 class="text-3xl">เสื้อ</h4>
-              <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-            </div>
-          </div>
+    </div>
 
-          <!-- Card 2 -->
-          <div
-            class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-          >
-            <img
-              src="./assets/dog2.jpg"
-              alt="กางเกง"
-              class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-            />
-            <div
-              class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-            >
-              <h4 class="text-3xl">กางเกง</h4>
-              <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-            </div>
-          </div>
+    <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer ">
+      <img src="./assets/dog2.jpg" class="w-96 h-auto object-cover transition-transform duration-300 group-hover:scale-105" />
+      <a href="/product/3" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">
+          ดูสินค้า
+        </span>
+      </a>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
 
-          <!-- Card 3 -->
-          <div
-            class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md"
-          >
-            <img
-              src="./assets/dog3.jpg"
-              alt="กระโปรง"
-              class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-96 object-cover"
-            />
-            <div
-              class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg"
-            >
-              <h4 class="text-3xl">กระโปรง</h4>
-              <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-            </div>
-          </div>
+       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+          <h4 class="text-3xl">เสื้อ</h4>
+          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
         </div>
-      </div>
-      <div
-        class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 h-1vh bg-accent flex justify-center text-white font-bold text-lg"
-      >
-        <img src="./assets/golden.jpg" alt="golden" class="w-full" />
-      </div>
-    </section>
+    </div>
 
-    <div id="footer-container"></div>
-    <script src="script.js"></script>
-  </body>
+  </div>
+</div>
+
+
+  <div class="py-5">
+    <h2 class="text-2xl font-bold text-primary">Article</h2>
+   <p class="text-xl text-primary ">อ่านบทความพิเศษช่วงนี้เท่านั้น</p>
+   </div>
+  <div class="max-w-7xl mx-auto px-4 py-4 "> 
+  <!-- Grid แสดงผลการ์ดบทความ -->
+  <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- DOM Render ตรงนี้ -->
+  </div>
+</div>
+
+  </section>
+
+  <div id="footer-container"></div>
+  <script src="script.js"></script>
+</body>
+
 </html>
