@@ -3,28 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0046a7",
+              accent: "#e2156d",
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <nav class="m-auto w-7xl text-2xl">
-      <ul class="flex gap-6 items-center justify-between m-5">
-        <li class="font-bold text-2xl"><a href="#">OCCASION</a></li>
-        <ul class="flex gap-6 items-center ml-auto">
-          <li class="text-primary underline decoration-accent">
-            <a href="#">Products</a>
+  <body class="bg-gray-50">
+    <nav class="w-full bg-white shadow-sm">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20"
+      >
+        <!-- Logo -->
+        <a href="#" class="flex items-center">
+          <img src="./assets/newlogo.png" alt="Logo" class="w-24 h-auto" />
+        </a>
+
+        <!-- Menu List -->
+        <ul class="flex items-center gap-6 text-lg font-medium">
+          <li>
+            <button
+              class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition"
+            >
+              <img src="./assets/search.png" alt="search" class="w-4 h-4" />
+            </button>
           </li>
-          <li class="text-primary underline decoration-accent">
+          <li
+            class="text-primary underline decoration-accent underline-offset-4"
+          >
+            <a href="./index.html">Products</a>
+          </li>
+          <li
+            class="text-primary underline decoration-accent underline-offset-4"
+          >
             <a href="#">Feature</a>
           </li>
-          <a href="#" class="flex items-center gap-1 text-primary">
-            <img src="./assets/user.png" class="w-6 text-primary" />
-            <span>Sign in</span>
-          </a>
           <li>
-            <a href="#"><img src="./assets/cartBag.png" class="w-6" /></a>
+            <a
+              href="#"
+              class="flex items-center gap-2 text-primary hover:opacity-80 transition"
+            >
+              <img src="./assets/user.png" alt="Sign in" class="w-6 h-6" />
+              <span>Sign in</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="hover:opacity-80 transition flex items-center">
+              <img src="./assets/cartBag.png" alt="Cart" class="w-6 h-6" />
+            </a>
           </li>
         </ul>
-      </ul>
+      </div>
     </nav>
   </body>
 </html>

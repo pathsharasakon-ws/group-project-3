@@ -1,75 +1,128 @@
-<section id="Footer" class="bg-accent">
-  <div class="flex flex-col max-w-6xl w-full m-auto px-4">
+<footer id="Footer" class="bg-accent text-white">
+  <div class="max-w-6xl w-full mx-auto px-4 py-8">
     <!-- Banner สีฟ้า -->
     <div
-      class="bg-primary flex justify-around items-center p-8 rounded-lg shadow-md mt-10 h-13 w-full"
+      class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-8 rounded-xl shadow-md gap-4"
     >
-      <p class="text-white font-medium text-lg">
-        become a member and get 10% off for first purchase
+      <p
+        class="text-white font-medium text-base sm:text-lg text-center sm:text-left"
+      >
+        Become a member and get 10% off for first purchase
       </p>
       <button
-        class="bg-white text-black font-semibold px-6 py-2 rounded hover:bg-gray-100 transition rounded-md"
+        class="bg-white text-primary font-bold px-6 py-2.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap shadow"
       >
         Subscribe
       </button>
     </div>
 
-    <!-- ส่วน Footer และ Social -->
-    <div class="flex justify-between mt-12 text-white gap-8 mb-10">
-      <ul class="space-y-2">
-        <li class="font-bold text-xl mb-3">SHOP</li>
-        <li><a href="#" class="hover:underline">Tops</a></li>
-        <li><a href="#" class="hover:underline">Bottoms</a></li>
-        <li><a href="#" class="hover:underline">LookBooks</a></li>
-      </ul>
-
-      <ul class="space-y-2">
-        <li class="font-bold text-xl mb-3">HELP</li>
-        <li><a href="#" class="hover:underline">Customer Service</a></li>
-        <li><a href="#" class="hover:underline">Terms & Policy</a></li>
-        <li><a href="#" class="hover:underline">Privacy Policy</a></li>
-      </ul>
-
-      <ul class="space-y-2">
-        <li class="font-bold text-xl mb-3">USER</li>
-        <li><a href="#" class="hover:underline">Become A Member</a></li>
-        <li><a href="#" class="hover:underline">My Account</a></li>
-        <li><a href="#" class="hover:underline">My Lookbooks</a></li>
-      </ul>
-
+    <!-- ส่วน Footer Links และ Social -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 my-10">
+      <!-- SHOP -->
       <div>
-        <p class="font-bold text-xl mb-3">Connect with OCCASION</p>
-        <ul class="flex gap-3">
+        <h4 class="font-bold text-lg mb-4">SHOP</h4>
+        <ul class="space-y-2 text-sm text-white/90">
+          <li><a href="#" class="hover:underline transition">Tops</a></li>
+          <li><a href="#" class="hover:underline transition">Bottoms</a></li>
+          <li><a href="#" class="hover:underline transition">LookBooks</a></li>
+        </ul>
+      </div>
+
+      <!-- HELP -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">HELP</h4>
+        <ul class="space-y-2 text-sm text-white/90">
           <li>
-            <a href="#" class="flex items-center gap-2 hover:opacity-80">
-              <img src="./assets/facebook.png" alt="facebook" class="w-6 h-6" />
-              <span>OCCASION</span>
+            <a href="#" class="hover:underline transition">Customer Service</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline transition">Terms & Policy</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline transition">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- USER -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">USER</h4>
+        <ul class="space-y-2 text-sm text-white/90">
+          <li>
+            <a href="#" class="hover:underline transition">Become A Member</a>
+          </li>
+          <li><a href="#" class="hover:underline transition">My Account</a></li>
+          <li>
+            <a href="#" class="hover:underline transition">My Lookbooks</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social Icons -->
+      <div>
+        <h4 class="font-bold text-lg mb-4">Connect with OCCASION</h4>
+        <ul class="flex flex-col space-y-3 text-sm text-white/90">
+          <li>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 hover:opacity-80 transition"
+            >
+              <img
+                src="./assets/facebook.png"
+                alt="facebook"
+                class="w-5 h-5 object-contain"
+              />
+              <span>Facebook</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-2 hover:opacity-80">
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 hover:opacity-80 transition"
+            >
               <img
                 src="./assets/instagram.png"
                 alt="instagram"
-                class="w-6 h-6"
+                class="w-5 h-5 object-contain"
               />
-              <span>OCCASION</span>
+              <span>Instagram</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-2 hover:opacity-80">
-              <img src="./assets/line.png" alt="line" class="w-6 h-6" />
-              <span>OCCASION</span>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 hover:opacity-80 transition"
+            >
+              <img
+                src="./assets/line.png"
+                alt="line"
+                class="w-5 h-5 object-contain"
+              />
+              <span>Line Official</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center gap-2 hover:opacity-80">
-              <img src="./assets/tiktok.png" alt="tiktok" class="w-6 h-6" />
-              <span>OCCASION</span>
+            <a
+              href="#"
+              class="inline-flex items-center gap-2 hover:opacity-80 transition"
+            >
+              <img
+                src="./assets/tiktok.png"
+                alt="tiktok"
+                class="w-5 h-5 object-contain"
+              />
+              <span>TikTok</span>
             </a>
           </li>
         </ul>
       </div>
     </div>
+
+    <!-- Copyright (เสริมให้สมบูรณ์) -->
+    <div
+      class="border-t border-white/20 pt-6 text-center text-xs text-white/70"
+    >
+      &copy; 2026 OCCASION. All rights reserved.
+    </div>
   </div>
-</section>
+</footer>
