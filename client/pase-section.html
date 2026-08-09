@@ -1,43 +1,45 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
+  
+    <!-- hero   -->
+  <section id="Hero" class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-7  ">
+    <div
+      class="flex flex-col md:flex-row items-center justify-between bg-accent rounded-2xl overflow-hidden gap-8 p-6 sm:p-10 md:p-12">
+      <!-- ฝั่งข้อความ -->
+      <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full md:w-1/2">
+        <div class="mb-6">
+          <!-- ลบ text-white และ drop-shadow-sm ออกเพื่อให้ Gradient แสดงผลได้ถูกต้อง -->
+          <h1
+            class="animate-fade-in-up animate-gradient text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight">
+            ช็อบถูกใจในราคาสบายกระเป๋า
+          </h1>
+          <p class="animate-fade-in-up text-lg sm:text-xl md:text-2xl text-white/90 mt-3 font-semibold tracking-tight"
+            style="animation-delay: 0.2s">
+            พร้อมลุคที่ถูกใจวัยทีน
+          </p>
+        </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OCCASION</title>
-  <link href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="./tailwind.config.js"></script>
-  <link rel="stylesheet" href="style.css">
+        <!-- ปุ่มกด -->
+        <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-3 justify-center md:justify-start">
+          <button 
+            class="w-full sm:w-auto bg-secondary text-white font-semibold px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md">
+            Shop
+          </button>
+          <button
+            class="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border border-white/20 font-semibold  px-6 py-3.5 text-base md:text-lg hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg shadow-md">
+            Match
+          </button>
+        </div>
+      </div>
 
-</head>
+      <!-- ฝั่งรูปภาพ -->
+      <div class="w-full md:w-1/2 flex justify-center items-center">
+        <!-- แก้ไข class เลเยอร์เรืองแสงรอบรูปภาพ -->
 
-<body class="w-full bg-background font-sans">
-  <!-- navbar -->
-   <header id="navbar-container"></header>
-  <!-- hero section -->
-   <section class="relative" id="new">
-    <img src="./assets/bg-hero.jpg" alt="Two models wearing black and white minimal tailoring in a concrete studio" 
-    width="1920" height="1080" class="h-[78vh] w-full object-cover" >
-  <div class="absolute inset-0 flex justify-center items-end bg-foreground/35">
-      <div class="absolute w-full max-w-7xl px-6 pb-14 ">
-      <p class="text-[11px] uppercase text-white tracking-[0.2em] ">occasion mix and match style by ai</p>
-      <h1 class="mt-4 max-w-3xl font-display text-5xl uppercase leading-[1.02] tracking-[0.02em] text-background md:text-7xl animate-gradient">
-        CREATE YOUR LOOK 
-        SMOOTH
-      </h1>
-      <p class="text-white mt-8 uppercase tracking-[0.02em] text-[11px]">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Rerum iure eaque voluptatum voluptas eius illum.</p>
-       <a href="#" class="mt-8 text-primary rounded-md inline-flex items-center gap-3 bg-background px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.3em] text-foreground transition-opacity hover:opacity-85">
-     OUR PRODUCT
-    </a>
+        <img src="./assets/house.jpg" alt="Hero Image"
+          class="w-full max-w-sm md:max-w-md h-64 sm:h-80 md:h-auto object-cover rounded-xl shadow-lg relative" />
+      </div>
     </div>
-   
-  </div>
-   </section>
-
-
-
+  </section>
+  
   <!-- main section -->
   <section id="main" class="max-w-7xl w-full mx-auto  sm:px-6 lg:px-8 ">
     <!-- recommend section -->
@@ -51,9 +53,9 @@
     <!-- Card Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 ">
       <!-- Card 1 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]  ">
-        <img src="./assets/product/style_1.jpg" alt="เสื้อ" width="736" height="981"
-          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+        <img src="./assets/dog1.jpg" alt="เสื้อ"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
         <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">เสื้อ</h4>
           <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
@@ -61,9 +63,9 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
-        <img src="./assets/product/style_3.jpg" alt="กางเกง"
-          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+        <img src="./assets/dog2.jpg" alt="กางเกง"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
         <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">กางเกง</h4>
           <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
@@ -71,9 +73,9 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
-        <img src="./assets/product/style_2.jpg" alt="กระโปรง"
-          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
+      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+        <img src="./assets/dog3.jpg" alt="กระโปรง"
+          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
         <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">กระโปรง</h4>
           <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
@@ -148,37 +150,31 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
         <!-- Card 1 -->
-        <div class="relative overflow-hidden w-full max-w-sm aspect-[3/4] rounded-xl relative overflow-hidden group shadow-md ">
-          <img src="./assets/lookbook/lookbook_set1.jpg" alt="เสื้อ" 
-            class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg">
-            <h4 class="text-3xl font-bold uppercase tracking-tight 
-               bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
-               [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)] ">เสื้อ</h4>
-            <h6 class="text-sm font-normal ">สำรวจหมวดหมู่</h6>
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+          <img src="./assets/dog1.jpg" alt="เสื้อ"
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+            <h4 class="text-3xl">เสื้อ</h4>
+            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="w-full max-w-sm aspect-[3/4] rounded-xl relative overflow-hidden group shadow-md ">
-          <img src="./assets/lookbook/lookbook_set2.jpg" alt="กางเกง"
-            class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
-          <div class="absolute bottom-4 left-4 font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg" >
-            <h4 class="text-3xl font-bold uppercase tracking-tight 
-               bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
-               [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)]">กางเกง</h4>
-            <h6 class="text-sm text-gray-200 opacity-90 ">สำรวจหมวดหมู่</h6>
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
+          <img src="./assets/dog2.jpg" alt="กางเกง"
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+            <h4 class="text-3xl">กางเกง</h4>
+            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
 
         <!-- Card 3 -->
         <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
-          <img src="./assets/lookbook/lookbook_3.png" alt="กระโปรง"
+          <img src="./assets/dog3.jpg" alt="กระโปรง"
             class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg">
-            <h4 class="text-3xl font-bold uppercase tracking-tight 
-               bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
-               [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)]">กระโปรง</h4>
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+            <h4 class="text-3xl">กระโปรง</h4>
             <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
         </div>
@@ -202,7 +198,7 @@
           ดูสินค้า
         </span>
       </a>
-      <span class="absolute top-0 left-1"> <img src="./assets/new.png" alt="new-icon" class="w-13 h-12"></span>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">เครื่องประดับ</h4>
           <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
@@ -216,7 +212,7 @@
           ดูสินค้า
         </span>
       </a>
-      <span class="absolute top-0 left-1"> <img src="./assets/new.png" alt="new-icon" class="w-13 h-12"></span>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
 
        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">กางเกง</h4>
@@ -231,7 +227,7 @@
           ดูสินค้า
         </span>
       </a>
-      <span class="absolute top-0 left-1"> <img src="./assets/new.png" alt="new-icon" class="w-13 h-12"></span>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
 
        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">เสื้อ</h4>
@@ -246,7 +242,7 @@
           ดูสินค้า
         </span>
       </a>
-      <span class="absolute top-0 left-1"> <img src="./assets/new.png" alt="new-icon" class="w-13 h-12"></span>
+      <span class="absolute top-0 right-0"> <img src="./assets/newIcon.png" alt="new-icon" class="w-13 h-12"></span>
 
        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
           <h4 class="text-3xl">เสื้อ</h4>
@@ -262,18 +258,11 @@
     <h2 class="text-2xl font-bold text-primary">Article</h2>
    <p class="text-xl text-primary ">อ่านบทความพิเศษช่วงนี้เท่านั้น</p>
    </div>
-  <div class="max-w-7xl mx-auto  py-5 "> 
+  <div class="max-w-7xl mx-auto  py-4 "> 
   <!-- Grid แสดงผลการ์ดบทความ -->
-  <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p">
+  <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <!-- DOM Render ตรงนี้ -->
   </div>
 </div>
 
   </section>
-
-  <div id="footer-container"></div>
-
-  <script src="script.js"></script>
-</body>
-
-</html>
