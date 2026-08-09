@@ -1,4 +1,3 @@
-// ฟังก์ชันสำหรับโหลดไฟล์ HTML เข้ามาแทรกใน id ที่ระบุ
 const articles = [
   {
     id: 1,
@@ -46,6 +45,7 @@ const articles = [
     tags: ["Streetwear", "Trends"]
   }
 ];
+// ฟังก์ชันสำหรับโหลดไฟล์ HTML เข้ามาแทรกใน id ที่ระบุ
 function loadComponent(elementId, filePath) {
   fetch(filePath)
     .then((response) => {
