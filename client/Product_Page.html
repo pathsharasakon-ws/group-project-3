@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="th" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OCCASION - สินค้าทั้งหมด แฟชั่นเสื้อผ้าออนไลน์</title>
+    <!-- Google Fonts: Prompt สำหรับการแสดงผลภาษาไทยที่สวยงามและทันสมัย -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0046a7", // สีน้ำเงินหลักของแบรนด์
+              secondary: "#495f8f", // สีน้ำเงินอมเทา
+              accent: "#e2156d", // สีชมพู Accent
+              background: "#fcf4ee", // สีพื้นหลังโทนอบอุ่น
+            },
+            fontFamily: {
+              sans: ["Prompt", "sans-serif"],
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(15px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+            animation: {
+              "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* เอฟเฟกต์ Gradient ข้อความเคลื่อนไหว */
+      .animate-gradient {
+        background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        animation: gradientMove 4s ease infinite;
+      }
+      @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      /* ซ่อน Scrollbar แนวนอน */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="w-full bg-background font-sans text-gray-800 flex flex-col min-h-screen">
+    <!-- ============================================== -->
+    <!-- 1. แถบนำทางหลัก (Navbar) - โหลดผ่าน script.js -->
+    <!-- ============================================== -->
+    <div id="navbar-container"></div>
+
+    <!-- ============================================== -->
+    <!-- 2. เนื้อหาหลักของหน้ารายการสินค้า (Main Content) -->
+    <!-- ============================================== -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+      
+      <!-- เมนูนำทางแบบลำดับขั้น (Breadcrumb Navigation) -->
+      <nav class="flex items-center text-sm text-gray-500 mb-6 gap-2" aria-label="Breadcrumb">
+        <a href="./index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span>หน้าแรก</span>
+        </a>
+        <span>/</span>
+        <span class="text-primary font-medium">สินค้าแฟชั่นทั้งหมด</span>
+      </nav>
+
+      <!-- แบนเนอร์หัวข้อหน้ารายการสินค้า (Category Header Banner) -->
+      <section class="bg-gradient-to-r from-primary via-secondary to-accent text-white rounded-3xl p-6 sm:p-8 md:p-10 mb-8 shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 border border-white/30">
+            <span>✨</span>
+            <span>คอลเลกชันใหม่ล่าสุด 2026</span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+            คอลเลกชันสินค้าแฟชั่นทั้งหมด
+          </h1>
+          <p class="mt-3 text-white/95 text-sm sm:text-base md:text-lg font-light leading-relaxed">
+            เลือกช้อปเสื้อผ้าแฟชั่นสไตล์มินิมอลและสตรีทแวร์คุณภาพพรีเมียม ตอบโจทย์ทุกสไตล์ของวัยรุ่น พร้อมระบบช่วยแนะนำไซส์และจับคู่ชุด (Mix & Match) อัตโนมัติ
+          </p>
+
+          <!-- ปุ่มเลือกหมวดหมู่ด่วน (Quick Category Badges) -->
+          <div class="flex items-center gap-2.5 mt-6 overflow-x-auto no-scrollbar pb-1">
+            <button class="bg-white text-primary font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition shadow-md whitespace-nowrap">
+              ทั้งหมด (All)
+            </button>
+            <button class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20">
+              👕 เสื้อผ้าท่อนบน (Tops)
+            </button>
+            <button class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20">
+              👖 กางเกง (Bottoms)
+            </button>
+            <button class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20">
+              👗 กระโปรง & เดรส (Skirts/Dresses)
+            </button>
+            <button class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20">
+              🧥 เสื้อคลุม (Jackets)
+            </button>
+            <button class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20">
+              🎁 จัดเซ็ตลุคสุดคุ้ม (Sets)
+            </button>
+          </div>
+        </div>
+
+        <!-- วงกลมประดับพื้นหลัง (Decorative Blurred Background) -->
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-24 top-0 w-48 h-48 bg-accent/40 rounded-full blur-2xl pointer-events-none"></div>
+      </section>
+
+      <!-- โครงสร้างหลัก: แถบตัวกรองด้านข้าง (Sidebar) + ตารางรายการสินค้า (Product Grid) -->
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- ============================================== -->
+        <!-- 3. แถบตัวกรองสินค้าด้านข้าง (Sidebar Filter) -->
+        <!-- ============================================== -->
+        <aside class="w-full lg:w-1/4">
+          <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100 sticky top-4">
+            
+            <!-- หัวข้อตัวกรอง -->
+            <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-5">
+              <h2 class="text-base font-bold text-primary flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                </svg>
+                <span>ตัวกรองสินค้า</span>
+              </h2>
+              <button class="text-xs text-accent font-semibold hover:underline">
+                ล้างค่าทั้งหมด
+              </button>
+            </div>
+
+            <!-- ช่องค้นหาชื่อสินค้า -->
+            <div class="mb-6">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
+                ค้นหาตามชื่อสินค้า
+              </label>
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="พิมพ์ค้นหา เช่น เสื้อเชิ้ต, กางเกง..."
+                  class="w-full pl-9 pr-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition"
+                />
+                <img
+                  src="./assets/search.png"
+                  alt="search"
+                  class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none"
+                />
+              </div>
+            </div>
+
+            <!-- หมวดหมู่สินค้า (Categories) -->
+            <div class="mb-6">
+              <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">
+                หมวดหมู่สินค้า
+              </h3>
+              <div class="space-y-2.5 text-sm">
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" checked class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary accent-primary" />
+                    <span class="group-hover:text-primary font-medium transition">สินค้าทั้งหมด</span>
+                  </div>
+                  <span class="text-xs text-gray-400 font-medium">(24 ชิ้น)</span>
+                </label>
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary accent-primary" />
+                    <span class="group-hover:text-primary transition">เสื้อยืด / เสื้อเชิ้ต (Tops)</span>
+                  </div>
+                  <span class="text-xs text-gray-400 font-medium">(8 ชิ้น)</span>
+                </label>
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary accent-primary" />
+                    <span class="group-hover:text-primary transition">กางเกงขายาว / ขาสั้น (Pants)</span>
+                  </div>
+                  <span class="text-xs text-gray-400 font-medium">(6 ชิ้น)</span>
+                </label>
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary accent-primary" />
+                    <span class="group-hover:text-primary transition">กระโปรง (Skirts)</span>
+                  </div>
+                  <span class="text-xs text-gray-400 font-medium">(4 ชิ้น)</span>
+                </label>
+                <label class="flex items-center justify-between cursor-pointer group">
+                  <div class="flex items-center gap-2.5">
+                    <input type="checkbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary accent-primary" />
+                    <span class="group-hover:text-primary transition">เสื้อคลุม / แจ็คเก็ต (Jackets)</span>
+                  </div>
+                  <span class="text-xs text-gray-400 font-medium">(6 ชิ้น)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ช่วงราคา (Price Range) -->
+            <div class="mb-6 pt-4 border-t border-gray-100">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                  ช่วงราคา (บาท)
+                </h3>
+                <span class="text-xs text-primary font-bold">฿190 - ฿1,500</span>
+              </div>
+              <input
+                type="range"
+                min="100"
+                max="3000"
+                value="1500"
+                class="w-full accent-primary cursor-pointer"
+              />
+              <div class="flex items-center gap-2 mt-3">
+                <div class="relative w-1/2">
+                  <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-gray-400">฿</span>
+                  <input
+                    type="number"
+                    placeholder="ต่ำสุด"
+                    value="190"
+                    class="w-full pl-6 pr-2 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-center"
+                  />
+                </div>
+                <span class="text-gray-400 text-xs">ถึง</span>
+                <div class="relative w-1/2">
+                  <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-gray-400">฿</span>
+                  <input
+                    type="number"
+                    placeholder="สูงสุด"
+                    value="1500"
+                    class="w-full pl-6 pr-2 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-center"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ตัวเลือกขนาดไซส์ (Size Selector) -->
+            <div class="mb-6 pt-4 border-t border-gray-100">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                  ขนาดเสื้อผ้า (Size)
+                </h3>
+                <span class="text-[11px] text-gray-400">เลือกได้หลายไซส์</span>
+              </div>
+              <div class="grid grid-cols-4 gap-2 text-xs font-medium">
+                <button class="py-2 border border-gray-200 rounded-xl hover:border-primary hover:text-primary transition text-center font-medium">
+                  XS
+                </button>
+                <button class="py-2 border-2 border-primary bg-primary/10 text-primary font-bold rounded-xl transition text-center shadow-xs">
+                  S
+                </button>
+                <button class="py-2 border-2 border-primary bg-primary/10 text-primary font-bold rounded-xl transition text-center shadow-xs">
+                  M
+                </button>
+                <button class="py-2 border border-gray-200 rounded-xl hover:border-primary hover:text-primary transition text-center font-medium">
+                  L
+                </button>
+                <button class="py-2 border border-gray-200 rounded-xl hover:border-primary hover:text-primary transition text-center font-medium">
+                  XL
+                </button>
+                <button class="py-2 border border-gray-200 rounded-xl hover:border-primary hover:text-primary transition text-center font-medium">
+                  2XL
+                </button>
+                <button class="col-span-2 py-2 border border-gray-200 rounded-xl hover:border-primary hover:text-primary transition text-center font-medium">
+                  ฟรีไซส์ (Free Size)
+                </button>
+              </div>
+            </div>
+
+            <!-- การ์ดฟีเจอร์คำนวณไซส์อัจฉริยะ (Smart Size Recommendation CTA) -->
+            <div class="bg-background rounded-2xl p-4 border border-primary/20 text-center">
+              <div class="flex items-center justify-center gap-1.5 text-primary font-bold text-xs mb-1.5">
+                <span class="text-base">📏</span>
+                <span>ระบบคำนวณไซส์อัจฉริยะ</span>
+              </div>
+              <p class="text-[11px] text-gray-600 mb-3 leading-relaxed">
+                หมดกังวลเรื่องใส่ไม่พอดี เพียงกรอกส่วนสูงและน้ำหนัก ระบบจะประมวลผลไซส์ที่เหมาะสมที่สุดให้คุณทันที
+              </p>
+              <button class="w-full bg-primary hover:bg-secondary text-white text-xs font-semibold py-2 px-3 rounded-xl transition shadow-md">
+                ทดลองคำนวณไซส์ของฉัน
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ============================================== -->
+        <!-- 4. ส่วนแสดงรายการสินค้า (Product Catalog Grid) -->
+        <!-- ============================================== -->
+        <section class="w-full lg:w-3/4">
+          
+          <!-- แถบควบคุมด้านบน: แสดงผลจำนวน & ตัวเลือกเรียงลำดับ (Top Controls) -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 mb-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-sm text-gray-600">
+              กำลังแสดง <span class="font-bold text-primary">6</span> จากทั้งหมด <span class="font-bold text-primary">24</span> รายการ
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+              <!-- เมนูตัวเลือกการเรียงลำดับ -->
+              <div class="flex items-center gap-2 text-sm w-full sm:w-auto">
+                <span class="text-gray-500 text-xs sm:text-sm whitespace-nowrap">เรียงตาม:</span>
+                <select class="w-full sm:w-auto bg-gray-50 border border-gray-200 text-gray-700 py-1.5 px-3 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+                  <option>🔥 สินค้ายอดนิยม (Popular)</option>
+                  <option>✨ สินค้ามาใหม่ล่าสุด (New Arrival)</option>
+                  <option>💰 ราคา: ต่ำไปสูง (Price: Low to High)</option>
+                  <option>💎 ราคา: สูงไปต่ำ (Price: High to Low)</option>
+                  <option>⭐ คะแนนรีวิวสูงสุด (Top Rated)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- ตารางการ์ดสินค้า (Product Grid Cards) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
+            <!-- สินค้าชิ้นที่ 1: เสื้อเชิ้ตโอเวอร์ไซส์ -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <!-- รูปภาพและป้ายสถานะ -->
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/dog1.jpg"
+                  alt="เสื้อเชิ้ตโอเวอร์ไซส์ สไตล์มินิมอล"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <!-- ป้ายสินค้าใหม่ -->
+                <span class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                  มาใหม่ (NEW)
+                </span>
+                <!-- ปุ่มบันทึกในรายการโปรด -->
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- คำบรรยายและรายละเอียดสินค้า -->
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: เสื้อผ้าท่อนบน (Tops)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    เสื้อเชิ้ตโอเวอร์ไซส์ สไตล์มินิมอล
+                  </h3>
+                  <!-- คำบรรยายรายละเอียดสินค้าแบบย่อ -->
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    เนื้อผ้าคอตตอนผสมลินิน ระบายอากาศได้ดีเยี่ยม ทรงหลวมใส่สบาย เหมาะสำหรับทั้งลุคลำลองและทางการ
+                  </p>
+                  <!-- ดาวรีวิว -->
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(4.9 • รีวิว 38 คน)</span>
+                  </div>
+                </div>
+
+                <!-- ราคาและปุ่มสั่งซื้อ -->
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿590</span>
+                    <div class="text-lg font-bold text-accent">฿450</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                    title="เพิ่มเสื้อเชิ้ตลงตะกร้า"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 2: กางเกงขายาวทรงกระบอก -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/dog2.jpg"
+                  alt="กางเกงขายาวทรงกระบอก สไตล์แคชชวล"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <span class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                  ยอดฮิต (HOT)
+                </span>
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: กางเกง (Bottoms)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    กางเกงขายาวทรงกระบอก สไตล์แคชชวล
+                  </h3>
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    กางเกงผ้าชิโนทรงทิ้งตัวสวย เข้ารูปพอดีขา แมตช์คู่กับเสื้อเชิ้ตหรือเสื้อยืดก็ดูเท่มีสไตล์
+                  </p>
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-gray-300">★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(4.7 • รีวิว 52 คน)</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿790</span>
+                    <div class="text-lg font-bold text-accent">฿590</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 3: กระโปรงพลีทสั้น -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/dog3.jpg"
+                  alt="กระโปรงพลีทสั้น สไตล์เกาหลียอดนิยม"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <span class="absolute top-3 left-3 bg-secondary text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                  แนะนำ (RECOMMEND)
+                </span>
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: กระโปรง (Skirts)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    กระโปรงพลีทสั้น สไตล์เกาหลียอดนิยม
+                  </h3>
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    กระโปรงทรงพลีทจับจีบประณีต เอวยางยืดด้านหลังพร้อมซับในกางเกง สวมใส่สบายและมั่นใจทุกการเคลื่อนไหว
+                  </p>
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(5.0 • รีวิว 29 คน)</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿490</span>
+                    <div class="text-lg font-bold text-accent">฿390</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 4: เซ็ตชุด Daily Look Match -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/golden.jpg"
+                  alt="เซ็ตชุดลุคประจำวัน Daily Look Set"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <span class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                  ลดพิเศษ 15% (SET DEAL)
+                </span>
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: เซ็ตเสื้อผ้าจัดเต็ม (Complete Look)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    เซ็ตชุดลุคประจำวัน Daily Match Set
+                  </h3>
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    จับคู่เสื้อและกางเกงที่ออกแบบให้เข้าโทนสีกันอย่างลงตัว ประหยัดเวลาแต่งตัวพร้อมรับส่วนลดพิเศษทันที
+                  </p>
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(4.8 • รีวิว 64 คน)</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿1,290</span>
+                    <div class="text-lg font-bold text-accent">฿1,090</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 5: เสื้อคลุมคาร์ดิแกน -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/house.jpg"
+                  alt="เสื้อคลุมคาร์ดิแกน ผ้านุ่มพิเศษ"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: เสื้อคลุม & แจ็คเก็ต (Jackets)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    เสื้อคลุมคาร์ดิแกน ผ้านุ่มพิเศษ
+                  </h3>
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    ผ้าถักนุ่มละมุน ไม่ระคายเคืองผิว ให้ความอบอุ่นกำลังดี เหมาะสำหรับใส่ทำงานหรือเดินห้าง
+                  </p>
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-gray-300">★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(4.6 • รีวิว 19 คน)</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿690</span>
+                    <div class="text-lg font-bold text-accent">฿550</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 6: เสื้อยืดคอกลมผ้า Cotton -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+              <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                <img
+                  src="./assets/dog1.jpg"
+                  alt="เสื้อยืดคอกลมผ้า Cotton พรีเมียม"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <button
+                  class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+                  title="บันทึกในรายการโปรด (Wishlist)"
+                >
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="p-4 flex flex-col flex-grow justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                    หมวดหมู่: เสื้อผ้าท่อนบน (Tops)
+                  </span>
+                  <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    เสื้อยืดคอกลม ผ้า Cotton 100% พรีเมียม
+                  </h3>
+                  <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    เส้นใยฝ้ายธรรมชาติแท้ ไม่หด ไม่ย้วย ซักง่ายแห้งไว ไอเทมจำเป็นที่ทุกคนต้องมีติดตู้เสื้อผ้า
+                  </p>
+                  <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span class="text-gray-400 text-[11px] ml-1">(4.9 • รีวิว 88 คน)</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div>
+                    <span class="text-xs text-gray-400 line-through">฿390</span>
+                    <div class="text-lg font-bold text-accent">฿290</div>
+                  </div>
+                  <button
+                    class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                  >
+                    <img src="./assets/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                    <span>เพิ่มลงตะกร้า</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ============================================== -->
+          <!-- 5. แถบเปลี่ยนหน้าสินค้า (Pagination) -->
+          <!-- ============================================== -->
+          <div class="mt-12 flex items-center justify-center gap-2">
+            <button class="px-4 py-2.5 border rounded-xl bg-white text-gray-600 hover:border-primary hover:text-primary transition text-xs sm:text-sm font-medium shadow-xs">
+              &larr; หน้าก่อนหน้า
+            </button>
+            <button class="w-10 h-10 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm shadow-md">
+              1
+            </button>
+            <button class="w-10 h-10 rounded-xl bg-white text-gray-700 hover:bg-gray-100 transition text-xs sm:text-sm font-semibold border border-gray-200">
+              2
+            </button>
+            <button class="w-10 h-10 rounded-xl bg-white text-gray-700 hover:bg-gray-100 transition text-xs sm:text-sm font-semibold border border-gray-200">
+              3
+            </button>
+            <button class="px-4 py-2.5 border rounded-xl bg-white text-gray-600 hover:border-primary hover:text-primary transition text-xs sm:text-sm font-medium shadow-xs">
+              หน้าถัดไป &rarr;
+            </button>
+          </div>
+
+        </section>
+
+      </div>
+
+      <!-- ============================================== -->
+      <!-- 6. ส่วนแนะนำฟีเจอร์จำลองชุดแต่งตัว (Smart Wardrobe CTA) -->
+      <!-- ============================================== -->
+      <section class="mt-16 bg-gradient-to-r from-accent via-primary to-secondary text-white rounded-3xl p-6 sm:p-10 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <span class="inline-block text-xs uppercase tracking-widest bg-white/20 border border-white/30 px-3.5 py-1 rounded-full font-bold">
+            ฟีเจอร์เด่น Smart Wardrobe
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mt-3 leading-tight">
+            หมดปัญหาซื้อเสื้อไปแล้วไม่รู้จะใส่คู่กับอะไร!
+          </h2>
+          <p class="text-white/90 text-sm sm:text-base mt-2.5 leading-relaxed font-light">
+            ทดลองจับคู่เสื้อ กางเกง และกระโปรงในระบบห้องแต่งตัวจำลองของเรา เพื่อดูภาพรวมของลุคก่อนตัดสินใจสั่งซื้อ พร้อมรับส่วนลดพิเศษทันที 10% เมื่อซื้อยกเซ็ต
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto relative z-10">
+          <a
+            href="./index.html#main"
+            class="bg-white text-primary hover:bg-gray-100 font-bold px-7 py-3.5 rounded-2xl transition text-center shadow-lg text-sm sm:text-base whitespace-nowrap hover:scale-105 transform duration-200"
+          >
+            เข้าสู่ห้องจำลองการแต่งตัว (Mix & Match) &rarr;
+          </a>
+        </div>
+        <!-- ตกแต่งพื้นหลังเรืองแสง -->
+        <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+      </section>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- 7. ส่วนท้ายเว็บไซต์ (Footer) - โหลดผ่าน script.js -->
+    <!-- ============================================== -->
+    <div id="footer-container"></div>
+
+    <!-- โหลดสคริปต์ส่วนกลางสำหรับดึง navbar.html และ footer.html -->
+    <script src="script.js"></script>
+  </body>
+</html>
