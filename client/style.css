@@ -1,49 +1,54 @@
-   @import "tailwindcss";
-   .animate-gradient {
-      background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-      animation: gradientMove 3s ease infinite;
-    }
+@import "tailwindcss";
+@source "./*.html";
+/* Custom Keyframes & Animations */
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-      
-    }
-    @keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%); /* เลื่อนไปครึ่งหนึ่งของความกว้างทั้งหมด */
-  }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+@theme {
+  --color-primary: #0046a7;  /* เปลี่ยนเป็นรหัสสีฟ้า Primary ของคุณ */
+  --color-accent: #e2156d;   /* เปลี่ยนเป็นรหัสสีเข้ม Accent ของคุณ */
+  --color-secondary:#495f8f;
+  --color-background:#fcf4ee;
+}
+.animate-gradient {
+  background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s ease infinite;
 }
 
 .animate-marquee {
-  animation: marquee 25s linear infinite; /* ปรับความเร็วตรง 25s */
+  animation: marquee 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
+/* Custom Components */
 @layer components {
-  /* กำหนด Component สำหรับปุ่ม */
-  .btn-primary {
-    @apply px-5 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 active:scale-95 transition-all shadow-sm;
+  /* คลาสหลักสำหรับโครงสร้างปุ่ม */
+  .btn {
+    @apply px-5 py-2.5 rounded-lg font-medium transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 shadow-sm;
   }
-  
-  /* กำหนด Component สำหรับ Input Form */
-  .form-input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all;
+
+  /* คลาสสำหรับสีต่าง ๆ (ตัด @apply btn ออก) */
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
   }
 }

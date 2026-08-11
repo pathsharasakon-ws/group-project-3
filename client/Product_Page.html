@@ -9,34 +9,10 @@
       href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap"
       rel="stylesheet"
     />
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#0046a7", // สีน้ำเงินหลักของแบรนด์
-              secondary: "#495f8f", // สีน้ำเงินอมเทา
-              accent: "#e2156d", // สีชมพู Accent
-              background: "#fcf4ee", // สีพื้นหลังโทนอบอุ่น
-            },
-            fontFamily: {
-              sans: ["Prompt", "sans-serif"],
-            },
-            keyframes: {
-              fadeInUp: {
-                "0%": { opacity: "0", transform: "translateY(15px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
-            animation: {
-              "fade-in-up": "fadeInUp 0.6s ease-out forwards",
-            },
-          },
-        },
-      };
-    </script>
+    <!-- Tailwind CSS CLI -->
+<link rel="stylesheet" href="./output.css" />
+  
+
     <style>
       /* เอฟเฟกต์ Gradient ข้อความเคลื่อนไหว */
       .animate-gradient {
