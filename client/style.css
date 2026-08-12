@@ -31,7 +31,14 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
-
+      /* ซ่อน Scrollbar แนวนอน */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
 /* Custom Components */
 @layer components {
   /* คลาสหลักสำหรับโครงสร้างปุ่ม */
