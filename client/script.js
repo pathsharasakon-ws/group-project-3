@@ -1,70 +1,190 @@
-const articles = [
-  {
-    id: 1,
-    title: "10 เคล็ดลับการแต่งตัวคุมโทน ให้เข้ากับสุนัขตัวโปรด",
-    excerpt: "แนะนำไอเดียแต่งตัวสายแฟชั่น มิกซ์แอนด์แมตช์ลุคสุดชิคให้ดูแพงและคุมโทนไปพร้อมกับน้องหมาของคุณ...",
-    category: "แฟชั่น",
-    publishedAt: "8 ส.ค. 2026",
-    readTime: "3 นาที",
-    image: "./assets/dog1.jpg",
-    link: "/article/10-tips-pet-fashion",
-    author: {
-      name: "Admin Husky",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80"
-    },
-    tags: ["Fashion", "PetCare", "Lifestyle"]
-  },
-  {
-    id: 2,
-    title: "วิธีรับมือเมื่อไซบีเรียน ฮัสกี เริ่มทำหน้าหงุดหงิดใส่คุณ",
-    excerpt: "เจาะลึกภาษากายและอารมณ์ของน้องหมา พร้อมเทคนิคการปรับสภาพแวดล้อมให้อารมณ์ดีตลอดทั้งวัน...",
-    category: "พฤติกรรมสัตว์เลี้ยง",
-    publishedAt: "5 ส.ค. 2026",
-    readTime: "5 นาที",
-    image: "./assets/dog2.jpg",
-    link: "/article/understanding-husky-mood",
-    author: {
-      name: "หมอโฮ่ง",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
-    },
-    tags: ["DogBehavior", "Husky"]
-  },
-  {
-    id: 3,
-    title: "เทรนด์เสื้อผ้าสัตว์เลี้ยงปี 2026 ที่สายสตรีทไม่ควรพลาด",
-    excerpt: "รวมคอลเลกชันใหม่ล่าสุดสไตล์ Streetwear ที่จะเปลี่ยนสัตว์เลี้ยงของคุณให้กลายเป็นแฟชั่นนิสต้า...",
-    category: "เทรนด์",
-    publishedAt: "1 ส.ค. 2026",
-    readTime: "4 นาที",
-    image: "./assets/dog3.jpg",
-    link: "/article/pet-streetwear-trends-2026",
-    author: {
-      name: "Admin Husky",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80"
-    },
-    tags: ["Streetwear", "Trends"]
-  }
-];
+import { article } from "./api/article.js";
+import { productData } from "./api/product.js";
 // ฟังก์ชันสำหรับโหลดไฟล์ HTML เข้ามาแทรกใน id ที่ระบุ
-function loadComponent(elementId, filePath) {
-  fetch(filePath)
-    .then((response) => {
-      if (!response.ok) throw new Error(`Could not load ${filePath}`);
-      return response.text();
-    })
-    .then((data) => {
-      document.getElementById(elementId).innerHTML = data;
-    })
-    .catch((error) => console.error(error));
+// 1. ปรับ loadComponent ให้ส่งคืน Promise เพื่อให้รอการโหลดเสร็จได้
+async function loadComponent(elementId, filePath) {
+  try {
+    const response = await fetch(filePath);
+    if (!response.ok) throw new Error(`Could not load ${filePath}`);
+    const html = await response.text();
+    
+    const targetEl = document.getElementById(elementId);
+    if (targetEl) targetEl.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-// เรียกใช้งานเมื่อโหลดหน้าเว็บเสร็จ
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("navbar-container", "navbar.html");
-  loadComponent("footer-container", "footer.html");
+document.addEventListener("DOMContentLoaded", async () => {
+  // โหลด Component Navbar และ Footer
+  await Promise.all([
+    loadComponent("navbar-container", "navbar.html"),
+    loadComponent("footer-container", "footer.html")
+  ]);
+
+  // เปิดใช้งานระบบ Search บน Navbar
+  setupSearchSystem();
+
+  // ดึง Container แสดงสินค้า
+  const productContainer = document.getElementById('product-container');
+  
+  // Guard Clause: ถ้าไม่ใช่หน้าสินค้า (เช่น หน้า index.html) ให้จบการทำงานตรงนี้
+  if (!productContainer) return;
+
+
+  // อ่านค่าจาก URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('search');
+  const categoryQuery = urlParams.get('category') || 'all';
+
+  // ตรวจสอบว่าเป็นการ "ค้นหา" หรือ "เลือกหมวดหมู่"
+  if (searchQuery) {
+    // --- กรณีค้นหาด้วย Keyword ---
+    const keyword = searchQuery.toLowerCase();
+    
+    // กรองเฉพาะสินค้าที่ชื่อตรงกับคำค้นหา
+    const searchResults = productData.filter(product => 
+      product.name.toLowerCase().includes(keyword)
+    );
+
+    if (searchResults.length > 0) {
+      renderProducts(searchResults);
+    } else {
+      // กรณีไม่พบสินค้า
+      productContainer.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <p class="text-gray-500 text-lg">ไม่พบสินค้าที่ตรงกับคำว่า "${searchQuery}"</p>
+        </div>
+      `;
+    }
+  } else {
+    // --- กรณีเข้าหน้าสินค้าปกติ / เลือกหมวดหมู่ ---
+    filterAndRender(categoryQuery);
+    updateActiveButton(categoryQuery);
+  }
 });
 
+// ฟังก์ชันเปลี่ยนสีปุ่ม active (Optional)
+function highlightActiveButton(category) {
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  categoryBtns.forEach(btn => {
+    if (btn.getAttribute('data-category') === category) {
+      btn.classList.add('bg-white', 'text-primary');
+      btn.classList.remove('bg-white/20', 'text-white');
+    }
+  });
+}
+
+function filterAndRender(category) {
+  if (category === 'all') {
+    renderProducts(productData);
+  } else {
+    const filtered = productData.filter(
+      item => item.category.toLowerCase() === category.toLowerCase()
+    );
+    renderProducts(filtered);
+  }
+}
+
 const articleGrid = document.getElementById("article-grid");
+
+  if(document.URL === 'http://127.0.0.1:5500/client/index.html'){
+    renderArticles(article)
+  }
+
+
+
+const products = document.getElementById("product-container");
+const categoryBTns = document.querySelectorAll('.category-btn');
+
+categoryBTns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const selectedCategory = btn.getAttribute('data-category');
+
+    if(selectedCategory === 'all'){
+      renderProducts(productData)
+      
+    }else{
+      const filtered = productData.filter(item => item.category === selectedCategory);
+      renderProducts(filtered)
+     
+    }
+    
+  })
+    renderProducts(productData)
+    
+});
+
+
+
+function renderProducts(data) {
+  // ย้าย grid wrapper มาคลุมข้างนอก .map()
+  products.innerHTML = `
+    <div class="grid grid-cols-3 gap-4">
+      ${data.map(product => `
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
+          
+          <!-- รูปภาพและป้ายสถานะ -->
+          <div class="relative overflow-hidden aspect-[3/4] bg-gray-100">
+            <img
+              src="./assets/${product.img}"
+              alt="${product.name}"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            <span class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-sm">
+              มาใหม่ (NEW)
+            </span>
+            <button
+              class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 hover:bg-white backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-accent transition shadow-sm"
+              title="บันทึกในรายการโปรด (Wishlist)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- คำบรรยายและรายละเอียดสินค้า -->
+          <div class="p-4 flex flex-col flex-grow justify-between">
+            <div>
+              <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
+                หมวดหมู่: ${product.category}
+              </span>
+              <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
+                ${product.name}
+              </h3>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                ${product.description || 'เนื้อผ้าคุณภาพดี สวมใส่สบาย'}
+              </p>
+              <div class="flex items-center gap-1 mt-2 text-yellow-400 text-xs">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                <span class="text-gray-400 text-[11px] ml-1">(4.9 • รีวิว 38 คน)</span>
+              </div>
+            </div>
+
+            <!-- ราคาและปุ่มสั่งซื้อ -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 line-through">฿590</span>
+                <div class="text-lg font-bold text-accent">฿${product.price}</div>
+              </div>
+              <button
+                class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium"
+                title="เพิ่มลงตะกร้า"
+              >
+                <img src="./assets/icon/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
+                <span>เพิ่มลงตะกร้า</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+
 function renderArticles(data) {
   articleGrid.innerHTML = data.map(article => `
     <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
@@ -110,5 +230,66 @@ function renderArticles(data) {
   `).join("");
 }
 
-// สั่งทำงาน
-renderArticles(articles);
+function updateActiveButton(selectedCategory) {
+  const categoryBtns = document.querySelectorAll('.category-btn');
+
+  categoryBtns.forEach(btn => {
+    const category = btn.getAttribute('data-category');
+
+    if (category === selectedCategory) {
+      // 🌟 ปุ่มที่ตรงกับหมวดหมู่ที่เลือก -> ใส่ไฮไลท์สีขาว
+      btn.className = "category-btn bg-white text-primary font-bold px-4 py-2 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition shadow-md whitespace-nowrap";
+    } else {
+      // ⚪ ปุ่มอื่น ๆ -> เปลี่ยนเป็นสีโปร่งแสง
+      btn.className = "category-btn bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20";
+    }
+  });
+}
+
+
+// ฟังก์ชันจัดการระบบค้นหา
+function setupSearchSystem() {
+  const searchBtn = document.getElementById('search-button');
+  const searchModal = document.getElementById('search-modal');
+  const closeSearchBtn = document.getElementById('close-search-btn');
+  const searchForm = document.getElementById('search-form');
+  const searchInput = document.getElementById('search-input');
+
+  if (!searchBtn || !searchModal) return;
+
+  // เปิด Modal
+  searchBtn.addEventListener('click', () => {
+    searchModal.classList.remove('hidden');
+    searchModal.classList.add('flex');
+    searchInput.focus();
+  });
+
+  // ปิด Modal (ปุ่ม ✕)
+  closeSearchBtn.addEventListener('click', () => {
+    searchModal.classList.add('hidden');
+    searchModal.classList.remove('flex');
+  });
+
+  // ปิด Modal เมื่อคลิกพื้นหลัง
+  searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+      searchModal.classList.add('hidden');
+      searchModal.classList.remove('flex');
+    }
+  });
+
+  // เมื่อกด Submit -> มีหน้าที่ "พาไปหน้า Product พร้อมคำค้นหา" เท่านั้น
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const keyword = searchInput.value.trim();
+    
+    if (!keyword) return;
+
+    // ย้ายหน้าไป Product_Page.html พร้อมแปะ query string ?search=...
+    window.location.href = `./Product_Page.html?search=${encodeURIComponent(keyword)}`;
+  });
+}
+
+// ==========================================
+// 2. การทำงานหลักเมื่อโหลดหน้าเว็บ (Main Logic)
+// ==========================================

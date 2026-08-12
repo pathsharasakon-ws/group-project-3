@@ -4,16 +4,17 @@
   >
     <!-- Logo -->
     <a href="./index.html" class="flex items-center">
-      <img src="./assets/newlogo.png" alt="Logo" class="w-24 h-auto" />
+      <img src="./assets/logo/newlogo.png" alt="Logo" class="w-24 h-auto" />
     </a>
 
     <!-- Menu List -->
     <ul class="flex items-center gap-6 text-lg font-medium">
       <li>
         <button
-          class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition"
+          class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition" 
+          id="search-button"
         >
-          <img src="./assets/search.png" alt="search" class="w-4 h-4" />
+          <img src="./assets/icon/search.png" alt="search" class="w-4 h-4" />
         </button>
       </li>
 
@@ -29,15 +30,34 @@
           href="#"
           class="flex items-center gap-2 text-primary hover:opacity-80 transition"
         >
-          <img src="./assets/user.png" alt="Sign in" class="w-6 h-6" />
+          <img src="./assets/icon/user.png" alt="Sign in" class="w-6 h-6" />
           <span>SIGN IN</span>
         </a>
       </li>
       <li>
         <a href="#" class="hover:opacity-80 transition flex items-center">
-          <img src="./assets/cartBag.png" alt="Cart" class="w-6 h-6" />
+          <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
         </a>
       </li>
     </ul>
   </div>
 </nav>
+<div id="search-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+  <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
+    <button id="close-search-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
+    
+    <h3 class="text-lg font-bold text-gray-800 mb-4">ค้นหาสินค้า</h3>
+    
+    <form id="search-form" class="flex gap-2">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="พิมพ์ชื่อสินค้า เช่น เสื้อเชิ้ต, กางเกง..." 
+        class="flex-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-primary text-sm"
+      />
+      <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:opacity-90 transition">
+        ค้นหา
+      </button>
+    </form>
+  </div>
+</div>
