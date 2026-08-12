@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Successful - OCCASION</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Config สีและฟอนต์ -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0046a7",
+            secondary: "#495f8f",
+            accent: "#e2156d",
+            background: "#fcf4ee",
+          },
+          fontFamily: {
+            sans: ["Prompt", "sans-serif"],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="w-full bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="./index.html" class="flex items-center">
+        <img src="./assets/newlogo.png" alt="Logo" class="w-24 h-auto" />
+      </a>
+
+      <!-- Menu List -->
+      <ul class="flex items-center gap-6 text-lg font-medium">
+        <li>
+          <button class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition">
+            <img src="./assets/search.png" alt="search" class="w-4 h-4" />
+          </button>
+        </li>
+        <li class="text-primary decoration-accent hover:underline underline-offset-4">
+          <a href="./index.html">PRODUCTS</a>
+        </li>
+        <li class="text-primary decoration-accent hover:underline underline-offset-4">
+          <a href="#">FEATURES</a>
+        </li>
+        <li>
+          <a href="./index.html" class="flex items-center gap-2 text-primary hover:opacity-80 transition">
+            <img src="./assets/user.png" alt="Sign in" class="w-6 h-6" />
+            <span>SIGN IN</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="hover:opacity-80 transition flex items-center">
+            <img src="./assets/cartBag.png" alt="Cart" class="w-6 h-6" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <!-- Card Container จัดแนวตั้ง flex-col -->
+    <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-sm max-w-md w-full flex flex-col items-center text-center">
+      
+      <!-- เครื่องหมายถูก สี #e2156d -->
+      <div class="w-24 h-24 rounded-full border-4 border-[#e2156d] flex items-center justify-center mb-6">
+        <svg class="w-12 h-12 text-[#e2156d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+
+      <!-- หัวข้อ -->
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2 leading-tight">
+        Registration<br>Successful!
+      </h1>
+
+      <!-- คำอธิบาย -->
+      <p class="text-gray-500 text-sm mb-8">
+        Your account is ready! Welcome to OCCASION.
+      </p>
+
+      <!-- ปุ่ม Explore Products -->
+      <a href="./index.html" class="w-full text-white text-center py-3.5 rounded-full font-semibold block transition-all duration-300 relative overflow-hidden backdrop-blur-md bg-[#e2156d]/70 border border-white/30 shadow-[0_8px_32px_0_rgba(226,21,109,0.37)] hover:bg-[#e2156d]/90 hover:shadow-[0_8px_32px_0_rgba(226,21,109,0.6)] hover:scale-[1.02] active:scale-[0.98] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-50 pointer-events-auto">
+        <span class="relative z-10">Explore Products</span>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="Footer" class="bg-accent text-white">
+    <div class="max-w-6xl w-full mx-auto px-4 py-8">
+      <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-8 rounded-xl shadow-md gap-4">
+        <p class="text-white font-medium text-base sm:text-lg text-center sm:text-left">
+          Become a member and get 10% off for first purchase
+        </p>
+        <button class="bg-white text-primary font-bold px-6 py-2.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap shadow">
+          Subscribe
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 my-10">
+        <div>
+          <h4 class="font-bold text-lg mb-4">SHOP</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Tops</a></li>
+            <li><a href="#" class="hover:underline transition">Bottoms</a></li>
+            <li><a href="#" class="hover:underline transition">LookBooks</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">HELP</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Customer Service</a></li>
+            <li><a href="#" class="hover:underline transition">Terms & Policy</a></li>
+            <li><a href="#" class="hover:underline transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">USER</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Become A Member</a></li>
+            <li><a href="#" class="hover:underline transition">My Account</a></li>
+            <li><a href="#" class="hover:underline transition">My Lookbooks</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">Connect with OCCASION</h4>
+          <ul class="flex flex-col space-y-3 text-sm text-white/90">
+            <li>
+              <a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition">
+                <img src="./assets/facebook.png" alt="facebook" class="w-5 h-5 object-contain" />
+                <span>Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition">
+                <img src="./assets/instagram.png" alt="instagram" class="w-5 h-5 object-contain" />
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition">
+                <img src="./assets/line.png" alt="line" class="w-5 h-5 object-contain" />
+                <span>Line Official</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition">
+                <img src="./assets/tiktok.png" alt="tiktok" class="w-5 h-5 object-contain" />
+                <span>TikTok</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/20 pt-6 text-center text-xs text-white/70">
+        &copy; 2026 OCCASION. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
