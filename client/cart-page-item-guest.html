@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart Page (Item) - Not Member</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="./output.css">
+
+    <style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #navbar-container {
+        flex-shrink: 0;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    #footer-container {
+        flex-shrink: 0;
+    }
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================== */
+
+    .product-image {
+        width: 150px;
+        height: 170px;
+
+        min-width: 150px;
+        min-height: 170px;
+
+        flex: 0 0 150px;
+
+        overflow: hidden;
+
+        background-color: #f3f3f3;
+    }
+
+    .product-image img {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header id="navbar-container"></header>
+
+
+
+    <!-- =========================
+         CART PAGE
+    ========================== -->
+
+    <main class="bg-background py-10">
+
+        <div class="mx-auto w-full max-w-4xl bg-white p-12">
+
+
+            <!-- =========================
+                 INFORMATION BOX
+            ========================== -->
+
+            <div
+                class="mx-auto mb-8 w-full max-w-3xl border border-blue-300 bg-blue-100 px-5 py-3 text-[11px] leading-relaxed"
+            >
+
+                <p>
+                    <span class="text-blue-500">ⓘ</span>
+
+                    <strong>1. Sale Items:</strong>
+                    No returns or exchanges.
+                    See our returns policy for details.
+                </p>
+
+                <p>
+                    <strong>2. Duty and Tax:</strong>
+                    Relevant import duty and tax are included
+                    in product price.
+                </p>
+
+                <p>
+                    <strong>3. International Transaction Fee:</strong>
+                    Your bank may charge international fees.
+                    Learn more on our policy.
+                </p>
+
+            </div>
+
+
+
+            <!-- =========================
+                 CART MAIN CONTENT
+            ========================== -->
+
+            <div class="grid grid-cols-2 gap-5">
+
+
+                <!-- =========================
+                     LEFT : MY BAG
+                ========================== -->
+
+                <section class="min-w-0">
+
+                    <h2 class="mb-5 text-lg font-semibold">
+                        My Bag
+                        <span class="font-normal">(3)</span>
+                    </h2>
+
+
+
+                    <!-- =========================
+                         PRODUCT 1
+                    ========================== -->
+
+                    <div class="mb-5 flex min-w-0 border-b border-gray-300 pb-5">
+
+
+                        <!-- IMAGE -->
+
+                        <div class="product-image">
+
+                            <img
+                                src="./images/easyset-shirt.jpg"
+                                alt=""
+                            >
+
+                        </div>
+
+
+
+                        <!-- INFO -->
+
+                        <div class="ml-4 flex min-w-0 flex-1 flex-col">
+
+
+                            <!-- NAME -->
+
+                            <div class="flex items-start justify-between gap-2">
+
+                                <h3 class="min-w-0 text-xs font-semibold">
+                                    EasySet Training Long-Sleeve Shirt
+                                </h3>
+
+                                <button
+                                    class="shrink-0 text-xl leading-none text-gray-500"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+
+
+                            <!-- SALE -->
+
+                            <p class="mt-2 text-[10px] text-red-500">
+                                Final Sale ●
+                            </p>
+
+
+                            <!-- COLOR -->
+
+                            <p class="text-[10px] text-gray-600">
+                                Walnut Crunch
+                            </p>
+
+
+                            <!-- SIZE -->
+
+                            <p class="text-[10px] text-gray-600">
+                                Size US L
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div
+                                class="mt-3 flex w-14 shrink-0 items-center justify-between border border-gray-300 px-2 py-1 text-[10px]"
+                            >
+
+                                <button>−</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+
+                            </div>
+
+
+                            <!-- BOTTOM -->
+
+                            <div
+                                class="mt-auto flex items-end justify-between gap-2"
+                            >
+
+                                <div class="flex shrink-0 gap-4 text-[9px]">
+
+                                    <button class="underline">
+                                        Edit
+                                    </button>
+
+                                    <button class="underline">
+                                        Save for Later
+                                    </button>
+
+                                </div>
+
+
+                                <div class="shrink-0 text-right">
+
+                                    <p class="text-xs font-semibold">
+                                        ฿ 2,380.00
+                                    </p>
+
+                                    <p class="text-[9px] text-gray-400 line-through">
+                                        ฿ 3,400.00
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUCT 2
+                    ========================== -->
+
+                    <div class="mb-5 flex min-w-0 border-b border-gray-300 pb-5">
+
+
+                        <!-- IMAGE -->
+
+                        <div class="product-image">
+
+                            <img
+                                src="./images/training-short.jpg"
+                                alt=""
+                            >
+
+                        </div>
+
+
+
+                        <!-- INFO -->
+
+                        <div class="ml-4 flex min-w-0 flex-1 flex-col">
+
+
+                            <!-- NAME -->
+
+                            <div class="flex items-start justify-between gap-2">
+
+                                <h3 class="min-w-0 text-xs font-semibold">
+                                    Training Short
+                                </h3>
+
+                                <button
+                                    class="shrink-0 text-xl leading-none text-gray-500"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+
+
+                            <!-- SALE -->
+
+                            <p class="mt-2 text-[10px] text-red-500">
+                                Final Sale ●
+                            </p>
+
+
+                            <!-- COLOR -->
+
+                            <p class="text-[10px] text-gray-600">
+                                Black
+                            </p>
+
+
+                            <!-- SIZE -->
+
+                            <p class="text-[10px] text-gray-600">
+                                Size US M
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div
+                                class="mt-3 flex w-14 shrink-0 items-center justify-between border border-gray-300 px-2 py-1 text-[10px]"
+                            >
+
+                                <button>−</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+
+                            </div>
+
+
+                            <!-- BOTTOM -->
+
+                            <div
+                                class="mt-auto flex items-end justify-between gap-2"
+                            >
+
+                                <div class="flex shrink-0 gap-4 text-[9px]">
+
+                                    <button class="underline">
+                                        Edit
+                                    </button>
+
+                                    <button class="underline">
+                                        Save for Later
+                                    </button>
+
+                                </div>
+
+
+                                <div class="shrink-0 text-right">
+
+                                    <p class="text-xs font-semibold">
+                                        ฿ 1,890.00
+                                    </p>
+
+                                    <p class="text-[9px] text-gray-400 line-through">
+                                        ฿ 2,500.00
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUCT 3
+                    ========================== -->
+
+                    <div class="mb-5 flex min-w-0 border-b border-gray-300 pb-5">
+
+
+                        <!-- IMAGE -->
+
+                        <div class="product-image">
+
+                            <img
+                                src="./images/everyday-tshirt.jpg"
+                                alt=""
+                            >
+
+                        </div>
+
+
+
+                        <!-- INFO -->
+
+                        <div class="ml-4 flex min-w-0 flex-1 flex-col">
+
+
+                            <!-- NAME -->
+
+                            <div class="flex items-start justify-between gap-2">
+
+                                <h3 class="min-w-0 text-xs font-semibold">
+                                    Everyday T-Shirt
+                                </h3>
+
+                                <button
+                                    class="shrink-0 text-xl leading-none text-gray-500"
+                                >
+                                    ×
+                                </button>
+
+                            </div>
+
+
+                            <!-- SALE -->
+
+                            <p class="mt-2 text-[10px] text-red-500">
+                                Final Sale ●
+                            </p>
+
+
+                            <!-- COLOR -->
+
+                            <p class="text-[10px] text-gray-600">
+                                White
+                            </p>
+
+
+                            <!-- SIZE -->
+
+                            <p class="text-[10px] text-gray-600">
+                                Size US L
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div
+                                class="mt-3 flex w-14 shrink-0 items-center justify-between border border-gray-300 px-2 py-1 text-[10px]"
+                            >
+
+                                <button>−</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+
+                            </div>
+
+
+                            <!-- BOTTOM -->
+
+                            <div
+                                class="mt-auto flex items-end justify-between gap-2"
+                            >
+
+                                <div class="flex shrink-0 gap-4 text-[9px]">
+
+                                    <button class="underline">
+                                        Edit
+                                    </button>
+
+                                    <button class="underline">
+                                        Save for Later
+                                    </button>
+
+                                </div>
+
+
+                                <div class="shrink-0 text-right">
+
+                                    <p class="text-xs font-semibold">
+                                        ฿ 1,590.00
+                                    </p>
+
+                                    <p class="text-[9px] text-gray-400 line-through">
+                                        ฿ 2,100.00
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================
+                     RIGHT : SUMMARY
+                ========================== -->
+
+                <aside class="min-w-0">
+
+                    <h4 class="mb-5 text-right text-[10px] font-semibold">
+                        Need Help? 088 888 8888
+                    </h4>
+
+
+                    <!-- PROMO -->
+
+                    <div
+                        class="mb-4 flex items-center gap-2 text-[10px]"
+                    >
+
+                        <span class="text-lg">
+                            +
+                        </span>
+
+                        <button class="underline">
+                            Enter promo code
+                        </button>
+
+                    </div>
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
+                    >
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ฿ 5,860.00
+                        </span>
+
+                    </div>
+
+
+                    <!-- SHIPPING -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
+                    >
+
+                        <span>
+                            Shipping cost
+                        </span>
+
+                        <span>
+                            ฿ 180.00
+                        </span>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div
+                        class="flex justify-between py-3 text-[11px]"
+                    >
+
+                        <strong>
+                            Estimated Total
+                        </strong>
+
+                        <strong>
+                            ฿ 6,040.00
+                        </strong>
+
+                    </div>
+
+
+                    <!-- CHECKOUT -->
+
+                    <button
+                        class="w-full bg-accent py-3 text-[10px] font-semibold text-white transition hover:opacity-90"
+                    >
+                        CHECKOUT
+                    </button>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p
+                        class="mt-3 text-[8px] leading-relaxed text-gray-500"
+                    >
+                        By clicking "Checkout", you will be redirected to
+                        the checkout page where payment will be taken and
+                        your order fulfilled by ESW, Occasion's partner
+                        for international sales.
+                    </p>
+
+                </aside>
+
+            </div>
+
+
+
+            <!-- =========================
+                 SAVE FOR LATER
+            ========================== -->
+
+            <section class="mt-10 text-center">
+
+                <div class="mb-2 text-2xl">
+                    ♧
+                </div>
+
+                <h2 class="text-lg font-semibold">
+                    Save for Later
+                </h2>
+
+                <p class="mt-1 text-[10px]">
+                    Create an account or sign in to view your saved items.
+                </p>
+
+                <button
+                    class="mt-3 mb-2 border border-gray-500 bg-white px-5 py-2 text-[9px] font-semibold transition hover:bg-black hover:text-white"
+                >
+                    CREATE AN ACCOUNT
+                </button>
+
+                <br>
+
+                <a
+                    href="#"
+                    class="text-[10px] underline"
+                >
+                    Sign in to Occasion
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <div id="footer-container"></div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+</body>
+
+</html>

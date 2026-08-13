@@ -1,172 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Cart Page (Empty)</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./output.css" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100vh;
+      }
 
+      body {
+        display: flex;
+        flex-direction: column;
+      }
 
+      #navbar-container {
+        flex-shrink: 0;
+      }
 
-   
-</head>
+      main {
+        flex: 1;
+      }
 
-<body>
+      #footer-container {
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
 
-  <!-- navbar -->
-   <header id="navbar-container"></header>
-
+  <body>
+    <!-- navbar -->
+    <header id="navbar-container"></header>
 
     <!-- =========================
          CART PAGE CONTENT
     ========================== -->
 
-    <main class="min-h-screen bg-background py-10">
+    <main class="bg-background py-10">
+      <div class="mx-auto w-full max-w-4xl bg-white p-12">
+        <!-- =========================
+                 INFORMATION BOX
+            ========================== -->
 
-        <div class="mx-auto w-[83%] max-w-[1200px] bg-white p-12">
+        <div
+          class="mx-auto mb-8 w-full max-w-3xl border border-blue-300 bg-blue-100 px-5 py-3 text-[11px] leading-relaxed"
+        >
+          <p>
+            <span class="text-blue-500">ⓘ</span>
+            <strong>1. Sale Items:</strong>
+            No returns or exchanges. See our returns policy for details.
+          </p>
 
-            <!-- Information Box -->
-            <div class="mx-auto mb-8 w-[80%] border border-blue-300 bg-blue-100 px-5 py-3 text-[11px] leading-relaxed">
+          <p>
+            <strong>2. Duty and Tax:</strong>
+            Relevant import duty and tax are included in product price.
+          </p>
 
-                <p>
-                    <span class="text-blue-500">ⓘ</span>
-                    <strong>1. Sale Items:</strong>
-                    No returns or exchanges. See our returns policy for details.
-                </p>
-
-                <p>
-                    <strong>2. Duty and Tax:</strong>
-                    Relevant import duty and tax are included in product price.
-                </p>
-
-                <p>
-                    <strong>3. International Transaction Fee:</strong>
-                    Your bank may charge international fees.
-                    Learn more on our policy.
-                </p>
-
-            </div>
-
-
-            <!-- Cart Main Content -->
-            <div class="grid min-h-[270px] grid-cols-2 gap-16">
-
-                <!-- Empty Cart -->
-                <section class="flex flex-col items-center justify-center text-center">
-
-                    <div class="mb-2 text-3xl">
-                        ♧
-                    </div>
-
-                    <h2 class="mb-2 text-lg font-semibold">
-                        Your bag is empty
-                    </h2>
-
-                    <p class="mb-5 text-xs text-gray-700">
-                        Not sure where to start?
-                        Here are some of our favorites.
-                    </p>
-
-                    <div class="flex gap-2">
-
-                        <button
-                            class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
-                        >
-                            Tops
-                        </button>
-
-                        <button
-                            class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
-                        >
-                            Bottoms
-                        </button>
-
-                    </div>
-
-                </section>
-
-
-                <!-- Cart Summary -->
-                <aside class="pt-8">
-
-                    <h4 class="mb-7 text-right text-xs font-semibold">
-                        Need Help? 088 888 8888
-                    </h4>
-
-                    <div class="flex justify-between border-b border-gray-200 py-2 text-[11px]">
-                        <span>Subtotal</span>
-                        <span>฿ 0.00</span>
-                    </div>
-
-                    <div class="flex justify-between border-b border-gray-200 py-2 text-[11px]">
-                        <span>Shipping cost</span>
-                        <span>-</span>
-                    </div>
-
-                    <div class="flex justify-between pt-3 text-[11px]">
-                        <strong>Estimated Total</strong>
-                        <strong>฿ 0.00</strong>
-                    </div>
-
-                </aside>
-
-            </div>
-
-
-            <!-- Divider -->
-            <div class="mx-auto my-8 h-px w-[35%] bg-gray-200"></div>
-
-
-            <!-- Save For Later -->
-            <section class="text-center">
-
-                <div class="mb-2 text-3xl">
-                    ♧
-                </div>
-
-                <h2 class="mb-2 text-lg font-semibold">
-                    Save for Later
-                </h2>
-
-                <p class="mb-4 text-xs">
-                    Create an account or sign in to view your saved items.
-                </p>
-
-                <button
-                    class="mb-2 border border-gray-500 bg-white px-5 py-3 text-[10px] font-semibold transition hover:bg-black hover:text-white"
-                >
-                    CREATE AN ACCOUNT
-                </button>
-
-                <br>
-
-                <a
-                    href="#"
-                    class="text-[11px] text-gray-800 underline"
-                >
-                    Sign in to Occasion
-                </a>
-
-            </section>
-
+          <p>
+            <strong>3. International Transaction Fee:</strong>
+            Your bank may charge international fees. Learn more on our policy.
+          </p>
         </div>
 
+        <!-- =========================
+                 CART MAIN CONTENT
+            ========================== -->
+
+        <div class="grid grid-cols-2 gap-5">
+          <!-- =========================
+                     EMPTY CART
+                ========================== -->
+
+          <section class="flex flex-col items-center text-center">
+            <div class="mb-2 text-3xl">♧</div>
+
+            <h2 class="mb-2 text-lg font-semibold">Your bag is empty</h2>
+
+            <p class="mb-5 text-xs text-gray-700">
+              Not sure where to start? Here are some of our favorites.
+            </p>
+
+            <!-- Shop Buttons -->
+
+            <div class="flex gap-2">
+              <button
+                class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
+              >
+                Tops
+              </button>
+
+              <button
+                class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
+              >
+                Bottoms
+              </button>
+            </div>
+          </section>
+
+          <!-- =========================
+                     CART SUMMARY
+                ========================== -->
+
+          <aside>
+            <h4 class="mb-5 text-right text-[10px] font-semibold">
+              Need Help? 088 888 8888
+            </h4>
+
+            <!-- Subtotal -->
+
+            <div
+              class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
+            >
+              <span> Subtotal </span>
+
+              <span> ฿ 0.00 </span>
+            </div>
+
+            <!-- Shipping -->
+
+            <div
+              class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
+            >
+              <span> Shipping cost </span>
+
+              <span> - </span>
+            </div>
+
+            <!-- Estimated Total -->
+
+            <div class="flex justify-between py-3 text-[11px]">
+              <strong> Estimated Total </strong>
+
+              <strong> ฿ 0.00 </strong>
+            </div>
+          </aside>
+        </div>
+
+        <!-- =========================
+                 DIVIDER
+            ========================== -->
+
+        <div class="mx-auto my-4 h-px w-[35%] bg-gray-200"></div>
+
+        <!-- =========================
+                 SAVE FOR LATER
+            ========================== -->
+
+        <section class="text-center">
+          <div class="mb-2 text-2xl">♧</div>
+
+          <h2 class="text-lg font-semibold">Save for Later</h2>
+
+          <p class="mt-1 text-[10px]">
+            Create an account or sign in to view your saved items.
+          </p>
+
+          <!-- Create Account -->
+
+          <button
+            class="mt-3 mb-2 border border-gray-500 bg-white px-5 py-2 text-[9px] font-semibold transition hover:bg-black hover:text-white"
+          >
+            CREATE AN ACCOUNT
+          </button>
+
+          <br />
+
+          <!-- Sign In -->
+
+          <a href="#" class="text-[10px] underline"> Sign in to Occasion </a>
+        </section>
+      </div>
     </main>
 
+    <!-- footer -->
+    <div id="footer-container"></div>
 
-    <!-- Footer -->
-    <!-- main section  ทดสอบสีจาก component ข้างนอก-->
-
-  <div id="footer-container"></div>
-
-  <script type="module" src="script.js"></script>
-
-
-</body>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
