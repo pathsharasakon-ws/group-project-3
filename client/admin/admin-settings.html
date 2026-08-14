@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasion Admin Panel - Settings</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js สำหรับ Dropdown และ Tab Switcher -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
+
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+      
+      <div class="flex flex-col h-full">
+        <!-- Admin Profile / Brand Header -->
+        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+            ADMIN
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
+            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links (5 Core Groups) -->
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+          
+          <!-- GROUP 1: OVERVIEW -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
+            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+              <i class="fa-solid fa-chart-pie text-sm w-4"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
+
+          <!-- GROUP 2: CATALOG MANAGEMENT -->
+          <div x-data="{ open: false }">
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-shirt text-sm w-4"></i>
+                <span>Product Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-products.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• สินค้าทั้งหมด (Products)</a>
+              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• หมวดหมู่ (Categories)</a>
+              <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• Lookbooks ( Mix & Match )</a>
+              <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• ปรับสต็อก (Stock Adjustments)</a>
+            </div>
+          </div>
+
+          <!-- GROUP 3: SALES & FULFILLMENT -->
+          <div x-data="{ open: false }">
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-receipt text-sm w-4"></i>
+                <span>Order Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
+              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
+            </div>
+          </div>
+
+          <!-- GROUP 4: USERS & COMMUNITY -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+            <div class="space-y-1">
+              <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-users text-sm w-4"></i>
+                <span>Customers (สมาชิก & สัดส่วน)</span>
+              </a>
+              <a href="admin-reviews.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-star text-sm w-4"></i>
+                <span>Reviews Management</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- GROUP 5: SYSTEM & AUDIT -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+            <div class="space-y-1">
+              <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
+                <span>Admin Audit Logs</span>
+              </a>
+            </div>
+          </div>
+
+        </nav>
+
+        <!-- Footer / Active Settings Link -->
+        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+          <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-semibold bg-blue-50 text-blue-600 rounded-lg">
+            <i class="fa-solid fa-gear w-4"></i> Settings
+          </a>
+          <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
+            <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
+    <div class="flex-1 flex flex-col overflow-y-auto" x-data="{ activeTab: 'profile' }">
+
+      <!-- TOP HEADER BAR -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
+        <div class="flex items-center gap-4 w-1/3">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+            <i class="fa-regular fa-bell text-base"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="h-6 w-px bg-gray-200"></div>
+          
+          <div class="flex items-center gap-2">
+            <span class="font-semibold text-gray-700">Pathsharasakon (Super Admin)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY (SETTINGS CONTENT) -->
+      <main class="p-8 space-y-6">
+        
+        <!-- Header Page -->
+        <div>
+          <h1 class="text-xl font-bold text-gray-800">ตั้งค่าระบบ & บัญชีผู้ใช้ (Settings)</h1>
+          <p class="text-xs text-gray-500 mt-1">จัดการข้อมูลโปรไฟล์ ความปลอดภัย และการตั้งค่าร้านค้าภาพรวม</p>
+        </div>
+
+        <!-- SETTINGS TAB NAVIGATION -->
+        <div class="border-b border-gray-200 flex gap-6 text-xs font-semibold">
+          <button @click="activeTab = 'profile'" :class="activeTab === 'profile' ? 'border-b-2 border-blue-600 text-blue-600 pb-3' : 'text-gray-500 hover:text-gray-800 pb-3'">
+            <i class="fa-regular fa-user mr-1.5"></i> โปรไฟล์ส่วนตัว
+          </button>
+          <button @click="activeTab = 'security'" :class="activeTab === 'security' ? 'border-b-2 border-blue-600 text-blue-600 pb-3' : 'text-gray-500 hover:text-gray-800 pb-3'">
+            <i class="fa-solid fa-shield-halved mr-1.5"></i> รหัสผ่าน & ความปลอดภัย
+          </button>
+          <button @click="activeTab = 'store'" :class="activeTab === 'store' ? 'border-b-2 border-blue-600 text-blue-600 pb-3' : 'text-gray-500 hover:text-gray-800 pb-3'">
+            <i class="fa-solid fa-store mr-1.5"></i> ข้อมูลร้านค้า (Store Info)
+          </button>
+          <button @click="activeTab = 'notifications'" :class="activeTab === 'notifications' ? 'border-b-2 border-blue-600 text-blue-600 pb-3' : 'text-gray-500 hover:text-gray-800 pb-3'">
+            <i class="fa-regular fa-bell mr-1.5"></i> การแจ้งเตือน
+          </button>
+        </div>
+
+        <!-- TAB 1: PROFILE SETTINGS -->
+        <div x-show="activeTab === 'profile'" class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-6 max-w-3xl">
+          
+          <h2 class="font-bold text-gray-800 text-sm border-b border-gray-100 pb-3">ข้อมูลส่วนตัว (Admin Profile)</h2>
+
+          <!-- Avatar Upload -->
+          <div class="flex items-center gap-6">
+            <div class="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-md relative">
+              ADMIN
+            </div>
+            <div>
+              <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-lg text-xs font-medium transition">
+                เปลี่ยนรูปโปรไฟล์
+              </button>
+              <p class="text-[10px] text-gray-400 mt-1">แนะนำรูปขนาดอย่างน้อย 200x200 px (PNG, JPG)</p>
+            </div>
+          </div>
+
+          <form class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">ชื่อผู้ใช้งาน (Display Name)</label>
+                <input type="text" value="Pathsharasakon" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">ตำแหน่งในระบบ (Role)</label>
+                <input type="text" value="Super Admin" disabled class="w-full px-3 py-2 bg-gray-100 border border-gray-200 rounded-lg text-gray-500 cursor-not-allowed">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">อีเมลติดต่อ</label>
+                <input type="email" value="admin@occasion.com" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">เบอร์โทรศัพท์</label>
+                <input type="text" value="081-999-8888" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-lg transition shadow-sm">
+                บันทึกการเปลี่ยนแปลง
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- TAB 2: SECURITY SETTINGS -->
+        <div x-show="activeTab === 'security'" class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-6 max-w-3xl" x-cloak>
+          
+          <h2 class="font-bold text-gray-800 text-sm border-b border-gray-100 pb-3">เปลี่ยนรหัสผ่าน (Change Password)</h2>
+
+          <form class="space-y-4 text-xs">
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">รหัสผ่านปัจจุบัน</label>
+              <input type="password" placeholder="••••••••" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">รหัสผ่านใหม่</label>
+                <input type="password" placeholder="อย่างน้อย 8 ตัวอักษร" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">ยืนยันรหัสผ่านใหม่</label>
+                <input type="password" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100">
+              <h3 class="font-bold text-gray-800 text-xs mb-2">การยืนยันตัวตนสองขั้นตอน (Two-Factor Authentication)</h3>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="font-medium text-gray-700">เปิดใช้งาน 2FA (Authenticator App)</p>
+                  <p class="text-[10px] text-gray-400">เพิ่มความปลอดภัยด้วยรหัสผ่าน OTP เมื่อเข้าสู่ระบบ</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" class="sr-only peer">
+                  <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-lg transition shadow-sm">
+                อัปเดตรหัสผ่าน
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- TAB 3: STORE INFO -->
+        <div x-show="activeTab === 'store'" class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-6 max-w-3xl" x-cloak>
+          
+          <h2 class="font-bold text-gray-800 text-sm border-b border-gray-100 pb-3">ข้อมูลร้านค้า (Store Details)</h2>
+
+          <form class="space-y-4 text-xs">
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">ชื่อแบรนด์ / ร้านค้า</label>
+              <input type="text" value="OCCASION Fashion Store" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+            </div>
+
+            <div>
+              <label class="block font-medium text-gray-700 mb-1">ที่อยู่ร้านค้า (สำหรับออกใบเสร็จ / ส่งคืนพัสดุ)</label>
+              <textarea rows="3" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">123/45 อาคารออฟฟิศคอมเพล็กซ์ ชั้น 8 ถ.สุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110</textarea>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-lg transition shadow-sm">
+                บันทึกข้อมูลร้านค้า
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- TAB 4: NOTIFICATIONS -->
+        <div x-show="activeTab === 'notifications'" class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-6 max-w-3xl" x-cloak>
+          
+          <h2 class="font-bold text-gray-800 text-sm border-b border-gray-100 pb-3">การตั้งค่าการแจ้งเตือน (Notifications)</h2>
+
+          <div class="space-y-4 text-xs">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div>
+                <p class="font-bold text-gray-800">แจ้งเตือนออเดอร์ใหม่ (New Order Alert)</p>
+                <p class="text-[10px] text-gray-400">ส่งอีเมลแจ้งเตือนทันทีเมื่อมีออเดอร์ใหม่เข้ามาในระบบ</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="sr-only peer">
+                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div>
+                <p class="font-bold text-gray-800">แจ้งเตือนสินค้าสต็อกต่ำ (Low Stock Alert)</p>
+                <p class="text-[10px] text-gray-400">ส่งการแจ้งเตือนเมื่อสินค้าในคลังเหลือต่ำกว่า 5 ชิ้น</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="sr-only peer">
+                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-bold text-gray-800">แจ้งเตือนรีวิวใหม่จากลูกค้า (New Review Alert)</p>
+                <p class="text-[10px] text-gray-400">ส่งการแจ้งเตือนเมื่อมีลูกค้าให้คะแนนหรือรีวิวสินค้า</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer">
+                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <style>[x-cloak] { display: none !important; }</style>
+</body>
+</html>

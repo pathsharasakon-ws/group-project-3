@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasion Admin Panel - Reviews Management</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js สำหรับ Dropdown และ Accordion -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
+
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+      
+      <div class="flex flex-col h-full">
+        <!-- Admin Profile / Brand Header -->
+        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+            ADMIN
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
+            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links (5 Core Groups) -->
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+          
+          <!-- GROUP 1: OVERVIEW -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
+            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+              <i class="fa-solid fa-chart-pie text-sm w-4"></i>
+              <span>Dashboard</span>
+            </a>
+          </div>
+
+          <!-- GROUP 2: CATALOG MANAGEMENT -->
+          <div x-data="{ open: false }">
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-shirt text-sm w-4"></i>
+                <span>Product Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-products.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• สินค้าทั้งหมด (Products)</a>
+              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• หมวดหมู่ (Categories)</a>
+              <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• Lookbooks ( Mix & Match )</a>
+              <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• ปรับสต็อก (Stock Adjustments)</a>
+            </div>
+          </div>
+
+          <!-- GROUP 3: SALES & FULFILLMENT -->
+          <div x-data="{ open: false }">
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-receipt text-sm w-4"></i>
+                <span>Order Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
+              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
+            </div>
+          </div>
+
+          <!-- GROUP 4: USERS & COMMUNITY (Active Group) -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+            <div class="space-y-1">
+              <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-users text-sm w-4"></i>
+                <span>Customers (สมาชิก & สัดส่วน)</span>
+              </a>
+              <!-- Active Link for Reviews Management -->
+              <a href="admin-reviews.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 font-semibold">
+                <i class="fa-solid fa-star text-sm w-4"></i>
+                <span>Reviews Management</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- GROUP 5: SYSTEM & AUDIT -->
+          <div>
+            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+            <div class="space-y-1">
+              <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
+                <span>Admin Audit Logs</span>
+              </a>
+            </div>
+          </div>
+
+        </nav>
+
+        <!-- Footer / Logout Settings -->
+        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+          <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
+            <i class="fa-solid fa-gear w-4"></i> Settings
+          </a>
+          <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
+            <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
+    <div class="flex-1 flex flex-col overflow-y-auto">
+
+      <!-- TOP HEADER BAR -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
+        <div class="flex items-center gap-4 w-1/3">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+            <i class="fa-regular fa-bell text-base"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="h-6 w-px bg-gray-200"></div>
+          
+          <div class="flex items-center gap-2">
+            <span class="font-semibold text-gray-700">Pathsharasakon (Super Admin)</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY (REVIEWS CONTENT) -->
+      <main class="p-8 space-y-6">
+        
+        <!-- Header Page -->
+        <div>
+          <h1 class="text-xl font-bold text-gray-800">จัดการรีวิวสินค้า (Reviews Management)</h1>
+          <p class="text-xs text-gray-500 mt-1">ตรวจสอบความเห็นลูกค้า ตอบกลับรีวิว และเลือกแสดงผลบนหน้าเว็บไซต์</p>
+        </div>
+
+        <!-- 1. REVIEWS STATS SUMMARY CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          
+          <!-- Rating Average Card -->
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-400 uppercase">คะแนนเฉลี่ยร้านค้า</p>
+              <div class="flex items-baseline gap-2 mt-1">
+                <h3 class="text-2xl font-bold text-gray-800">4.8</h3>
+                <span class="text-xs text-gray-400">/ 5.0</span>
+              </div>
+              <div class="flex items-center gap-1 text-amber-400 text-xs mt-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Total Reviews -->
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-400 uppercase">รีวิวทั้งหมด</p>
+              <h3 class="text-xl font-bold text-gray-800 mt-1">184 รายการ</h3>
+              <p class="text-[11px] text-emerald-600 mt-1 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-circle-check"></i> อนุมัติแล้ว 180
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+          </div>
+
+          <!-- Pending Reviews -->
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-400 uppercase">รอตอบกลับ</p>
+              <h3 class="text-xl font-bold text-amber-600 mt-1">4 รายการ</h3>
+              <p class="text-[11px] text-amber-600 mt-1 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-clock"></i> ต้องการการตอบกลับ
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-reply"></i>
+            </div>
+          </div>
+
+          <!-- Media Reviews -->
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-gray-400 uppercase">รีวิวพร้อมรูป/วิดีโอ</p>
+              <h3 class="text-xl font-bold text-purple-600 mt-1">96 รายการ</h3>
+              <p class="text-[11px] text-purple-600 mt-1 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-photo-film"></i> ช่วยเพิ่มอัตราสั่งซื้อ
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-images"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2. FILTER & SEARCH TOOLBAR -->
+        <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div class="relative w-full md:w-80">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input type="text" placeholder="ค้นหาตามสินค้า, ข้อความรีวิว, ชื่อลูกค้า..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto">
+            <select class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none">
+              <option value="">ทุกคะแนนดาว (All Ratings)</option>
+              <option value="5">5 ดาว (⭐⭐⭐⭐⭐)</option>
+              <option value="4">4 ดาว (⭐⭐⭐⭐)</option>
+              <option value="3">3 ดาวลงไป (⭐⭐⭐)</option>
+            </select>
+
+            <select class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none">
+              <option value="">ทุกสถานะ (Status)</option>
+              <option value="approved">แสดงผลแล้ว (Approved)</option>
+              <option value="hidden">ซ่อนการแสดงผล (Hidden)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 3. REVIEWS LIST TABLE -->
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-gray-600">
+              <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
+                <tr>
+                  <th class="py-3.5 px-5">สินค้า</th>
+                  <th class="py-3.5 px-5">ลูกค้า & คะแนน</th>
+                  <th class="py-3.5 px-5 w-1/3">ข้อความรีวิว & รูปภาพ</th>
+                  <th class="py-3.5 px-5">การตอบกลับจากร้าน</th>
+                  <th class="py-3.5 px-5">สถานะ</th>
+                  <th class="py-3.5 px-5 text-right">จัดการ</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                
+                <!-- Review Row 1 (5 Stars with Image & Admin Replied) -->
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 shrink-0">
+                        <i class="fa-solid fa-shirt"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-gray-800">เสื้อครอป Silk Satin</p>
+                        <p class="text-[10px] text-gray-400">SKU: OCC-0012</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">คุณอารยา สุขใจ</p>
+                    <div class="flex items-center gap-1 text-amber-400 text-[10px] my-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-[10px] text-gray-400">12 ส.ค. 2026</p>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="text-gray-700 font-medium leading-relaxed">
+                      "เนื้อผ้าลื่นนุ่มมากค่ะ ใส่แล้วทรงสวยเป๊ะพอดีตัว สีชมพูละมุนตรงปกมากๆ จัดส่งเร็ว แพ็คเกจจิ้งเรียบร้อยประทับใจค่ะ"
+                    </p>
+                    <!-- Review Media Thumbnail -->
+                    <div class="flex gap-2 mt-2">
+                      <div class="w-12 h-12 bg-pink-50 rounded-lg border border-gray-200 flex items-center justify-center text-pink-400 text-xs font-semibold cursor-pointer hover:opacity-80">
+                        <i class="fa-solid fa-image"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-5">
+                    <div class="bg-blue-50/60 p-2.5 rounded-lg border border-blue-100 space-y-1">
+                      <p class="text-[10px] font-bold text-blue-600 flex items-center gap-1">
+                        <i class="fa-solid fa-reply"></i> ตอบกลับโดย Occasion Admin
+                      </p>
+                      <p class="text-[11px] text-gray-600">
+                        "ขอบคุณมากๆ เลยนะคะคุณอารยา โอกาสหน้าแวะมาอุดหนุนอีกน้า 💕"
+                      </p>
+                    </div>
+                  </td>
+                  <td class="py-4 px-5">
+                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      แสดงผล
+                    </span>
+                  </td>
+                  <td class="py-4 px-5 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไขการตอบกลับ">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button>
+                      <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ซ่อนรีวิวนี้">
+                        <i class="fa-solid fa-eye-slash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Review Row 2 (4 Stars Pending Reply) -->
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 shrink-0">
+                        <i class="fa-solid fa-shirt"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-gray-800">กระโปรงทรงเอ สีเบจ</p>
+                        <p class="text-[10px] text-gray-400">SKU: OCC-0045</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">คุณณัฐวุฒิ นามสมมติ</p>
+                    <div class="flex items-center gap-1 text-amber-400 text-[10px] my-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star text-gray-300"></i>
+                    </div>
+                    <p class="text-[10px] text-gray-400">10 ส.ค. 2026</p>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="text-gray-700 font-medium leading-relaxed">
+                      "งานเย็บเรียบร้อยดีครับ สั่งให้แฟนใส่พอดีไซส์ ผ้าหนากำลังดีไม่บางครับ"
+                    </p>
+                  </td>
+                  <td class="py-4 px-5">
+                    <button class="px-2.5 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg font-semibold text-[11px] transition flex items-center gap-1">
+                      <i class="fa-solid fa-reply"></i> พิมพ์ตอบกลับ
+                    </button>
+                  </td>
+                  <td class="py-4 px-5">
+                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      แสดงผล
+                    </span>
+                  </td>
+                  <td class="py-4 px-5 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ซ่อนรีวิวนี้">
+                        <i class="fa-solid fa-eye-slash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Review Row 3 (Hidden Review) -->
+                <tr class="hover:bg-gray-50 transition bg-gray-50/40">
+                  <td class="py-4 px-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 shrink-0">
+                        <i class="fa-solid fa-shirt"></i>
+                      </div>
+                      <div>
+                        <p class="font-bold text-gray-800">เดรสราตรี Satin Pink</p>
+                        <p class="text-[10px] text-gray-400">SKU: OCC-0089</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">ผู้ใช้งานทั่วไป</p>
+                    <div class="flex items-center gap-1 text-amber-400 text-[10px] my-1">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star text-gray-300"></i>
+                      <i class="fa-regular fa-star text-gray-300"></i>
+                      <i class="fa-regular fa-star text-gray-300"></i>
+                      <i class="fa-regular fa-star text-gray-300"></i>
+                    </div>
+                    <p class="text-[10px] text-gray-400">05 ส.ค. 2026</p>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="text-gray-400 italic font-normal">
+                      "[ ข้อความมีถ้อยคำไม่เหมาะสม ถูกซ่อนการแสดงผล ]"
+                    </p>
+                  </td>
+                  <td class="py-4 px-5 text-gray-400 font-normal">
+                    -
+                  </td>
+                  <td class="py-4 px-5">
+                    <span class="bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      ซ่อนอยู่
+                    </span>
+                  </td>
+                  <td class="py-4 px-5 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <button class="p-1.5 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" title="ปลดล็อก/แสดงผล">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Pagination Footer -->
+          <div class="p-4 bg-white border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+            <p>แสดง 1 - 3 จากทั้งหมด 184 รายการ</p>
+            <div class="flex items-center gap-1">
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled>
+                <i class="fa-solid fa-chevron-left text-[10px]"></i>
+              </button>
+              <button class="px-3 py-1 rounded bg-blue-600 text-white font-medium">1</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">2</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">3</button>
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
