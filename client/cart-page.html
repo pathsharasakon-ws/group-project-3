@@ -1,190 +1,475 @@
 <!doctype html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Cart Page (Empty)</title>
 
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================= -->
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <link rel="stylesheet" href="./output.css" />
+
+    <!-- =========================================
+         TAILWIND CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="./output.css"
+    >
+
+
     <style>
-      html,
-      body {
-        margin: 0;
-        min-height: 100vh;
-      }
 
-      body {
-        display: flex;
-        flex-direction: column;
-      }
+        /* =========================================
+           PAGE LAYOUT
+        ========================================= */
 
-      #navbar-container {
-        flex-shrink: 0;
-      }
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
 
-      main {
-        flex: 1;
-      }
 
-      #footer-container {
-        flex-shrink: 0;
-      }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #navbar-container {
+            flex-shrink: 0;
+        }
+
+
+        main {
+            flex: 1 0 auto;
+        }
+
+
+        #footer-container {
+            flex-shrink: 0;
+        }
+
+
+
+        /* =========================================
+           CART LAYOUT
+
+           ใช้ Layout เดียวกับหน้า Item
+        ========================================= */
+
+        .cart-layout {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.65fr)
+                minmax(300px, 0.9fr);
+
+            column-gap: 60px;
+
+            align-items: start;
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+                row-gap: 40px;
+            }
+
+        }
+
     </style>
-  </head>
 
-  <body>
-    <!-- navbar -->
+</head>
+
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
     <header id="navbar-container"></header>
 
-    <!-- =========================
-         CART PAGE CONTENT
-    ========================== -->
+
+
+    <!-- =========================================
+         MAIN CART PAGE
+    ========================================= -->
 
     <main class="bg-background py-10">
-      <div class="mx-auto w-full max-w-4xl bg-white p-12">
-        <!-- =========================
-                 INFORMATION BOX
-            ========================== -->
+
+
+        <!-- =========================================
+             MAIN WHITE BOX
+
+             ใช้ขนาดเดียวกับหน้า Item
+        ========================================= -->
 
         <div
-          class="mx-auto mb-8 w-full max-w-3xl border border-blue-300 bg-blue-100 px-5 py-3 text-[11px] leading-relaxed"
+            class="mx-auto w-full bg-white p-12"
+            style="max-width: 1100px;"
         >
-          <p>
-            <span class="text-blue-500">ⓘ</span>
-            <strong>1. Sale Items:</strong>
-            No returns or exchanges. See our returns policy for details.
-          </p>
 
-          <p>
-            <strong>2. Duty and Tax:</strong>
-            Relevant import duty and tax are included in product price.
-          </p>
 
-          <p>
-            <strong>3. International Transaction Fee:</strong>
-            Your bank may charge international fees. Learn more on our policy.
-          </p>
-        </div>
-
-        <!-- =========================
-                 CART MAIN CONTENT
-            ========================== -->
-
-        <div class="grid grid-cols-2 gap-5">
-          <!-- =========================
-                     EMPTY CART
-                ========================== -->
-
-          <section class="flex flex-col items-center text-center">
-            <div class="mb-2 text-3xl">♧</div>
-
-            <h2 class="mb-2 text-lg font-semibold">Your bag is empty</h2>
-
-            <p class="mb-5 text-xs text-gray-700">
-              Not sure where to start? Here are some of our favorites.
-            </p>
-
-            <!-- Shop Buttons -->
-
-            <div class="flex gap-2">
-              <button
-                class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
-              >
-                Tops
-              </button>
-
-              <button
-                class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
-              >
-                Bottoms
-              </button>
-            </div>
-          </section>
-
-          <!-- =========================
-                     CART SUMMARY
-                ========================== -->
-
-          <aside>
-            <h4 class="mb-5 text-right text-[10px] font-semibold">
-              Need Help? 088 888 8888
-            </h4>
-
-            <!-- Subtotal -->
+            <!-- =====================================
+                 INFORMATION BOX
+            ====================================== -->
 
             <div
-              class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
+                class="mx-auto mb-8 w-full border border-gray-500 px-5 py-3 text-[11px] leading-relaxed"
+                style="max-width: 900px;"
             >
-              <span> Subtotal </span>
 
-              <span> ฿ 0.00 </span>
+                <p>
+
+                    <span class="text-blue-500">
+                        ⓘ
+                    </span>
+
+                    <strong>
+                        1. Sale Items:
+                    </strong>
+
+                    No returns or exchanges.
+                    See our returns policy for details.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        2. Duty and Tax:
+                    </strong>
+
+                    Relevant import duty and tax are included
+                    in product price.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        3. International Transaction Fee:
+                    </strong>
+
+                    Your bank may charge international fees.
+                    Learn more on our policy.
+
+                </p>
+
             </div>
 
-            <!-- Shipping -->
 
-            <div
-              class="flex justify-between border-b border-gray-200 py-2 text-[10px]"
-            >
-              <span> Shipping cost </span>
 
-              <span> - </span>
+            <!-- =====================================
+                 CART LAYOUT
+            ====================================== -->
+
+            <div class="cart-layout">
+
+
+                <!-- =================================
+                     LEFT : EMPTY CART
+                ================================== -->
+
+                <section
+                    class="flex min-h-[220px] flex-col items-center justify-center text-center"
+                >
+
+
+                    <!-- BAG ICON -->
+
+                    <div
+                        class="mb-3 text-3xl"
+                    >
+
+                        ♧
+
+                    </div>
+
+
+
+                    <!-- TITLE -->
+
+                    <h2
+                        class="mb-2 text-lg font-semibold"
+                    >
+
+                        Your bag is empty
+
+                    </h2>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p
+                        class="mb-6 text-sm text-gray-700"
+                    >
+
+                        Not sure where to start?
+                        Here are some of our favorites.
+
+                    </p>
+
+
+
+                    <!-- SHOP BUTTONS -->
+
+                    <div
+                        class="flex gap-3"
+                    >
+
+                        <button
+                            type="button"
+                            class="bg-black px-6 py-3 text-xs font-semibold text-white transition hover:opacity-80"
+                        >
+
+                            Tops
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="bg-black px-6 py-3 text-xs font-semibold text-white transition hover:opacity-80"
+                        >
+
+                            Bottoms
+
+                        </button>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     RIGHT : CART SUMMARY
+                ================================== -->
+
+                <aside
+                    class="min-w-0"
+                >
+
+
+                    <!-- HELP -->
+
+                    <h4
+                        class="mb-6 text-right text-sm font-semibold"
+                    >
+
+                        Need Help? 088 888 8888
+
+                    </h4>
+
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-3 text-sm"
+                    >
+
+                        <span>
+                            Subtotal
+                        </span>
+
+
+                        <span>
+                            ฿ 0.00
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- SHIPPING -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-3 text-sm"
+                    >
+
+                        <span>
+                            Shipping cost
+                        </span>
+
+
+                        <span>
+                            -
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- ESTIMATED TOTAL -->
+
+                    <div
+                        class="flex justify-between py-4 text-sm"
+                    >
+
+                        <strong>
+                            Estimated Total
+                        </strong>
+
+
+                        <strong>
+                            ฿ 0.00
+                        </strong>
+
+                    </div>
+
+
+                </aside>
+
+
             </div>
 
-            <!-- Estimated Total -->
 
-            <div class="flex justify-between py-3 text-[11px]">
-              <strong> Estimated Total </strong>
 
-              <strong> ฿ 0.00 </strong>
-            </div>
-          </aside>
-        </div>
-
-        <!-- =========================
+            <!-- =====================================
                  DIVIDER
-            ========================== -->
+            ====================================== -->
 
-        <div class="mx-auto my-4 h-px w-[35%] bg-gray-200"></div>
+            <div
+                class="mx-auto my-8 h-px bg-gray-200"
+                style="max-width: 400px;"
+            ></div>
 
-        <!-- =========================
+
+
+            <!-- =====================================
                  SAVE FOR LATER
-            ========================== -->
+            ====================================== -->
 
-        <section class="text-center">
-          <div class="mb-2 text-2xl">♧</div>
+            <section
+                class="text-center"
+            >
 
-          <h2 class="text-lg font-semibold">Save for Later</h2>
 
-          <p class="mt-1 text-[10px]">
-            Create an account or sign in to view your saved items.
-          </p>
+                <!-- ICON -->
 
-          <!-- Create Account -->
+                <div
+                    class="mb-2 text-3xl"
+                >
 
-          <button
-            class="mt-3 mb-2 border border-gray-500 bg-white px-5 py-2 text-[9px] font-semibold transition hover:bg-black hover:text-white"
-          >
-            CREATE AN ACCOUNT
-          </button>
+                    ♧
 
-          <br />
+                </div>
 
-          <!-- Sign In -->
 
-          <a href="#" class="text-[10px] underline"> Sign in to Occasion </a>
-        </section>
-      </div>
+
+                <!-- TITLE -->
+
+                <h2
+                    class="text-xl font-semibold"
+                >
+
+                    Save for Later
+
+                </h2>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <p
+                    class="mt-2 text-sm"
+                >
+
+                    Create an account or sign in to view your saved items.
+
+                </p>
+
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <button
+                    type="button"
+                    class="mt-4 mb-2 border border-gray-500 bg-white px-6 py-3 text-xs font-semibold transition hover:bg-black hover:text-white"
+                >
+
+                    CREATE AN ACCOUNT
+
+                </button>
+
+
+                <br>
+
+
+                <!-- SIGN IN -->
+
+                <a
+                    href="#"
+                    class="text-xs underline"
+                >
+
+                    Sign in to Occasion
+
+                </a>
+
+
+            </section>
+
+
+        </div>
+
+
     </main>
 
-    <!-- footer -->
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
     <div id="footer-container"></div>
 
-    <script type="module" src="script.js"></script>
-  </body>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+</body>
+
 </html>
