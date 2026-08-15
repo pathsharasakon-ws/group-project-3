@@ -1,13 +1,15 @@
 import { article } from "./api/article.js";
 import { productData } from "./api/product.js";
 
+
+
 // 1. ฟังก์ชันโหลด Component แบบ Async
 async function loadComponent(elementId, filePath) {
   try {
     const response = await fetch(filePath);
     if (!response.ok) throw new Error(`Could not load ${filePath}`);
     const html = await response.text();
-    
+
     const targetEl = document.getElementById(elementId);
     if (targetEl) targetEl.innerHTML = html;
   } catch (error) {
@@ -23,9 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadComponent("footer-container", "footer.html")
   ]);
 
-  // 🟢 [เพิ่มใหม่] สั่งทำงานระบบ Auth หลัง Navbar โหลดเสร็จเรียบร้อย
-  setupAuthSystem();
-
   // ระบบค้นหาบน Navbar
   setupSearchSystem();
 
@@ -39,117 +38,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   handleIndexPage();
   handleArticlePage(urlParams);
   handleProductPage(urlParams);
+  dropDownProfile();
+
 });
 
-// ==========================================
-// 🟢 [เพิ่มใหม่] ระบบ Auth / Login State & Dropdown บน Navbar
-// ==========================================
+//จัดการ dropdown profile navbar
+function dropDownProfile(){
+  const dropProfile = document.getElementById('profile-modal');
+const dropProfileModal = document.getElementById('dropown-menu-btn');
 
-function setupAuthSystem() {
-  checkAuthState();
-  setupDropdownListeners();
-  setupMockGuestClick(); // 🧪 Mock การกด SIGN IN เพื่อทดสอบ UI
+// คลิกเปิด-ปิด Dropdown
+dropProfile.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dropProfileModal.classList.toggle('hidden');
+});
+
+// คลิกที่อื่นเพื่อซ่อน Dropdown
+document.addEventListener('click', () => {
+  dropProfileModal.classList.add('hidden');
+});
+  
 }
-
-// 2.1 เช็คสถานะการเข้าสู่ระบบ และอัปเดต UI Navbar
-function checkAuthState() {
-  const guestState = document.getElementById('guest-state');
-  const userState = document.getElementById('user-state');
-  const userNameText = document.getElementById('user-name-text');
-  const dropdownEmail = document.getElementById('dropdown-user-email');
-
-  if (!guestState || !userState) return;
-
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-  if (isLoggedIn) {
-    // แสดงสถานะ Login แล้ว (ซ่อน SIGN IN, โชว์ PROFILE)
-    guestState.classList.add('hidden');
-    userState.classList.remove('hidden');
-
-    // ดึงชื่อและอีเมลจาก localStorage มาแสดง (ถ้าไม่มีใช้ค่า Default)
-    const name = localStorage.getItem('userName') || 'PROFILE';
-    const email = localStorage.getItem('userEmail') || 'user@example.com';
-
-    if (userNameText) userNameText.textContent = name;
-    if (dropdownEmail) dropdownEmail.textContent = email;
-  } else {
-    // แสดงสถานะยังไม่ Login (โชว์ SIGN IN, ซ่อน PROFILE)
-    guestState.classList.remove('hidden');
-    userState.classList.add('hidden');
-  }
-}
-
-// 2.2 จัดการ Event สำหรับการคลิกเปิด/ปิด Dropdown, คลิกข้างนอก และ Logout
-function setupDropdownListeners() {
-  const profileBtn = document.getElementById('profile-menu-btn');
-  const profileDropdown = document.getElementById('profile-dropdown');
-  const dropdownArrow = document.getElementById('dropdown-arrow');
-  const logoutBtn = document.getElementById('logout-btn');
-
-  if (!profileBtn || !profileDropdown) return;
-
-  // กดปุ่ม PROFILE เพื่อ เปิด/ปิด Dropdown และหมุนลูกศร
-  profileBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isHidden = profileDropdown.classList.toggle('hidden');
-    if (dropdownArrow) {
-      dropdownArrow.classList.toggle('rotate-180', !isHidden);
-    }
-  });
-
-  // กดพื้นที่ว่างเปล่าข้างนอก เพื่อปิด Dropdown
-  document.addEventListener('click', (e) => {
-    const userState = document.getElementById('user-state');
-    if (userState && !userState.contains(e.target)) {
-      profileDropdown.classList.add('hidden');
-      if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
-    }
-  });
-
-  // กดปุ่ม LOGOUT
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      // เคลียร์ข้อมูลใน localStorage
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('userEmail');
-
-      // หุบ Dropdown กลับ
-      profileDropdown.classList.add('hidden');
-      if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
-
-      // อัปเดต UI กลับเป็นสถานะ SIGN IN
-      checkAuthState();
-    });
-  }
-}
-
-// 2.3 🧪 ฟังก์ชัน Mock: เมื่อคลิกปุ่ม SIGN IN จะทำการ Login หลอกๆ และกาง Dropdown ทันที
-function setupMockGuestClick() {
-  const guestLink = document.querySelector('#guest-state a');
-
-  if (!guestLink) return;
-
-  guestLink.addEventListener('click', (e) => {
-    e.preventDefault(); // หยุดไม่ให้เปลี่ยนหน้าไป signup.html
-
-    // จำลองเขียนข้อมูลเข้า localStorage
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userName', 'Dev Tester');
-    localStorage.setItem('userEmail', 'dev.tester@example.com');
-
-    // สลับเป็นหน้า PROFILE
-    checkAuthState();
-
-    // กาง Dropdown ลงมาทันทีเพื่อให้เช็ค UI ได้สะดวก
-    const profileDropdown = document.getElementById('profile-dropdown');
-    const dropdownArrow = document.getElementById('dropdown-arrow');
-    if (profileDropdown) profileDropdown.classList.remove('hidden');
-    if (dropdownArrow) dropdownArrow.classList.add('rotate-180');
-  });
-}
-
 // ==========================================
 // ฟังก์ชันจัดการ Render หน้าต่างๆ
 // ==========================================
@@ -160,7 +69,12 @@ function handleIndexPage() {
   if (articleGrid) {
     renderArticles(article);
   }
+
 }
+
+
+
+
 
 // หน้าบทความ (article.html)
 function handleArticlePage(urlParams) {
@@ -175,7 +89,7 @@ function handleArticlePage(urlParams) {
     document.getElementById('article-category').textContent = currentArticle.category;
     document.getElementById('article-author').textContent = `โดย ${currentArticle.author.name}`;
     document.getElementById('article-date').textContent = currentArticle.publishedAt;
-    
+
     const imgEl = document.getElementById('article-image');
     if (imgEl) {
       imgEl.src = currentArticle.image;
@@ -206,7 +120,7 @@ function handleProductPage(urlParams) {
 
   if (searchQuery) {
     const keyword = searchQuery.toLowerCase();
-    const searchResults = productData.filter(product => 
+    const searchResults = productData.filter(product =>
       product.name.toLowerCase().includes(keyword)
     );
 
@@ -225,6 +139,7 @@ function handleProductPage(urlParams) {
   }
 }
 
+
 // ==========================================
 // ฟังก์ชัน Render UI และ Helper Functions
 // ==========================================
@@ -233,6 +148,7 @@ function renderProducts(data) {
   const productContainer = document.getElementById('product-container');
   if (!productContainer) return;
 
+  // ✅ แก้ไข: แสดงผลใส่ใน productContainer แทน productData
   productContainer.innerHTML = `
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       ${data.map(product => `
@@ -378,3 +294,6 @@ function setupSearchSystem() {
     window.location.href = `./Product_Page.html?search=${encodeURIComponent(keyword)}`;
   });
 }
+
+//ประกาศตัวแปร
+

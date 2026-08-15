@@ -28,74 +28,21 @@
           <span>SIGN IN</span>
         </a>
       </li>
+      <!-- 1. ปุ่ม Trigger สำหรับกดเปิดเมนู -->
+      <li id="profile-modal" class="relative list-none cursor-pointer">
+        <a class="flex items-center gap-2 text-primary hover:opacity-80 transition">
+          <img src="./assets/icon/user.png" alt="Sign in" class="w-6 h-6" />
+          <span>Admin</span>
+          <span><img src="./assets/icon/down.png" alt="down-btn" class="w-5 h-5" /></span>
+        </a>
 
-      <li><a href="#"  class="hover:opacity-80 transition flex items-center"> <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" /></a></li>
-
-      <li class="relative">
-        <!-- State 1: ยังไม่ได้ Login (Guest) -->
-        <div id="guest-state">
-          <a href="./signup.html" class="flex items-center gap-2 text-primary hover:opacity-80 transition">
-            <img src="./assets/icon/user.png" alt="Sign in" class="w-6 h-6" />
-            <span>SIGN IN</span>
-          </a>
-        </div>
-
-        <!-- State 2: Login สำเร็จแล้ว (User Profile + Dropdown) -->
-        <div id="user-state" class="hidden">
-          <!-- ปุ่มสำหรับกดเปิด/ปิด Dropdown -->
-          <button id="profile-menu-btn" type="button"
-            class="flex items-center gap-2 text-primary hover:opacity-80 transition focus:outline-none">
-            <img src="./assets/icon/user.png" alt="Profile" class="w-6 h-6 rounded-full border border-gray-200" />
-            <span id="user-name-text">PROFILE</span>
-            <!-- ลูกศร Chevron -->
-            <svg id="dropdown-arrow" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <!-- รายการ Dropdown Menu -->
-          <div id="profile-dropdown"
-            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50 text-gray-700">
-            <div class="px-4 py-2 border-b border-gray-100">
-              <p class="text-xs text-gray-400">เข้าสู่ระบบแล้ว</p>
-              <p id="dropdown-user-email" class="text-sm font-semibold truncate text-gray-800">
-                user@example.com
-              </p>
-            </div>
-
-            <a href="./profile.html" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 transition">
-              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              MY PROFILE
-            </a>
-
-            <hr class="my-1 border-gray-100" />
-            <a href="./profile.html" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 transition">
-          
-             Logout
-            </a>
-            <button id="logout-btn" type="button"
-              class="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-black hover:bg-red-50 transition">
-            <img src="./assets/icon/user.png" alt="">
-              LOGOUT
-            </button>
-          </div>
-        </div>
-      </li>
-      <li>test</li>
-      <!-- 4. Cart Bag Button (ย้ายเข้ามาไว้ใน <ul> เรียบร้อยแล้ว) -->
-      <!-- <li class="bg-red">
-        <a href="#" class="hover:opacity-80 transition flex items-center">
+      <li>
+        <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center">
           <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
         </a>
       </li>
-    -->
-   </ul>
+    </ul>
   </div>
-
 </nav>
 <div id="search-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
   <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
@@ -114,3 +61,26 @@
     </form>
   </div>
 </div>
+
+<div id="dropown-menu-btn" class="hidden absolute top-full right-0 z-50 mt-2">
+  <div class="flex items-center justify-center p-4 relative">
+    <div class="bg-white w-64 rounded-2xl p-6 shadow-xl border border-gray-100">
+
+      <!-- เมนู Profile -->
+      <a href="#profile" class="flex items-center justify-center gap-2 p-2 hover:bg-gray-50 rounded-lg transition">
+        <img src="./assets/icon/user.png" alt="" class="w-5 h-5" />
+        <p class="m-auto text-gray-700 font-medium">Profile</p>
+      </a>
+
+      <hr class="my-2 border-gray-100" />
+
+      <!-- เมนู Logout -->
+      <a href="#logout" class="flex items-center justify-center gap-2 p-2 hover:bg-red-50 rounded-lg transition">
+        <img src="./assets/icon/logout.png" alt="" class="w-5 h-5" />
+        <p class="m-auto text-red-600 font-medium">Logout</p>
+      </a>
+
+    </div>
+  </div>
+</div>
+</li>
