@@ -4,101 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Occasion Admin Panel - Login</title>
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- Tailwind CSS & FontAwesome Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine.js สำหรับ Toggle Password Visibility -->
+  
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- SweetAlert2 สำหรับเด้ง Pop-up แจ้งเตือน -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased min-h-screen flex items-center justify-center p-4">
 
-  <!-- LOGIN CARD CONTAINER -->
-  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8 space-y-6">
+  <!-- MAIN CONTAINER -->
+  <main class="w-full max-w-md">
     
-    <!-- BRAND LOGO & HEADER -->
-    <div class="text-center space-y-2">
-      <div class="w-16 h-16 rounded-2xl bg-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-md mx-auto transform -rotate-3">
-        ADMIN
-      </div>
-      <h1 class="text-2xl font-bold text-gray-800 tracking-wide pt-2">OCCASION</h1>
-      <p class="text-xs text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
-    </div>
-
-    <!-- LOGIN FORM -->
-    <form action="admin-dashboard.html" method="GET" class="space-y-4 text-xs" x-data="{ showPassword: false }">
+    <!-- LOGIN CARD SECTION -->
+    <section class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 space-y-6">
       
-      <!-- Username / Email Field -->
-      <div class="space-y-1">
-        <label for="email" class="block font-semibold text-gray-700">ชื่อผู้ใช้งาน หรือ อีเมล</label>
-        <div class="relative">
-          <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-          <input type="email" id="email" required placeholder="admin@occasion.com" 
-                 class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition text-xs">
+      <!-- BRAND HEADER -->
+      <header class="text-center space-y-2">
+        <div class="w-16 h-16 rounded-2xl bg-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-md mx-auto transform -rotate-3 select-none">
+          ADMIN
         </div>
-      </div>
+        <h1 class="text-2xl font-bold text-gray-800 tracking-wide pt-2">OCCASION</h1>
+        <p class="text-xs text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+      </header>
 
-      <!-- Password Field -->
-      <div class="space-y-1">
-        <div class="flex items-center justify-between">
-          <label for="password" class="block font-semibold text-gray-700">รหัสผ่าน</label>
-          <!-- ลิงก์ลืมรหัสผ่านที่เรียกฟังก์ชั่น SweetAlert2 (Swal) -->
-          <button type="button" onclick="showForgotPasswordAlert()" class="text-[11px] font-medium text-pink-600 hover:underline">
-            ลืมรหัสผ่าน?
-          </button>
+      <!-- LOGIN FORM -->
+      <form action="admin-dashboard.html" method="GET" class="space-y-4 text-xs" x-data="{ showPassword: false }">
+        
+        <!-- Username / Email Field -->
+        <div class="space-y-1">
+          <label for="email" class="block font-semibold text-gray-700">ชื่อผู้ใช้งาน หรือ อีเมล</label>
+          <div class="relative">
+            <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none"></i>
+            <input type="email" id="email" required placeholder="admin@occasion.com" 
+                   class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition text-xs">
+          </div>
         </div>
-        <div class="relative">
-          <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-          <input :type="showPassword ? 'text' : 'password'" id="password" required placeholder="••••••••" 
-                 class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition text-xs">
-          <!-- Toggle Eye Icon -->
-          <button type="button" @click="showPassword = !showPassword" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition">
-            <i class="fa-regular" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-          </button>
+
+        <!-- Password Field -->
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <label for="password" class="block font-semibold text-gray-700">รหัสผ่าน</label>
+            <button type="button" onclick="showForgotPasswordAlert()" class="text-[11px] font-medium text-pink-600 hover:underline">
+              ลืมรหัสผ่าน?
+            </button>
+          </div>
+          <div class="relative">
+            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none"></i>
+            <input :type="showPassword ? 'text' : 'password'" id="password" required placeholder="••••••••" 
+                   class="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 transition text-xs">
+            
+            <!-- Toggle Eye Icon -->
+            <button type="button" @click="showPassword = !showPassword" aria-label="Toggle password visibility" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition">
+              <i class="fa-regular" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Remember Me Checkbox -->
-      <div class="flex items-center justify-between pt-1">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500 transition">
-          <span class="text-gray-600 font-medium text-[11px]">จดจำฉันไว้ในระบบ</span>
-        </label>
-      </div>
+        <!-- Remember Me Checkbox -->
+        <div class="flex items-center justify-between pt-1">
+          <label class="flex items-center gap-2 cursor-pointer select-none">
+            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500 transition">
+            <span class="text-gray-600 font-medium text-[11px]">จดจำฉันไว้ในระบบ</span>
+          </label>
+        </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-xl transition shadow-md shadow-pink-500/20 text-xs tracking-wide flex items-center justify-center gap-2 mt-2">
-        <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ (Log In)
-      </button>
+        <!-- Submit Button -->
+        <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-xl transition shadow-md shadow-pink-500/20 text-xs tracking-wide flex items-center justify-center gap-2 mt-2">
+          <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ (Log In)
+        </button>
 
-    </form>
+      </form>
 
-    <!-- FOOTER SECURITY NOTICE -->
-    <div class="text-center pt-2 border-t border-gray-100 text-[11px] text-gray-400 flex items-center justify-center gap-1.5">
-      <i class="fa-solid fa-shield-halved text-emerald-500"></i>
-      <span>ระบบความปลอดภัยเฉพาะเจ้าหน้าที่หลังบ้านเท่านั้น</span>
-    </div>
+      <!-- CARD FOOTER / SECURITY NOTICE -->
+      <footer class="text-center pt-2 border-t border-gray-100 text-[11px] text-gray-400 flex items-center justify-center gap-1.5">
+        <i class="fa-solid fa-shield-halved text-emerald-500"></i>
+        <small class="text-[11px]">ระบบความปลอดภัยเฉพาะเจ้าหน้าที่หลังบ้านเท่านั้น</small>
+      </footer>
 
-  </div>
+    </section>
+  </main>
 
-  <!-- SCRIPT สำหรับ SweetAlert2 Popup -->
-  <script>
-    function showForgotPasswordAlert() {
-      Swal.fire({
-        title: 'แจ้งเตือนการรีเซ็ตรหัสผ่าน',
-        html: `หากลืมรหัสผ่าน กรุณาติดต่อ <b class="text-gray-800">Super Admin</b> หรือฝ่าย IT Support ที่อีเมล:<br><br><a href="mailto:admin-support@occasion.com" class="text-pink-600 font-semibold underline">admin-support@occasion.com</a>`,
-        icon: 'info',
-        confirmButtonText: 'ตกลง',
-        confirmButtonColor: '#ec4899', // สีชมพูเดียวกับปุ่ม Log In
-        customClass: {
-          popup: 'rounded-2xl',
-          confirmButton: 'rounded-xl text-xs font-bold px-6 py-2.5'
-        }
-      });
-    }
-  </script>
-
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Script จัดการ Authentication & Alert -->
+  <script src="js/admin-auth.js"></script>
 </body>
 </html>

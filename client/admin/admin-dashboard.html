@@ -4,47 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Occasion Admin Panel - Dashboard</title>
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- Tailwind & FontAwesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine.js สำหรับ Dropdown และ Accordion -->
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
 
   <div class="flex h-screen overflow-hidden">
 
     <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20" aria-label="Sidebar Navigation">
       
       <div class="flex flex-col h-full">
         <!-- Admin Profile / Brand Header -->
-        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
             ADMIN
           </div>
           <div>
             <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
-            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
           </div>
-        </div>
+        </header>
 
         <!-- Navigation Links (5 Core Groups) -->
-        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
           
           <!-- GROUP 1: OVERVIEW (Active Page) -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
-            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 font-semibold">
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
+            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-blue-600 font-semibold" aria-current="page">
               <i class="fa-solid fa-chart-pie text-sm w-4"></i>
               <span>Dashboard</span>
             </a>
-          </div>
+          </section>
 
           <!-- GROUP 2: CATALOG MANAGEMENT -->
-          <div x-data="{ open: false }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+          <section aria-labelledby="nav-catalog" x-data="{ open: false }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -60,11 +63,11 @@
               <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• Lookbooks ( Mix & Match )</a>
               <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• ปรับสต็อก (Stock Adjustments)</a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 3: SALES & FULFILLMENT -->
-          <div x-data="{ open: false }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+          <section aria-labelledby="nav-sales" x-data="{ open: false }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -78,11 +81,11 @@
               <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
               <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 4: USERS & COMMUNITY -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
             <div class="space-y-1">
               <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-users text-sm w-4"></i>
@@ -93,48 +96,48 @@
                 <span>Reviews Management</span>
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 5: SYSTEM & AUDIT -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
             <div class="space-y-1">
               <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
                 <span>Admin Audit Logs</span>
               </a>
             </div>
-          </div>
+          </section>
 
         </nav>
 
-        <!-- Footer / Logout Settings -->
-        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
           <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
             <i class="fa-solid fa-gear w-4"></i> Settings
           </a>
           <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
             <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
           </a>
-        </div>
+        </footer>
       </div>
 
     </aside>
 
-    <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
+    <!-- ==================== 2. MAIN CONTENT WRAPPER ==================== -->
     <div class="flex-1 flex flex-col overflow-y-auto">
 
       <!-- TOP HEADER BAR -->
       <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
         <div class="flex items-center gap-4 w-1/3">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
             <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
         </div>
 
         <div class="flex items-center gap-4 text-xs">
-          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
             <i class="fa-regular fa-bell text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
@@ -147,74 +150,73 @@
         </div>
       </header>
 
-      <!-- PAGE BODY (DASHBOARD CONTENT) -->
+      <!-- PAGE BODY (DASHBOARD MAIN CONTENT) -->
       <main class="p-8 space-y-6">
         
-        <!-- Header Page -->
-        <div class="flex items-center justify-between">
+        <!-- Page Title & Global Filter -->
+        <header class="flex items-center justify-between">
           <div>
             <h1 class="text-xl font-bold text-gray-800">แดชบอร์ดภาพรวม (Dashboard)</h1>
             <p class="text-xs text-gray-500 mt-1">ยินดีต้อนรับกลับมา! สรุปข้อมูลยอดขายและสถิติล่าสุดประจำวัน</p>
           </div>
-          <!-- Filter วันที่ -->
           <div class="flex items-center gap-2">
-            <select class="bg-white border border-gray-200 text-gray-600 text-xs rounded-lg px-3 py-2 outline-none shadow-sm focus:ring-1 focus:ring-blue-500">
+            <select aria-label="Select Date Range" class="bg-white border border-gray-200 text-gray-600 text-xs rounded-lg px-3 py-2 outline-none shadow-sm focus:ring-1 focus:ring-blue-500">
               <option>7 วันล่าสุด</option>
               <option selected>30 วันล่าสุด</option>
               <option>ปีนี้ (2026)</option>
             </select>
           </div>
-        </div>
+        </header>
 
-        <!-- 1. KPI STAT CARDS (4 กล่องสรุป) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- 1. KPI STAT CARDS SECTION -->
+        <section aria-label="Key Performance Indicators" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           
           <!-- Card 1: ยอดขายรวม -->
-          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">ยอดขายรวม</p>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">ยอดขายรวม</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">฿128,450</h3>
               <p class="text-[11px] text-emerald-600 mt-1 font-medium flex items-center gap-1">
-                <i class="fa-solid fa-arrow-trend-up"></i> +12.5% <span class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</span>
+                <i class="fa-solid fa-arrow-trend-up"></i> +12.5% <small class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</small>
               </p>
             </div>
             <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
               <i class="fa-solid fa-wallet"></i>
             </div>
-          </div>
+          </article>
 
           <!-- Card 2: ออเดอร์ทั้งหมด -->
-          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">คำสั่งซื้อทั้งหมด</p>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">คำสั่งซื้อทั้งหมด</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">342 รายการ</h3>
               <p class="text-[11px] text-emerald-600 mt-1 font-medium flex items-center gap-1">
-                <i class="fa-solid fa-arrow-trend-up"></i> +8.2% <span class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</span>
+                <i class="fa-solid fa-arrow-trend-up"></i> +8.2% <small class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</small>
               </p>
             </div>
             <div class="w-12 h-12 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center text-lg">
               <i class="fa-solid fa-bag-shopping"></i>
             </div>
-          </div>
+          </article>
 
           <!-- Card 3: สมาชิกใหม่ -->
-          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">สมาชิกใหม่</p>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">สมาชิกใหม่</span>
               <h3 class="text-xl font-bold text-gray-800 mt-1">89 คน</h3>
               <p class="text-[11px] text-emerald-600 mt-1 font-medium flex items-center gap-1">
-                <i class="fa-solid fa-arrow-trend-up"></i> +5.4% <span class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</span>
+                <i class="fa-solid fa-arrow-trend-up"></i> +5.4% <small class="text-gray-400 font-normal">เทียบเดือนที่แล้ว</small>
               </p>
             </div>
             <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
               <i class="fa-solid fa-user-plus"></i>
             </div>
-          </div>
+          </article>
 
           <!-- Card 4: สินค้าที่ต้องจัดส่ง -->
-          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">รอจัดส่งสินค้า</p>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">รอจัดส่งสินค้า</span>
               <h3 class="text-xl font-bold text-amber-600 mt-1">14 รายการ</h3>
               <p class="text-[11px] text-amber-600 mt-1 font-medium flex items-center gap-1">
                 <i class="fa-solid fa-clock"></i> ดำเนินการด่วน
@@ -223,167 +225,141 @@
             <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
               <i class="fa-solid fa-truck-fast"></i>
             </div>
-          </div>
+          </article>
 
-        </div>
+        </section>
 
-        <!-- 2. GRAPH & RECENT ORDERS SECTION -->
+        <!-- 2. DATA VISUALIZATION SECTION (2 Different Chart Types) -->
+        <section aria-label="Data Visualization Charts" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Chart 1: Bar Chart (Sales Trend with Toggle) -->
+          <article class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-5 shadow-sm" x-data="{ trendView: 'weekly' }">
+            <header class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="font-bold text-gray-800 text-sm">1. แนวโน้มยอดขาย (Sales Trend - Bar Chart)</h2>
+                <small class="text-xs text-gray-400 block" x-text="trendView === 'weekly' ? 'เปรียบเทียบยอดขายรายสัปดาห์ในเดือนปัจจุบัน' : 'เปรียบเทียบยอดขายย้อนหลังรายเดือนในปี 2026'"></small>
+              </div>
+              <!-- Toggle Buttons: รายสัปดาห์ / รายเดือน -->
+              <div class="bg-gray-100 p-1 rounded-lg flex items-center gap-1 text-[11px] font-semibold" role="group" aria-label="Filter Trend View">
+                <button type="button" 
+                        @click="trendView = 'weekly'; switchSalesTrend('weekly')" 
+                        :class="trendView === 'weekly' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-800'"
+                        class="px-2.5 py-1 rounded-md transition">
+                  รายสัปดาห์
+                </button>
+                <button type="button" 
+                        @click="trendView = 'monthly'; switchSalesTrend('monthly')" 
+                        :class="trendView === 'monthly' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-800'"
+                        class="px-2.5 py-1 rounded-md transition">
+                  รายเดือน
+                </button>
+              </div>
+            </header>
+            <div class="h-64 relative">
+              <canvas id="salesBarChart"></canvas>
+            </div>
+          </article>
+
+          <!-- Chart 2: Doughnut Chart (Sales by Category) -->
+          <article class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm flex flex-col justify-between">
+            <header class="mb-2">
+              <h2 class="font-bold text-gray-800 text-sm">2. สัดส่วนหมวดหมู่สินค้า (Doughnut Chart)</h2>
+              <small class="text-xs text-gray-400 block">สัดส่วนยอดขายแยกตามหมวดหมู่</small>
+            </header>
+            <div class="h-60 relative flex items-center justify-center">
+              <canvas id="categoryDoughnutChart"></canvas>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- 3. BOTTOM SECTION: RECENT ORDERS & LOW STOCK -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
-          <!-- ฝั่งซ้าย: กราฟสรุปยอดขาย (Placeholder Visual Chart) -->
-          <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-            <div class="flex items-center justify-between mb-4">
+          <!-- Recent Orders Section -->
+          <section aria-label="Recent Orders" class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <header class="p-5 flex items-center justify-between border-b border-gray-100">
               <div>
-                <h2 class="font-bold text-gray-800 text-sm">แนวโน้มยอดขาย (Sales Trend)</h2>
-                <p class="text-xs text-gray-400">เปรียบเทียบยอดขายของเดือนปัจจุบัน</p>
+                <h2 class="font-bold text-gray-800 text-sm">คำสั่งซื้อล่าสุด (Recent Orders)</h2>
+                <small class="text-xs text-gray-400 block">รายการสั่งซื้อล่าสุดจากระบบ</small>
               </div>
-              <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">รายสัปดาห์</span>
-            </div>
+              <a href="admin-orders.html" class="text-xs text-blue-600 font-medium hover:underline">จัดการคำสั่งซื้อทั้งหมด &rarr;</a>
+            </header>
 
-            <!-- Graphic Simulation -->
-            <div class="h-64 bg-gray-50 rounded-lg flex flex-col justify-between p-4 border border-dashed border-gray-200">
-              <div class="flex justify-between items-end h-full gap-4 pt-8 px-2">
-                <div class="w-full bg-blue-100 rounded-t-md h-[40%] hover:bg-blue-200 transition relative group">
-                  <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">฿18k</span>
-                </div>
-                <div class="w-full bg-blue-200 rounded-t-md h-[65%] hover:bg-blue-300 transition relative group">
-                  <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">฿32k</span>
-                </div>
-                <div class="w-full bg-blue-300 rounded-t-md h-[50%] hover:bg-blue-400 transition relative group">
-                  <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">฿25k</span>
-                </div>
-                <div class="w-full bg-blue-600 rounded-t-md h-[85%] hover:bg-blue-700 transition relative group">
-                  <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] bg-gray-800 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">฿53k</span>
-                </div>
-              </div>
-              <div class="flex justify-between text-[11px] text-gray-400 border-t border-gray-200 pt-2">
-                <span>สัปดาห์ที่ 1</span>
-                <span>สัปดาห์ที่ 2</span>
-                <span>สัปดาห์ที่ 3</span>
-                <span>สัปดาห์ที่ 4</span>
-              </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-gray-600">
+                <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
+                  <tr>
+                    <th scope="col" class="py-3 px-5">Order ID</th>
+                    <th scope="col" class="py-3 px-5">ชื่อลูกค้า</th>
+                    <th scope="col" class="py-3 px-5">ยอดรวม</th>
+                    <th scope="col" class="py-3 px-5">สถานะการชำระเงิน</th>
+                    <th scope="col" class="py-3 px-5">สถานะจัดส่ง</th>
+                    <th scope="col" class="py-3 px-5">วันที่สั่งซื้อ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3.5 px-5 font-semibold text-blue-600">#ORD-2026-098</td>
+                    <td class="py-3.5 px-5 font-medium text-gray-800">คุณอารยา สุขใจ</td>
+                    <td class="py-3.5 px-5 font-bold text-gray-800">฿2,490</td>
+                    <td class="py-3.5 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-1 rounded-md font-medium text-[11px]">ชำระเงินแล้ว</span>
+                    </td>
+                    <td class="py-3.5 px-5">
+                      <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-md font-medium text-[11px]">รอจัดส่ง</span>
+                    </td>
+                    <td class="py-3.5 px-5 text-gray-400">
+                      <time datetime="2026-08-12T14:30">12 ส.ค. 2026 (14:30)</time>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3.5 px-5 font-semibold text-blue-600">#ORD-2026-097</td>
+                    <td class="py-3.5 px-5 font-medium text-gray-800">คุณณัฐวุฒิ นามสมมติ</td>
+                    <td class="py-3.5 px-5 font-bold text-gray-800">฿1,250</td>
+                    <td class="py-3.5 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-1 rounded-md font-medium text-[11px]">ชำระเงินแล้ว</span>
+                    </td>
+                    <td class="py-3.5 px-5">
+                      <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded-md font-medium text-[11px]">จัดส่งแล้ว</span>
+                    </td>
+                    <td class="py-3.5 px-5 text-gray-400">
+                      <time datetime="2026-08-12T11:15">12 ส.ค. 2026 (11:15)</time>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
+          </section>
 
-          <!-- ฝั่งขวา: สินค้าสต็อกใกล้หมด (Low Stock Alert) -->
-          <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-              <h2 class="font-bold text-gray-800 text-sm">แจ้งเตือนสต็อกต่ำ (Low Stock)</h2>
-              <a href="admin-stock-adjustments.html" class="text-xs text-blue-600 hover:underline">ดูทั้งหมด</a>
-            </div>
+          <!-- Low Stock Alert Section -->
+          <section aria-label="Low Stock Alert" class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <header class="flex items-center justify-between mb-4">
+                <h2 class="font-bold text-gray-800 text-sm">แจ้งเตือนสต็อกต่ำ (Low Stock)</h2>
+                <a href="admin-stock-adjustments.html" class="text-xs text-blue-600 hover:underline">ดูทั้งหมด</a>
+              </header>
 
-            <div class="space-y-4 text-xs">
-              
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center font-bold text-gray-400">
-                    <i class="fa-solid fa-shirt"></i>
-                  </div>
+              <ul class="space-y-3.5 text-xs divide-y divide-gray-100">
+                <li class="flex items-center justify-between pb-3">
                   <div>
                     <p class="font-semibold text-gray-800">เสื้อครอป Silk Satin</p>
-                    <p class="text-[10px] text-gray-400">SKU: OCC-0012</p>
+                    <small class="text-[10px] text-gray-400 block">SKU: OCC-0012</small>
                   </div>
-                </div>
-                <span class="bg-red-50 text-red-600 px-2 py-1 rounded-md font-bold text-[11px]">เหลือ 2 ตัว</span>
-              </div>
+                  <span class="bg-red-50 text-red-600 px-2 py-1 rounded-md font-bold text-[11px]">เหลือ 2 ตัว</span>
+                </li>
 
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center font-bold text-gray-400">
-                    <i class="fa-solid fa-shirt"></i>
-                  </div>
+                <li class="flex items-center justify-between pt-3">
                   <div>
                     <p class="font-semibold text-gray-800">กระโปรงทรงเอ สีเบจ</p>
-                    <p class="text-[10px] text-gray-400">SKU: OCC-0045</p>
+                    <small class="text-[10px] text-gray-400 block">SKU: OCC-0045</small>
                   </div>
-                </div>
-                <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-md font-bold text-[11px]">เหลือ 4 ตัว</span>
-              </div>
-
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center font-bold text-gray-400">
-                    <i class="fa-solid fa-shirt"></i>
-                  </div>
-                  <div>
-                    <p class="font-semibold text-gray-800">เดรสราตรี Satin Pink</p>
-                    <p class="text-[10px] text-gray-400">SKU: OCC-0089</p>
-                  </div>
-                </div>
-                <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-md font-bold text-[11px]">เหลือ 5 ตัว</span>
-              </div>
-
+                  <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-md font-bold text-[11px]">เหลือ 4 ตัว</span>
+                </li>
+              </ul>
             </div>
-          </div>
+          </section>
 
-        </div>
-
-        <!-- 3. RECENT ORDERS TABLE (ตารางคำสั่งซื้อล่าสุด) -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div class="p-5 flex items-center justify-between border-b border-gray-100">
-            <div>
-              <h2 class="font-bold text-gray-800 text-sm">คำสั่งซื้อล่าสุด (Recent Orders)</h2>
-              <p class="text-xs text-gray-400">รายการสั่งซื้อ 5 รายการล่าสุดจากระบบ</p>
-            </div>
-            <a href="admin-orders.html" class="text-xs text-blue-600 font-medium hover:underline">จัดการคำสั่งซื้อทั้งหมด &rarr;</a>
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-gray-600">
-              <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
-                <tr>
-                  <th class="py-3 px-5">Order ID</th>
-                  <th class="py-3 px-5">ชื่อลูกค้า</th>
-                  <th class="py-3 px-5">ยอดรวม</th>
-                  <th class="py-3 px-5">สถานะการชำระเงิน</th>
-                  <th class="py-3 px-5">สถานะจัดส่ง</th>
-                  <th class="py-3 px-5">วันที่สั่งซื้อ</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100">
-                
-                <tr class="hover:bg-gray-50 transition">
-                  <td class="py-3.5 px-5 font-semibold text-blue-600">#ORD-2026-098</td>
-                  <td class="py-3.5 px-5 font-medium text-gray-800">คุณอารยา สุขใจ</td>
-                  <td class="py-3.5 px-5 font-bold text-gray-800">฿2,490</td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-emerald-50 text-emerald-600 px-2 py-1 rounded-md font-medium text-[11px]">ชำระเงินแล้ว</span>
-                  </td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-amber-50 text-amber-600 px-2 py-1 rounded-md font-medium text-[11px]">รอจัดส่ง</span>
-                  </td>
-                  <td class="py-3.5 px-5 text-gray-400">12 ส.ค. 2026 (14:30)</td>
-                </tr>
-
-                <tr class="hover:bg-gray-50 transition">
-                  <td class="py-3.5 px-5 font-semibold text-blue-600">#ORD-2026-097</td>
-                  <td class="py-3.5 px-5 font-medium text-gray-800">คุณณัฐวุฒิ นามสมมติ</td>
-                  <td class="py-3.5 px-5 font-bold text-gray-800">฿1,250</td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-emerald-50 text-emerald-600 px-2 py-1 rounded-md font-medium text-[11px]">ชำระเงินแล้ว</span>
-                  </td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded-md font-medium text-[11px]">จัดส่งแล้ว</span>
-                  </td>
-                  <td class="py-3.5 px-5 text-gray-400">12 ส.ค. 2026 (11:15)</td>
-                </tr>
-
-                <tr class="hover:bg-gray-50 transition">
-                  <td class="py-3.5 px-5 font-semibold text-blue-600">#ORD-2026-096</td>
-                  <td class="py-3.5 px-5 font-medium text-gray-800">คุณศิรินทร์ พัฒนพงษ์</td>
-                  <td class="py-3.5 px-5 font-bold text-gray-800">฿3,800</td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-yellow-50 text-yellow-600 px-2 py-1 rounded-md font-medium text-[11px]">รอตรวจสอบโอน</span>
-                  </td>
-                  <td class="py-3.5 px-5">
-                    <span class="bg-gray-100 text-gray-500 px-2 py-1 rounded-md font-medium text-[11px]">รอดำเนินการ</span>
-                  </td>
-                  <td class="py-3.5 px-5 text-gray-400">11 ส.ค. 2026 (18:45)</td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
         </div>
 
       </main>
@@ -391,6 +367,11 @@
     </div>
 
   </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- เชื่อมต่อสคริปต์ Dashboard Charts -->
+  <script src="js/admin-dashboard-charts.js"></script>
 
 </body>
 </html>

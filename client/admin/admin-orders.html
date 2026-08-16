@@ -4,47 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Occasion Admin Panel - Order Management</title>
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- Tailwind & FontAwesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine.js สำหรับ Dropdown และ Accordion -->
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
 
   <div class="flex h-screen overflow-hidden">
 
     <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20" aria-label="Sidebar Navigation">
       
       <div class="flex flex-col h-full">
         <!-- Admin Profile / Brand Header -->
-        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
             ADMIN
           </div>
           <div>
             <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
-            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
           </div>
-        </div>
+        </header>
 
         <!-- Navigation Links (5 Core Groups) -->
-        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
           
           <!-- GROUP 1: OVERVIEW -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
             <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
               <i class="fa-solid fa-chart-pie text-sm w-4"></i>
               <span>Dashboard</span>
             </a>
-          </div>
+          </section>
 
           <!-- GROUP 2: CATALOG MANAGEMENT -->
-          <div x-data="{ open: false }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+          <section aria-labelledby="nav-catalog" x-data="{ open: false }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -60,11 +63,11 @@
               <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• Lookbooks ( Mix & Match )</a>
               <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• ปรับสต็อก (Stock Adjustments)</a>
             </div>
-          </div>
+          </section>
 
-          <!-- GROUP 3: SALES & FULFILLMENT (Active Open Group) -->
-          <div x-data="{ open: true }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+          <!-- GROUP 3: SALES & FULFILLMENT (Active Group) -->
+          <section aria-labelledby="nav-sales" x-data="{ open: true }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -74,20 +77,20 @@
               <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
             </button>
 
-            <!-- Accordion Sub-menu (Active Link for Orders) -->
+            <!-- Accordion Sub-menu (Active Link: Orders) -->
             <div x-show="open" class="mt-1 pl-7 space-y-1">
-              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold">
+              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold" aria-current="page">
                 • คำสั่งซื้อ & ชำระเงิน
               </a>
               <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
                 • การจัดส่ง & Tracking
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 4: USERS & COMMUNITY -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
             <div class="space-y-1">
               <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-users text-sm w-4"></i>
@@ -98,30 +101,30 @@
                 <span>Reviews Management</span>
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 5: SYSTEM & AUDIT -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
             <div class="space-y-1">
               <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
                 <span>Admin Audit Logs</span>
               </a>
             </div>
-          </div>
+          </section>
 
         </nav>
 
-        <!-- Footer / Logout Settings -->
-        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
           <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
             <i class="fa-solid fa-gear w-4"></i> Settings
           </a>
           <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
             <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
           </a>
-        </div>
+        </footer>
       </div>
 
     </aside>
@@ -133,13 +136,13 @@
       <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
         <div class="flex items-center gap-4 w-1/3">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
             <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
         </div>
 
         <div class="flex items-center gap-4 text-xs">
-          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
             <i class="fa-regular fa-bell text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
@@ -152,188 +155,207 @@
         </div>
       </header>
 
-      <!-- PAGE BODY (ORDERS CONTENT) -->
-      <main class="p-8 space-y-6" x-data="{ currentTab: 'all' }">
+      <!-- PAGE BODY (ORDERS MAIN CONTENT) -->
+      <main class="p-8 space-y-6">
         
         <!-- Header Page -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 class="text-xl font-bold text-gray-800">จัดการคำสั่งซื้อ & ชำระเงิน (Orders)</h1>
-            <p class="text-xs text-gray-500 mt-1">ตรวจสอบสถานะชำระเงิน ตรวจสลิปโอนเงิน และอนุมัติการสั่งซื้อ</p>
+            <h1 class="text-xl font-bold text-gray-800">จัดการคำสั่งซื้อ & การชำระเงิน (Orders)</h1>
+            <p class="text-xs text-gray-500 mt-1">ตรวจสอบสลิปโอนเงิน อนุมัติคำสั่งซื้อ และอัปเดตสถานะการจัดส่งสินค้า</p>
           </div>
           <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition">
             <i class="fa-solid fa-file-excel text-emerald-600"></i> ส่งออกรายงาน (Export CSV)
           </button>
-        </div>
+        </header>
 
-        <!-- ORDER STATUS TABS -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-1.5 flex flex-wrap gap-1 text-xs font-medium">
-          <button @click="currentTab = 'all'" :class="currentTab === 'all' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            คำสั่งซื้อทั้งหมด <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-gray-100 text-gray-600">342</span>
-          </button>
-          <button @click="currentTab = 'verify'" :class="currentTab === 'verify' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            รอตรวจสอบโอนเงิน <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-700 font-bold">5</span>
-          </button>
-          <button @click="currentTab = 'paid'" :class="currentTab === 'paid' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            ชำระเงินแล้ว (เตรียมส่ง) <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-emerald-100 text-emerald-700">14</span>
-          </button>
-          <button @click="currentTab = 'shipped'" :class="currentTab === 'shipped' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            จัดส่งแล้ว <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-gray-100 text-gray-600">310</span>
-          </button>
-          <button @click="currentTab = 'cancelled'" :class="currentTab === 'cancelled' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            ยกเลิก/คืนเงิน <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-red-100 text-red-700">13</span>
-          </button>
-        </div>
+        <!-- KPI Summary Cards Section -->
+        <section aria-label="Order Statistics" class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">คำสั่งซื้อทั้งหมด</span>
+              <h3 class="text-xl font-bold text-gray-800 mt-1">342 ออเดอร์</h3>
+              <small class="text-[11px] text-emerald-600 mt-1 font-medium block">ประจำเดือนนี้</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+          </article>
 
-        <!-- Filter Search Bar -->
-        <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">รอตรวจสอบสลิป</span>
+              <h3 class="text-xl font-bold text-amber-600 mt-1">8 ออเดอร์</h3>
+              <small class="text-[11px] text-amber-600 mt-1 font-medium block">ต้องการการตรวจสอบด่วน</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">ชำระเงินแล้ว / รอจัดส่ง</span>
+              <h3 class="text-xl font-bold text-blue-600 mt-1">14 ออเดอร์</h3>
+              <small class="text-[11px] text-blue-600 mt-1 font-medium block">พร้อมแพ็กสินค้าส่ง</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-box"></i>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">จัดส่งสำเร็จ</span>
+              <h3 class="text-xl font-bold text-emerald-600 mt-1">316 ออเดอร์</h3>
+              <small class="text-[11px] text-gray-400 mt-1 block">ไม่มีปัญหาการจัดส่ง</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+          </article>
+        </section>
+
+        <!-- Filter & Search Toolbar Section -->
+        <section aria-label="Order Filters" class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div class="relative w-full md:w-80">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            <input type="text" placeholder="ค้นหาเลข Order ID, ชื่อลูกค้า, เบอร์โทร..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+            <input type="text" placeholder="ค้นหาเลขที่ออเดอร์, ชื่อลูกค้า, เบอร์โทร..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
 
-          <div class="flex items-center gap-3 w-full md:w-auto">
-            <input type="date" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none">
-            <span class="text-gray-400">ถึง</span>
-            <input type="date" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none">
-          </div>
-        </div>
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <select aria-label="Filter by Payment Status" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">สถานะการชำระเงินทั้งหมด</option>
+              <option value="pending">รอตรวจสอบสลิป</option>
+              <option value="paid">ชำระเงินแล้ว</option>
+              <option value="failed">ชำระเงินไม่สำเร็จ</option>
+            </select>
 
-        <!-- ORDERS TABLE -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <select aria-label="Filter by Fulfillment Status" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">สถานะการจัดส่งทั้งหมด</option>
+              <option value="preparing">รอจัดเตรียมสินค้า</option>
+              <option value="shipping">กำลังจัดส่ง</option>
+              <option value="completed">จัดส่งสำเร็จ</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Orders Table Container Section -->
+        <section aria-label="Orders Table" class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs text-gray-600">
               <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
                 <tr>
-                  <th class="py-3.5 px-5">Order ID</th>
-                  <th class="py-3.5 px-5">ลูกค้า</th>
-                  <th class="py-3.5 px-5">ยอดรวมสุทธิ</th>
-                  <th class="py-3.5 px-5">ช่องทางชำระ</th>
-                  <th class="py-3.5 px-5">สถานะการชำระเงิน</th>
-                  <th class="py-3.5 px-5">สถานะจัดส่ง</th>
-                  <th class="py-3.5 px-5">วันที่สั่งซื้อ</th>
-                  <th class="py-3.5 px-5 text-right">จัดการ</th>
+                  <th scope="col" class="py-3.5 px-5">Order ID</th>
+                  <th scope="col" class="py-3.5 px-5">ลูกค้า</th>
+                  <th scope="col" class="py-3.5 px-5">ยอดรวม (บาท)</th>
+                  <th scope="col" class="py-3.5 px-5">สถานะชำระเงิน</th>
+                  <th scope="col" class="py-3.5 px-5">สถานะจัดส่ง</th>
+                  <th scope="col" class="py-3.5 px-5">วันที่สั่งซื้อ</th>
+                  <th scope="col" class="py-3.5 px-5 text-right">จัดการ</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
                 
-                <!-- Order Row 1 (รอตรวจสอบสลิปโอนเงิน) -->
+                <!-- Order Row 1 -->
                 <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-5 font-bold text-blue-600">#ORD-2026-098</td>
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-098
+                    <small class="text-[10px] text-gray-400 block font-normal">2 รายการสินค้า</small>
+                  </td>
                   <td class="py-4 px-5">
                     <p class="font-bold text-gray-800">คุณอารยา สุขใจ</p>
-                    <p class="text-[10px] text-gray-400">081-234-5678</p>
+                    <small class="text-[10px] text-gray-400 block">081-234-5678</small>
                   </td>
                   <td class="py-4 px-5 font-bold text-gray-800">฿2,490</td>
                   <td class="py-4 px-5">
-                    <span class="font-medium text-gray-700"><i class="fa-solid fa-building-columns text-blue-500 mr-1"></i> โอนผ่านธนาคาร</span>
-                  </td>
-                  <td class="py-4 px-5">
-                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
-                      <i class="fa-solid fa-clock"></i> รอตรวจสอบโอน
+                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      ชำระเงินแล้ว
                     </span>
                   </td>
                   <td class="py-4 px-5">
-                    <span class="bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-medium text-[10px]">รอดำเนินการ</span>
+                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      รอจัดส่ง
+                    </span>
                   </td>
-                  <td class="py-4 px-5 text-gray-400">12 ส.ค. 2026 (14:30)</td>
+                  <td class="py-4 px-5 text-gray-400">
+                    <time datetime="2026-08-12T14:30">12 ส.ค. 2026<br><small class="text-[10px] text-gray-500">14:30 น.</small></time>
+                  </td>
                   <td class="py-4 px-5 text-right">
                     <div class="flex items-center justify-end gap-2">
-                      <button class="px-2.5 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg font-medium text-[11px] transition flex items-center gap-1">
-                        <i class="fa-solid fa-receipt"></i> ตรวจสลิป
-                      </button>
-                      <button class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition" title="รายละเอียดออเดอร์">
+                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="ดูรายละเอียดคำสั่งซื้อ" title="ดูรายละเอียด">
                         <i class="fa-solid fa-eye"></i>
+                      </button>
+                      <button class="p-1.5 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" aria-label="พิมพ์ใบเสร็จ" title="พิมพ์ใบเสร็จ">
+                        <i class="fa-solid fa-print"></i>
                       </button>
                     </div>
                   </td>
                 </tr>
 
-                <!-- Order Row 2 (ชำระเงินแล้ว) -->
+                <!-- Order Row 2 -->
                 <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-5 font-bold text-blue-600">#ORD-2026-097</td>
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-099
+                    <small class="text-[10px] text-gray-400 block font-normal">1 รายการสินค้า</small>
+                  </td>
                   <td class="py-4 px-5">
                     <p class="font-bold text-gray-800">คุณณัฐวุฒิ นามสมมติ</p>
-                    <p class="text-[10px] text-gray-400">089-876-5432</p>
+                    <small class="text-[10px] text-gray-400 block">089-876-5432</small>
                   </td>
-                  <td class="py-4 px-5 font-bold text-gray-800">฿1,250</td>
+                  <td class="py-4 px-5 font-bold text-gray-800">฿1,290</td>
                   <td class="py-4 px-5">
-                    <span class="font-medium text-gray-700"><i class="fa-solid fa-credit-card text-purple-500 mr-1"></i> บัตรเครดิต</span>
-                  </td>
-                  <td class="py-4 px-5">
-                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
-                      <i class="fa-solid fa-circle-check"></i> ชำระเงินแล้ว
+                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      รอตรวจสอบสลิป
                     </span>
                   </td>
                   <td class="py-4 px-5">
-                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">รอจัดส่ง</span>
+                    <span class="bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      รอยืนยันชำระเงิน
+                    </span>
                   </td>
-                  <td class="py-4 px-5 text-gray-400">12 ส.ค. 2026 (11:15)</td>
+                  <td class="py-4 px-5 text-gray-400">
+                    <time datetime="2026-08-12T15:10">12 ส.ค. 2026<br><small class="text-[10px] text-gray-500">15:10 น.</small></time>
+                  </td>
                   <td class="py-4 px-5 text-right">
                     <div class="flex items-center justify-end gap-2">
-                      <a href="admin-shipping.html" class="px-2.5 py-1.5 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg font-medium text-[11px] transition flex items-center gap-1">
-                        <i class="fa-solid fa-truck"></i> พิมพ์ใบจัดส่ง
-                      </a>
-                      <button class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition" title="รายละเอียดออเดอร์">
-                        <i class="fa-solid fa-eye"></i>
+                      <button class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 font-semibold rounded-lg transition" title="ตรวจสอบสลิป">
+                        ตรวจสลิป
                       </button>
                     </div>
                   </td>
                 </tr>
 
-                <!-- Order Row 3 (จัดส่งแล้ว) -->
+                <!-- Order Row 3 -->
                 <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-5 font-bold text-blue-600">#ORD-2026-095</td>
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-097
+                    <small class="text-[10px] text-gray-400 block font-normal">3 รายการสินค้า</small>
+                  </td>
                   <td class="py-4 px-5">
                     <p class="font-bold text-gray-800">คุณศิรินทร์ พัฒนพงษ์</p>
-                    <p class="text-[10px] text-gray-400">086-111-2233</p>
+                    <small class="text-[10px] text-gray-400 block">086-111-2233</small>
                   </td>
                   <td class="py-4 px-5 font-bold text-gray-800">฿3,800</td>
                   <td class="py-4 px-5">
-                    <span class="font-medium text-gray-700"><i class="fa-solid fa-qrcode text-emerald-500 mr-1"></i> QR PromptPay</span>
-                  </td>
-                  <td class="py-4 px-5">
-                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
-                      <i class="fa-solid fa-circle-check"></i> ชำระเงินแล้ว
+                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      ชำระเงินแล้ว
                     </span>
                   </td>
                   <td class="py-4 px-5">
-                    <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">จัดส่งแล้ว</span>
+                    <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      จัดส่งแล้ว
+                    </span>
                   </td>
-                  <td class="py-4 px-5 text-gray-400">11 ส.ค. 2026 (18:45)</td>
+                  <td class="py-4 px-5 text-gray-400">
+                    <time datetime="2026-08-10T11:15">10 ส.ค. 2026<br><small class="text-[10px] text-gray-500">11:15 น.</small></time>
+                  </td>
                   <td class="py-4 px-5 text-right">
                     <div class="flex items-center justify-end gap-2">
-                      <button class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition" title="รายละเอียดออเดอร์">
+                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="ดูรายละเอียดคำสั่งซื้อ" title="ดูรายละเอียด">
                         <i class="fa-solid fa-eye"></i>
                       </button>
                     </div>
-                  </td>
-                </tr>
-
-                <!-- Order Row 4 (ยกเลิกคำสั่งซื้อ) -->
-                <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-5 font-bold text-gray-400">#ORD-2026-090</td>
-                  <td class="py-4 px-5">
-                    <p class="font-bold text-gray-800">คุณกิตติศักดิ์ มีสุข</p>
-                    <p class="text-[10px] text-gray-400">082-999-8877</p>
-                  </td>
-                  <td class="py-4 px-5 font-bold text-gray-400 line-through">฿890</td>
-                  <td class="py-4 px-5 text-gray-400">
-                    โอนผ่านธนาคาร
-                  </td>
-                  <td class="py-4 px-5">
-                    <span class="bg-red-50 text-red-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
-                      <i class="fa-solid fa-ban"></i> ยกเลิกออเดอร์
-                    </span>
-                  </td>
-                  <td class="py-4 px-5">
-                    <span class="bg-gray-100 text-gray-400 px-2.5 py-1 rounded-full font-medium text-[10px]">ยกเลิกแล้ว</span>
-                  </td>
-                  <td class="py-4 px-5 text-gray-400">10 ส.ค. 2026 (09:12)</td>
-                  <td class="py-4 px-5 text-right">
-                    <button class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition" title="รายละเอียดออเดอร์">
-                      <i class="fa-solid fa-eye"></i>
-                    </button>
                   </td>
                 </tr>
 
@@ -342,22 +364,22 @@
           </div>
 
           <!-- Table Pagination Footer -->
-          <div class="p-4 bg-white border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-            <p>แสดง 1 - 4 จากทั้งหมด 342 ออเดอร์</p>
-            <div class="flex items-center gap-1">
-              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled>
+          <footer class="p-4 bg-white border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+            <p>แสดง 1 - 3 จากทั้งหมด 342 ออเดอร์</p>
+            <nav aria-label="Table pagination" class="flex items-center gap-1">
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled aria-label="Previous Page">
                 <i class="fa-solid fa-chevron-left text-[10px]"></i>
               </button>
-              <button class="px-3 py-1 rounded bg-blue-600 text-white font-medium">1</button>
+              <button class="px-3 py-1 rounded bg-blue-600 text-white font-medium" aria-current="page">1</button>
               <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">2</button>
               <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">3</button>
-              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-600 hover:bg-gray-50">
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-600 hover:bg-gray-50" aria-label="Next Page">
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
-            </div>
-          </div>
+            </nav>
+          </footer>
 
-        </div>
+        </section>
 
       </main>
 

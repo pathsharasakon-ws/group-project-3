@@ -4,47 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Occasion Admin Panel - Categories Management</title>
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- Tailwind & FontAwesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine.js สำหรับ Dropdown และ Accordion -->
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
 
   <div class="flex h-screen overflow-hidden">
 
     <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20" aria-label="Sidebar Navigation">
       
       <div class="flex flex-col h-full">
         <!-- Admin Profile / Brand Header -->
-        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
             ADMIN
           </div>
           <div>
             <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
-            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
           </div>
-        </div>
+        </header>
 
         <!-- Navigation Links (5 Core Groups) -->
-        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
           
           <!-- GROUP 1: OVERVIEW -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
             <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
               <i class="fa-solid fa-chart-pie text-sm w-4"></i>
               <span>Dashboard</span>
             </a>
-          </div>
+          </section>
 
-          <!-- GROUP 2: CATALOG MANAGEMENT (Active Open Group) -->
-          <div x-data="{ open: true }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+          <!-- GROUP 2: CATALOG MANAGEMENT (Active Group) -->
+          <section aria-labelledby="nav-catalog" x-data="{ open: true }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -54,12 +57,12 @@
               <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
             </button>
 
-            <!-- Accordion Sub-menu (Active Link for Categories) -->
+            <!-- Accordion Sub-menu (Active Link: Categories) -->
             <div x-show="open" class="mt-1 pl-7 space-y-1">
               <a href="admin-products.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
                 • สินค้าทั้งหมด (Products)
               </a>
-              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold">
+              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold" aria-current="page">
                 • หมวดหมู่ (Categories)
               </a>
               <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
@@ -69,11 +72,11 @@
                 • ปรับสต็อก (Stock Adjustments)
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 3: SALES & FULFILLMENT -->
-          <div x-data="{ open: false }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+          <section aria-labelledby="nav-sales" x-data="{ open: false }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -87,11 +90,11 @@
               <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
               <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 4: USERS & COMMUNITY -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
             <div class="space-y-1">
               <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-users text-sm w-4"></i>
@@ -102,30 +105,30 @@
                 <span>Reviews Management</span>
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 5: SYSTEM & AUDIT -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
             <div class="space-y-1">
               <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
                 <span>Admin Audit Logs</span>
               </a>
             </div>
-          </div>
+          </section>
 
         </nav>
 
-        <!-- Footer / Logout Settings -->
-        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
           <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
             <i class="fa-solid fa-gear w-4"></i> Settings
           </a>
           <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
             <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
           </a>
-        </div>
+        </footer>
       </div>
 
     </aside>
@@ -137,13 +140,13 @@
       <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
         <div class="flex items-center gap-4 w-1/3">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
             <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
         </div>
 
         <div class="flex items-center gap-4 text-xs">
-          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
             <i class="fa-regular fa-bell text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
@@ -156,43 +159,43 @@
         </div>
       </header>
 
-      <!-- PAGE BODY (CATEGORIES CONTENT) -->
+      <!-- PAGE BODY (CATEGORIES MAIN CONTENT) -->
       <main class="p-8 space-y-6">
         
         <!-- Header Page -->
-        <div>
+        <header>
           <h1 class="text-xl font-bold text-gray-800">จัดการหมวดหมู่สินค้า (Categories)</h1>
           <p class="text-xs text-gray-500 mt-1">จัดระเบียบหมวดหมู่สินค้าหลักและย่อยเพื่อช่วยให้ลูกค้าค้นหาสินค้าได้ง่ายขึ้น</p>
-        </div>
+        </header>
 
         <!-- Layout Grid: Form (Left) & Table (Right) -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           
-          <!-- ฝั่งซ้าย: ฟอร์มเพิ่ม/แก้ไขหมวดหมู่ -->
-          <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-              <h2 class="font-bold text-gray-800 text-sm">เพิ่มหมวดหมู่ใหม่</h2>
+          <!-- ฝั่งซ้าย: ฟอร์มเพิ่มหมวดหมู่ -->
+          <section aria-labelledby="form-add-category" class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+            <header class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <h2 id="form-add-category" class="font-bold text-gray-800 text-sm">เพิ่มหมวดหมู่ใหม่</h2>
               <span class="text-[10px] bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">New</span>
-            </div>
+            </header>
 
             <form class="space-y-4 text-xs">
               <!-- ชื่อหมวดหมู่ -->
               <div>
-                <label class="block font-medium text-gray-700 mb-1">ชื่อหมวดหมู่ <span class="text-red-500">*</span></label>
-                <input type="text" placeholder="เช่น เสื้อ (Tops)" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <label for="category_name" class="block font-medium text-gray-700 mb-1">ชื่อหมวดหมู่ <span class="text-red-500">*</span></label>
+                <input type="text" id="category_name" placeholder="เช่น เสื้อ (Tops)" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
               </div>
 
               <!-- Slug (URL) -->
               <div>
-                <label class="block font-medium text-gray-700 mb-1">Slug (URL)</label>
-                <input type="text" placeholder="เช่น tops" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
-                <p class="text-[10px] text-gray-400 mt-1">ใช้นำหน้า URL ของหน้าเว็บ เช่น domain.com/category/tops</p>
+                <label for="category_slug" class="block font-medium text-gray-700 mb-1">Slug (URL)</label>
+                <input type="text" id="category_slug" placeholder="เช่น tops" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <small class="text-[10px] text-gray-400 mt-1 block">ใช้นำหน้า URL เช่น domain.com/category/tops</small>
               </div>
 
               <!-- หมวดหมู่หลัก (Parent Category) -->
               <div>
-                <label class="block font-medium text-gray-700 mb-1">หมวดหมู่หลัก (Parent)</label>
-                <select class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-600">
+                <label for="parent_category" class="block font-medium text-gray-700 mb-1">หมวดหมู่หลัก (Parent)</label>
+                <select id="parent_category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-600">
                   <option value="">ไม่มี (ตั้งเป็นหมวดหมู่หลัก)</option>
                   <option value="1">เสื้อ (Tops)</option>
                   <option value="2">เดรส (Dresses)</option>
@@ -202,8 +205,8 @@
 
               <!-- คำอธิบาย -->
               <div>
-                <label class="block font-medium text-gray-700 mb-1">คำอธิบายหมวดหมู่</label>
-                <textarea rows="3" placeholder="ระบุรายละเอียดหมวดหมู่สังเขป..." class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                <label for="category_desc" class="block font-medium text-gray-700 mb-1">คำอธิบายหมวดหมู่</label>
+                <textarea id="category_desc" rows="3" placeholder="ระบุรายละเอียดหมวดหมู่สังเขป..." class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
               </div>
 
               <!-- รูปภาพปกหมวดหมู่ -->
@@ -212,7 +215,7 @@
                 <div class="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:bg-gray-50 transition cursor-pointer">
                   <i class="fa-solid fa-cloud-arrow-up text-gray-400 text-xl mb-1"></i>
                   <p class="text-[11px] font-medium text-gray-600">คลิกเพื่ออัปโหลด หรือลากไฟล์มาวาง</p>
-                  <p class="text-[10px] text-gray-400">PNG, JPG ขนาดไม่เกิน 2MB</p>
+                  <small class="text-[10px] text-gray-400 block">PNG, JPG ขนาดไม่เกิน 2MB</small>
                 </div>
               </div>
 
@@ -236,34 +239,34 @@
               </div>
 
             </form>
-          </div>
+          </section>
 
           <!-- ฝั่งขวา: ตารางรายการหมวดหมู่ -->
-          <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+          <section aria-labelledby="category-table-title" class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             
-            <!-- Table Toolbar -->
-            <div class="p-4 border-b border-gray-100 flex items-center justify-between gap-4 text-xs">
+            <!-- Table Toolbar Header -->
+            <header class="p-4 border-b border-gray-100 flex items-center justify-between gap-4 text-xs">
               <div class="relative w-full max-w-xs">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
                 <input type="text" placeholder="ค้นหาชื่อหมวดหมู่..." class="w-full pl-9 pr-4 py-1.5 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
               </div>
 
-              <div class="text-gray-400 text-[11px]">
+              <small id="category-table-title" class="text-gray-400 text-[11px] block">
                 ทั้งหมด 5 หมวดหมู่
-              </div>
-            </div>
+              </small>
+            </header>
 
             <!-- Table -->
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs text-gray-600">
                 <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
                   <tr>
-                    <th class="py-3 px-5">รูปปก</th>
-                    <th class="py-3 px-5">ชื่อหมวดหมู่</th>
-                    <th class="py-3 px-5">Slug</th>
-                    <th class="py-3 px-5">จำนวนสินค้า</th>
-                    <th class="py-3 px-5">สถานะ</th>
-                    <th class="py-3 px-5 text-right">จัดการ</th>
+                    <th scope="col" class="py-3 px-5">รูปปก</th>
+                    <th scope="col" class="py-3 px-5">ชื่อหมวดหมู่</th>
+                    <th scope="col" class="py-3 px-5">Slug</th>
+                    <th scope="col" class="py-3 px-5">จำนวนสินค้า</th>
+                    <th scope="col" class="py-3 px-5">สถานะ</th>
+                    <th scope="col" class="py-3 px-5 text-right">จัดการ</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -271,9 +274,9 @@
                   <!-- Category Row 1 (Main Category) -->
                   <tr class="hover:bg-gray-50 transition">
                     <td class="py-3 px-5">
-                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
                         <i class="fa-solid fa-image"></i>
-                      </div>
+                      </figure>
                     </td>
                     <td class="py-3 px-5 font-bold text-gray-800">
                       เสื้อ (Tops)
@@ -285,10 +288,10 @@
                     </td>
                     <td class="py-3 px-5 text-right">
                       <div class="flex items-center justify-end gap-2">
-                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไข">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ลบ">
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </div>
@@ -298,12 +301,12 @@
                   <!-- Category Row 2 (Sub Category) -->
                   <tr class="hover:bg-gray-50 transition bg-gray-50/30">
                     <td class="py-3 px-5">
-                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
                         <i class="fa-solid fa-image"></i>
-                      </div>
+                      </figure>
                     </td>
                     <td class="py-3 px-5 font-medium text-gray-700 pl-8 relative">
-                      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300">└</span>
+                      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 select-none">└</span>
                       เสื้อเชิ้ต & เบลเซอร์
                     </td>
                     <td class="py-3 px-5 font-mono text-[11px] text-gray-500">shirts-blazers</td>
@@ -313,10 +316,10 @@
                     </td>
                     <td class="py-3 px-5 text-right">
                       <div class="flex items-center justify-end gap-2">
-                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไข">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ลบ">
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </div>
@@ -326,9 +329,9 @@
                   <!-- Category Row 3 (Main Category) -->
                   <tr class="hover:bg-gray-50 transition">
                     <td class="py-3 px-5">
-                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
                         <i class="fa-solid fa-image"></i>
-                      </div>
+                      </figure>
                     </td>
                     <td class="py-3 px-5 font-bold text-gray-800">
                       เดรส (Dresses)
@@ -340,10 +343,10 @@
                     </td>
                     <td class="py-3 px-5 text-right">
                       <div class="flex items-center justify-end gap-2">
-                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไข">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ลบ">
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </div>
@@ -353,9 +356,9 @@
                   <!-- Category Row 4 (Main Category) -->
                   <tr class="hover:bg-gray-50 transition">
                     <td class="py-3 px-5">
-                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
                         <i class="fa-solid fa-image"></i>
-                      </div>
+                      </figure>
                     </td>
                     <td class="py-3 px-5 font-bold text-gray-800">
                       กระโปรง/กางเกง (Bottoms)
@@ -367,10 +370,10 @@
                     </td>
                     <td class="py-3 px-5 text-right">
                       <div class="flex items-center justify-end gap-2">
-                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไข">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ลบ">
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </div>
@@ -380,9 +383,9 @@
                   <!-- Category Row 5 (Draft / Disabled) -->
                   <tr class="hover:bg-gray-50 transition">
                     <td class="py-3 px-5">
-                      <div class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
                         <i class="fa-solid fa-image"></i>
-                      </div>
+                      </figure>
                     </td>
                     <td class="py-3 px-5 font-bold text-gray-800">
                       เครื่องประดับ (Accessories)
@@ -394,10 +397,10 @@
                     </td>
                     <td class="py-3 px-5 text-right">
                       <div class="flex items-center justify-end gap-2">
-                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไข">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" title="ลบ">
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                       </div>
@@ -408,7 +411,7 @@
               </table>
             </div>
 
-          </div>
+          </section>
 
         </div>
 

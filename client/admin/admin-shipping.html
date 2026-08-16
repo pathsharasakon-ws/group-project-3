@@ -4,47 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Occasion Admin Panel - Shipping & Tracking</title>
-  <!-- Tailwind CSS via CDN -->
+
+  <!-- Tailwind & FontAwesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine.js สำหรับ Dropdown และ Accordion -->
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
 </head>
 <body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
 
   <div class="flex h-screen overflow-hidden">
 
     <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20">
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20" aria-label="Sidebar Navigation">
       
       <div class="flex flex-col h-full">
         <!-- Admin Profile / Brand Header -->
-        <div class="p-5 flex items-center gap-3 border-b border-gray-100">
-          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
             ADMIN
           </div>
           <div>
             <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
-            <p class="text-[11px] text-gray-400 font-medium tracking-wider uppercase">Admin Control Panel</p>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
           </div>
-        </div>
+        </header>
 
         <!-- Navigation Links (5 Core Groups) -->
-        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
           
           <!-- GROUP 1: OVERVIEW -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</p>
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
             <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
               <i class="fa-solid fa-chart-pie text-sm w-4"></i>
               <span>Dashboard</span>
             </a>
-          </div>
+          </section>
 
           <!-- GROUP 2: CATALOG MANAGEMENT -->
-          <div x-data="{ open: false }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</p>
+          <section aria-labelledby="nav-catalog" x-data="{ open: false }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -60,11 +63,11 @@
               <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• Lookbooks ( Mix & Match )</a>
               <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• ปรับสต็อก (Stock Adjustments)</a>
             </div>
-          </div>
+          </section>
 
-          <!-- GROUP 3: SALES & FULFILLMENT (Active Open Group) -->
-          <div x-data="{ open: true }">
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</p>
+          <!-- GROUP 3: SALES & FULFILLMENT (Active Group) -->
+          <section aria-labelledby="nav-sales" x-data="{ open: true }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
             
             <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
               <div class="flex items-center gap-3">
@@ -74,20 +77,20 @@
               <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
             </button>
 
-            <!-- Accordion Sub-menu (Active Link for Shipping) -->
+            <!-- Accordion Sub-menu (Active Link: Shipping) -->
             <div x-show="open" class="mt-1 pl-7 space-y-1">
               <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
                 • คำสั่งซื้อ & ชำระเงิน
               </a>
-              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold">
+              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold" aria-current="page">
                 • การจัดส่ง & Tracking
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 4: USERS & COMMUNITY -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</p>
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
             <div class="space-y-1">
               <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-users text-sm w-4"></i>
@@ -98,30 +101,30 @@
                 <span>Reviews Management</span>
               </a>
             </div>
-          </div>
+          </section>
 
           <!-- GROUP 5: SYSTEM & AUDIT -->
-          <div>
-            <p class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</p>
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
             <div class="space-y-1">
               <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
                 <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
                 <span>Admin Audit Logs</span>
               </a>
             </div>
-          </div>
+          </section>
 
         </nav>
 
-        <!-- Footer / Logout Settings -->
-        <div class="p-4 border-t border-gray-100 text-xs space-y-1">
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
           <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
             <i class="fa-solid fa-gear w-4"></i> Settings
           </a>
           <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
             <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
           </a>
-        </div>
+        </footer>
       </div>
 
     </aside>
@@ -133,13 +136,13 @@
       <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
         <div class="flex items-center gap-4 w-1/3">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
             <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
         </div>
 
         <div class="flex items-center gap-4 text-xs">
-          <button class="p-2 text-gray-400 hover:text-gray-600 relative">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
             <i class="fa-regular fa-bell text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
@@ -152,175 +155,198 @@
         </div>
       </header>
 
-      <!-- PAGE BODY (SHIPPING CONTENT) -->
-      <main class="p-8 space-y-6" x-data="{ currentTab: 'pending' }">
+      <!-- PAGE BODY (SHIPPING MAIN CONTENT) -->
+      <main class="p-8 space-y-6">
         
-        <!-- Header Page & Action Buttons -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Header Page -->
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 class="text-xl font-bold text-gray-800">จัดการการจัดส่ง & Tracking (Shipping)</h1>
-            <p class="text-xs text-gray-500 mt-1">อัปเดตเลขพัสดุ พิมพ์ใบแปะหน้ากล่อง และติดตามสถานะขนส่ง</p>
+            <h1 class="text-xl font-bold text-gray-800">การจัดส่ง & ติดตามพัสดุ (Shipping & Tracking)</h1>
+            <p class="text-xs text-gray-500 mt-1">อัปเดตเลขพัสดุ (Tracking Number) และตรวจสอบสถานะการจัดส่งของบริษัทขนส่ง</p>
           </div>
-          <div class="flex items-center gap-2">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-lg text-xs font-medium shadow-sm flex items-center gap-2 transition">
-              <i class="fa-solid fa-print"></i> พิมพ์ใบแปะหน้ากล่อง (Bulk Print)
-            </button>
-          </div>
-        </div>
+          <button class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3.5 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition">
+            <i class="fa-solid fa-file-invoice text-blue-600"></i> พิมพ์ใบปะหน้าพัสดุ (Batch Print)
+          </button>
+        </header>
 
-        <!-- SHIPPING STATUS TABS -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-1.5 flex flex-wrap gap-1 text-xs font-medium">
-          <button @click="currentTab = 'pending'" :class="currentTab === 'pending' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            รอจัดส่งพัสดุ <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-700 font-bold">14</span>
-          </button>
-          <button @click="currentTab = 'in_transit'" :class="currentTab === 'in_transit' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            กำลังจัดส่ง (In Transit) <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-blue-100 text-blue-700">45</span>
-          </button>
-          <button @click="currentTab = 'delivered'" :class="currentTab === 'delivered' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            จัดส่งสำเร็จ <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-emerald-100 text-emerald-700">265</span>
-          </button>
-          <button @click="currentTab = 'issue'" :class="currentTab === 'issue' ? 'bg-blue-50 text-blue-600 font-bold' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'" class="px-4 py-2 rounded-lg transition">
-            ตกค้าง/ตีกลับ <span class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] bg-red-100 text-red-700">2</span>
-          </button>
-        </div>
+        <!-- KPI Summary Cards Section -->
+        <section aria-label="Shipping Statistics" class="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">รอแพ็กสินค้า</span>
+              <h3 class="text-xl font-bold text-amber-600 mt-1">14 ออเดอร์</h3>
+              <small class="text-[11px] text-amber-600 mt-1 font-medium block">รอดำเนินการ</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+          </article>
 
-        <!-- Filter & Search Bar -->
-        <div class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">กำลังจัดส่ง (In Transit)</span>
+              <h3 class="text-xl font-bold text-blue-600 mt-1">28 ออเดอร์</h3>
+              <small class="text-[11px] text-blue-600 mt-1 font-medium block">อยู่ระหว่างเดินทาง</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-truck-ramp-box"></i>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">จัดส่งสำเร็จแล้ว</span>
+              <h3 class="text-xl font-bold text-emerald-600 mt-1">316 ออเดอร์</h3>
+              <small class="text-[11px] text-emerald-600 mt-1 font-medium block">เดือนนี้</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">จัดส่งไม่สำเร็จ / ตีกลับ</span>
+              <h3 class="text-xl font-bold text-red-600 mt-1">2 ออเดอร์</h3>
+              <small class="text-[11px] text-red-600 mt-1 font-medium block">ต้องตรวจสอบ</small>
+            </div>
+            <div class="w-12 h-12 rounded-lg bg-red-50 text-red-600 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+          </article>
+        </section>
+
+        <!-- Filter & Search Toolbar Section -->
+        <section aria-label="Shipping Filters" class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <div class="relative w-full md:w-80">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            <input type="text" placeholder="ค้นหา Order ID, Tracking No., ชื่อผู้รับ..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+            <input type="text" placeholder="ค้นหาเลข Tracking, ชื่อลูกค้า, Order ID..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
 
-          <div class="flex items-center gap-3 w-full md:w-auto">
-            <select class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none">
-              <option value="">ทุกบริษัทขนส่ง (Courier)</option>
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <select aria-label="Filter by Carrier" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">บริษัทขนส่งทั้งหมด</option>
+              <option value="kerry">Kerry Express (KEX)</option>
+              <option value="jandt">J&T Express</option>
               <option value="flash">Flash Express</option>
-              <option value="kerry">Kerry Express</option>
-              <option value="thaipost">ไปรษณีย์ไทย (EMS)</option>
+              <option value="thailand_post">Thailand Post (EMS)</option>
+            </select>
+
+            <select aria-label="Filter by Shipping Status" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">สถานะการจัดส่งทั้งหมด</option>
+              <option value="preparing">รอจัดเตรียม (Preparing)</option>
+              <option value="shipping">กำลังจัดส่ง (In Transit)</option>
+              <option value="delivered">ส่งสำเร็จ (Delivered)</option>
             </select>
           </div>
-        </div>
+        </section>
 
-        <!-- SHIPPING TABLE -->
-        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <!-- Shipping Table Container Section -->
+        <section aria-label="Shipping Tracking Table" class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs text-gray-600">
               <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
                 <tr>
-                  <th class="py-3.5 px-4 w-10 text-center">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                  </th>
-                  <th class="py-3.5 px-4">Order ID</th>
-                  <th class="py-3.5 px-4">ผู้รับ & ที่อยู่จัดส่ง</th>
-                  <th class="py-3.5 px-4">ขนส่ง</th>
-                  <th class="py-3.5 px-4">Tracking Number</th>
-                  <th class="py-3.5 px-4">สถานะจัดส่ง</th>
-                  <th class="py-3.5 px-5 text-right">จัดการ</th>
+                  <th scope="col" class="py-3.5 px-5">Order ID</th>
+                  <th scope="col" class="py-3.5 px-5">ลูกค้า / ที่อยู่จัดส่ง</th>
+                  <th scope="col" class="py-3.5 px-5">ขนส่ง (Carrier)</th>
+                  <th scope="col" class="py-3.5 px-5">หมายเลขพัสดุ (Tracking No.)</th>
+                  <th scope="col" class="py-3.5 px-5">สถานะขนส่ง</th>
+                  <th scope="col" class="py-3.5 px-5 text-right">จัดการ</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-100">
                 
-                <!-- Row 1: รอใส่เลขพัสดุ / รอจัดส่ง -->
+                <!-- Shipping Row 1 (In Transit) -->
                 <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-4 text-center">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-098
+                    <small class="text-[10px] text-gray-400 block font-normal">พัสดุแฟชั่น (เสื้อผ้า)</small>
                   </td>
-                  <td class="py-4 px-4 font-bold text-blue-600">#ORD-2026-097</td>
-                  <td class="py-4 px-4">
-                    <p class="font-bold text-gray-800">คุณณัฐวุฒิ นามสมมติ <span class="text-gray-400 font-normal">(089-876-5432)</span></p>
-                    <p class="text-[11px] text-gray-500 mt-0.5 max-w-xs line-clamp-1">123/45 ถ.สุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110</p>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">คุณอารยา สุขใจ</p>
+                    <small class="text-[10px] text-gray-400 block truncate max-w-xs">123/45 ถ.สุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ</small>
                   </td>
-                  <td class="py-4 px-4 font-semibold text-amber-600">
-                    <i class="fa-solid fa-truck-fast mr-1"></i> Flash Express
+                  <td class="py-4 px-5 font-semibold text-gray-700">
+                    Kerry Express (KEX)
                   </td>
-                  <td class="py-4 px-4">
-                    <span class="text-gray-400 italic text-[11px]">ยังไม่ได้กรอก tracking</span>
+                  <td class="py-4 px-5 font-mono text-xs font-bold text-gray-800">
+                    KEX9823410294
                   </td>
-                  <td class="py-4 px-4">
-                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
-                      รอจัดส่ง
+                  <td class="py-4 px-5">
+                    <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
+                      <i class="fa-solid fa-truck"></i> กำลังจัดส่ง
                     </span>
                   </td>
                   <td class="py-4 px-5 text-right">
                     <div class="flex items-center justify-end gap-2">
-                      <button class="px-2.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-[11px] transition flex items-center gap-1">
-                        <i class="fa-solid fa-plus"></i> ใส่เลขพัสดุ
-                      </button>
-                      <button class="p-1.5 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition" title="พิมพ์ใบแปะหน้า">
-                        <i class="fa-solid fa-print"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                <!-- Row 2: จัดส่งแล้ว / กำลังเดินทาง -->
-                <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-4 text-center">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                  </td>
-                  <td class="py-4 px-4 font-bold text-blue-600">#ORD-2026-095</td>
-                  <td class="py-4 px-4">
-                    <p class="font-bold text-gray-800">คุณศิรินทร์ พัฒนพงษ์ <span class="text-gray-400 font-normal">(086-111-2233)</span></p>
-                    <p class="text-[11px] text-gray-500 mt-0.5 max-w-xs line-clamp-1">88/9 หมู่บ้านศุภาลัย ถ.แจ้งวัฒนะ ปากเกร็ด นนทบุรี 11120</p>
-                  </td>
-                  <td class="py-4 px-4 font-semibold text-orange-600">
-                    <i class="fa-solid fa-box mr-1"></i> Kerry Express
-                  </td>
-                  <td class="py-4 px-4">
-                    <div class="flex items-center gap-1.5">
-                      <span class="font-mono font-bold text-gray-800">KRY12345678TH</span>
-                      <button class="text-gray-400 hover:text-blue-600" title="คัดลอก">
-                        <i class="fa-regular fa-copy"></i>
-                      </button>
-                    </div>
-                  </td>
-                  <td class="py-4 px-4">
-                    <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
-                      กำลังจัดส่ง
-                    </span>
-                  </td>
-                  <td class="py-4 px-5 text-right">
-                    <div class="flex items-center justify-end gap-2">
-                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" title="แก้ไขเลข Tracking">
+                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขเลข Tracking" title="แก้ไข Tracking">
                         <i class="fa-solid fa-pen-to-square"></i>
                       </button>
-                      <button class="p-1.5 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition" title="พิมพ์ใบแปะหน้า">
+                      <button class="p-1.5 text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition" aria-label="พิมพ์ใบปะหน้า" title="พิมพ์ใบปะหน้า">
                         <i class="fa-solid fa-print"></i>
                       </button>
                     </div>
                   </td>
                 </tr>
 
-                <!-- Row 3: ส่งสำเร็จแล้ว -->
+                <!-- Shipping Row 2 (Preparing) -->
                 <tr class="hover:bg-gray-50 transition">
-                  <td class="py-4 px-4 text-center">
-                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-101
+                    <small class="text-[10px] text-gray-400 block font-normal">เดรสราตรี Satin Pink</small>
                   </td>
-                  <td class="py-4 px-4 font-bold text-blue-600">#ORD-2026-088</td>
-                  <td class="py-4 px-4">
-                    <p class="font-bold text-gray-800">คุณวิภาดา รัตนกุล <span class="text-gray-400 font-normal">(081-555-4433)</span></p>
-                    <p class="text-[11px] text-gray-500 mt-0.5 max-w-xs line-clamp-1">456 คอนโดไอดีโอ สาทร ถ.กรุงธนบุรี คลองสาน กรุงเทพฯ 10600</p>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">คุณศิรินทร์ พัฒนพงษ์</p>
+                    <small class="text-[10px] text-gray-400 block truncate max-w-xs">45/8 ถ.นิมมานเหมินท์ ต.สุเทพ อ.เมือง เชียงใหม่</small>
                   </td>
-                  <td class="py-4 px-4 font-semibold text-red-600">
-                    <i class="fa-solid fa-envelope mr-1"></i> ไปรษณีย์ไทย (EMS)
+                  <td class="py-4 px-5 font-semibold text-gray-700">
+                    Flash Express
                   </td>
-                  <td class="py-4 px-4">
-                    <div class="flex items-center gap-1.5">
-                      <span class="font-mono font-bold text-gray-800">EF987654321TH</span>
-                      <button class="text-gray-400 hover:text-blue-600" title="คัดลอก">
-                        <i class="fa-regular fa-copy"></i>
-                      </button>
-                    </div>
+                  <td class="py-4 px-5 text-gray-400 italic text-[11px]">
+                    ยังไม่ได้ระบุเลข Tracking
                   </td>
-                  <td class="py-4 px-4">
-                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
-                      จัดส่งสำเร็จ
+                  <td class="py-4 px-5">
+                    <span class="bg-amber-50 text-amber-600 px-2.5 py-1 rounded-full font-semibold text-[10px]">
+                      รอจัดเตรียมสินค้า
                     </span>
                   </td>
                   <td class="py-4 px-5 text-right">
-                    <button class="p-1.5 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition" title="พิมพ์ใบแปะหน้า">
-                      <i class="fa-solid fa-print"></i>
-                    </button>
+                    <div class="flex items-center justify-end gap-2">
+                      <button class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold rounded-lg transition" title="เพิ่มเลขพัสดุ">
+                        + ใส่เลข Tracking
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Shipping Row 3 (Delivered) -->
+                <tr class="hover:bg-gray-50 transition">
+                  <td class="py-4 px-5 font-semibold text-blue-600">
+                    #ORD-2026-097
+                    <small class="text-[10px] text-gray-400 block font-normal">กระโปรงทรงเอ สีเบจ</small>
+                  </td>
+                  <td class="py-4 px-5">
+                    <p class="font-bold text-gray-800">คุณณัฐวุฒิ นามสมมติ</p>
+                    <small class="text-[10px] text-gray-400 block truncate max-w-xs">88/9 ถ.พหลโยธิน จตุจักร กรุงเทพฯ</small>
+                  </td>
+                  <td class="py-4 px-5 font-semibold text-gray-700">
+                    J&T Express
+                  </td>
+                  <td class="py-4 px-5 font-mono text-xs font-bold text-gray-800">
+                    JTP5541298031
+                  </td>
+                  <td class="py-4 px-5">
+                    <span class="bg-emerald-50 text-emerald-600 px-2.5 py-1 rounded-full font-semibold text-[10px] flex items-center gap-1 w-fit">
+                      <i class="fa-solid fa-circle-check"></i> จัดส่งสำเร็จ
+                    </span>
+                  </td>
+                  <td class="py-4 px-5 text-right">
+                    <div class="flex items-center justify-end gap-2">
+                      <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="ดูรายละเอียด" title="ดูรายละเอียด">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
 
@@ -329,20 +355,22 @@
           </div>
 
           <!-- Table Pagination Footer -->
-          <div class="p-4 bg-white border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-            <p>แสดง 1 - 3 จากทั้งหมด 14 รายการที่รอจัดส่ง</p>
-            <div class="flex items-center gap-1">
-              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled>
+          <footer class="p-4 bg-white border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+            <p>แสดง 1 - 3 จากทั้งหมด 44 รายการจัดส่ง</p>
+            <nav aria-label="Table pagination" class="flex items-center gap-1">
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50" disabled aria-label="Previous Page">
                 <i class="fa-solid fa-chevron-left text-[10px]"></i>
               </button>
-              <button class="px-3 py-1 rounded bg-blue-600 text-white font-medium">1</button>
-              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-600 hover:bg-gray-50">
+              <button class="px-3 py-1 rounded bg-blue-600 text-white font-medium" aria-current="page">1</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">2</button>
+              <button class="px-3 py-1 rounded border border-gray-200 hover:bg-gray-50">3</button>
+              <button class="px-2.5 py-1.5 rounded border border-gray-200 text-gray-600 hover:bg-gray-50" aria-label="Next Page">
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
-            </div>
-          </div>
+            </nav>
+          </footer>
 
-        </div>
+        </section>
 
       </main>
 
