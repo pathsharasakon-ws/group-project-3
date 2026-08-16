@@ -1,172 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Cart Page (Empty)</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================= -->
 
     <link
         href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
     >
-    <link rel="stylesheet" href="./output.css" />
+
+
+    <!-- =========================================
+         TAILWIND CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="./output.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           PAGE LAYOUT
+        ========================================= */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #navbar-container {
+            flex-shrink: 0;
+        }
+
+
+        main {
+            flex: 1 0 auto;
+        }
+
+
+        #footer-container {
+            flex-shrink: 0;
+        }
 
 
 
-   
+        /* =========================================
+           CART LAYOUT
+
+           ใช้ Layout เดียวกับหน้า Item
+        ========================================= */
+
+        .cart-layout {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.65fr)
+                minmax(300px, 0.9fr);
+
+            column-gap: 60px;
+
+            align-items: start;
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+                row-gap: 40px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 
 <body>
 
-  <!-- navbar -->
-   <header id="navbar-container"></header>
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header id="navbar-container"></header>
 
 
-    <!-- =========================
-         CART PAGE CONTENT
-    ========================== -->
 
-    <main class="min-h-screen bg-background py-10">
+    <!-- =========================================
+         MAIN CART PAGE
+    ========================================= -->
 
-        <div class="mx-auto w-[83%] max-w-[1200px] bg-white p-12">
+    <main class="bg-background py-10">
 
-            <!-- Information Box -->
-            <div class="mx-auto mb-8 w-[80%] border border-blue-300 bg-blue-100 px-5 py-3 text-[11px] leading-relaxed">
+
+        <!-- =========================================
+             MAIN WHITE BOX
+
+             ใช้ขนาดเดียวกับหน้า Item
+        ========================================= -->
+
+        <div
+            class="mx-auto w-full bg-white p-12"
+            style="max-width: 1100px;"
+        >
+
+
+            <!-- =====================================
+                 INFORMATION BOX
+            ====================================== -->
+
+            <div
+                class="mx-auto mb-8 w-full border border-gray-500 px-5 py-3 text-[11px] leading-relaxed"
+                style="max-width: 900px;"
+            >
 
                 <p>
-                    <span class="text-blue-500">ⓘ</span>
-                    <strong>1. Sale Items:</strong>
-                    No returns or exchanges. See our returns policy for details.
+
+                    <span class="text-blue-500">
+                        ⓘ
+                    </span>
+
+                    <strong>
+                        1. Sale Items:
+                    </strong>
+
+                    No returns or exchanges.
+                    See our returns policy for details.
+
                 </p>
 
-                <p>
-                    <strong>2. Duty and Tax:</strong>
-                    Relevant import duty and tax are included in product price.
-                </p>
 
                 <p>
-                    <strong>3. International Transaction Fee:</strong>
+
+                    <strong>
+                        2. Duty and Tax:
+                    </strong>
+
+                    Relevant import duty and tax are included
+                    in product price.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        3. International Transaction Fee:
+                    </strong>
+
                     Your bank may charge international fees.
                     Learn more on our policy.
+
                 </p>
 
             </div>
 
 
-            <!-- Cart Main Content -->
-            <div class="grid min-h-[270px] grid-cols-2 gap-16">
 
-                <!-- Empty Cart -->
-                <section class="flex flex-col items-center justify-center text-center">
+            <!-- =====================================
+                 CART LAYOUT
+            ====================================== -->
 
-                    <div class="mb-2 text-3xl">
+            <div class="cart-layout">
+
+
+                <!-- =================================
+                     LEFT : EMPTY CART
+                ================================== -->
+
+                <section
+                    class="flex min-h-[220px] flex-col items-center justify-center text-center"
+                >
+
+
+                    <!-- BAG ICON -->
+
+                    <div
+                        class="mb-3 text-3xl"
+                    >
+
                         ♧
+
                     </div>
 
-                    <h2 class="mb-2 text-lg font-semibold">
+
+
+                    <!-- TITLE -->
+
+                    <h2
+                        class="mb-2 text-lg font-semibold"
+                    >
+
                         Your bag is empty
+
                     </h2>
 
-                    <p class="mb-5 text-xs text-gray-700">
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p
+                        class="mb-6 text-sm text-gray-700"
+                    >
+
                         Not sure where to start?
                         Here are some of our favorites.
+
                     </p>
 
-                    <div class="flex gap-2">
+
+
+                    <!-- SHOP BUTTONS -->
+
+                    <div
+                        class="flex gap-3"
+                    >
 
                         <button
-                            class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
+                            type="button"
+                            class="bg-black px-6 py-3 text-xs font-semibold text-white transition hover:opacity-80"
                         >
+
                             Tops
+
                         </button>
 
+
                         <button
-                            class="bg-black px-5 py-3 text-[11px] font-semibold text-white transition hover:opacity-80"
+                            type="button"
+                            class="bg-black px-6 py-3 text-xs font-semibold text-white transition hover:opacity-80"
                         >
+
                             Bottoms
+
                         </button>
 
                     </div>
+
 
                 </section>
 
 
-                <!-- Cart Summary -->
-                <aside class="pt-8">
 
-                    <h4 class="mb-7 text-right text-xs font-semibold">
+                <!-- =================================
+                     RIGHT : CART SUMMARY
+                ================================== -->
+
+                <aside
+                    class="min-w-0"
+                >
+
+
+                    <!-- HELP -->
+
+                    <h4
+                        class="mb-6 text-right text-sm font-semibold"
+                    >
+
                         Need Help? 088 888 8888
+
                     </h4>
 
-                    <div class="flex justify-between border-b border-gray-200 py-2 text-[11px]">
-                        <span>Subtotal</span>
-                        <span>฿ 0.00</span>
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-3 text-sm"
+                    >
+
+                        <span>
+                            Subtotal
+                        </span>
+
+
+                        <span>
+                            ฿ 0.00
+                        </span>
+
                     </div>
 
-                    <div class="flex justify-between border-b border-gray-200 py-2 text-[11px]">
-                        <span>Shipping cost</span>
-                        <span>-</span>
+
+
+                    <!-- SHIPPING -->
+
+                    <div
+                        class="flex justify-between border-b border-gray-200 py-3 text-sm"
+                    >
+
+                        <span>
+                            Shipping cost
+                        </span>
+
+
+                        <span>
+                            -
+                        </span>
+
                     </div>
 
-                    <div class="flex justify-between pt-3 text-[11px]">
-                        <strong>Estimated Total</strong>
-                        <strong>฿ 0.00</strong>
+
+
+                    <!-- ESTIMATED TOTAL -->
+
+                    <div
+                        class="flex justify-between py-4 text-sm"
+                    >
+
+                        <strong>
+                            Estimated Total
+                        </strong>
+
+
+                        <strong>
+                            ฿ 0.00
+                        </strong>
+
                     </div>
+
 
                 </aside>
+
 
             </div>
 
 
-            <!-- Divider -->
-            <div class="mx-auto my-8 h-px w-[35%] bg-gray-200"></div>
+
+            <!-- =====================================
+                 DIVIDER
+            ====================================== -->
+
+            <div
+                class="mx-auto my-8 h-px bg-gray-200"
+                style="max-width: 400px;"
+            ></div>
 
 
-            <!-- Save For Later -->
-            <section class="text-center">
 
-                <div class="mb-2 text-3xl">
+            <!-- =====================================
+                 SAVE FOR LATER
+            ====================================== -->
+
+            <section
+                class="text-center"
+            >
+
+
+                <!-- ICON -->
+
+                <div
+                    class="mb-2 text-3xl"
+                >
+
                     ♧
+
                 </div>
 
-                <h2 class="mb-2 text-lg font-semibold">
+
+
+                <!-- TITLE -->
+
+                <h2
+                    class="text-xl font-semibold"
+                >
+
                     Save for Later
+
                 </h2>
 
-                <p class="mb-4 text-xs">
+
+
+                <!-- DESCRIPTION -->
+
+                <p
+                    class="mt-2 text-sm"
+                >
+
                     Create an account or sign in to view your saved items.
+
                 </p>
 
+
+
+                <!-- CREATE ACCOUNT -->
+
                 <button
-                    class="mb-2 border border-gray-500 bg-white px-5 py-3 text-[10px] font-semibold transition hover:bg-black hover:text-white"
+                    type="button"
+                    class="mt-4 mb-2 border border-gray-500 bg-white px-6 py-3 text-xs font-semibold transition hover:bg-black hover:text-white"
                 >
+
                     CREATE AN ACCOUNT
+
                 </button>
+
 
                 <br>
 
+
+                <!-- SIGN IN -->
+
                 <a
                     href="#"
-                    class="text-[11px] text-gray-800 underline"
+                    class="text-xs underline"
                 >
+
                     Sign in to Occasion
+
                 </a>
+
 
             </section>
 
+
         </div>
+
 
     </main>
 
 
-    <!-- Footer -->
-    <!-- main section  ทดสอบสีจาก component ข้างนอก-->
 
-  <div id="footer-container"></div>
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
 
-  <script type="module" src="script.js"></script>
+    <div id="footer-container"></div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
 
 
 </body>
+
 </html>
