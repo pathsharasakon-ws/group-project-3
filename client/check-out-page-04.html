@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout Page (Review / Shipped) - Not Member</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================= -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         TAILWIND CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="./output.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           PAGE LAYOUT
+        ========================================= */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #navbar-container {
+            flex-shrink: 0;
+        }
+
+
+        main {
+            flex: 1 0 auto;
+        }
+
+
+        #footer-container {
+            flex-shrink: 0;
+        }
+
+
+
+        /* =========================================
+           STEP INDICATOR
+        ========================================= */
+
+        .step-indicator {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+
+            margin-bottom: 8px;
+        }
+
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .step-circle {
+            width: 26px;
+            height: 26px;
+
+            border-radius: 9999px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            border: 1px solid #d1d5db;
+            background-color: #ffffff;
+            color: #9ca3af;
+        }
+
+
+        .step-circle.is-complete {
+            border-color: #2563eb;
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+
+        .step-circle.is-current {
+            border-color: #2563eb;
+            background-color: #ffffff;
+            color: #2563eb;
+        }
+
+
+        .step-label {
+            margin-top: 8px;
+
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+
+        .step-label.is-active {
+            color: #111827;
+            font-weight: 600;
+        }
+
+
+        .step-line {
+            width: 64px;
+            height: 1px;
+
+            margin: 12px 10px 0;
+
+            background-color: #d1d5db;
+        }
+
+
+        .step-line.is-active {
+            background-color: #2563eb;
+        }
+
+
+        @media (max-width: 900px) {
+
+            .step-line {
+                width: 32px;
+            }
+
+        }
+
+
+
+        /* =========================================
+           SHIPPED PANEL (TEAL)
+        ========================================= */
+
+        .shipped-panel {
+            max-width: 680px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+            background-color: #3fbfb0;
+
+            padding: 40px 32px 32px;
+
+            text-align: center;
+        }
+
+
+        .shipped-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+
+        .shipped-subtitle {
+            margin-top: 10px;
+
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+
+
+        /* =========================================
+           HERO ROW (PRODUCT IMAGES + TRUCK)
+        ========================================= */
+
+        .shipped-hero {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 16px;
+
+            margin: 24px 0;
+        }
+
+
+        .shipped-hero-image {
+            width: 90px;
+            height: 120px;
+
+            flex-shrink: 0;
+
+            overflow: hidden;
+
+            border-radius: 4px;
+        }
+
+
+        .shipped-hero-image img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .shipped-hero-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 18px;
+
+            color: #ffffff;
+        }
+
+
+        .shipped-divider {
+            display: flex;
+
+            align-items: center;
+            gap: 14px;
+        }
+
+
+        .shipped-divider-line {
+            width: 40px;
+            height: 1px;
+
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+
+        .shipped-truck {
+            font-size: 20px;
+        }
+
+
+        .shipped-track-label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .shipped-track-number {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 560px) {
+
+            .shipped-hero {
+                flex-wrap: wrap;
+            }
+
+
+            .shipped-hero-image {
+                width: 80px;
+                height: 110px;
+            }
+
+        }
+
+
+
+        /* =========================================
+           RECEIPT CARD (WHITE)
+        ========================================= */
+
+        .receipt-card {
+            background-color: #ffffff;
+
+            border-radius: 4px;
+
+            padding: 24px 24px 4px;
+
+            text-align: left;
+
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .receipt-title {
+            margin-bottom: 20px;
+
+            text-align: center;
+
+            font-size: 16px;
+            font-weight: 700;
+            color: #3fbfb0;
+        }
+
+
+        .receipt-meta {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+
+            font-size: 12px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+
+        .receipt-table-head {
+            display: grid;
+            grid-template-columns: 1fr 60px 70px;
+
+            padding-bottom: 8px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+        }
+
+
+        .receipt-table-head span:not(:first-child),
+        .receipt-item span:not(:first-child) {
+            text-align: right;
+        }
+
+
+        .receipt-item {
+            display: grid;
+            grid-template-columns: 1fr 60px 70px;
+
+            padding: 16px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            font-size: 13px;
+            color: #111827;
+        }
+
+
+        .receipt-item-name {
+            font-weight: 600;
+        }
+
+
+        .receipt-item-price {
+            margin-top: 4px;
+
+            font-weight: 600;
+            color: #3fbfb0;
+        }
+
+
+        .receipt-shipping {
+            padding: 16px 0;
+
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+
+        .receipt-shipping strong {
+            color: #9ca3af;
+
+            font-size: 11px;
+            letter-spacing: 0.03em;
+        }
+
+
+        .receipt-shipping-note {
+            margin-top: 4px;
+
+            font-size: 11px;
+            font-style: italic;
+            color: #374151;
+        }
+
+
+        .receipt-dashed {
+            border-top: 1px dashed #99d9d0;
+
+            margin: 0 -24px;
+        }
+
+
+        .receipt-sent-to {
+            padding: 20px 0 24px;
+
+            font-size: 13px;
+            line-height: 1.7;
+            color: #111827;
+        }
+
+
+        .receipt-sent-to-label {
+            margin-bottom: 6px;
+
+            font-size: 13px;
+            font-weight: 700;
+            color: #3fbfb0;
+        }
+
+
+
+        /* =========================================
+           SHIPPED FOOTNOTE
+        ========================================= */
+
+        .shipped-footnote {
+            margin-top: 28px;
+
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+
+        .shipped-footnote a {
+            color: #ffffff;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header id="navbar-container"></header>
+
+
+
+    <!-- =========================================
+         MAIN CHECKOUT PAGE
+    ========================================= -->
+
+    <main class="bg-background py-10">
+
+
+        <!-- =========================================
+             MAIN WHITE BOX
+        ========================================= -->
+
+        <div
+            class="mx-auto w-full p-12"
+            style="max-width: 1100px;"
+        >
+
+
+            <!-- =====================================
+                 TITLE
+            ====================================== -->
+
+            <h1
+                class="mb-8 text-center text-2xl font-semibold"
+            >
+
+                Checkout
+
+            </h1>
+
+
+
+            <!-- =====================================
+                 STEP INDICATOR
+            ====================================== -->
+
+            <div class="step-indicator">
+
+                <div class="step">
+                    <div class="step-circle is-complete">1</div>
+                    <span class="step-label is-active">Contact</span>
+                </div>
+
+                <div class="step-line is-active"></div>
+
+                <div class="step">
+                    <div class="step-circle is-complete">2</div>
+                    <span class="step-label is-active">Shipping</span>
+                </div>
+
+                <div class="step-line is-active"></div>
+
+                <div class="step">
+                    <div class="step-circle is-complete">3</div>
+                    <span class="step-label is-active">Payment</span>
+                </div>
+
+                <div class="step-line is-active"></div>
+
+                <div class="step">
+                    <div class="step-circle is-current">4</div>
+                    <span class="step-label is-active">Review</span>
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 SHIPPED PANEL
+            ====================================== -->
+
+            <div class="mt-10 shipped-panel">
+
+
+                <!-- HEADLINE -->
+
+                <h2 class="shipped-title">
+                    Your order has shipped.
+                </h2>
+
+
+                <p class="shipped-subtitle">
+                    Are you smiling? You're totally smiling.
+                </p>
+
+
+
+                <!-- HERO : PRODUCT IMAGES + TRACKING -->
+
+                <div class="shipped-hero">
+
+                    <div class="shipped-hero-image">
+
+                        <img
+                            src="./images/easyset-shirt.jpg"
+                            alt="EasySet Training Long-Sleeve Shirt"
+                        >
+
+                    </div>
+
+
+                    <div class="shipped-hero-center">
+
+                        <div class="shipped-divider">
+                            <span class="shipped-divider-line"></span>
+                            <span class="shipped-truck">🚚</span>
+                            <span class="shipped-divider-line"></span>
+                        </div>
+
+
+                        <p class="shipped-track-label">
+                            No need to camp out by the mailbox!
+                        </p>
+
+
+                        <p class="shipped-track-label">
+                            Use this number to track your package:
+                        </p>
+
+
+                        <p class="shipped-track-number">
+                            1234567890 1234567890
+                        </p>
+
+                    </div>
+
+
+                    <div class="shipped-hero-image">
+
+                        <img
+                            src="./images/everyday-tshirt.jpg"
+                            alt="Everyday T-Shirt"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECEIPT CARD -->
+
+                <div class="receipt-card">
+
+                    <h3 class="receipt-title">
+                        Here's what we shipped:
+                    </h3>
+
+
+                    <div class="receipt-meta">
+                        <span>Order #: XXXXXXXXX</span>
+                        <span>Order Date: 2/17/26</span>
+                    </div>
+
+
+                    <div class="receipt-table-head">
+                        <span>Item</span>
+                        <span>Qty</span>
+                        <span>Cost</span>
+                    </div>
+
+
+                    <div class="receipt-item">
+
+                        <div>
+                            <p class="receipt-item-name">
+                                Everyday T-Shirt (White) - L
+                            </p>
+
+                            <p class="receipt-item-price">
+                                $0.00
+                            </p>
+                        </div>
+
+
+                        <span>1</span>
+                        <span>$0.00</span>
+
+                    </div>
+
+
+                    <div class="receipt-shipping">
+
+                        <strong>SHIPPING METHOD:</strong>
+                        &nbsp;Free (5 Business Days*) (via FedEx SmartPost)
+
+
+                        <p class="receipt-shipping-note">
+                            *Some shipping areas may take up to 7 business days for delivery.
+                        </p>
+
+                    </div>
+
+
+                    <div class="receipt-dashed"></div>
+
+
+                    <div class="receipt-sent-to">
+
+                        <p class="receipt-sent-to-label">
+                            Sent to:
+                        </p>
+
+
+                        <p>
+                            <strong>XXXXXX</strong><br>
+                            12345 XXXXXXXX<br>
+                            XXXXXX<br>
+                            XXXXXXXX
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- FOOTNOTE -->
+
+                <p class="shipped-footnote">
+                    If you have any questions about your order,<br>
+                    please <a href="#">contact us</a>.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <div id="footer-container"></div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
