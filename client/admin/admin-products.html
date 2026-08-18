@@ -14,12 +14,17 @@
   <!-- เชื่อมต่อไฟล์ CSS กลาง -->
   <link rel="stylesheet" href="css/admin-style.css">
 </head>
-<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: true }">
+<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
 
   <div class="flex h-screen overflow-hidden">
 
+    <div x-cloak x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"
+         class="fixed inset-0 bg-gray-900/40 z-30 lg:hidden" aria-hidden="true"></div>
+
     <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-20" aria-label="Sidebar Navigation">
+    <aside x-cloak
+           class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-40 transform transition-transform duration-200 ease-out lg:static lg:translate-x-0 lg:z-20"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" aria-label="Sidebar Navigation">
       
       <div class="flex flex-col h-full">
         <!-- Admin Profile / Brand Header -->
@@ -31,6 +36,9 @@
             <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
             <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
           </div>
+          <button type="button" @click="sidebarOpen = false" class="ml-auto p-2 text-gray-400 hover:text-gray-700 lg:hidden" aria-label="ปิดเมนู">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
         </header>
 
         <!-- Navigation Links (5 Core Groups) -->
@@ -134,33 +142,36 @@
     </aside>
 
     <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
-    <div class="flex-1 flex flex-col overflow-y-auto">
+    <div class="flex-1 min-w-0 flex flex-col overflow-y-auto">
 
       <!-- TOP HEADER BAR -->
-      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
-        <div class="flex items-center gap-4 w-1/3">
-          <div class="relative w-full">
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-10">
+        <button type="button" @click="sidebarOpen = true" class="flex-shrink-0 p-2 -ml-2 mr-2 text-gray-500 hover:text-gray-800 lg:hidden" aria-label="เปิดเมนู">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+        <div class="flex items-center gap-4 min-w-0 flex-1 sm:flex-none sm:w-1/2 lg:w-1/3">
+          <div class="relative w-full hidden sm:block">
             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
             <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
           </div>
         </div>
 
-        <div class="flex items-center gap-4 text-xs">
+        <div class="flex items-center gap-2 sm:gap-4 text-xs">
           <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
             <i class="fa-regular fa-bell text-base"></i>
             <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
           
-          <div class="h-6 w-px bg-gray-200"></div>
+          <div class="h-6 w-px bg-gray-200 hidden sm:block"></div>
           
           <div class="flex items-center gap-2">
-            <span class="font-semibold text-gray-700">Pathsharasakon (Super Admin)</span>
+            <span class="font-semibold text-gray-700 hidden sm:inline">Pathsharasakon (Super Admin)</span><span class="font-semibold text-gray-700 sm:hidden">Admin</span>
           </div>
         </div>
       </header>
 
       <!-- PAGE BODY (PRODUCTS CONTENT) -->
-      <main class="p-8 space-y-6">
+      <main class="p-4 sm:p-6 lg:p-8 space-y-6">
         
         <!-- Header & Action Button -->
         <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">

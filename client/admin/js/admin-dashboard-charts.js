@@ -60,30 +60,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Doughnut Chart
-  const ctxDoughnut = document.getElementById('categoryDoughnutChart')?.getContext('2d');
-  if (ctxDoughnut) {
-    new Chart(ctxDoughnut, {
-      type: 'doughnut',
+  // Line Chart: Sales by Category
+  const ctxCategoryLine = document.getElementById('categoryLineChart')?.getContext('2d');
+  if (ctxCategoryLine) {
+    new Chart(ctxCategoryLine, {
+      type: 'line',
       data: {
-        labels: ['เสื้อ (Tops)', 'เดรส (Dresses)', 'กระโปรง/กางเกง', 'Lookbook Sets'],
+        labels: ['เสื้อ', 'เดรส', 'กระโปรง/กางเกง', 'Lookbook Sets'],
         datasets: [{
-          data: [40, 25, 20, 15],
-          backgroundColor: ['#3b82f6', '#ec4899', '#8b5cf6', '#f59e0b'],
-          borderWidth: 2,
-          borderColor: '#ffffff'
+          label: 'ยอดขาย (บาท)',
+          data: [51380, 32110, 25690, 19270],
+          borderColor: '#ec4899',
+          backgroundColor: 'rgba(236, 72, 153, 0.12)',
+          pointBackgroundColor: '#ffffff',
+          pointBorderColor: '#ec4899',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          borderWidth: 2.5,
+          tension: 0.35,
+          fill: true
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
         plugins: {
-          legend: {
-            position: 'bottom',
-            labels: { boxWidth: 10, font: { size: 10 }, padding: 12 }
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (context) => `ยอดขาย: ฿${context.parsed.y.toLocaleString('th-TH')}`
+            }
           }
         },
-        cutout: '65%'
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 10 }, maxRotation: 35, minRotation: 0 }
+          },
+          y: {
+            beginAtZero: true,
+            grid: { color: '#f3f4f6' },
+            ticks: {
+              font: { size: 10 },
+              callback: (value) => `฿${value / 1000}k`
+            }
+          }
+        }
       }
     });
   }
