@@ -16,507 +16,730 @@
     <!-- Tailwind CSS Output -->
     <link rel="stylesheet" href="./output.css" />
   </head>
-  <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased font-sans">
+  <body class="bg-background text-gray-800 min-h-screen flex flex-col antialiased font-sans">
+    
     <!-- ============================================== -->
     <!-- 1. ส่วนหัวเว็บไซต์ (Header / Navbar) -->
     <!-- ============================================== -->
-    <header class="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-xs">
+    <header class="w-full bg-white border-b border-gray-200 sticky top-0 z-40 shadow-xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
-        <!-- Left: Brand Logo & Navigation Links -->
-        <div class="flex items-center gap-6 lg:gap-8">
-          <a href="./index.html" class="flex items-center gap-2">
-            <img src="./assets/logo/newlogo.png" alt="OCCASION Logo" class="w-24 sm:w-28 h-auto object-contain" />
-          </a>
+        <!-- Left: Brand Logo -->
+        <a href="./index.html" class="flex items-center gap-2">
+          <img src="./assets/logo/newlogo.png" alt="OCCASION Logo" class="w-24 sm:w-28 h-auto object-contain" />
+        </a>
 
-          <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold tracking-wide">
-            <a href="./Product_Page.html" class="text-primary border-b-2 border-primary pb-1 transition">
-              PRODUCTS
-            </a>
-            <a href="./index.html#lookbook" class="text-gray-600 hover:text-primary transition">
-              LOOKBOOK
-            </a>
-            <a href="./article.html" class="text-gray-600 hover:text-primary transition">
-              ARTICLES
-            </a>
-            <a href="./customerService.html" class="text-gray-600 hover:text-primary transition">
-              HELP & SUPPORT
-            </a>
-          </nav>
-        </div>
+        <!-- Middle: Nav Links -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold tracking-wide">
+          <a href="./Product_Page.html" class="text-primary border-b-2 border-primary pb-1 transition">
+            PRODUCTS
+          </a>
+          <a href="./index.html#lookbook" class="text-gray-600 hover:text-primary transition">
+            LOOKBOOK
+          </a>
+          <a href="./article.html" class="text-gray-600 hover:text-primary transition">
+            ARTICLES
+          </a>
+          <a href="./customerService.html" class="text-gray-600 hover:text-primary transition">
+            HELP & SUPPORT
+          </a>
+        </nav>
 
         <!-- Right: Actions, Profile & Cart -->
-        <div class="flex items-center gap-3 sm:gap-4">
+        <div class="flex items-center gap-4 sm:gap-6">
           <a href="./signup.html" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-primary transition">
             <img src="./assets/icon/user.png" alt="User" class="w-4 h-4" />
             <span class="hidden sm:inline">เข้าสู่ระบบ</span>
           </a>
 
-          <a href="./cart-page.html" class="relative bg-primary text-white px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 hover:bg-primary/90 transition shadow-xs">
-            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-4 h-4 invert brightness-0" />
-            <span>ตะกร้า</span>
-            <span id="cart-count-badge" class="bg-accent text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full transition-transform">2</span>
+          <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center relative p-1" aria-label="Cart">
+            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6 object-contain" />
+            <span id="cart-count-badge" class="absolute -top-1 -right-1.5 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs transition-transform">2</span>
           </a>
         </div>
       </div>
     </header>
 
-    <!-- ============================================== -->
-    <!-- 2. แถบ BREADCRUMB & SECONDARY ACTION BAR -->
-    <!-- ============================================== -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5">
-      
-      <section class="pb-3 mb-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <!-- Breadcrumb Links -->
-        <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium" aria-label="Breadcrumb">
-          <a href="./index.html" class="hover:text-primary transition flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-            <span>หน้าแรก</span>
-          </a>
-          <span>&gt;</span>
-          <a href="./Product_Page.html" class="hover:text-primary transition" id="breadcrumb-category">สินค้าทั้งหมด</a>
-          <span>&gt;</span>
-          <span class="text-gray-900 font-bold truncate max-w-[200px] sm:max-w-xs" id="breadcrumb-current">ชื่อสินค้า</span>
-        </nav>
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
 
-        <!-- Share Button -->
-        <div class="flex items-center gap-2">
-          <button id="btn-share" class="inline-flex items-center gap-1.5 border border-gray-300 rounded-lg px-3 py-1.5 text-xs font-semibold bg-white hover:bg-gray-50 hover:border-gray-400 text-gray-700 transition cursor-pointer">
-            <svg class="w-3.5 h-3.5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-            </svg>
-            <span>แชร์สินค้านี้</span>
+      <!-- ============================================== -->
+      <!-- VIEW A: PRODUCT CATALOG VIEW (เมื่อไม่มี ?id) -->
+      <!-- ============================================== -->
+      <div id="view-catalog" class="space-y-8">
+        
+        <!-- Category Filter & Search -->
+        <section class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2">
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="category-filter-bar">
+            <button
+              type="button"
+              data-category="all"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer border bg-primary text-white border-primary"
+            >
+              ทั้งหมด (All)
+            </button>
+            <button
+              type="button"
+              data-category="tops"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary"
+            >
+              Tops (เสื้อ)
+            </button>
+            <button
+              type="button"
+              data-category="bottoms"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary"
+            >
+              Bottoms (กางเกง)
+            </button>
+            <button
+              type="button"
+              data-category="skirts"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary"
+            >
+              Skirts (กระโปรง)
+            </button>
+            <button
+              type="button"
+              data-category="jackets"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary"
+            >
+              Jackets (เสื้อคลุม)
+            </button>
+            <button
+              type="button"
+              data-category="sets"
+              class="category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary"
+            >
+              Sets (ชุดเซ็ต)
+            </button>
+          </div>
+
+          <div class="relative w-full sm:w-64">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="catalog-search-input"
+              placeholder="ค้นหาชื่อสินค้า หรือแท็ก..."
+              class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-gray-300 bg-white focus:outline-none focus:border-primary transition shadow-2xs"
+            />
+          </div>
+        </section>
+
+        <!-- Recommended Standard Carousel Banner Section (Pink Box) -->
+        <section id="featured-carousel-section" class="bg-accent rounded-3xl p-5 sm:p-7 shadow-lg text-white relative overflow-hidden group">
+          
+          <!-- Header with Title & Navigation Controls -->
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">✨</span>
+              <h2 class="text-base sm:text-xl font-extrabold tracking-wide uppercase">
+                แสดงสินค้าแนะนำ (RECOMMENDED)
+              </h2>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-medium hidden sm:inline-block">
+                คอลเลกชันยอดนิยมประจำสัปดาห์
+              </span>
+              
+              <!-- Header Prev / Next Buttons -->
+              <div class="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  id="featured-prev-btn"
+                  class="w-8 h-8 rounded-full bg-white/20 hover:bg-white text-white hover:text-accent flex items-center justify-center font-bold text-sm transition shadow-xs cursor-pointer"
+                  title="สไลด์ก่อนหน้า"
+                  aria-label="Previous Slide"
+                >
+                  ❮
+                </button>
+                <button
+                  type="button"
+                  id="featured-next-btn"
+                  class="w-8 h-8 rounded-full bg-white/20 hover:bg-white text-white hover:text-accent flex items-center justify-center font-bold text-sm transition shadow-xs cursor-pointer"
+                  title="สไลด์ถัดไป"
+                  aria-label="Next Slide"
+                >
+                  ❯
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Viewport -->
+          <div class="overflow-hidden relative rounded-2xl">
+            <!-- Carousel Track -->
+            <div
+              id="featured-carousel-track"
+              class="flex transition-transform duration-500 ease-in-out"
+            >
+              <!-- Dynamically populated slides via JS -->
+            </div>
+          </div>
+
+          <!-- Carousel Pagination Dots -->
+          <div id="featured-carousel-dots" class="flex items-center justify-center gap-2 mt-4">
+            <!-- Dynamically populated dots -->
+          </div>
+
+        </section>
+
+        <!-- 4-Column Product Catalog Grid -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight" id="catalog-heading">
+                สินค้าทั้งหมด
+              </h2>
+              <p class="text-xs text-gray-500 mt-0.5">
+                พบสินค้าทั้งหมด <span id="catalog-count-display" class="font-bold text-primary">9</span> รายการ
+              </p>
+            </div>
+          </div>
+
+          <div id="catalog-grid-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+            <!-- Dynamically populated product cards -->
+          </div>
+
+          <!-- Empty Search State -->
+          <div id="catalog-no-products" class="hidden text-center py-16 bg-white rounded-2xl border border-gray-200 p-8 space-y-3">
+            <span class="text-4xl">🔍</span>
+            <h3 class="text-base font-bold text-gray-800">ไม่พบรายการสินค้าที่ตรงกับเงื่อนไข</h3>
+            <p class="text-xs text-gray-500">ลองเปลี่ยนหมวดหมู่หรือคำค้นหาใหม่อีกครั้ง</p>
+            <button
+              type="button"
+              id="catalog-reset-btn"
+              class="mt-2 bg-primary text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-primary/90 transition cursor-pointer"
+            >
+              ดูสินค้าทั้งหมด
+            </button>
+          </div>
+
+          <!-- Pagination Section (ระบบแบ่งหน้า 1 2 3 ... 10 ถัดไป) -->
+          <div id="catalog-pagination-container" class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-6 pb-2 border-t border-gray-200">
+            <!-- Prev button: ก่อนหน้า -->
+            <button
+              type="button"
+              id="pagination-prev-btn"
+              class="px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-600 bg-white border border-gray-300 hover:border-primary hover:text-primary transition shadow-2xs cursor-pointer flex items-center gap-1 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <span>❮</span>
+              <span class="hidden sm:inline">ก่อนหน้า</span>
+            </button>
+
+            <!-- Page Number Buttons (1, 2, 3, 4, 5, ..., 10) -->
+            <div id="pagination-numbers" class="flex items-center gap-1 sm:gap-1.5">
+              <!-- Dynamically populated page buttons -->
+            </div>
+
+            <!-- Next button: ถัดไป -->
+            <button
+              type="button"
+              id="pagination-next-btn"
+              class="px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-600 bg-white border border-gray-300 hover:border-primary hover:text-primary transition shadow-2xs cursor-pointer flex items-center gap-1 disabled:opacity-40 disabled:pointer-events-none"
+            >
+              <span class="hidden sm:inline">ถัดไป</span>
+              <span>❯</span>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW B: PRODUCT CARD DETAIL VIEW (เมื่อมี ?id=N) -->
+      <!-- ============================================== -->
+      <div id="view-detail" class="hidden space-y-12">
+        
+        <!-- Breadcrumb & Back -->
+        <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+          <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium" aria-label="Breadcrumb">
+            <a href="./index.html" class="hover:text-primary transition">หน้าแรก</a>
+            <span>&gt;</span>
+            <button type="button" onclick="showCatalogView()" class="hover:text-primary transition cursor-pointer">
+              สินค้าทั้งหมด
+            </button>
+            <span>&gt;</span>
+            <span class="text-gray-900 font-bold truncate max-w-[200px] sm:max-w-xs" id="detail-breadcrumb-title">
+              ชื่อสินค้า
+            </span>
+          </nav>
+
+          <button
+            type="button"
+            onclick="showCatalogView()"
+            class="text-xs font-bold text-primary hover:underline flex items-center gap-1 cursor-pointer"
+          >
+            <span>← กลับหน้ารวมสินค้า</span>
           </button>
         </div>
-      </section>
 
-      <!-- ============================================== -->
-      <!-- 3. ส่วนแสดงรายละเอียดสินค้าหลัก (2 คอลัมน์) -->
-      <!-- ============================================== -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
-        
-        <!-- คอลัมน์ซ้าย: แกลเลอรีรูปภาพสินค้า (Gallery) -->
-        <div class="lg:col-span-7 flex flex-col gap-4">
-          <!-- กรอบรูปภาพใหญ่ -->
-          <div class="border border-gray-200 rounded-2xl p-3 bg-white relative shadow-xs overflow-hidden">
-            <!-- Tag Badge บนรูปภาพ -->
-            <div id="product-badge-container" class="absolute top-6 left-6 z-10 flex flex-wrap gap-1.5"></div>
-
-            <!-- กล่องแสดงรูปหลัก -->
-            <div class="w-full aspect-[4/3] rounded-xl bg-gray-100 overflow-hidden relative flex items-center justify-center">
+        <!-- 1. Main Product Showcase (Pink Gallery Left + White Buy Card Right) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          <!-- Column Left: Pink Frame Gallery (กรอบสีชมพู Accent + รูปหลัก + 6 Thumbnails) -->
+          <div class="lg:col-span-7 bg-accent rounded-3xl p-5 sm:p-7 shadow-lg text-white space-y-4">
+            
+            <!-- Large Main Image Preview -->
+            <div class="w-full aspect-[4/3] rounded-2xl bg-white/10 overflow-hidden relative shadow-sm flex items-center justify-center border border-white/20">
+              <div id="detail-tag-container" class="absolute top-4 left-4 z-10 flex flex-wrap gap-1.5">
+                <!-- Tag badge -->
+              </div>
               <img
-                id="main-product-img"
+                id="detail-main-img"
                 src="./assets/product/style_6.jpg"
                 alt="Product Preview"
                 class="w-full h-full object-cover transition-all duration-300 hover:scale-105"
               />
             </div>
-          </div>
 
-          <!-- แถวรูปภาพขนาดเล็ก 4 ช่อง -->
-          <div id="thumbnail-gallery-row" class="grid grid-cols-4 gap-3 sm:gap-4">
-            <!-- Dynamic Thumbnails inserted via JavaScript -->
-          </div>
-        </div>
-
-        <!-- คอลัมน์ขวา: ข้อมูลสินค้าและตัวเลือกการสั่งซื้อ -->
-        <div class="lg:col-span-5 flex flex-col space-y-5 bg-white p-6 rounded-2xl border border-gray-200 shadow-xs">
-          
-          <!-- สถานะและชื่อสินค้า -->
-          <div>
-            <div class="flex items-center gap-2 text-xs font-bold text-emerald-600 mb-2">
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span id="stock-status-text">มีสินค้าพร้อมส่ง</span>
+            <!-- 6 Small Thumbnail Image Row -->
+            <div id="detail-thumbnails-row" class="grid grid-cols-6 gap-2 sm:gap-3">
+              <!-- Dynamically populated 6 thumbnails -->
             </div>
 
-            <h1 id="product-name" class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-2">
-              ชื่อสินค้า
-            </h1>
+          </div>
 
-            <div class="space-y-1 text-xs text-gray-500">
-              <p id="product-meta-1" class="font-medium">
-                รหัสสินค้า: OCC-2026-001 • หมวดหมู่: Tops
-              </p>
-              <p id="product-meta-2" class="flex items-center gap-2 text-gray-600">
-                <span class="text-amber-500 font-bold" id="product-rating">⭐ 4.9 / 5.0</span>
+          <!-- Column Right: Purchase Info & Customization Card -->
+          <div class="lg:col-span-5 bg-white p-6 sm:p-7 rounded-3xl border border-gray-200 shadow-xs flex flex-col space-y-5">
+            
+            <!-- Header: Title & Actions -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span id="detail-category-badge" class="text-[11px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-0.5 rounded-md">
+                  TOPS
+                </span>
+                
+                <!-- Share & Wishlist Icons -->
+                <div class="flex items-center gap-2">
+                  <button id="btn-detail-share" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition cursor-pointer" title="แชร์สินค้านี้">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                    </svg>
+                  </button>
+                  <button id="btn-detail-wishlist" class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-accent hover:border-accent transition cursor-pointer" title="บันทึกในรายการโปรด">
+                    ♥
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product Name -->
+              <h1 id="detail-product-name" class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
+                ชื่อสินค้า สไตล์มินิมอล
+              </h1>
+
+              <!-- Rating & Sales -->
+              <div class="flex items-center gap-2 text-xs text-gray-500">
+                <span class="text-amber-500 font-bold" id="detail-rating-score">⭐ 4.9 / 5.0</span>
                 <span>•</span>
-                <span id="product-reviews-count">47 รีวิว</span>
+                <span id="detail-review-count">47 รีวิว</span>
                 <span>•</span>
-                <span id="product-sales-count">ขายแล้ว 140 ชิ้น</span>
-              </p>
-            </div>
-          </div>
-
-          <hr class="border-t border-gray-100" />
-
-          <!-- ราคาและส่วนลด -->
-          <div class="flex items-baseline gap-3">
-            <span id="product-price" class="text-3xl font-extrabold text-primary">
-              ฿450
-            </span>
-            <span id="product-original-price" class="text-sm font-medium text-gray-400 line-through">
-              ฿590
-            </span>
-            <span id="product-discount-tag" class="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded-md">
-              ลด 24%
-            </span>
-          </div>
-
-          <!-- คำอธิบายสินค้า -->
-          <p id="product-description" class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-            เสื้อเชิ้ตผ้าคอตตอนเนื้อนุ่ม ระบายอากาศดี ดีไซน์ทรงหลวมทันสมัย ใส่สบายได้ทุกวัน เหมาะสำหรับทุกโอกาส
-          </p>
-
-          <!-- ตัวเลือกสินค้า (Size & Color) -->
-          <div class="border border-gray-200 rounded-xl p-4 bg-gray-50/70 space-y-4">
-            <div class="border-b border-gray-200 pb-2 flex items-center justify-between">
-              <h2 class="text-xs font-bold text-gray-800 uppercase tracking-wider">
-                ตัวเลือกสินค้า (PRODUCT OPTIONS)
-              </h2>
-              <span id="selected-summary-text" class="text-[11px] text-primary font-semibold">ไซส์: S, สี: 31 เบจ</span>
+                <span id="detail-sales-count">ขายแล้ว 140 ชิ้น</span>
+              </div>
             </div>
 
-            <!-- Size Selector -->
+            <!-- Price -->
+            <div class="flex items-baseline gap-3 pt-1 border-t border-gray-100">
+              <span id="detail-price" class="text-3xl font-extrabold text-primary">
+                ฿450.00
+              </span>
+              <span class="text-xs font-bold text-gray-400">THB</span>
+              <span id="detail-original-price" class="text-sm font-medium text-gray-400 line-through">
+                ฿590
+              </span>
+              <span id="detail-discount-tag" class="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded-md">
+                ลด 24%
+              </span>
+            </div>
+
+            <!-- Color Options -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-700">
+                <span>โทนสี (Color)</span>
+                <span id="detail-selected-color-text" class="text-primary font-semibold">31 เบจ</span>
+              </div>
+              <div id="detail-color-swatches" class="flex flex-wrap gap-2">
+                <!-- Dynamically populated colors -->
+              </div>
+            </div>
+
+            <!-- Size Options -->
             <div class="space-y-2">
               <div class="flex items-center justify-between text-xs">
-                <label class="font-bold text-gray-700">
-                  ขนาดเสื้อผ้า (Size)
-                </label>
-                <button type="button" onclick="switchTab(2)" class="text-primary hover:underline text-[11px] font-medium cursor-pointer">
-                  📏 ตารางเทียบขนาด
-                </button>
+                <span class="font-bold text-gray-700">ขนาดเสื้อผ้า (Size)</span>
+                <a href="#section-specs" class="text-primary hover:underline text-[11px] font-medium">📏 ตารางเทียบขนาด</a>
               </div>
-              <div id="size-options-container" class="grid grid-cols-4 sm:grid-cols-5 gap-2">
+              <div id="detail-size-options" class="grid grid-cols-4 sm:grid-cols-6 gap-2">
                 <!-- Dynamically populated size buttons -->
               </div>
             </div>
 
-            <!-- Color Selector -->
-            <div class="space-y-2">
-              <label class="block text-xs font-bold text-gray-700">
-                โทนสี (Color)
-              </label>
-              <div id="color-swatches-container" class="flex flex-wrap gap-2">
-                <!-- Dynamically populated colors -->
-              </div>
-            </div>
-          </div>
-
-          <!-- ปุ่มจำนวน และ สั่งซื้อ -->
-          <div class="space-y-3 pt-2">
-            <div class="flex items-center gap-3">
-              <!-- Quantity Stepper [ - 1 + ] -->
-              <div class="flex items-center border border-gray-300 rounded-xl bg-white h-12 shadow-2xs overflow-hidden shrink-0">
-                <button id="qty-minus" type="button" class="w-10 h-full flex items-center justify-center text-base font-bold text-gray-600 hover:bg-gray-100 hover:text-black transition cursor-pointer" aria-label="ลดจำนวน">
-                  −
-                </button>
-                <span id="qty-val" class="w-10 text-center text-sm font-extrabold text-gray-900 select-none">
-                  1
+            <!-- Quantity & Stock -->
+            <div class="space-y-2 pt-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-gray-700">จำนวน (Quantity)</span>
+                <span id="detail-stock-status" class="text-emerald-600 font-bold text-[11px]">
+                  ✓ มีสินค้าพร้อมส่ง (คงเหลือ 12 ชิ้น)
                 </span>
-                <button id="qty-plus" type="button" class="w-10 h-full flex items-center justify-center text-base font-bold text-gray-600 hover:bg-gray-100 hover:text-black transition cursor-pointer" aria-label="เพิ่มจำนวน">
-                  +
+              </div>
+              
+              <div class="flex items-center gap-3">
+                <!-- Stepper -->
+                <div class="flex items-center border border-gray-300 rounded-xl bg-white h-12 shadow-2xs overflow-hidden shrink-0">
+                  <button id="detail-qty-minus" type="button" class="w-10 h-full flex items-center justify-center text-base font-bold text-gray-600 hover:bg-gray-100 cursor-pointer">
+                    −
+                  </button>
+                  <span id="detail-qty-val" class="w-10 text-center text-sm font-extrabold text-gray-900 select-none">
+                    1
+                  </span>
+                  <button id="detail-qty-plus" type="button" class="w-10 h-full flex items-center justify-center text-base font-bold text-gray-600 hover:bg-gray-100 cursor-pointer">
+                    +
+                  </button>
+                </div>
+
+                <!-- Add to Cart CTA Button -->
+                <button
+                  id="btn-detail-add-cart"
+                  type="button"
+                  class="flex-1 bg-primary text-white h-12 px-5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold tracking-wide hover:bg-primary/90 active:scale-[0.98] transition shadow-md cursor-pointer"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                  <span>เพิ่มลงตะกร้า</span>
                 </button>
               </div>
-
-              <!-- เพิ่มลงตะกร้าสินค้า -->
-              <button id="btn-add-to-cart" type="button" class="flex-1 bg-primary text-white h-12 px-5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold tracking-wide hover:bg-primary/90 active:scale-[0.98] transition shadow-md cursor-pointer">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-                <span>เพิ่มลงตะกร้าสินค้า</span>
-              </button>
             </div>
 
-            <!-- ซื้อทันที / Mix & Match -->
-            <div class="grid grid-cols-2 gap-3">
-              <a href="./cart-page.html" class="w-full text-center border-2 border-primary text-primary bg-white hover:bg-primary/5 py-2.5 rounded-xl text-xs font-bold tracking-wide transition flex items-center justify-center gap-1.5">
-                <span>ซื้อสินค้าทันที</span>
-              </a>
-              <a href="./index.html#lookbook" class="w-full text-center border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition flex items-center justify-center gap-1.5">
-                <span>👗 ดูชุด Mix & Match</span>
-              </a>
-            </div>
+            <!-- Buy Now CTA -->
+            <a
+              href="./cart-page.html"
+              class="w-full text-center border-2 border-primary text-primary bg-white hover:bg-primary/5 py-2.5 rounded-xl text-xs font-bold tracking-wide transition flex items-center justify-center"
+            >
+              <span>ซื้อสินค้าทันที</span>
+            </a>
+
           </div>
 
-          <!-- Trust Badges Bar -->
-          <div class="pt-3 border-t border-gray-100 grid grid-cols-3 gap-2 text-center text-[10px] text-gray-500 font-medium">
-            <div class="p-2 rounded-lg bg-gray-50">
-              <span class="block text-sm mb-0.5">🚚</span>
-              <span>ส่งฟรีเมื่อครบ ฿990</span>
-            </div>
-            <div class="p-2 rounded-lg bg-gray-50">
-              <span class="block text-sm mb-0.5">🔄</span>
-              <span>เปลี่ยนคืนใน 7 วัน</span>
-            </div>
-            <div class="p-2 rounded-lg bg-gray-50">
-              <span class="block text-sm mb-0.5">🛡️</span>
-              <span>รับประกันของแท้ 100%</span>
-            </div>
-          </div>
+        </section>
 
-        </div>
-      </section>
-
-      <!-- ============================================== -->
-      <!-- 4. ส่วนแท็บรายละเอียดข้อมูลสินค้า (Bottom Tabs) -->
-      <!-- ============================================== -->
-      <section class="border border-gray-200 bg-white rounded-2xl overflow-hidden mb-16 shadow-xs">
-        
-        <!-- Tab Navigation Header -->
-        <div class="flex border-b border-gray-200 bg-gray-50 overflow-x-auto no-scrollbar">
-          <button id="tab-btn-1" onclick="switchTab(1)" class="tab-btn active bg-white border-r border-gray-200 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-bold text-primary border-t-2 border-t-primary -mb-px transition cursor-pointer">
-            1. คุณสมบัติสินค้า (Specifications)
-          </button>
-          <button id="tab-btn-2" onclick="switchTab(2)" class="tab-btn bg-transparent border-r border-gray-200 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition cursor-pointer">
-            2. ตารางเทียบขนาด (Size Guide)
-          </button>
-          <button id="tab-btn-3" onclick="switchTab(3)" class="tab-btn bg-transparent px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition cursor-pointer">
-            3. รีวิวจากผู้ซื้อ (Reviews)
-          </button>
-        </div>
-
-        <!-- Tab 1: Specifications -->
-        <div id="tab-panel-1" class="p-6 sm:p-8">
-          <h3 class="text-sm font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <span>📋</span> ข้อมูลจำเพาะและรายละเอียดสินค้า
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-xs sm:text-sm">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">เนื้อผ้า (Material)</span>
-                <span class="font-bold text-gray-900">Cotton 100% พรีเมียม</span>
-              </div>
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">ทรงเสื้อ (Fit Type)</span>
-                <span class="font-bold text-gray-900">Modern Oversized Fit</span>
-              </div>
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">การดูแลรักษา (Care)</span>
-                <span class="font-bold text-gray-900">ซักเครื่องด้วยน้ำเย็น / รีดไฟปานกลาง</span>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">ประเทศผู้ผลิต (Origin)</span>
-                <span class="font-bold text-gray-900">ประเทศไทย (Made in Thailand)</span>
-              </div>
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">การรับประกัน (Warranty)</span>
-                <span class="font-bold text-gray-900">เปลี่ยนคืนได้ภายใน 7 วัน</span>
-              </div>
-              <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-                <span class="text-gray-500 font-medium">การจัดส่ง (Shipping)</span>
-                <span class="font-bold text-gray-900">จัดส่งด่วนภายใน 1-2 วันทำการ</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab 2: Size Guide -->
-        <div id="tab-panel-2" class="p-6 sm:p-8 hidden">
-          <h3 class="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span>📏</span> ตารางขนาดมาตรฐาน (Size Chart - นิ้ว)
-          </h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left border border-gray-200 rounded-xl overflow-hidden">
-              <thead class="bg-gray-100 text-gray-700 font-bold uppercase">
-                <tr>
-                  <th class="p-3 border-b border-gray-200">ขนาด (Size)</th>
-                  <th class="p-3 border-b border-gray-200">รอบอก (Chest)</th>
-                  <th class="p-3 border-b border-gray-200">ความยาว (Length)</th>
-                  <th class="p-3 border-b border-gray-200">ความกว้างไหล่ (Shoulder)</th>
-                  <th class="p-3 border-b border-gray-200">ความยาวแขน (Sleeve)</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-gray-100 text-gray-600">
-                <tr class="hover:bg-gray-50"><td class="p-3 font-bold text-gray-900">S</td><td class="p-3">38"</td><td class="p-3">27"</td><td class="p-3">17.5"</td><td class="p-3">8.5"</td></tr>
-                <tr class="hover:bg-gray-50"><td class="p-3 font-bold text-gray-900">M</td><td class="p-3">40"</td><td class="p-3">28"</td><td class="p-3">18.5"</td><td class="p-3">9.0"</td></tr>
-                <tr class="hover:bg-gray-50"><td class="p-3 font-bold text-gray-900">L</td><td class="p-3">42"</td><td class="p-3">29"</td><td class="p-3">19.5"</td><td class="p-3">9.5"</td></tr>
-                <tr class="hover:bg-gray-50"><td class="p-3 font-bold text-gray-900">XL</td><td class="p-3">44"</td><td class="p-3">30"</td><td class="p-3">20.5"</td><td class="p-3">10.0"</td></tr>
-                <tr class="hover:bg-gray-50"><td class="p-3 font-bold text-gray-900">2XL / Free Size</td><td class="p-3">46"</td><td class="p-3">31"</td><td class="p-3">21.5"</td><td class="p-3">10.5"</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tab 3: Customer Reviews -->
-        <div id="tab-panel-3" class="p-6 sm:p-8 hidden">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-sm font-bold text-gray-900 flex items-center gap-2">
-              <span>⭐</span> รีวิวจากลูกค้าจริง (<span id="reviews-count-display">47</span> ความคิดเห็น)
+        <!-- 2. Product Details & Care Instructions Accordion / Card -->
+        <section id="section-specs" class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-xs space-y-6">
+          
+          <!-- Accordion Block 1: รายละเอียดสินค้า -->
+          <div class="border-b border-gray-100 pb-6 space-y-3">
+            <h3 class="text-sm sm:text-base font-extrabold text-gray-900 flex items-center justify-between">
+              <span>📋 รายละเอียด (Details)</span>
+              <span class="text-gray-400 text-xs">−</span>
             </h3>
-            <button type="button" class="text-xs bg-primary text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-primary/90 transition cursor-pointer">
-              เขียนรีวิว
+            <div class="text-xs sm:text-sm text-gray-600 leading-relaxed space-y-2">
+              <p id="detail-desc-text">
+                • เสื้อเชิ้ตผ้าคอตตอนเนื้อนุ่ม สัมผัสเบาสบาย ระบายอากาศได้ดีเยี่ยม ดีไซน์ทรงหลวมทันสมัย ใส่สบายได้ทุกวัน
+              </p>
+              <p class="font-bold text-gray-700 pt-1">รายละเอียดการใช้งาน:</p>
+              <ul class="list-disc list-inside space-y-1 text-gray-600">
+                <li>เนื้อผ้าสัมผัสนุ่มสบาย ไม่ระคายเคืองผิว ระบายอากาศได้ดี</li>
+                <li>ทรงสวย ทันสมัย แมตช์ง่ายกับกางเกงและกระโปรงได้ทุกสไตล์</li>
+                <li>เหมาะสำหรับใส่ทำงาน เที่ยว หรือวันพักผ่อน</li>
+              </ul>
+              <p class="text-[11px] text-gray-400 pt-2">
+                *เงื่อนไขการรับประกัน: สามารถเปลี่ยนคืนได้ภายใน 7 วัน นับตั้งแต่วันที่ได้รับสินค้า
+              </p>
+            </div>
+          </div>
+
+          <!-- Accordion Block 2: ข้อมูลเนื้อผ้าและการดูแลรักษา -->
+          <div class="space-y-3">
+            <h3 class="text-sm sm:text-base font-extrabold text-gray-900 flex items-center justify-between">
+              <span>🧼 ข้อมูลและการดูแลรักษา (Care & Materials)</span>
+              <span class="text-gray-400 text-xs">−</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-gray-600">
+              <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-1">
+                <span class="font-bold text-gray-800 block">ข้อมูลเนื้อผ้า:</span>
+                <span>Cotton 100% พรีเมียม ทอละเอียด ทรงตัวสวย</span>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-1">
+                <span class="font-bold text-gray-800 block">คำแนะนำในการดูแล:</span>
+                <span>ซักเครื่องด้วยน้ำเย็น, รีดไฟปานกลาง, ห้ามใช้น้ำยาฟอกขาว</span>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- 3. Customer Reviews Section (รีวิวจากผู้ซื้อจริง) -->
+        <section class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-xs space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
+            <div>
+              <h3 class="text-base sm:text-lg font-extrabold text-gray-900">
+                รีวิวจากลูกค้าจริง (Customer Reviews)
+              </h3>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-amber-500 font-bold text-sm">★★★★★</span>
+                <span class="text-xs font-bold text-gray-800">4.9 จาก 5.0</span>
+                <span class="text-xs text-gray-400">(47 ความคิดเห็น)</span>
+              </div>
+            </div>
+
+            <button type="button" class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-primary/90 transition shadow-xs self-start sm:self-auto cursor-pointer">
+              เขียนรีวิวสินค้า
             </button>
           </div>
-          <div class="space-y-4">
-            <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <div class="flex items-center justify-between mb-2">
+
+          <!-- Review List -->
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+              <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <div class="w-7 h-7 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs">พ</div>
-                  <span class="text-xs font-bold text-gray-800">พิมพาภรณ์ ก.</span>
-                  <span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-sm">✓ ซื้อสินค้าแล้ว</span>
+                  <span class="font-bold text-gray-900">พิมพาภรณ์ ก.</span>
+                  <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded-sm">✓ ซื้อสินค้าแล้ว</span>
                 </div>
-                <span class="text-amber-500 text-xs">★★★★★</span>
+                <span class="text-gray-400 text-[11px]">20/08/2026</span>
               </div>
-              <p class="text-xs text-gray-600 leading-relaxed">
+              <div class="text-amber-500 text-xs">★★★★★</div>
+              <p class="text-gray-600 leading-relaxed">
                 ผ้าดีมากกก นุ่มสบาย ไม่ร้อนเลยค่ะ ทรงสวยตรงปกเป๊ะ จัดส่งไวมาก สั่งมา 2 สีแล้วประทับใจสุดๆ ค่ะ
               </p>
             </div>
 
-            <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
-              <div class="flex items-center justify-between mb-2">
+            <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+              <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                  <div class="w-7 h-7 rounded-full bg-accent/10 text-accent font-bold flex items-center justify-center text-xs">ธ</div>
-                  <span class="text-xs font-bold text-gray-800">ธนากร ว.</span>
-                  <span class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-sm">✓ ซื้อสินค้าแล้ว</span>
+                  <span class="font-bold text-gray-900">ธนากร ว.</span>
+                  <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-1.5 py-0.5 rounded-sm">✓ ซื้อสินค้าแล้ว</span>
                 </div>
-                <span class="text-amber-500 text-xs">★★★★★</span>
+                <span class="text-gray-400 text-[11px]">18/08/2026</span>
               </div>
-              <p class="text-xs text-gray-600 leading-relaxed">
+              <div class="text-amber-500 text-xs">★★★★★</div>
+              <p class="text-gray-600 leading-relaxed">
                 ใส่ทำงานและเที่ยวได้สบาย คัตติ้งดีไม่มีด้ายหลุดเลย ไซส์ตรงตามตารางวัดเป๊ะครับ
               </p>
             </div>
           </div>
-        </div>
+        </section>
 
-      </section>
+        <!-- 4. Related Products Grid (สินค้าที่คล้ายกัน 4 คอลัมน์) -->
+        <section class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 tracking-tight">
+            🛍️ สินค้าที่คล้ายกัน (Similar Products)
+          </h3>
+          <div id="detail-similar-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+            <!-- Dynamically populated 4 cards -->
+          </div>
+        </section>
+
+        <!-- 5. Occasion Look / Lookbook Grid (4 คอลัมน์) -->
+        <section class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 tracking-tight">
+            👗 Occasion Look (ชุด Mix & Match ที่แนะนำ)
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group">
+              <div class="aspect-[3/4] bg-gray-100 overflow-hidden">
+                <img src="./assets/lookbook/lookbook_set1.jpg" alt="Look 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              </div>
+              <div class="p-3">
+                <span class="text-[10px] font-bold text-accent uppercase">LOOK 1</span>
+                <h4 class="text-xs font-bold text-gray-900">Minimal Everyday Style</h4>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group">
+              <div class="aspect-[3/4] bg-gray-100 overflow-hidden">
+                <img src="./assets/lookbook/lookbook_set2.jpg" alt="Look 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              </div>
+              <div class="p-3">
+                <span class="text-[10px] font-bold text-accent uppercase">LOOK 2</span>
+                <h4 class="text-xs font-bold text-gray-900">Chic & Casual Workplace</h4>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group">
+              <div class="aspect-[3/4] bg-gray-100 overflow-hidden">
+                <img src="./assets/lookbook/lookbook_3.png" alt="Look 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              </div>
+              <div class="p-3">
+                <span class="text-[10px] font-bold text-accent uppercase">LOOK 3</span>
+                <h4 class="text-xs font-bold text-gray-900">Weekend City Vibes</h4>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group">
+              <div class="aspect-[3/4] bg-gray-100 overflow-hidden">
+                <img src="./assets/product/man_style_2.jpg" alt="Look 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              </div>
+              <div class="p-3">
+                <span class="text-[10px] font-bold text-accent uppercase">LOOK 4</span>
+                <h4 class="text-xs font-bold text-gray-900">Modern Streetwear Set</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
 
     </main>
 
     <!-- ============================================== -->
-    <!-- 5. ส่วนท้ายเว็บไซต์ (Footer) -->
+    <!-- FOOTER (Pink Accent Footer ตามภาพ Wireframe) -->
     <!-- ============================================== -->
-    <footer id="footer-container" class="bg-accent text-white mt-auto">
-      <div class="max-w-6xl w-full mx-auto px-4 py-8">
-        <!-- Banner สมัครสมาชิก -->
-        <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-8 rounded-xl shadow-md gap-4">
-          <p class="text-white font-medium text-base sm:text-lg text-center sm:text-left">
-            Become a member and get 10% off for first purchase
+    <footer id="footer-container" class="bg-accent text-white mt-16 pt-10 pb-8">
+      <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Member Banner -->
+        <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-7 rounded-2xl shadow-lg gap-4 mb-10 border border-white/10">
+          <p class="text-white font-extrabold text-sm sm:text-base text-center sm:text-left tracking-wide uppercase">
+            BECOME A MEMBER AND GET 10% OFF FOR FIRST PURCHASE
           </p>
-          <a href="./signup.html" class="bg-white text-primary font-bold px-6 py-2.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap shadow text-center">
-            Subscribe
+          <a href="./signup.html" class="bg-white text-primary font-bold px-6 py-2.5 rounded-xl hover:bg-gray-100 transition whitespace-nowrap shadow-md text-xs uppercase tracking-wider">
+            Sign up for free
           </a>
         </div>
 
-        <!-- Links & Social -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 my-10 text-xs">
+        <!-- Links 4 Columns -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-xs">
           <!-- SHOP -->
           <div>
-            <h4 class="font-bold text-base mb-4">SHOP</h4>
-            <ul class="space-y-2 text-white/90">
-              <li><a href="./Product_Page.html?category=tops" class="hover:underline transition">Tops</a></li>
-              <li><a href="./Product_Page.html?category=bottoms" class="hover:underline transition">Bottoms</a></li>
-              <li><a href="./index.html#lookbook" class="hover:underline transition">LookBooks</a></li>
+            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
+              SHOP
+            </h4>
+            <ul class="space-y-2 text-white/90 font-medium">
+              <li><button onclick="filterCatalog('tops')" class="hover:underline transition cursor-pointer">Tops (เสื้อ)</button></li>
+              <li><button onclick="filterCatalog('bottoms')" class="hover:underline transition cursor-pointer">Bottoms (กางเกง)</button></li>
+              <li><button onclick="filterCatalog('skirts')" class="hover:underline transition cursor-pointer">Skirts (กระโปรง)</button></li>
+              <li><button onclick="filterCatalog('jackets')" class="hover:underline transition cursor-pointer">Jackets (เสื้อคลุม)</button></li>
+              <li><button onclick="filterCatalog('sets')" class="hover:underline transition cursor-pointer">Sets (ชุดเซ็ต)</button></li>
             </ul>
           </div>
 
           <!-- HELP -->
           <div>
-            <h4 class="font-bold text-base mb-4">HELP</h4>
-            <ul class="space-y-2 text-white/90">
+            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
+              HELP
+            </h4>
+            <ul class="space-y-2 text-white/90 font-medium">
               <li><a href="./customerService.html" class="hover:underline transition">Customer Service</a></li>
-              <li><a href="./termCondition.html" class="hover:underline transition">Terms & Policy</a></li>
+              <li><a href="./termCondition.html" class="hover:underline transition">Terms & Conditions</a></li>
               <li><a href="./privacyPolicy.html" class="hover:underline transition">Privacy Policy</a></li>
             </ul>
           </div>
 
           <!-- USER -->
           <div>
-            <h4 class="font-bold text-base mb-4">USER</h4>
-            <ul class="space-y-2 text-white/90">
+            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
+              USER
+            </h4>
+            <ul class="space-y-2 text-white/90 font-medium">
               <li><a href="./signup.html" class="hover:underline transition">Become A Member</a></li>
               <li><a href="./signup.html" class="hover:underline transition">My Account</a></li>
               <li><a href="./index.html#lookbook" class="hover:underline transition">My Lookbooks</a></li>
             </ul>
           </div>
 
-          <!-- SOCIAL -->
+          <!-- CONNECT WITH US -->
           <div>
-            <h4 class="font-bold text-base mb-4">CONNECT WITH US</h4>
-            <p class="text-white/80 leading-relaxed mb-3 text-[11px]">
-              OCCASION - Mix & Match Fashion E-Commerce สำหรับทุกสไตล์ของคุณ
-            </p>
-            <ul class="flex flex-col space-y-2 text-white/90">
-              <li><a href="#" class="hover:underline transition">Facebook</a></li>
-              <li><a href="#" class="hover:underline transition">Instagram</a></li>
-              <li><a href="#" class="hover:underline transition">Line Official</a></li>
-            </ul>
+            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
+              Connect with OCCASION
+            </h4>
+            <div class="flex items-center gap-3 mt-2">
+              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
+                <img src="./assets/icon/facebook.png" alt="Facebook" class="w-full h-full object-contain invert brightness-0" />
+              </a>
+              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
+                <img src="./assets/icon/instagram.png" alt="Instagram" class="w-full h-full object-contain invert brightness-0" />
+              </a>
+              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
+                <img src="./assets/icon/tiktok.png" alt="TikTok" class="w-full h-full object-contain invert brightness-0" />
+              </a>
+              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
+                <img src="./assets/icon/line.png" alt="Line" class="w-full h-full object-contain invert brightness-0" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Copyright -->
-        <div class="border-t border-white/20 pt-6 text-center text-xs text-white/70">
-          &copy; 2026 OCCASION. All rights reserved.
+        <!-- Payments & Copyright -->
+        <div class="border-t border-white/20 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80">
+          <div class="flex items-center gap-2 text-white font-extrabold tracking-wider">
+            <span>OCCASION FASHION</span>
+            <span>•</span>
+            <span>FOOTER</span>
+          </div>
+          <div>
+            &copy; 2026 OCCASION. All rights reserved. Junior Software Developer Batch 13
+          </div>
         </div>
+
       </div>
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+    <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
       <span>✓</span>
       <span id="toast-message">บันทึกเรียบร้อย</span>
     </div>
 
     <!-- ============================================== -->
-    <!-- 6. DATA LOADER & INTERACTIVE SCRIPT -->
+    <!-- JAVASCRIPT LOGIC (CATALOG & DETAIL VIEWS) -->
     <!-- ============================================== -->
     <script type="module">
       import { productsData } from "./api/product.js";
 
-      // Elements cache
-      const pageTitle = document.getElementById("page-title");
-      const breadcrumbCat = document.getElementById("breadcrumb-category");
-      const breadcrumbCurrent = document.getElementById("breadcrumb-current");
-      const productName = document.getElementById("product-name");
-      const productMeta1 = document.getElementById("product-meta-1");
-      const productRating = document.getElementById("product-rating");
-      const productReviewsCount = document.getElementById("product-reviews-count");
-      const productSalesCount = document.getElementById("product-sales-count");
-      const productDesc = document.getElementById("product-description");
-      const reviewsCountDisplay = document.getElementById("reviews-count-display");
-      const productPrice = document.getElementById("product-price");
-      const productOriginalPrice = document.getElementById("product-original-price");
-      const productDiscountTag = document.getElementById("product-discount-tag");
-      const stockStatusText = document.getElementById("stock-status-text");
-      const badgeContainer = document.getElementById("product-badge-container");
-      const mainImg = document.getElementById("main-product-img");
-      const thumbContainer = document.getElementById("thumbnail-gallery-row");
-      const sizeContainer = document.getElementById("size-options-container");
-      const colorContainer = document.getElementById("color-swatches-container");
-      const selectedSummaryText = document.getElementById("selected-summary-text");
-      const qtyVal = document.getElementById("qty-val");
+      // State
+      let currentActiveCategory = "all";
+      let currentSearchQuery = "";
+      let activeProduct = null;
+      let selectedDetailSize = "";
+      let selectedDetailColor = "";
+      let detailQty = 1;
+
+      // DOM Views
+      const viewCatalog = document.getElementById("view-catalog");
+      const viewDetail = document.getElementById("view-detail");
+
+      // DOM Catalog Elements
+      const catalogGridContainer = document.getElementById("catalog-grid-container");
+      const catalogFeaturedContainer = document.getElementById("catalog-featured-container");
+      const catalogHeading = document.getElementById("catalog-heading");
+      const catalogCountDisplay = document.getElementById("catalog-count-display");
+      const catalogSearchInput = document.getElementById("catalog-search-input");
+      const catalogNoProducts = document.getElementById("catalog-no-products");
+
+      // DOM Detail Elements
+      const detailMainImg = document.getElementById("detail-main-img");
+      const detailThumbnailsRow = document.getElementById("detail-thumbnails-row");
+      const detailTagContainer = document.getElementById("detail-tag-container");
+      const detailCategoryBadge = document.getElementById("detail-category-badge");
+      const detailProductName = document.getElementById("detail-product-name");
+      const detailRatingScore = document.getElementById("detail-rating-score");
+      const detailReviewCount = document.getElementById("detail-review-count");
+      const detailSalesCount = document.getElementById("detail-sales-count");
+      const detailPrice = document.getElementById("detail-price");
+      const detailOriginalPrice = document.getElementById("detail-original-price");
+      const detailDiscountTag = document.getElementById("detail-discount-tag");
+      const detailSelectedColorText = document.getElementById("detail-selected-color-text");
+      const detailColorSwatches = document.getElementById("detail-color-swatches");
+      const detailSizeOptions = document.getElementById("detail-size-options");
+      const detailStockStatus = document.getElementById("detail-stock-status");
+      const detailQtyVal = document.getElementById("detail-qty-val");
+      const detailQtyMinus = document.getElementById("detail-qty-minus");
+      const detailQtyPlus = document.getElementById("detail-qty-plus");
+      const btnDetailAddCart = document.getElementById("btn-detail-add-cart");
+      const detailDescText = document.getElementById("detail-desc-text");
+      const detailSimilarGrid = document.getElementById("detail-similar-grid");
+      const detailBreadcrumbTitle = document.getElementById("detail-breadcrumb-title");
+
+      // General DOM
       const cartBadge = document.getElementById("cart-count-badge");
       const toast = document.getElementById("toast");
       const toastMessage = document.getElementById("toast-message");
 
-      const tabBtns = [
-        document.getElementById("tab-btn-1"),
-        document.getElementById("tab-btn-2"),
-        document.getElementById("tab-btn-3")
-      ];
-      const tabPanels = [
-        document.getElementById("tab-panel-1"),
-        document.getElementById("tab-panel-2"),
-        document.getElementById("tab-panel-3")
-      ];
-
-      // 1. Get Product ID from URL Query Parameter
-      const urlParams = new URLSearchParams(window.location.search);
-      const currentId = parseInt(urlParams.get("id")) || 1;
-      const currentProduct = productsData.find((p) => p.id === currentId) || productsData[0];
-
-      let selectedSize = currentProduct.sizes ? currentProduct.sizes[0] : "Free Size";
-      let selectedColor = currentProduct.colors ? currentProduct.colors[0].name : "มาตรฐาน";
-      let currentQty = 1;
-
-      function updateSelectedSummary() {
-        selectedSummaryText.textContent = `ไซส์: ${selectedSize}, สี: ${selectedColor}`;
-      }
-
+      // Toast Notification
       function showToast(msg) {
         toastMessage.textContent = msg;
         toast.classList.remove("translate-y-20", "opacity-0");
@@ -527,167 +750,583 @@
         }, 3000);
       }
 
-      // Render product details
-      function renderProduct(product) {
-        pageTitle.textContent = `${product.name} | OCCASION`;
-        breadcrumbCat.textContent = product.categoryName || "สินค้าแฟชั่น";
-        breadcrumbCat.href = `./Product_Page.html?category=${product.category}`;
-        breadcrumbCurrent.textContent = product.name;
+      // -------------------------------------------------------------
+      // 1. STANDARD CAROUSEL FOR RECOMMENDED PRODUCTS
+      // -------------------------------------------------------------
+      let currentCarouselIndex = 0;
+      let totalCarouselSlides = 0;
+      let carouselAutoPlayTimer = null;
 
-        productName.textContent = product.name;
-        productMeta1.textContent = `รหัสสินค้า: OCC-2026-00${product.id} • หมวดหมู่: ${product.categoryName}`;
-        productRating.textContent = `⭐ ${product.rating || 5.0} / 5.0`;
-        productReviewsCount.textContent = `${product.reviewsCount || 30} รีวิว`;
-        productSalesCount.textContent = `ขายแล้ว ${product.sales || 100} ชิ้น`;
-        productDesc.textContent = product.description;
-        reviewsCountDisplay.textContent = product.reviewsCount || 47;
+      const featuredTrack = document.getElementById("featured-carousel-track");
+      const featuredDotsContainer = document.getElementById("featured-carousel-dots");
+      const featuredPrevBtn = document.getElementById("featured-prev-btn");
+      const featuredNextBtn = document.getElementById("featured-next-btn");
+      const featuredCarouselSection = document.getElementById("featured-carousel-section");
 
-        productPrice.textContent = `฿${product.price.toLocaleString()}`;
-        productOriginalPrice.textContent = `฿${product.originalPrice.toLocaleString()}`;
-        const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-        productDiscountTag.textContent = `ลด ${discountPercent}%`;
+      function createRecommendedCard(prod) {
+        const card = document.createElement("div");
+        card.className = "bg-white text-gray-900 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-xl transition duration-300 flex flex-col sm:flex-row gap-4 items-center flex-1";
+        
+        card.innerHTML = `
+          <div class="w-full sm:w-36 aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 shrink-0 relative cursor-pointer click-to-detail">
+            <img src="${prod.img || prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" />
+            <span class="absolute top-2 left-2 bg-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">RECOMMENDED</span>
+          </div>
+          <div class="flex flex-col justify-between flex-1 space-y-2 w-full">
+            <div>
+              <span class="text-[11px] font-bold uppercase text-primary tracking-wider">${prod.categoryName}</span>
+              <h3 class="text-base font-bold text-gray-900 leading-snug cursor-pointer click-to-detail hover:text-primary transition line-clamp-1">${prod.name}</h3>
+              <p class="text-xs text-gray-500 line-clamp-2 mt-1">${prod.description}</p>
+            </div>
+            <div class="flex items-baseline gap-2 pt-1">
+              <span class="text-xl font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
+              <span class="text-xs font-medium text-gray-400 line-through">฿${prod.originalPrice.toLocaleString()}</span>
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <button type="button" class="btn-goto-detail flex-1 bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+                <span>ดูรายละเอียด</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <button type="button" class="btn-quick-cart border border-gray-300 hover:border-primary hover:bg-primary/5 text-gray-700 hover:text-primary p-2.5 rounded-xl transition flex items-center justify-center cursor-pointer shadow-2xs" title="เพิ่มลงในตะกร้า">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        `;
 
-        if (product.quantity > 0) {
-          stockStatusText.textContent = `มีสินค้าพร้อมส่ง (คงเหลือ ${product.quantity} ชิ้น)`;
-          stockStatusText.className = "text-emerald-600";
-        } else {
-          stockStatusText.textContent = "สินค้าหมดชั่วคราว";
-          stockStatusText.className = "text-red-500";
-        }
+        card.querySelectorAll(".click-to-detail, .btn-goto-detail").forEach((el) => {
+          el.addEventListener("click", () => showDetailView(prod.id));
+        });
 
-        // Tags Badge
-        badgeContainer.innerHTML = "";
-        if (product.tags && product.tags.length > 0) {
-          product.tags.forEach((tag) => {
-            const badge = document.createElement("span");
-            badge.className = `${tag.bg || "bg-primary"} text-white px-2.5 py-1 text-[11px] font-bold rounded-md shadow-xs`;
-            badge.textContent = tag.text;
-            badgeContainer.appendChild(badge);
-          });
-        }
+        card.querySelector(".btn-quick-cart").addEventListener("click", () => {
+          const size = prod.sizes ? prod.sizes[0] : "Free Size";
+          const color = prod.colors ? prod.colors[0].name : "มาตรฐาน";
+          addToCart(prod, size, color, 1);
+        });
 
-        // Main Image & Gallery
-        const allImages = product.images && product.images.length > 0 ? product.images : [product.img];
-        mainImg.src = allImages[0];
-        mainImg.alt = product.name;
-
-        thumbContainer.innerHTML = "";
-        const maxThumbs = Math.min(3, allImages.length);
-        for (let i = 0; i < maxThumbs; i++) {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `gallery-thumb rounded-xl overflow-hidden aspect-[4/3] bg-gray-100 border-2 transition cursor-pointer ${
-            i === 0 ? "border-primary shadow-xs" : "border-gray-200 hover:border-gray-400"
-          }`;
-          btn.innerHTML = `<img src="${allImages[i]}" alt="${product.name} ${i + 1}" class="w-full h-full object-cover">`;
-          btn.addEventListener("click", () => {
-            mainImg.src = allImages[i];
-            document.querySelectorAll(".gallery-thumb").forEach((t) => {
-              t.classList.remove("border-primary", "shadow-xs");
-              t.classList.add("border-gray-200");
-            });
-            btn.classList.remove("border-gray-200");
-            btn.classList.add("border-primary", "shadow-xs");
-          });
-          thumbContainer.appendChild(btn);
-        }
-
-        const remainingCount = allImages.length - maxThumbs;
-        const extraBtn = document.createElement("button");
-        extraBtn.type = "button";
-        extraBtn.className = "gallery-thumb rounded-xl overflow-hidden aspect-[4/3] bg-gray-50 border border-gray-300 hover:border-primary flex flex-col items-center justify-center p-2 text-center transition cursor-pointer group";
-        if (remainingCount > 0) {
-          extraBtn.innerHTML = `
-            <span class="text-xs font-extrabold text-primary group-hover:scale-110 transition">+${remainingCount}</span>
-            <span class="text-[10px] text-gray-500 font-medium">รูปเพิ่มเติม</span>
-          `;
-          let nextIndex = maxThumbs;
-          extraBtn.addEventListener("click", () => {
-            mainImg.src = allImages[nextIndex % allImages.length];
-            nextIndex++;
-          });
-        } else {
-          extraBtn.innerHTML = `<span class="text-[10px] text-gray-400 font-medium">OCCASION</span>`;
-        }
-        thumbContainer.appendChild(extraBtn);
-
-        // Size Options
-        sizeContainer.innerHTML = "";
-        if (product.sizes) {
-          product.sizes.forEach((size, idx) => {
-            const sizeBtn = document.createElement("button");
-            sizeBtn.type = "button";
-            sizeBtn.className = `size-btn py-2 text-xs font-bold rounded-lg border transition cursor-pointer text-center ${
-              idx === 0 ? "border-primary bg-primary text-white shadow-xs" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
-            }`;
-            sizeBtn.textContent = size;
-            sizeBtn.addEventListener("click", () => {
-              selectedSize = size;
-              document.querySelectorAll(".size-btn").forEach((b) => {
-                b.className = "size-btn py-2 text-xs font-bold rounded-lg border border-gray-300 bg-white text-gray-700 hover:border-gray-400 transition cursor-pointer text-center";
-              });
-              sizeBtn.className = "size-btn py-2 text-xs font-bold rounded-lg border border-primary bg-primary text-white shadow-xs transition cursor-pointer text-center";
-              updateSelectedSummary();
-            });
-            sizeContainer.appendChild(sizeBtn);
-          });
-        }
-
-        // Color Options
-        colorContainer.innerHTML = "";
-        if (product.colors) {
-          product.colors.forEach((col, idx) => {
-            const colPill = document.createElement("button");
-            colPill.type = "button";
-            colPill.className = `color-pill px-3 py-1.5 rounded-lg border text-xs font-semibold flex items-center gap-2 transition cursor-pointer ${
-              idx === 0 ? "border-primary bg-primary/5 text-primary ring-1 ring-primary" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
-            }`;
-            colPill.innerHTML = `
-              <span class="w-3.5 h-3.5 rounded-full border border-black/10 shrink-0" style="background-color: ${col.hex}"></span>
-              <span>${col.name}</span>
-            `;
-            colPill.addEventListener("click", () => {
-              selectedColor = col.name;
-              document.querySelectorAll(".color-pill").forEach((cp) => {
-                cp.className = "color-pill px-3 py-1.5 rounded-lg border border-gray-300 bg-white text-gray-700 hover:border-gray-400 text-xs font-semibold flex items-center gap-2 transition cursor-pointer";
-              });
-              colPill.className = "color-pill px-3 py-1.5 rounded-lg border border-primary bg-primary/5 text-primary ring-1 ring-primary text-xs font-semibold flex items-center gap-2 transition cursor-pointer";
-              updateSelectedSummary();
-            });
-            colorContainer.appendChild(colPill);
-          });
-        }
-
-        updateSelectedSummary();
+        return card;
       }
 
-      // Quantity Controls
-      document.getElementById("qty-minus").addEventListener("click", () => {
-        if (currentQty > 1) {
-          currentQty--;
-          qtyVal.textContent = currentQty;
-        }
-      });
+      function renderCatalogFeaturedCarousel() {
+        if (!featuredTrack || !featuredDotsContainer) return;
+        featuredTrack.innerHTML = "";
+        featuredDotsContainer.innerHTML = "";
+        currentCarouselIndex = 0;
 
-      document.getElementById("qty-plus").addEventListener("click", () => {
-        if (currentQty < currentProduct.quantity) {
-          currentQty++;
-          qtyVal.textContent = currentQty;
+        // Group 6 recommended products into slides (2 per slide on desktop)
+        const recommendedItems = productsData.slice(0, 6);
+        const slides = [];
+
+        for (let i = 0; i < recommendedItems.length; i += 2) {
+          slides.push(recommendedItems.slice(i, i + 2));
+        }
+
+        totalCarouselSlides = slides.length;
+
+        slides.forEach((pair, slideIdx) => {
+          const slideDiv = document.createElement("div");
+          slideDiv.className = "w-full shrink-0 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6";
+
+          pair.forEach((prod) => {
+            slideDiv.appendChild(createRecommendedCard(prod));
+          });
+
+          featuredTrack.appendChild(slideDiv);
+
+          // Dot indicator
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = `h-2 rounded-full transition-all cursor-pointer ${
+            slideIdx === 0 ? "w-7 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
+          }`;
+          dot.setAttribute("aria-label", `Slide ${slideIdx + 1}`);
+          dot.addEventListener("click", () => goToCarouselSlide(slideIdx));
+          featuredDotsContainer.appendChild(dot);
+        });
+
+        updateCarouselDisplay();
+        startCarouselAutoPlay();
+      }
+
+      function updateCarouselDisplay() {
+        if (!featuredTrack) return;
+        featuredTrack.style.transform = `translateX(-${currentCarouselIndex * 100}%)`;
+
+        const dots = featuredDotsContainer.querySelectorAll("button");
+        dots.forEach((dot, idx) => {
+          if (idx === currentCarouselIndex) {
+            dot.className = "h-2 rounded-full transition-all cursor-pointer w-7 bg-white";
+          } else {
+            dot.className = "h-2 rounded-full transition-all cursor-pointer w-2 bg-white/40 hover:bg-white/70";
+          }
+        });
+      }
+
+      function nextCarouselSlide() {
+        if (totalCarouselSlides <= 1) return;
+        currentCarouselIndex = (currentCarouselIndex + 1) % totalCarouselSlides;
+        updateCarouselDisplay();
+      }
+
+      function prevCarouselSlide() {
+        if (totalCarouselSlides <= 1) return;
+        currentCarouselIndex = (currentCarouselIndex - 1 + totalCarouselSlides) % totalCarouselSlides;
+        updateCarouselDisplay();
+      }
+
+      function goToCarouselSlide(index) {
+        currentCarouselIndex = index;
+        updateCarouselDisplay();
+        resetCarouselAutoPlay();
+      }
+
+      function startCarouselAutoPlay() {
+        stopCarouselAutoPlay();
+        carouselAutoPlayTimer = setInterval(nextCarouselSlide, 4500);
+      }
+
+      function stopCarouselAutoPlay() {
+        if (carouselAutoPlayTimer) {
+          clearInterval(carouselAutoPlayTimer);
+          carouselAutoPlayTimer = null;
+        }
+      }
+
+      function resetCarouselAutoPlay() {
+        stopCarouselAutoPlay();
+        startCarouselAutoPlay();
+      }
+
+      if (featuredPrevBtn && featuredNextBtn) {
+        featuredPrevBtn.addEventListener("click", () => {
+          prevCarouselSlide();
+          resetCarouselAutoPlay();
+        });
+
+        featuredNextBtn.addEventListener("click", () => {
+          nextCarouselSlide();
+          resetCarouselAutoPlay();
+        });
+      }
+
+      if (featuredCarouselSection) {
+        featuredCarouselSection.addEventListener("mouseenter", stopCarouselAutoPlay);
+        featuredCarouselSection.addEventListener("mouseleave", startCarouselAutoPlay);
+      }
+
+      // Pagination State & DOM Elements
+      let catalogCurrentPage = 1;
+      const catalogItemsPerPage = 8;
+      const paginationContainer = document.getElementById("catalog-pagination-container");
+      const paginationNumbers = document.getElementById("pagination-numbers");
+      const paginationPrevBtn = document.getElementById("pagination-prev-btn");
+      const paginationNextBtn = document.getElementById("pagination-next-btn");
+
+      function renderPaginationControls(totalPages) {
+        if (!paginationNumbers) return;
+        paginationNumbers.innerHTML = "";
+
+        for (let p = 1; p <= totalPages; p++) {
+          const pageBtn = document.createElement("button");
+          pageBtn.type = "button";
+          if (p === catalogCurrentPage) {
+            pageBtn.className = "w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-bold bg-primary text-white border border-primary shadow-xs transition cursor-pointer flex items-center justify-center";
+          } else {
+            pageBtn.className = "w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-semibold bg-white text-gray-700 border border-gray-300 hover:border-primary hover:text-primary transition cursor-pointer flex items-center justify-center shadow-2xs";
+          }
+          pageBtn.textContent = p;
+          pageBtn.addEventListener("click", () => {
+            catalogCurrentPage = p;
+            renderCatalogGrid();
+            document.getElementById("catalog-heading")?.scrollIntoView({ behavior: "smooth" });
+          });
+          paginationNumbers.appendChild(pageBtn);
+        }
+
+        if (paginationPrevBtn) {
+          paginationPrevBtn.disabled = catalogCurrentPage <= 1;
+        }
+        if (paginationNextBtn) {
+          paginationNextBtn.disabled = catalogCurrentPage >= totalPages;
+        }
+      }
+
+      if (paginationPrevBtn) {
+        paginationPrevBtn.addEventListener("click", () => {
+          if (catalogCurrentPage > 1) {
+            catalogCurrentPage--;
+            renderCatalogGrid();
+            document.getElementById("catalog-heading")?.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      }
+
+      if (paginationNextBtn) {
+        paginationNextBtn.addEventListener("click", () => {
+          const filtered = productsData.filter((prod) => {
+            const matchCat = currentActiveCategory === "all" || prod.category.toLowerCase() === currentActiveCategory.toLowerCase();
+            const matchSearch =
+              currentSearchQuery === "" ||
+              prod.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+              prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+              prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+            return matchCat && matchSearch;
+          });
+          const totalPages = Math.ceil(filtered.length / catalogItemsPerPage) || 1;
+          if (catalogCurrentPage < totalPages) {
+            catalogCurrentPage++;
+            renderCatalogGrid();
+            document.getElementById("catalog-heading")?.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      }
+
+      function renderCatalogGrid() {
+        catalogGridContainer.innerHTML = "";
+
+        const filtered = productsData.filter((prod) => {
+          const matchCat = currentActiveCategory === "all" || prod.category.toLowerCase() === currentActiveCategory.toLowerCase();
+          const matchSearch =
+            currentSearchQuery === "" ||
+            prod.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+            prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
+            prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+          return matchCat && matchSearch;
+        });
+
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / catalogItemsPerPage) || 1;
+
+        if (catalogCurrentPage > totalPages) catalogCurrentPage = totalPages;
+        if (catalogCurrentPage < 1) catalogCurrentPage = 1;
+
+        catalogCountDisplay.textContent = totalItems;
+
+        if (totalItems === 0) {
+          catalogGridContainer.classList.add("hidden");
+          catalogNoProducts.classList.remove("hidden");
+          if (paginationContainer) paginationContainer.classList.add("hidden");
+          return;
+        }
+
+        catalogGridContainer.classList.remove("hidden");
+        catalogNoProducts.classList.add("hidden");
+        if (paginationContainer) paginationContainer.classList.remove("hidden");
+
+        const startIndex = (catalogCurrentPage - 1) * catalogItemsPerPage;
+        const pageProducts = filtered.slice(startIndex, startIndex + catalogItemsPerPage);
+
+        pageProducts.forEach((prod) => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group";
+
+          let tagsHtml = "";
+          if (prod.tags && prod.tags.length > 0) {
+            prod.tags.forEach((tag) => {
+              tagsHtml += `<span class="${tag.bg || 'bg-primary'} text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">${tag.text}</span>`;
+            });
+          }
+
+          card.innerHTML = `
+            <div class="aspect-[3/4] bg-gray-100 relative overflow-hidden cursor-pointer img-box">
+              <img
+                src="${prod.img || prod.images[0]}"
+                alt="${prod.name}"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1">
+                ${tagsHtml}
+              </div>
+              <button type="button" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-xs flex items-center justify-center text-gray-600 hover:text-accent transition shadow-xs" title="ถูกใจ">
+                ♥
+              </button>
+            </div>
+
+            <div class="p-4 flex flex-col justify-between flex-1 space-y-3">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">${prod.categoryName}</span>
+                <h3 class="text-sm font-bold text-gray-900 line-clamp-1 group-hover:text-primary transition cursor-pointer title-box mt-0.5">
+                  ${prod.name}
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs text-gray-500 mt-1">
+                  <span class="text-amber-500 font-bold">⭐ ${prod.rating || 5.0}</span>
+                  <span>•</span>
+                  <span>ขายแล้ว ${prod.sales || 100} ชิ้น</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-gray-100 flex items-center justify-between gap-2">
+                <div>
+                  <span class="text-base font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
+                  <span class="text-[11px] font-medium text-gray-400 line-through block sm:inline ml-1">฿${prod.originalPrice.toLocaleString()}</span>
+                </div>
+                <button
+                  type="button"
+                  class="btn-grid-cart bg-primary hover:bg-primary/90 active:scale-95 text-white px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                  </svg>
+                  <span>ใส่ตะกร้า</span>
+                </button>
+              </div>
+            </div>
+          `;
+
+          card.querySelectorAll(".img-box, .title-box").forEach((el) => {
+            el.addEventListener("click", () => showDetailView(prod.id));
+          });
+
+          card.querySelector(".btn-grid-cart").addEventListener("click", () => {
+            const size = prod.sizes ? prod.sizes[0] : "Free Size";
+            const color = prod.colors ? prod.colors[0].name : "มาตรฐาน";
+            addToCart(prod, size, color, 1);
+          });
+
+          catalogGridContainer.appendChild(card);
+        });
+
+        // Render Pagination Numbers
+        renderPaginationControls(totalPages);
+      }
+
+      window.filterCatalog = function (category) {
+        currentActiveCategory = category;
+        catalogCurrentPage = 1; // Reset to page 1
+
+        document.querySelectorAll(".category-btn").forEach((btn) => {
+          if (btn.getAttribute("data-category") === category) {
+            btn.className = "category-btn px-4 py-2 rounded-xl text-xs font-bold transition shadow-xs cursor-pointer border bg-primary text-white border-primary";
+          } else {
+            btn.className = "category-btn px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer border bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary";
+          }
+        });
+
+        if (category === "all") {
+          catalogHeading.textContent = "สินค้าทั้งหมด";
         } else {
-          showToast(`สินค้ามีจำกัดสูงสุด ${currentProduct.quantity} ชิ้น`);
+          catalogHeading.textContent = `สินค้าหมวดหมู่: ${category.toUpperCase()}`;
+        }
+
+        showCatalogView();
+        renderCatalogGrid();
+      };
+
+      document.querySelectorAll(".category-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterCatalog(btn.getAttribute("data-category"));
+        });
+      });
+
+      catalogSearchInput.addEventListener("input", (e) => {
+        currentSearchQuery = e.target.value.trim();
+        catalogCurrentPage = 1; // Reset to page 1 on search
+        renderCatalogGrid();
+      });
+
+      document.getElementById("catalog-reset-btn").addEventListener("click", () => {
+        catalogSearchInput.value = "";
+        currentSearchQuery = "";
+        catalogCurrentPage = 1;
+        filterCatalog("all");
+      });
+
+      // -------------------------------------------------------------
+      // 2. PRODUCT DETAIL VIEW FUNCTIONS (ตามภาพ Product Card)
+      // -------------------------------------------------------------
+      window.showDetailView = function (productId) {
+        const prod = productsData.find((p) => p.id === parseInt(productId)) || productsData[0];
+        activeProduct = prod;
+        selectedDetailSize = prod.sizes ? prod.sizes[0] : "Free Size";
+        selectedDetailColor = prod.colors ? prod.colors[0].name : "มาตรฐาน";
+        detailQty = 1;
+
+        window.history.pushState({}, "", `?id=${prod.id}`);
+
+        document.getElementById("page-title").textContent = `${prod.name} | OCCASION`;
+        detailBreadcrumbTitle.textContent = prod.name;
+        detailProductName.textContent = prod.name;
+        detailCategoryBadge.textContent = prod.categoryName;
+        detailRatingScore.textContent = `⭐ ${prod.rating || 5.0} / 5.0`;
+        detailReviewCount.textContent = `${prod.reviewsCount || 47} รีวิว`;
+        detailSalesCount.textContent = `ขายแล้ว ${prod.sales || 140} ชิ้น`;
+        detailPrice.textContent = `฿${prod.price.toLocaleString()}.00`;
+        detailOriginalPrice.textContent = `฿${prod.originalPrice.toLocaleString()}`;
+
+        const discountPercent = Math.round(((prod.originalPrice - prod.price) / prod.originalPrice) * 100);
+        detailDiscountTag.textContent = `ลด ${discountPercent}%`;
+
+        detailDescText.textContent = `• ${prod.description} ตัดเย็บประณีต ผ้าเนื้อนุ่ม สวมใส่สบาย ระบายอากาศได้ดี`;
+        detailQtyVal.textContent = detailQty;
+
+        if (prod.quantity > 0) {
+          detailStockStatus.textContent = `✓ มีสินค้าพร้อมส่ง (คงเหลือ ${prod.quantity} ชิ้น)`;
+          detailStockStatus.className = "text-emerald-600 font-bold text-[11px]";
+        } else {
+          detailStockStatus.textContent = "✕ สินค้าหมดชั่วคราว";
+          detailStockStatus.className = "text-red-500 font-bold text-[11px]";
+        }
+
+        // Tags
+        detailTagContainer.innerHTML = "";
+        if (prod.tags && prod.tags.length > 0) {
+          prod.tags.forEach((tag) => {
+            const badge = document.createElement("span");
+            badge.className = `${tag.bg || 'bg-accent'} text-white px-2.5 py-1 text-[11px] font-bold rounded-md shadow-xs`;
+            badge.textContent = tag.text;
+            detailTagContainer.appendChild(badge);
+          });
+        }
+
+        // Main Image & 6 Thumbnails
+        const allImages = prod.images && prod.images.length > 0 ? prod.images : [prod.img];
+        detailMainImg.src = allImages[0];
+        detailThumbnailsRow.innerHTML = "";
+
+        // Fill up to 6 thumbnails
+        for (let i = 0; i < 6; i++) {
+          const imgUrl = allImages[i % allImages.length];
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 transition cursor-pointer ${
+            i === 0 ? "border-white shadow-md scale-105" : "border-white/40 hover:border-white"
+          }`;
+          btn.innerHTML = `<img src="${imgUrl}" alt="${prod.name} ${i+1}" class="w-full h-full object-cover">`;
+          
+          btn.addEventListener("click", () => {
+            detailMainImg.src = imgUrl;
+            document.querySelectorAll(".detail-thumb").forEach((t) => {
+              t.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white/40 hover:border-white transition cursor-pointer";
+            });
+            btn.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white shadow-md scale-105 transition cursor-pointer";
+          });
+          detailThumbnailsRow.appendChild(btn);
+        }
+
+        // Colors
+        detailColorSwatches.innerHTML = "";
+        if (prod.colors) {
+          prod.colors.forEach((col, idx) => {
+            const colBtn = document.createElement("button");
+            colBtn.type = "button";
+            colBtn.className = `color-btn px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition cursor-pointer ${
+              idx === 0 ? "border-primary bg-primary/10 text-primary ring-1 ring-primary" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
+            }`;
+            colBtn.innerHTML = `<span class="w-3.5 h-3.5 rounded-full border border-black/10 shrink-0" style="background-color: ${col.hex}"></span><span>${col.name}</span>`;
+            
+            colBtn.addEventListener("click", () => {
+              selectedDetailColor = col.name;
+              detailSelectedColorText.textContent = col.name;
+              document.querySelectorAll(".color-btn").forEach((b) => {
+                b.className = "color-btn px-3 py-1.5 rounded-xl border border-gray-300 bg-white text-gray-700 hover:border-gray-400 text-xs font-semibold flex items-center gap-2 transition cursor-pointer";
+              });
+              colBtn.className = "color-btn px-3 py-1.5 rounded-xl border border-primary bg-primary/10 text-primary ring-1 ring-primary text-xs font-semibold flex items-center gap-2 transition cursor-pointer";
+            });
+            detailColorSwatches.appendChild(colBtn);
+          });
+        }
+        detailSelectedColorText.textContent = selectedDetailColor;
+
+        // Sizes
+        detailSizeOptions.innerHTML = "";
+        const availableSizes = prod.sizes || ["XS", "S", "M", "L", "XL", "2XL"];
+        availableSizes.forEach((sz, idx) => {
+          const szBtn = document.createElement("button");
+          szBtn.type = "button";
+          szBtn.className = `size-btn py-2 text-xs font-bold rounded-xl border transition cursor-pointer text-center ${
+            idx === 0 ? "border-primary bg-primary text-white shadow-xs" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
+          }`;
+          szBtn.textContent = sz;
+          szBtn.addEventListener("click", () => {
+            selectedDetailSize = sz;
+            document.querySelectorAll(".size-btn").forEach((b) => {
+              b.className = "size-btn py-2 text-xs font-bold rounded-xl border border-gray-300 bg-white text-gray-700 hover:border-gray-400 transition cursor-pointer text-center";
+            });
+            szBtn.className = "size-btn py-2 text-xs font-bold rounded-xl border border-primary bg-primary text-white shadow-xs transition cursor-pointer text-center";
+          });
+          detailSizeOptions.appendChild(szBtn);
+        });
+
+        // Similar Products (4 items)
+        renderSimilarProducts(prod);
+
+        // Switch View
+        viewCatalog.classList.add("hidden");
+        viewDetail.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      function renderSimilarProducts(currentProd) {
+        detailSimilarGrid.innerHTML = "";
+        const others = productsData.filter((p) => p.id !== currentProd.id).slice(0, 4);
+
+        others.forEach((prod) => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group cursor-pointer";
+          
+          card.innerHTML = `
+            <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+              <img src="${prod.img || prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+            </div>
+            <div class="p-3.5 space-y-1">
+              <span class="text-[10px] font-bold text-primary uppercase">${prod.categoryName}</span>
+              <h4 class="text-xs font-bold text-gray-900 line-clamp-1 group-hover:text-primary transition">${prod.name}</h4>
+              <div class="flex items-baseline gap-1.5 pt-1">
+                <span class="text-sm font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
+                <span class="text-[10px] font-medium text-gray-400 line-through">฿${prod.originalPrice.toLocaleString()}</span>
+              </div>
+            </div>
+          `;
+
+          card.addEventListener("click", () => showDetailView(prod.id));
+          detailSimilarGrid.appendChild(card);
+        });
+      }
+
+      window.showCatalogView = function () {
+        window.history.pushState({}, "", `Product_Page.html`);
+        document.getElementById("page-title").textContent = "รายการสินค้าทั้งหมด | OCCASION";
+        viewDetail.classList.add("hidden");
+        viewCatalog.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      // Quantity Controls
+      detailQtyMinus.addEventListener("click", () => {
+        if (detailQty > 1) {
+          detailQty--;
+          detailQtyVal.textContent = detailQty;
         }
       });
 
-      // Add to Cart Button
-      document.getElementById("btn-add-to-cart").addEventListener("click", () => {
-        showToast(`เพิ่ม "${currentProduct.name}" (${selectedSize}, ${selectedColor}) จำนวน ${currentQty} ชิ้น ลงตะกร้าแล้ว!`);
-        cartBadge.textContent = parseInt(cartBadge.textContent || "0") + currentQty;
+      detailQtyPlus.addEventListener("click", () => {
+        if (activeProduct && detailQty < activeProduct.quantity) {
+          detailQty++;
+          detailQtyVal.textContent = detailQty;
+        } else {
+          showToast(`สินค้ามีจำกัดสูงสุด ${activeProduct.quantity} ชิ้น`);
+        }
+      });
+
+      // Add to Cart
+      function addToCart(prod, size, color, qty) {
+        showToast(`เพิ่ม "${prod.name}" (${size}, ${color}) x${qty} ชิ้น ลงตะกร้าแล้ว!`);
+        cartBadge.textContent = parseInt(cartBadge.textContent || "0") + qty;
         cartBadge.classList.add("scale-125");
         setTimeout(() => cartBadge.classList.remove("scale-125"), 300);
+      }
+
+      btnDetailAddCart.addEventListener("click", () => {
+        if (activeProduct) {
+          addToCart(activeProduct, selectedDetailSize, selectedDetailColor, detailQty);
+        }
       });
 
-      // Share Button
-      document.getElementById("btn-share").addEventListener("click", () => {
+      document.getElementById("btn-detail-share").addEventListener("click", () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
           showToast("คัดลอกลิงก์สินค้านี้แล้ว! พร้อมแชร์ให้เพื่อน");
         }).catch(() => {
@@ -695,21 +1334,25 @@
         });
       });
 
-      // Tab Switching Functionality
-      window.switchTab = function (tabIndex) {
-        tabBtns.forEach((btn, idx) => {
-          if (idx === tabIndex - 1) {
-            btn.className = "tab-btn active bg-white border-r border-gray-200 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-bold text-primary border-t-2 border-t-primary -mb-px transition cursor-pointer";
-            tabPanels[idx].classList.remove("hidden");
-          } else {
-            btn.className = "tab-btn bg-transparent border-r border-gray-200 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 transition cursor-pointer";
-            tabPanels[idx].classList.add("hidden");
-          }
-        });
-      };
+      document.getElementById("btn-detail-wishlist").addEventListener("click", () => {
+        showToast("บันทึกสินค้านี้ลงในรายการโปรดแล้ว!");
+      });
 
-      // Initial Render
-      renderProduct(currentProduct);
+      // -------------------------------------------------------------
+      // 3. INITIALIZATION ON LOAD
+      // -------------------------------------------------------------
+      renderCatalogFeaturedCarousel();
+      renderCatalogGrid();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const idFromUrl = urlParams.get("id");
+      const categoryFromUrl = urlParams.get("category");
+
+      if (idFromUrl) {
+        showDetailView(idFromUrl);
+      } else if (categoryFromUrl) {
+        filterCatalog(categoryFromUrl.toLowerCase());
+      }
     </script>
   </body>
 </html>
