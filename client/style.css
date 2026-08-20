@@ -13,8 +13,9 @@
 @theme {
   --color-primary: #0046a7;  /* เปลี่ยนเป็นรหัสสีฟ้า Primary ของคุณ */
   --color-accent: #e2156d;   /* เปลี่ยนเป็นรหัสสีเข้ม Accent ของคุณ */
-  --color-secondary:#495f8f;
-  --color-background:#fcf4ee;
+  --color-secondary: #495f8f;
+  --color-background: #fcf4ee;
+  --font-sans: "Prompt", sans-serif;
 }
 .animate-gradient {
   background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
