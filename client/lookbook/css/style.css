@@ -1,0 +1,19 @@
+/* Custom CSS สำหรับ Lookbook Project */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ปรับแต่ง Scrollbar เล็กน้อยให้ดูพรีเมียม */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fcf4ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #495f8f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0046a7;
+}
