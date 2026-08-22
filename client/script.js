@@ -231,7 +231,10 @@ function handleProductPage(urlParams) {
     }
   } else {
     filterAndRender(categoryQuery);
-    updateActiveButton(categoryQuery);
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    if (categoryBtns.length > 0) {
+      updateActiveButton(categoryBtns, categoryQuery);
+    }
   }
 }
 
@@ -245,12 +248,16 @@ function renderProducts(data) {
 
   productContainer.innerHTML = `
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      ${data.map(product => `
+      ${data.map(product => {
+        const imgSrc = product.img.startsWith('.') 
+          ? product.img 
+          : (product.img.startsWith('/') ? `./assets${product.img}` : `./assets/${product.img}`);
+        return `
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group border border-gray-100">
           
           <div class="relative overflow-hidden aspect-[3/4] bg-gray-100">
             <img
-              src="./assets/${product.img}"
+              src="${imgSrc}"
               alt="${product.name}"
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
             />
@@ -262,7 +269,7 @@ function renderProducts(data) {
           <div class="p-4 flex flex-col flex-grow justify-between">
             <div>
               <span class="text-xs font-semibold text-secondary uppercase tracking-wider">
-                หมวดหมู่: ${product.category}
+                หมวดหมู่: ${product.categoryName || product.category}
               </span>
               <h3 class="font-bold text-gray-900 text-base mt-1 line-clamp-1 group-hover:text-primary transition-colors">
                 ${product.name}
@@ -274,7 +281,7 @@ function renderProducts(data) {
 
             <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
               <div>
-                <span class="text-xs text-gray-400 line-through">฿590</span>
+                <span class="text-xs text-gray-400 line-through">฿${product.originalPrice || 590}</span>
                 <div class="text-lg font-bold text-accent">฿${product.price}</div>
               </div>
               <button class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium cursor-pointer">
@@ -284,7 +291,8 @@ function renderProducts(data) {
           </div>
 
         </div>
-      `).join('')}
+      `;
+      }).join('')}
     </div>
   `;
 }
@@ -332,6 +340,9 @@ function filterAndRender(category) {
 }
 
 function setupCategoryButtons() {
+  const productContainer = document.getElementById('product-container');
+  if (!productContainer) return;
+
   const categoryBtns = document.querySelectorAll('.category-btn');
   categoryBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -343,6 +354,7 @@ function setupCategoryButtons() {
 }
 
 function updateActiveButton(categoryBtns, selectedCategory) {
+  if (!categoryBtns || typeof categoryBtns.forEach !== 'function') return;
   categoryBtns.forEach(btn => {
     const category = btn.getAttribute('data-category');
     if (category === selectedCategory) {
