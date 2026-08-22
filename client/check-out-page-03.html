@@ -1,1033 +1,722 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Checkout Page (Payment) - Not Member</title>
-
 
     <!-- =========================================
          GOOGLE FONT
     ========================================= -->
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- =========================================
          TAILWIND CSS
     ========================================= -->
 
-    <link
-        rel="stylesheet"
-        href="./output.css"
-    >
-
+    <link rel="stylesheet" href="./output.css" />
 
     <style>
-
-        /* =========================================
+      /* =========================================
            PAGE LAYOUT
         ========================================= */
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
 
+      body {
+        display: flex;
+        flex-direction: column;
+      }
 
-        body {
-            display: flex;
-            flex-direction: column;
-        }
+      #navbar-container {
+        flex-shrink: 0;
+      }
 
+      main {
+        flex: 1 0 auto;
+      }
 
-        #navbar-container {
-            flex-shrink: 0;
-        }
+      #footer-container {
+        flex-shrink: 0;
+      }
 
-
-        main {
-            flex: 1 0 auto;
-        }
-
-
-        #footer-container {
-            flex-shrink: 0;
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            CHECKOUT LAYOUT
 
            LEFT  = CONTACT / SHIPPING / PAYMENT
            RIGHT = ORDER SUMMARY
         ========================================= */
 
-        .checkout-layout {
-            display: grid;
+      .checkout-layout {
+        display: grid;
 
-            grid-template-columns:
-                minmax(0, 1.65fr)
-                minmax(260px, 0.9fr);
+        grid-template-columns:
+          minmax(0, 1.65fr)
+          minmax(260px, 0.9fr);
 
-            column-gap: 60px;
+        column-gap: 60px;
 
-            align-items: start;
-        }
+        align-items: start;
+      }
 
-
-
-        /* =========================================
+      /* =========================================
            STEP INDICATOR
         ========================================= */
 
-        .step-indicator {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
+      .step-indicator {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
 
-            margin-bottom: 48px;
-        }
+        margin-bottom: 48px;
+      }
 
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      .step-circle {
+        width: 26px;
+        height: 26px;
 
+        border-radius: 9999px;
 
-        .step-circle {
-            width: 26px;
-            height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-            border-radius: 9999px;
+        font-size: 11px;
+        font-weight: 600;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        border: 1px solid #d1d5db;
+        background-color: #ffffff;
+        color: #9ca3af;
+      }
 
-            font-size: 11px;
-            font-weight: 600;
+      .step-circle.is-complete {
+        border-color: #2563eb;
+        background-color: #2563eb;
+        color: #ffffff;
+      }
 
-            border: 1px solid #d1d5db;
-            background-color: #ffffff;
-            color: #9ca3af;
-        }
+      .step-circle.is-current {
+        border-color: #2563eb;
+        background-color: #ffffff;
+        color: #2563eb;
+      }
 
+      .step-label {
+        margin-top: 8px;
 
-        .step-circle.is-complete {
-            border-color: #2563eb;
-            background-color: #2563eb;
-            color: #ffffff;
-        }
+        font-size: 11px;
+        color: #9ca3af;
+      }
 
+      .step-label.is-active {
+        color: #111827;
+        font-weight: 600;
+      }
 
-        .step-circle.is-current {
-            border-color: #2563eb;
-            background-color: #ffffff;
-            color: #2563eb;
-        }
+      .step-line {
+        width: 64px;
+        height: 1px;
 
+        margin: 12px 10px 0;
 
-        .step-label {
-            margin-top: 8px;
+        background-color: #d1d5db;
+      }
 
-            font-size: 11px;
-            color: #9ca3af;
-        }
+      .step-line.is-active {
+        background-color: #2563eb;
+      }
 
-
-        .step-label.is-active {
-            color: #111827;
-            font-weight: 600;
-        }
-
-
-        .step-line {
-            width: 64px;
-            height: 1px;
-
-            margin: 12px 10px 0;
-
-            background-color: #d1d5db;
-        }
-
-
-        .step-line.is-active {
-            background-color: #2563eb;
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            INFO CARD (CONTACT / SHIPPING SUMMARY)
         ========================================= */
 
-        .info-card {
-            border: 1px solid #d1d5db;
+      .info-card {
+        border: 1px solid #d1d5db;
 
-            padding: 20px 24px;
+        padding: 20px 24px;
 
-            margin-bottom: 20px;
-        }
+        margin-bottom: 20px;
+      }
 
+      .info-card-header {
+        display: flex;
 
-        .info-card-header {
-            display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-            align-items: center;
-            justify-content: space-between;
+        margin-bottom: 10px;
+      }
 
-            margin-bottom: 10px;
-        }
+      .info-card-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
 
+      .info-card-edit {
+        font-size: 12px;
+        text-decoration: underline;
 
-        .info-card-title {
-            font-size: 14px;
-            font-weight: 600;
-        }
+        background: none;
+        border: none;
 
+        cursor: pointer;
+      }
 
-        .info-card-edit {
-            font-size: 12px;
-            text-decoration: underline;
+      .info-card-text {
+        font-size: 12px;
+        line-height: 1.6;
+        color: #374151;
+      }
 
-            background: none;
-            border: none;
+      .info-card-shipping {
+        margin-top: 12px;
 
-            cursor: pointer;
-        }
+        padding-top: 12px;
 
+        border-top: 1px solid #e5e7eb;
+      }
 
-        .info-card-text {
-            font-size: 12px;
-            line-height: 1.6;
-            color: #374151;
-        }
+      .info-card-shipping-method {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #6b7280;
+      }
 
+      .info-card-shipping-eta {
+        margin-top: 2px;
 
-        .info-card-shipping {
-            margin-top: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #111827;
+      }
 
-            padding-top: 12px;
-
-            border-top: 1px solid #e5e7eb;
-        }
-
-
-        .info-card-shipping-method {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: #6b7280;
-        }
-
-
-        .info-card-shipping-eta {
-            margin-top: 2px;
-
-            font-size: 12px;
-            font-weight: 600;
-            color: #111827;
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            PAYMENT
         ========================================= */
 
-        .payment-title {
-            margin-bottom: 16px;
+      .payment-title {
+        margin-bottom: 16px;
 
-            font-size: 18px;
-            font-weight: 600;
-        }
+        font-size: 18px;
+        font-weight: 600;
+      }
 
+      .payment-card {
+        border: 1px solid #d1d5db;
+      }
 
-        .payment-card {
-            border: 1px solid #d1d5db;
-        }
+      .gift-card-block {
+        padding: 16px 20px;
 
+        border-bottom: 1px solid #d1d5db;
+      }
 
-        .gift-card-block {
-            padding: 16px 20px;
+      .gift-card-button {
+        display: flex;
 
-            border-bottom: 1px solid #d1d5db;
-        }
+        align-items: center;
+        gap: 10px;
 
+        width: 100%;
 
-        .gift-card-button {
-            display: flex;
+        border: none;
 
-            align-items: center;
-            gap: 10px;
+        background-color: #111827;
+        color: #ffffff;
 
-            width: 100%;
+        padding: 12px 16px;
 
-            border: none;
+        font-size: 13px;
+        font-weight: 600;
 
-            background-color: #111827;
-            color: #ffffff;
+        cursor: pointer;
+      }
 
-            padding: 12px 16px;
+      .gift-card-icon {
+        display: flex;
 
-            font-size: 13px;
-            font-weight: 600;
+        align-items: center;
+        justify-content: center;
 
-            cursor: pointer;
-        }
+        width: 20px;
+        height: 20px;
 
+        border-radius: 4px;
 
-        .gift-card-icon {
-            display: flex;
+        background-color: #ffffff;
+        color: #111827;
 
-            align-items: center;
-            justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+      }
 
-            width: 20px;
-            height: 20px;
+      .gift-card-add {
+        display: flex;
 
-            border-radius: 4px;
+        align-items: center;
+        gap: 8px;
 
-            background-color: #ffffff;
-            color: #111827;
+        margin-top: 12px;
 
-            font-size: 11px;
-            font-weight: 700;
-        }
+        border: none;
+        background: none;
 
+        font-size: 12px;
+        color: #6b7280;
 
-        .gift-card-add {
-            display: flex;
+        cursor: pointer;
+      }
 
-            align-items: center;
-            gap: 8px;
+      .payment-method-row {
+        display: flex;
 
-            margin-top: 12px;
+        align-items: center;
+        justify-content: space-between;
 
-            border: none;
-            background: none;
+        gap: 12px;
 
-            font-size: 12px;
-            color: #6b7280;
+        padding: 16px 20px;
 
-            cursor: pointer;
-        }
+        border-bottom: 1px solid #d1d5db;
 
+        background: none;
 
-        .payment-method-row {
-            display: flex;
+        width: 100%;
 
-            align-items: center;
-            justify-content: space-between;
+        font: inherit;
+        color: inherit;
+        text-align: left;
 
-            gap: 12px;
+        cursor: pointer;
+      }
 
-            padding: 16px 20px;
+      .payment-method-row:last-child {
+        border-bottom: none;
+      }
 
-            border-bottom: 1px solid #d1d5db;
-
-            background: none;
-
-            width: 100%;
-
-            font: inherit;
-            color: inherit;
-            text-align: left;
-
-            cursor: pointer;
-        }
-
-
-        .payment-method-row:last-child {
-            border-bottom: none;
-        }
-
-
-        .payment-method-left {
-            display: flex;
-
-            align-items: center;
-            gap: 12px;
-        }
-
-
-        .payment-method-icon {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            width: 28px;
-            height: 20px;
-
-            font-size: 10px;
-            font-weight: 700;
-
-            border-radius: 2px;
-
-            color: #ffffff;
-        }
-
-
-        .payment-method-icon.paypal {
-            background-color: #ffffff;
-            color: #003087;
-            border: 1px solid #e5e7eb;
-        }
-
-
-        .payment-method-icon.afterpay {
-            background-color: #b2fce4;
-            color: #111827;
-        }
-
-
-        .payment-method-icon.klarna {
-            background-color: #ffb3c7;
-            color: #111827;
-        }
-
-
-        .payment-method-icon.credit-card {
-            background-color: #ffffff;
-            color: #6b7280;
-            border: 1px solid #e5e7eb;
-        }
-
-
-        .payment-method-name {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-
-        .payment-method-sub {
-            margin-top: 2px;
-
-            font-size: 11px;
-            color: #6b7280;
-        }
-
-
-        .payment-method-plus {
-            font-size: 16px;
-            font-weight: 400;
-            color: #6b7280;
-        }
-
-
-
-        /* =========================================
+      .payment-method-left {
+        display: flex;
+
+        align-items: center;
+        gap: 12px;
+      }
+
+      .payment-method-icon {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 28px;
+        height: 20px;
+
+        font-size: 10px;
+        font-weight: 700;
+
+        border-radius: 2px;
+
+        color: #ffffff;
+      }
+
+      .payment-method-icon.paypal {
+        background-color: #ffffff;
+        color: #003087;
+        border: 1px solid #e5e7eb;
+      }
+
+      .payment-method-icon.afterpay {
+        background-color: #b2fce4;
+        color: #111827;
+      }
+
+      .payment-method-icon.klarna {
+        background-color: #ffb3c7;
+        color: #111827;
+      }
+
+      .payment-method-icon.credit-card {
+        background-color: #ffffff;
+        color: #6b7280;
+        border: 1px solid #e5e7eb;
+      }
+
+      .payment-method-name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .payment-method-sub {
+        margin-top: 2px;
+
+        font-size: 11px;
+        color: #6b7280;
+      }
+
+      .payment-method-plus {
+        font-size: 16px;
+        font-weight: 400;
+        color: #6b7280;
+      }
+
+      /* =========================================
            ACTION BUTTON
         ========================================= */
 
-        .btn-continue-wrap {
-            display: flex;
-            justify-content: center;
+      .btn-continue-wrap {
+        display: flex;
+        justify-content: center;
 
-            margin-top: 24px;
-        }
+        margin-top: 24px;
+      }
 
+      .btn-continue {
+        width: 260px;
 
-        .btn-continue {
-            width: 260px;
+        border: none;
 
-            border: none;
+        background-color: #ec1361;
+        color: #ffffff;
 
-            background-color: #ec1361;
-            color: #ffffff;
+        padding: 14px 0;
 
-            padding: 14px 0;
+        font-size: 12px;
+        font-weight: 600;
 
-            font-size: 12px;
-            font-weight: 600;
+        cursor: pointer;
 
-            cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
 
-            transition: opacity 0.2s ease;
-        }
+      .btn-continue:hover {
+        opacity: 0.9;
+      }
 
-
-        .btn-continue:hover {
-            opacity: 0.9;
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            ORDER SUMMARY (RIGHT COLUMN)
         ========================================= */
 
-        .summary-line {
-            display: flex;
-            justify-content: space-between;
+      .summary-line {
+        display: flex;
+        justify-content: space-between;
 
-            padding: 12px 0;
+        padding: 12px 0;
 
-            border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
 
-            font-size: 13px;
-        }
+        font-size: 13px;
+      }
 
-
-
-        /* =========================================
+      /* =========================================
            RESPONSIVE
         ========================================= */
 
-        @media (max-width: 900px) {
-
-            .checkout-layout {
-                grid-template-columns: 1fr;
-                row-gap: 40px;
-            }
-
-
-            .step-line {
-                width: 32px;
-            }
-
+      @media (max-width: 900px) {
+        .checkout-layout {
+          grid-template-columns: 1fr;
+          row-gap: 40px;
         }
 
-
-        @media (max-width: 600px) {
-
-            .btn-continue {
-                width: 100%;
-            }
-
+        .step-line {
+          width: 32px;
         }
+      }
 
+      @media (max-width: 600px) {
+        .btn-continue {
+          width: 100%;
+        }
+      }
     </style>
+  </head>
 
-</head>
-
-
-
-<body>
-
-
+  <body>
     <!-- =========================================
          NAVBAR
     ========================================= -->
 
     <header id="navbar-container"></header>
 
-
-
     <!-- =========================================
          MAIN CHECKOUT PAGE
     ========================================= -->
 
     <main class="bg-background py-10">
-
-
-        <!-- =========================================
+      <!-- =========================================
              MAIN WHITE BOX
         ========================================= -->
 
-        <div
-            class="mx-auto w-full bg-white p-12"
-            style="max-width: 1100px;"
-        >
-
-
-            <!-- =====================================
+      <div class="mx-auto w-full bg-white p-12" style="max-width: 1100px">
+        <!-- =====================================
                  TITLE
             ====================================== -->
 
-            <h1
-                class="mb-8 text-center text-2xl font-semibold"
-            >
+        <h1 class="mb-8 text-center text-2xl font-semibold">Checkout</h1>
 
-                Checkout
-
-            </h1>
-
-
-
-            <!-- =====================================
+        <!-- =====================================
                  STEP INDICATOR
             ====================================== -->
 
-            <div class="step-indicator">
+        <div class="step-indicator">
+          <div class="step">
+            <div class="step-circle is-complete">1</div>
+            <span class="step-label is-active">Contact</span>
+          </div>
 
-                <div class="step">
-                    <div class="step-circle is-complete">1</div>
-                    <span class="step-label is-active">Contact</span>
-                </div>
+          <div class="step-line is-active"></div>
 
-                <div class="step-line is-active"></div>
+          <div class="step">
+            <div class="step-circle is-complete">2</div>
+            <span class="step-label is-active">Shipping</span>
+          </div>
 
-                <div class="step">
-                    <div class="step-circle is-complete">2</div>
-                    <span class="step-label is-active">Shipping</span>
-                </div>
+          <div class="step-line is-active"></div>
 
-                <div class="step-line is-active"></div>
+          <div class="step">
+            <div class="step-circle is-current">3</div>
+            <span class="step-label is-active">Payment</span>
+          </div>
 
-                <div class="step">
-                    <div class="step-circle is-current">3</div>
-                    <span class="step-label is-active">Payment</span>
-                </div>
+          <div class="step-line"></div>
 
-                <div class="step-line"></div>
+          <div class="step">
+            <div class="step-circle">4</div>
+            <span class="step-label">Review</span>
+          </div>
+        </div>
 
-                <div class="step">
-                    <div class="step-circle">4</div>
-                    <span class="step-label">Review</span>
-                </div>
-
-            </div>
-
-
-
-            <!-- =====================================
+        <!-- =====================================
                  CHECKOUT LAYOUT
             ====================================== -->
 
-            <div class="checkout-layout">
-
-
-                <!-- =================================
+        <div class="checkout-layout">
+          <!-- =================================
                      LEFT : CONTACT + SHIPPING + PAYMENT
                 ================================== -->
 
-                <section class="min-w-0">
-
-
-                    <!-- =================================
+          <section class="min-w-0">
+            <!-- =================================
                          CONTACT (SUMMARY)
                     ================================== -->
 
-                    <div class="info-card">
+            <div class="info-card">
+              <div class="info-card-header">
+                <span class="info-card-title"> Contact </span>
 
-                        <div class="info-card-header">
+                <button type="button" class="info-card-edit">Edit</button>
+              </div>
 
-                            <span class="info-card-title">
-                                Contact
-                            </span>
+              <p class="info-card-text">pathsharasakon@gmail.com</p>
+            </div>
 
-
-                            <button
-                                type="button"
-                                class="info-card-edit"
-                            >
-                                Edit
-                            </button>
-
-                        </div>
-
-
-                        <p class="info-card-text">
-                            pathsharasakon@gmail.com
-                        </p>
-
-                    </div>
-
-
-
-                    <!-- =================================
+            <!-- =================================
                          SHIPPING (SUMMARY)
                     ================================== -->
 
-                    <div class="info-card">
+            <div class="info-card">
+              <div class="info-card-header">
+                <span class="info-card-title"> Shipping </span>
 
-                        <div class="info-card-header">
+                <button type="button" class="info-card-edit">Edit</button>
+              </div>
 
-                            <span class="info-card-title">
-                                Shipping
-                            </span>
+              <p class="info-card-text">
+                Pathsharasakon Po<br />
+                738 Beall Ave<br />
+                Rockville, MD 20850, USA<br />
+                (202) 459-1879
+              </p>
 
+              <div class="info-card-shipping">
+                <p class="info-card-shipping-method">
+                  STANDARD SHIPPING (FREE)
+                </p>
 
-                            <button
-                                type="button"
-                                class="info-card-edit"
-                            >
-                                Edit
-                            </button>
+                <p class="info-card-shipping-eta">Arrives by Sat, Aug 8</p>
+              </div>
+            </div>
 
-                        </div>
-
-
-                        <p class="info-card-text">
-                            Pathsharasakon Po<br>
-                            738 Beall Ave<br>
-                            Rockville, MD 20850, USA<br>
-                            (202) 459-1879
-                        </p>
-
-
-                        <div class="info-card-shipping">
-
-                            <p class="info-card-shipping-method">
-                                STANDARD SHIPPING (FREE)
-                            </p>
-
-
-                            <p class="info-card-shipping-eta">
-                                Arrives by Sat, Aug 8
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <!-- =================================
+            <!-- =================================
                          PAYMENT
                     ================================== -->
 
+            <div>
+              <h2 class="payment-title">Payment</h2>
+
+              <div class="payment-card">
+                <!-- GIFT CARD -->
+
+                <div class="gift-card-block">
+                  <button type="button" class="gift-card-button">
+                    <span class="gift-card-icon"> ⛁ </span>
+
+                    Use my Gift Card
+                  </button>
+
+                  <button type="button" class="gift-card-add">
+                    + Add a lululemon gift card
+                  </button>
+                </div>
+
+                <!-- PAYPAL -->
+
+                <button type="button" class="payment-method-row">
+                  <div class="payment-method-left">
+                    <span class="payment-method-icon paypal"> PayPal </span>
+
+                    <span class="payment-method-name"> PayPal </span>
+                  </div>
+
+                  <span class="payment-method-plus"> + </span>
+                </button>
+
+                <!-- AFTERPAY -->
+
+                <button type="button" class="payment-method-row">
+                  <div class="payment-method-left">
+                    <span class="payment-method-icon afterpay"> $ </span>
+
                     <div>
-
-                        <h2 class="payment-title">
-                            Payment
-                        </h2>
-
-
-                        <div class="payment-card">
-
-
-                            <!-- GIFT CARD -->
-
-                            <div class="gift-card-block">
-
-                                <button
-                                    type="button"
-                                    class="gift-card-button"
-                                >
-
-                                    <span class="gift-card-icon">
-                                        ⛁
-                                    </span>
-
-                                    Use my Gift Card
-
-                                </button>
-
-
-                                <button
-                                    type="button"
-                                    class="gift-card-add"
-                                >
-
-                                    + Add a lululemon gift card
-
-                                </button>
-
-                            </div>
-
-
-
-                            <!-- PAYPAL -->
-
-                            <button
-                                type="button"
-                                class="payment-method-row"
-                            >
-
-                                <div class="payment-method-left">
-
-                                    <span class="payment-method-icon paypal">
-                                        PayPal
-                                    </span>
-
-
-                                    <span class="payment-method-name">
-                                        PayPal
-                                    </span>
-
-                                </div>
-
-
-                                <span class="payment-method-plus">
-                                    +
-                                </span>
-
-                            </button>
-
-
-
-                            <!-- AFTERPAY -->
-
-                            <button
-                                type="button"
-                                class="payment-method-row"
-                            >
-
-                                <div class="payment-method-left">
-
-                                    <span class="payment-method-icon afterpay">
-                                        $
-                                    </span>
-
-
-                                    <div>
-
-                                        <p class="payment-method-name">
-                                            Afterpay
-                                        </p>
-
-
-                                        <p class="payment-method-sub">
-                                            4 payments, every two weeks
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-
-                                <span class="payment-method-plus">
-                                    +
-                                </span>
-
-                            </button>
-
-
-
-                            <!-- KLARNA -->
-
-                            <button
-                                type="button"
-                                class="payment-method-row"
-                            >
-
-                                <div class="payment-method-left">
-
-                                    <span class="payment-method-icon klarna">
-                                        K
-                                    </span>
-
-
-                                    <div>
-
-                                        <p class="payment-method-name">
-                                            Klarna
-                                        </p>
-
-
-                                        <p class="payment-method-sub">
-                                            4 payments, every two weeks
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-
-                                <span class="payment-method-plus">
-                                    +
-                                </span>
-
-                            </button>
-
-
-
-                            <!-- CREDIT CARD -->
-
-                            <button
-                                type="button"
-                                class="payment-method-row"
-                            >
-
-                                <div class="payment-method-left">
-
-                                    <span class="payment-method-icon credit-card">
-                                        💳
-                                    </span>
-
-
-                                    <span class="payment-method-name">
-                                        Credit card
-                                    </span>
-
-                                </div>
-
-
-                                <span class="payment-method-plus">
-                                    +
-                                </span>
-
-                            </button>
-
-
-                        </div>
-
-
-
-                        <!-- CONTINUE -->
-
-                        <div class="btn-continue-wrap">
-
-                            <button
-                                type="button"
-                                class="btn-continue"
-                            >
-
-                                CONTINUE
-
-                            </button>
-
-                        </div>
-
-
+                      <p class="payment-method-name">Afterpay</p>
+
+                      <p class="payment-method-sub">
+                        4 payments, every two weeks
+                      </p>
                     </div>
+                  </div>
 
+                  <span class="payment-method-plus"> + </span>
+                </button>
 
-                </section>
+                <!-- KLARNA -->
 
+                <button type="button" class="payment-method-row">
+                  <div class="payment-method-left">
+                    <span class="payment-method-icon klarna"> K </span>
 
+                    <div>
+                      <p class="payment-method-name">Klarna</p>
 
-                <!-- =================================
+                      <p class="payment-method-sub">
+                        4 payments, every two weeks
+                      </p>
+                    </div>
+                  </div>
+
+                  <span class="payment-method-plus"> + </span>
+                </button>
+
+                <!-- CREDIT CARD -->
+
+                <button type="button" class="payment-method-row">
+                  <div class="payment-method-left">
+                    <span class="payment-method-icon credit-card"> 💳 </span>
+
+                    <span class="payment-method-name"> Credit card </span>
+                  </div>
+
+                  <span class="payment-method-plus"> + </span>
+                </button>
+              </div>
+
+              <!-- CONTINUE -->
+
+              <div class="btn-continue-wrap">
+                <button type="button" class="btn-continue"><a href="./check-out-page-04.html">CONTINUE</a></button>
+              </div>
+            </div>
+          </section>
+
+          <!-- =================================
                      RIGHT : ORDER SUMMARY
                 ================================== -->
 
-                <aside class="min-w-0">
+          <aside class="min-w-0">
+            <!-- TITLE -->
 
+            <div class="mb-5 flex items-center justify-between">
+              <h4 class="text-sm font-semibold">Order summary</h4>
 
-                    <!-- TITLE -->
-
-                    <div
-                        class="mb-5 flex items-center justify-between"
-                    >
-
-                        <h4 class="text-sm font-semibold">
-                            Order summary
-                        </h4>
-
-
-                        <span class="text-xs text-gray-500">
-                            1 item
-                        </span>
-
-                    </div>
-
-
-
-                    <!-- ITEM -->
-
-                    <div class="mb-4 flex gap-4">
-
-                        <div
-                            class="h-20 w-16 shrink-0 bg-gray-100"
-                        >
-
-                            <img
-                                src="./images/lined-short.jpg"
-                                alt="Track That High-Rise Lined Short 5&quot;"
-                                class="h-full w-full object-cover"
-                            >
-
-                        </div>
-
-
-                        <div class="min-w-0 text-xs">
-
-                            <p class="font-semibold">
-                                Track That High-Rise Lined Short 5"
-                            </p>
-
-
-                            <p class="mt-1 text-gray-500">
-                                Color  Raspberry Rave
-                            </p>
-
-
-                            <p class="text-gray-500">
-                                Size  4
-                            </p>
-
-
-                            <p class="text-gray-500">
-                                Quantity  1
-                            </p>
-
-
-                            <p class="mt-2 font-semibold">
-                                $68.00
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <p class="mb-6 text-[11px] text-gray-400">
-                        Free returns online and in-store
-                    </p>
-
-
-
-                    <!-- SUBTOTAL -->
-
-                    <div class="summary-line">
-                        <span>Subtotal</span>
-                        <span>$68.00</span>
-                    </div>
-
-
-
-                    <!-- SHIPPING -->
-
-                    <div class="summary-line">
-                        <span>Shipping</span>
-                        <span>FREE</span>
-                    </div>
-
-
-
-                    <!-- TAX -->
-
-                    <div class="summary-line">
-                        <span>Tax</span>
-                        <span>$4.08</span>
-                    </div>
-
-
-
-                    <!-- ORDER TOTAL -->
-
-                    <div class="flex justify-between py-4 text-sm">
-
-                        <strong>Order total</strong>
-
-
-                        <strong>USD $72.08</strong>
-
-                    </div>
-
-
-                </aside>
-
-
+              <span class="text-xs text-gray-500"> 1 item </span>
             </div>
 
+            <!-- ITEM -->
 
+            <div class="mb-4 flex gap-4">
+              <div class="h-20 w-16 shrink-0 bg-gray-100">
+                <img
+                  src="./assets/product/style_2.jpg"
+                  alt='Track That High-Rise Lined Short 5"'
+                  class="h-full w-full object-cover"
+                />
+              </div>
+
+              <div class="min-w-0 text-xs">
+                <p class="font-semibold">Track That High-Rise Lined Short 5"</p>
+
+                <p class="mt-1 text-gray-500">Color Raspberry Rave</p>
+
+                <p class="text-gray-500">Size 4</p>
+
+                <p class="text-gray-500">Quantity 1</p>
+
+                <p class="mt-2 font-semibold">$68.00</p>
+              </div>
+            </div>
+
+            <p class="mb-6 text-[11px] text-gray-400">
+              Free returns online and in-store
+            </p>
+
+            <!-- SUBTOTAL -->
+
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <span>$68.00</span>
+            </div>
+
+            <!-- SHIPPING -->
+
+            <div class="summary-line">
+              <span>Shipping</span>
+              <span>FREE</span>
+            </div>
+
+            <!-- TAX -->
+
+            <div class="summary-line">
+              <span>Tax</span>
+              <span>$4.08</span>
+            </div>
+
+            <!-- ORDER TOTAL -->
+
+            <div class="flex justify-between py-4 text-sm">
+              <strong>Order total</strong>
+
+              <strong>USD $72.08</strong>
+            </div>
+          </aside>
         </div>
-
-
+      </div>
     </main>
-
-
 
     <!-- =========================================
          FOOTER
@@ -1035,18 +724,10 @@
 
     <div id="footer-container"></div>
 
-
-
     <!-- =========================================
          JAVASCRIPT
     ========================================= -->
 
-    <script
-        type="module"
-        src="script.js"
-    ></script>
-
-
-</body>
-
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

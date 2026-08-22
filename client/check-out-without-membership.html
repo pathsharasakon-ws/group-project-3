@@ -1,522 +1,341 @@
 <!doctype html>
 <html lang="th">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Checkout Without Member</title>
-
 
     <!-- =========================================
          GOOGLE FONT
     ========================================= -->
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- =========================================
          TAILWIND CSS
     ========================================= -->
 
-    <link
-        rel="stylesheet"
-        href="./output.css"
-    >
-
+    <link rel="stylesheet" href="./output.css" />
 
     <style>
-
-        /* =========================================
+      /* =========================================
            PAGE LAYOUT
         ========================================= */
 
-        html,
-        body {
+      html,
+      body {
+        margin: 0;
+        padding: 0;
 
-            margin: 0;
-            padding: 0;
+        min-height: 100vh;
+      }
 
-            min-height: 100vh;
+      body {
+        display: flex;
+        flex-direction: column;
+      }
 
-        }
+      #navbar-container {
+        flex-shrink: 0;
+      }
 
+      main {
+        flex: 1 0 auto;
+      }
 
-        body {
+      #footer-container {
+        flex-shrink: 0;
+      }
 
-            display: flex;
-            flex-direction: column;
-
-        }
-
-
-        #navbar-container {
-
-            flex-shrink: 0;
-
-        }
-
-
-        main {
-
-            flex: 1 0 auto;
-
-        }
-
-
-        #footer-container {
-
-            flex-shrink: 0;
-
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            CHECKOUT PAGE
         ========================================= */
 
-        .checkout-wrapper {
+      .checkout-wrapper {
+        width: 100%;
+        max-width: 1100px;
 
-            width: 100%;
-            max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
 
-            margin-left: auto;
-            margin-right: auto;
+        padding: 60px 80px;
 
-            padding: 60px 80px;
+        box-sizing: border-box;
+      }
 
-            box-sizing: border-box;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            CHECKOUT CONTENT
         ========================================= */
 
-        .checkout-card {
+      .checkout-card {
+        width: 100%;
+        max-width: 700px;
 
-            width: 100%;
-            max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
 
-            margin-left: auto;
-            margin-right: auto;
+        padding: 45px 80px;
 
-            padding: 45px 80px;
+        box-sizing: border-box;
+      }
 
-            box-sizing: border-box;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            TITLE
         ========================================= */
 
-        .checkout-title {
+      .checkout-title {
+        margin: 0 0 45px 0;
 
-            margin: 0 0 45px 0;
+        font-size: 30px;
+        font-weight: 600;
 
-            font-size: 30px;
-            font-weight: 600;
+        line-height: 1.4;
+      }
 
-            line-height: 1.4;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            SECTION
         ========================================= */
 
-        .checkout-section {
+      .checkout-section {
+        margin-bottom: 40px;
+      }
 
-            margin-bottom: 40px;
+      .checkout-section:last-child {
+        margin-bottom: 0;
+      }
 
-        }
-
-
-        .checkout-section:last-child {
-
-            margin-bottom: 0;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            TEXT
         ========================================= */
 
-        .checkout-text {
+      .checkout-text {
+        margin: 0 0 20px 0;
 
-            margin: 0 0 20px 0;
+        font-size: 14px;
 
-            font-size: 14px;
+        line-height: 1.8;
 
-            line-height: 1.8;
+        color: #222;
+      }
 
-            color: #222;
+      .checkout-description {
+        margin: 0 0 20px 0;
 
-        }
+        font-size: 13px;
 
+        line-height: 1.8;
 
-        .checkout-description {
+        color: #333;
+      }
 
-            margin: 0 0 20px 0;
-
-            font-size: 13px;
-
-            line-height: 1.8;
-
-            color: #333;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            BUTTON
         ========================================= */
 
-        .checkout-button {
+      .checkout-button {
+        display: flex;
 
-            display: flex;
+        align-items: center;
+        justify-content: center;
 
-            align-items: center;
-            justify-content: center;
+        width: 100%;
 
-            width: 100%;
+        min-height: 50px;
 
-            min-height: 50px;
+        border: none;
 
-            border: none;
+        background-color: #000;
 
-            background-color: #000;
+        color: white;
 
-            color: white;
+        font-family: "Prompt", sans-serif;
 
-            font-family: "Prompt", sans-serif;
+        font-size: 13px;
 
-            font-size: 13px;
+        font-weight: 500;
 
-            font-weight: 500;
+        cursor: pointer;
 
-            cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
 
-            transition: opacity 0.2s ease;
+      .checkout-button:hover {
+        opacity: 0.8;
+      }
 
-        }
-
-
-        .checkout-button:hover {
-
-            opacity: 0.8;
-
-        }
-
-
-        /* =========================================
+      /* =========================================
            BENEFITS
         ========================================= */
 
-        .benefits {
+      .benefits {
+        margin: 20px 0 25px 0;
 
-            margin: 20px 0 25px 0;
+        padding: 0;
 
-            padding: 0;
+        list-style: none;
+      }
 
-            list-style: none;
+      .benefits li {
+        display: flex;
 
-        }
+        align-items: flex-start;
 
+        gap: 12px;
 
-        .benefits li {
+        margin-bottom: 12px;
 
-            display: flex;
+        font-size: 13px;
 
-            align-items: flex-start;
+        line-height: 1.6;
+      }
 
-            gap: 12px;
+      .benefits li:last-child {
+        margin-bottom: 0;
+      }
 
-            margin-bottom: 12px;
+      .benefit-check {
+        flex-shrink: 0;
 
-            font-size: 13px;
+        font-size: 16px;
 
-            line-height: 1.6;
+        line-height: 1.4;
+      }
 
-        }
-
-
-        .benefits li:last-child {
-
-            margin-bottom: 0;
-
-        }
-
-
-        .benefit-check {
-
-            flex-shrink: 0;
-
-            font-size: 16px;
-
-            line-height: 1.4;
-
-        }
-
-
-
-        /* =========================================
+      /* =========================================
            RESPONSIVE
         ========================================= */
 
-        @media (max-width: 900px) {
-
-            .checkout-wrapper {
-
-                padding: 40px 30px;
-
-            }
-
-
-            .checkout-card {
-
-                padding: 35px 45px;
-
-            }
-
-
-            .checkout-title {
-
-                font-size: 26px;
-
-            }
-
+      @media (max-width: 900px) {
+        .checkout-wrapper {
+          padding: 40px 30px;
         }
 
-
-        @media (max-width: 600px) {
-
-            .checkout-wrapper {
-
-                padding: 30px 15px;
-
-            }
-
-
-            .checkout-card {
-
-                padding: 30px 25px;
-
-            }
-
-
-            .checkout-title {
-
-                font-size: 24px;
-
-                margin-bottom: 35px;
-
-            }
-
-
-            .checkout-text {
-
-                font-size: 13px;
-
-            }
-
-
-            .checkout-description {
-
-                font-size: 12px;
-
-            }
-
-
-            .benefits li {
-
-                font-size: 12px;
-
-            }
-
+        .checkout-card {
+          padding: 35px 45px;
         }
 
+        .checkout-title {
+          font-size: 26px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .checkout-wrapper {
+          padding: 30px 15px;
+        }
+
+        .checkout-card {
+          padding: 30px 25px;
+        }
+
+        .checkout-title {
+          font-size: 24px;
+
+          margin-bottom: 35px;
+        }
+
+        .checkout-text {
+          font-size: 13px;
+        }
+
+        .checkout-description {
+          font-size: 12px;
+        }
+
+        .benefits li {
+          font-size: 12px;
+        }
+      }
     </style>
+  </head>
 
-</head>
-
-
-
-<body>
-
-
+  <body>
     <!-- =========================================
          NAVBAR
     ========================================= -->
 
     <header id="navbar-container"></header>
 
-
-
     <!-- =========================================
          MAIN
     ========================================= -->
 
     <main class="bg-background py-10">
-
-
-        <!-- =========================================
+      <!-- =========================================
              MAIN CHECKOUT WRAPPER
 
              ไม่มีพื้นหลังสีขาว
         ========================================= -->
 
-        <div class="checkout-wrapper">
-
-
-            <!-- =====================================
+      <div class="checkout-wrapper">
+        <!-- =====================================
                  CHECKOUT CONTENT
 
                  ไม่มีพื้นหลังสีขาว
             ====================================== -->
 
-            <div class="checkout-card">
-
-
-                <!-- =================================
+        <div class="checkout-card">
+          <!-- =================================
                      TITLE
                 ================================== -->
 
-                <h1 class="checkout-title">
+          <h1 class="checkout-title">ดำเนินการชำระเงิน</h1>
 
-                    ดำเนินการชำระเงิน
-
-                </h1>
-
-
-
-                <!-- =================================
+          <!-- =================================
                      RETURNING CUSTOMER
                 ================================== -->
 
-                <section class="checkout-section">
+          <section class="checkout-section">
+            <p class="checkout-text">ลูกค้าที่กลับมาใช้บริการ</p>
 
+            <button type="button" class="checkout-button">
+              ลงชื่อเข้าใช้งาน
+            </button>
+          </section>
 
-                    <p class="checkout-text">
-
-                        ลูกค้าที่กลับมาใช้บริการ
-
-                    </p>
-
-
-                    <button
-                        type="button"
-                        class="checkout-button"
-                    >
-
-                        ลงชื่อเข้าใช้งาน
-
-                    </button>
-
-
-                </section>
-
-
-
-                <!-- =================================
+          <!-- =================================
                      NEW CUSTOMER
                 ================================== -->
 
-                <section class="checkout-section">
+          <section class="checkout-section">
+            <p class="checkout-text">หน้าชำระเงินสำหรับลูกค้าใหม่</p>
 
+            <p class="checkout-description">
+              สมัครสมาชิกตอนนี้ - ใช้เวลาไม่นานและฟรี!
+            </p>
 
-                    <p class="checkout-text">
-
-                        หน้าชำระเงินสำหรับลูกค้าใหม่
-
-                    </p>
-
-
-                    <p class="checkout-description">
-
-                        สมัครสมาชิกตอนนี้ - ใช้เวลาไม่นานและฟรี!
-
-                    </p>
-
-
-
-                    <!-- =============================
+            <!-- =============================
                          BENEFITS
                     ============================== -->
 
-                    <ul class="benefits">
+            <ul class="benefits">
+              <li>
+                <span class="benefit-check"> ✓ </span>
 
+                <span> ส่วนลด 20% สำหรับการสั่งซื้อครั้งแรกของคุณ </span>
+              </li>
 
-                        <li>
+              <li>
+                <span class="benefit-check"> ✓ </span>
 
-                            <span class="benefit-check">
-                                ✓
-                            </span>
+                <span> เปลี่ยนสินค้าฟรีและคืนเงินภายใน 30 วัน </span>
+              </li>
+            </ul>
 
-                            <span>
-                                ส่วนลด 20% สำหรับการสั่งซื้อครั้งแรกของคุณ
-                            </span>
-
-                        </li>
-
-
-                        <li>
-
-                            <span class="benefit-check">
-                                ✓
-                            </span>
-
-                            <span>
-                                เปลี่ยนสินค้าฟรีและคืนเงินภายใน 30 วัน
-                            </span>
-
-                        </li>
-
-
-                    </ul>
-
-
-
-                    <!-- =============================
+            <!-- =============================
                          REGISTER BUTTON
                     ============================== -->
 
-                    <button
-                        type="button"
-                        class="checkout-button"
-                    >
-
-                        สมัครสมาชิก
-
-                    </button>
-
-
-                </section>
-
-
-            </div>
-
-
+           <a href="./signup.html"> <button type="button" class="checkout-button">สมัครสมาชิก</button></a>
+          </section>
         </div>
-
-
+      </div>
     </main>
-
-
 
     <!-- =========================================
          FOOTER
@@ -524,18 +343,10 @@
 
     <div id="footer-container"></div>
 
-
-
     <!-- =========================================
          JAVASCRIPT
     ========================================= -->
 
-    <script
-        type="module"
-        src="script.js"
-    ></script>
-
-
-</body>
-
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
