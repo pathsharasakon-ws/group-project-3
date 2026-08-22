@@ -1,48 +1,185 @@
 import { article } from "./api/article.js";
 import { productData } from "./api/product.js";
 
+// ==========================================
 // 1. ฟังก์ชันโหลด Component แบบ Async
+// ==========================================
 async function loadComponent(elementId, filePath) {
   try {
     const response = await fetch(filePath);
     if (!response.ok) throw new Error(`Could not load ${filePath}`);
     const html = await response.text();
-    
+
     const targetEl = document.getElementById(elementId);
-    if (targetEl) targetEl.innerHTML = html;
+    if (!targetEl) return;
+
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+
+    const searchModal = temp.querySelector('#search-modal');
+    if (searchModal) {
+      document.body.appendChild(searchModal);
+    }
+
+    targetEl.innerHTML = html;
+
+    if (searchModal) {
+      targetEl.querySelector('#search-modal')?.remove();
+    }
   } catch (error) {
     console.error(error);
   }
 }
 
-// 2. จุดเริ่มต้นการทำงานหลัก (Main Execution)
+// ==========================================
+// 2. Main Execution (จุดเริ่มต้นระบบ)
+// ==========================================
 document.addEventListener("DOMContentLoaded", async () => {
-  // โหลด Component Navbar และ Footer ให้เสร็จก่อน
+  // โหลด Navbar และ Footer ให้เสร็จสมบูรณ์ก่อนเรียกใช้ Event
   await Promise.all([
     loadComponent("navbar-container", "navbar.html"),
     loadComponent("footer-container", "footer.html")
   ]);
 
-  // ระบบค้นหาบน Navbar
+  console.log("2. โหลด Components เสร็จสิ้น เริ่มผูก Event...");
+  // ระบบควบคุมส่วน Navbar (ทำงานหลัง Navbar โหลดเสร็จ)
   setupSearchSystem();
-
-  // ผูก Event ปุ่มเลือกหมวดหมู่ (ทำหลังจาก Navbar โหลดเสร็จแล้ว)
-  setupCategoryButtons();
+  dropDownProfile();
+  initMobileMenu();
 
   // อ่าน Query Parameter จาก URL
   const urlParams = new URLSearchParams(window.location.search);
 
-  // เรียกทำงานตามแต่ละหน้าอัตโนมัติ
+  // ระบบจัดการเนื้อหาแต่ละหน้า
   handleIndexPage();
   handleArticlePage(urlParams);
   handleProductPage(urlParams);
+  
+  // ระบบหมวดหมู่
+  setupCategoryButtons();
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
 });
 
 // ==========================================
-// ฟังก์ชันจัดการ Render หน้าต่างๆ
+// 3. ระบบควบคุม Navbar & UI Interactivity
 // ==========================================
 
-// หน้าแรก (index.html)
+// Dropdown Profile
+function dropDownProfile() {
+  const dropProfile = document.getElementById('profile-modal');
+  const dropProfileModal = document.getElementById('dropdown-menu-btn');
+
+  if (!dropProfile || !dropProfileModal) return;
+
+  dropProfile.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("You click here")
+    dropProfileModal.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropProfile.contains(e.target)) {
+      dropProfileModal.classList.add('hidden');
+    }
+  });
+}
+
+// Mobile Hamburger Menu
+function initMobileMenu() {
+  const menuBtn = document.getElementById('hamburger-btn');
+  const mobileDropdown = document.getElementById('mobile-dropdown');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  if (!menuBtn || !mobileDropdown) return;
+
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = mobileDropdown.classList.toggle('hidden');
+    if (hamburgerIcon && closeIcon) {
+      hamburgerIcon.classList.toggle('hidden', !isHidden);
+      closeIcon.classList.toggle('hidden', isHidden);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
+      mobileDropdown.classList.add('hidden');
+      if (hamburgerIcon && closeIcon) {
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+  });
+}
+
+// Search Modal System
+function setupSearchSystem() {
+  const searchBtn = document.getElementById('search-button');
+  const searchModal = document.getElementById('search-modal');
+  const closeSearchBtn = document.getElementById('close-search-btn');
+  const searchForm = document.getElementById('search-form');
+  const searchInput = document.getElementById('search-input');
+
+  // 1. เช็กเฉพาะปุ่มก่อน ถ้าไม่มีปุ่มค่อยหลุด
+  if (!searchBtn) {
+    console.error("❌ หาปุ่ม search-button ไม่เจอ");
+    return;
+  }
+
+  // Event คลิกปุ่มค้นหา
+  searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log("You click search"); // Log จะทำงานแน่นอนแล้ว
+
+    if (searchModal) {
+      searchModal.classList.remove('hidden');
+      searchModal.classList.add('flex');
+      if (searchInput) searchInput.focus();
+    } else {
+      console.error("❌ หา #search-modal ไม่เจอในหน้านี้");
+    }
+  });
+
+  // Event ปิด Modal
+  if (closeSearchBtn && searchModal) {
+    closeSearchBtn.addEventListener('click', () => {
+      searchModal.classList.add('hidden');
+      searchModal.classList.remove('flex');
+    });
+  }
+
+  // Event คลิกพื้นหลัง Modal
+  if (searchModal) {
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) {
+        searchModal.classList.add('hidden');
+        searchModal.classList.remove('flex');
+      }
+    });
+  }
+
+  // Event Submit Form
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const keyword = searchInput ? searchInput.value.trim() : '';
+      if (!keyword) return;
+      window.location.href = `./Product_Page.html?search=${encodeURIComponent(keyword)}`;
+    });
+  }
+}
+
+// ==========================================
+// 4. ฟังก์ชันจัดการ Render หน้าต่างๆ
+// ==========================================
+
 function handleIndexPage() {
   const articleGrid = document.getElementById("article-grid");
   if (articleGrid) {
@@ -50,7 +187,6 @@ function handleIndexPage() {
   }
 }
 
-// หน้าบทความ (article.html)
 function handleArticlePage(urlParams) {
   const articleTitleEl = document.getElementById('article-title');
   if (!articleTitleEl) return;
@@ -60,31 +196,41 @@ function handleArticlePage(urlParams) {
 
   if (currentArticle) {
     articleTitleEl.textContent = currentArticle.title;
-    document.getElementById('article-category').textContent = currentArticle.category;
-    document.getElementById('article-author').textContent = `โดย ${currentArticle.author.name}`;
-    document.getElementById('article-date').textContent = currentArticle.publishedAt;
     
+    const categoryEl = document.getElementById('article-category');
+    const authorEl = document.getElementById('article-author');
+    const dateEl = document.getElementById('article-date');
     const imgEl = document.getElementById('article-image');
+
+    if (categoryEl) categoryEl.textContent = currentArticle.category;
+    if (authorEl) authorEl.textContent = `โดย ${currentArticle.author.name}`;
+    if (dateEl) dateEl.textContent = currentArticle.publishedAt;
+
     if (imgEl) {
       imgEl.src = currentArticle.image;
       imgEl.alt = currentArticle.title;
     }
 
-    document.getElementById('article-content').innerHTML = `
-      <p class="font-medium text-xl text-gray-900">${currentArticle.excerpt}</p>
-      <p>เนื้อหาบทความแบบเต็มของคุณจะถูกนำมาแสดงในส่วนนี้...</p>
-    `;
+    const contentEl = document.getElementById('article-content');
+    if (contentEl) {
+      contentEl.innerHTML = `
+        <p class="font-medium text-xl text-gray-900">${currentArticle.excerpt}</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">เนื้อหาบทความแบบเต็มของคุณจะถูกนำมาแสดงในส่วนนี้...</p>
+      `;
+    }
   } else {
-    document.querySelector('main').innerHTML = `
-      <div class="text-center py-20">
-        <h2 class="text-2xl font-bold text-gray-800">ไม่พบบทความที่คุณต้องการ</h2>
-        <a href="./index.html" class="mt-4 inline-block text-pink-500 underline">กลับหน้าหลัก</a>
-      </div>
-    `;
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.innerHTML = `
+        <div class="text-center py-20">
+          <h2 class="text-2xl font-bold text-gray-800">ไม่พบบทความที่คุณต้องการ</h2>
+          <a href="./index.html" class="mt-4 inline-block text-pink-500 underline">กลับหน้าหลัก</a>
+        </div>
+      `;
+    }
   }
 }
 
-// หน้าสินค้า (Product_Page.html)
 function handleProductPage(urlParams) {
   const productContainer = document.getElementById('product-container');
   if (!productContainer) return;
@@ -94,7 +240,7 @@ function handleProductPage(urlParams) {
 
   if (searchQuery) {
     const keyword = searchQuery.toLowerCase();
-    const searchResults = productData.filter(product => 
+    const searchResults = productData.filter(product =>
       product.name.toLowerCase().includes(keyword)
     );
 
@@ -114,14 +260,13 @@ function handleProductPage(urlParams) {
 }
 
 // ==========================================
-// ฟังก์ชัน Render UI และ Helper Functions
+// 5. Render Templates & Helpers
 // ==========================================
 
 function renderProducts(data) {
   const productContainer = document.getElementById('product-container');
   if (!productContainer) return;
 
-  // ✅ แก้ไข: แสดงผลใส่ใน productContainer แทน productData
   productContainer.innerHTML = `
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       ${data.map(product => `
@@ -156,7 +301,7 @@ function renderProducts(data) {
                 <span class="text-xs text-gray-400 line-through">฿590</span>
                 <div class="text-lg font-bold text-accent">฿${product.price}</div>
               </div>
-              <button class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium">
+              <button class="bg-primary hover:bg-secondary text-white px-3 py-2 rounded-xl transition-colors shadow-sm flex items-center gap-1.5 text-xs font-medium cursor-pointer">
                 <span>เพิ่มลงตะกร้า</span>
               </button>
             </div>
@@ -226,44 +371,9 @@ function updateActiveButton(selectedCategory) {
   categoryBtns.forEach(btn => {
     const category = btn.getAttribute('data-category');
     if (category === selectedCategory) {
-      btn.className = "category-btn bg-white text-primary font-bold px-4 py-2 rounded-full text-xs sm:text-sm transition shadow-md whitespace-nowrap";
+      btn.className = "category-btn bg-white text-primary font-bold px-4 py-2 rounded-full text-xs sm:text-sm transition shadow-md whitespace-nowrap cursor-pointer";
     } else {
-      btn.className = "category-btn bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20";
+      btn.className = "category-btn bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2 rounded-full text-xs sm:text-sm transition backdrop-blur-sm whitespace-nowrap border border-white/20 cursor-pointer";
     }
-  });
-}
-
-function setupSearchSystem() {
-  const searchBtn = document.getElementById('search-button');
-  const searchModal = document.getElementById('search-modal');
-  const closeSearchBtn = document.getElementById('close-search-btn');
-  const searchForm = document.getElementById('search-form');
-  const searchInput = document.getElementById('search-input');
-
-  if (!searchBtn || !searchModal) return;
-
-  searchBtn.addEventListener('click', () => {
-    searchModal.classList.remove('hidden');
-    searchModal.classList.add('flex');
-    searchInput.focus();
-  });
-
-  closeSearchBtn.addEventListener('click', () => {
-    searchModal.classList.add('hidden');
-    searchModal.classList.remove('flex');
-  });
-
-  searchModal.addEventListener('click', (e) => {
-    if (e.target === searchModal) {
-      searchModal.classList.add('hidden');
-      searchModal.classList.remove('flex');
-    }
-  });
-
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const keyword = searchInput.value.trim();
-    if (!keyword) return;
-    window.location.href = `./Product_Page.html?search=${encodeURIComponent(keyword)}`;
   });
 }
