@@ -4,9 +4,14 @@ import { productData } from "./api/product.js";
 // ==========================================
 // 1. ฟังก์ชันโหลด Component แบบ Async
 // ==========================================
+
+// Base URL ของโปรเจกต์ = ตำแหน่งของ script.js เอง (อยู่ที่ root ของ client/)
+// ทำให้ fetch/link ถูกต้องเสมอ ไม่ว่าจะเปิดหน้าไหน หรือ serve ผ่าน subpath แบบไหน
+const APP_BASE_URL = new URL('./', import.meta.url);
+
 async function loadComponent(elementId, filePath) {
   try {
-    const response = await fetch(filePath);
+    const response = await fetch(new URL(filePath, APP_BASE_URL));
     if (!response.ok) throw new Error(`Could not load ${filePath}`);
     const html = await response.text();
 
@@ -15,6 +20,14 @@ async function loadComponent(elementId, filePath) {
 
     const temp = document.createElement('div');
     temp.innerHTML = html;
+
+    // Rewrite link/img แบบ ./xxx ให้ชี้มาที่ root ของโปรเจกต์เสมอ
+    temp.querySelectorAll('a[href^="./"]').forEach(el => {
+      el.setAttribute('href', new URL(el.getAttribute('href'), APP_BASE_URL).href);
+    });
+    temp.querySelectorAll('img[src^="./"]').forEach(el => {
+      el.setAttribute('src', new URL(el.getAttribute('src'), APP_BASE_URL).href);
+    });
 
     const searchModal = temp.querySelector('#search-modal');
     if (searchModal) {
@@ -61,10 +74,20 @@ function dropDownProfile() {
 
   if (!dropProfile || !dropProfileModal) return;
 
-  dropProfile.addEventListener('click', (e) => {
+  // ผูก toggle เฉพาะปุ่ม Admin (anchor แรก) ไม่ใช่ทั้ง <li>
+  const adminTrigger = dropProfile.querySelector('a');
+
+  adminTrigger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     dropProfileModal.classList.toggle('hidden');
+  });
+
+  // ลิงก์ใน dropdown ทำงานตาม href ปกติ แล้วค่อยปิดเมนู
+  dropProfileModal.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      dropProfileModal.classList.add('hidden');
+    });
   });
 
   document.addEventListener('click', (e) => {
@@ -147,7 +170,9 @@ function setupSearchSystem() {
       e.preventDefault();
       const keyword = searchInput ? searchInput.value.trim() : '';
       if (!keyword) return;
-      window.location.href = `./Product_Page.html?search=${encodeURIComponent(keyword)}`;
+      const target = new URL('Product_Page.html', APP_BASE_URL);
+      target.searchParams.set('search', keyword);
+      window.location.href = target.href;
     });
   }
 }
