@@ -72,7 +72,7 @@
       </h1>
       <p class="text-white mt-8 uppercase tracking-[0.02em] text-[11px]">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Rerum iure eaque voluptatum voluptas eius illum.</p>
        <a href="./Product_Page.html" class="mt-8 text-primary rounded-md inline-flex items-center gap-3 bg-background px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.3em] text-foreground transition-opacity hover:opacity-85">
-     OUR PRODUCT
+     OUR PRODUCTS
     </a>
     </div>
    
@@ -84,51 +84,60 @@
   <!-- main section -->
   <section id="main" class="max-w-7xl w-full mx-auto  sm:px-6 lg:px-8 ">
     <!-- recommend section -->
-    <div class="text-primary my-6 text-center md:text-left">
-      <h3 class="text-2xl font-bold">RECOMMEND PRODUCT</h3>
-      <p class="font-semibold text-xl text-gray-700">
+    <div class="text-primary my-6 sm:text-center  lg:text-start md:text-center">
+      <h3 class="text-2xl font-bold text-center md:text-start">RECOMMEND PRODUCT</h3>
+      <p class="font-semibold text-xl text-gray-700  text-center md:text-start">
         สินค้าแนะนำเลือกช็อปตามใจ
       </p>
     </div>
 
     <!-- Card Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 ">
-      <!-- Card 1 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]  ">
-        <a href="Product_Page.html?category=tops">
-          <img src="./assets/product/style_1.jpg" alt="เสื้อ" width="736" height="981"
-          class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
-        <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-          <h4 class="text-3xl">เสื้อ</h4>
-          <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-        </div>
-        </a>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 px-4">
+  <!-- Card 1 -->
+  <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
+    <a href="Product_Page.html?category=tops" class="block w-full h-full">
+      <img 
+        src="./assets/product/style_1.jpg" 
+        alt="เสื้อ" 
+        class="transition duration-300 ease-in-out group-hover:scale-105 w-full h-full object-cover cursor-pointer" 
+      />
+      <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+        <h4 class="text-3xl">เสื้อ</h4>
+        <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
+    </a>
+  </div>
 
-      <!-- Card 2 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
-        <a href="Product_Page.html?category=bottoms">
-          <img src="./assets/product/style_3.jpg" alt="กางเกง"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-            <h4 class="text-3xl">กางเกง</h4>
-            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-          </div>
-        </a>
+  <!-- Card 2 -->
+  <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
+    <a href="Product_Page.html?category=bottoms" class="block w-full h-full">
+      <img 
+        src="./assets/product/style_3.jpg" 
+        alt="กางเกง" 
+        class="transition duration-300 ease-in-out group-hover:scale-105 w-full h-full object-cover cursor-pointer" 
+      />
+      <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+        <h4 class="text-3xl">กางเกง</h4>
+        <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
+    </a>
+  </div>
 
-      <!-- Card 3 -->
-      <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
-        <a href="Product_Page.html?category=skirts">
-          <img src="./assets/product/style_2.jpg" alt="กระโปรง"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover cursor-pointer" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-            <h4 class="text-3xl">กระโปรง</h4>
-            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
-          </div>
-        </a>
+  <!-- Card 3 -->
+  <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md aspect-[3/4]">
+    <a href="Product_Page.html?category=skirts" class="block w-full h-full">
+      <img 
+        src="./assets/product/style_2.jpg" 
+        alt="กระโปรง" 
+        class="transition duration-300 ease-in-out group-hover:scale-105 w-full h-full object-cover cursor-pointer" 
+      />
+      <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
+        <h4 class="text-3xl">กระโปรง</h4>
+        <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
-    </div>
+    </a>
+  </div>
+</div>
 
     <!-- Mix and Match Section -->
     <div class="bg-accent rounded-2xl flex flex-col lg:flex-row justify-between p-6 sm:p-10 gap-8 my-12">
@@ -191,13 +200,17 @@
       </div>
     </div>
     <div>
-      <div class="py-5 text-primary">
+      <div class="py-5 text-primary text-center md:text-left">
         <h2 class="text-2xl font-bold ">RECOMMEND LOOKBOOK</h2>
         <p class="font-semibold text-xl text-gray-700">Mix and Match ลุคสุดพิเศษที่ได้รับความนิยม</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
         <!-- Card 1 -->
+<<<<<<< HEAD
         <a href="./Product_Page.html" class="block relative overflow-hidden w-full max-w-sm aspect-[3/4] rounded-xl group shadow-md cursor-pointer">
+=======
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+>>>>>>> origin/develop
           <img src="./assets/lookbook/lookbook_set1.jpg" alt="เสื้อ" 
             class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
           <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-lg">
@@ -209,7 +222,11 @@
         </a>
 
         <!-- Card 2 -->
+<<<<<<< HEAD
         <a href="./Product_Page.html" class="block w-full max-w-sm aspect-[3/4] rounded-xl relative overflow-hidden group shadow-md cursor-pointer">
+=======
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
+>>>>>>> origin/develop
           <img src="./assets/lookbook/lookbook_set2.jpg" alt="กางเกง"
             class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
           <div class="absolute bottom-4 left-4 font-bold drop-shadow-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-lg">
@@ -234,7 +251,7 @@
       </div>
     </div>
 <!-- 1. คอนเทนเนอร์หลัก: ต้องมี w-full และ overflow-hidden เพื่อซ่อนส่วนที่เกินขอบจอ -->
-   <div class="">
+   <div class="text-center md:text-start">
     <h2 class="text-2xl font-bold text-primary">Special Product</h2>
    <p class="text-xl text-primary ">สินค้าพิเศษเฉพาะช่วงนี้เท่านั้น</p>
    </div>
@@ -325,7 +342,7 @@
 </div>
 
 
-  <div class="pt-5">
+  <div class="pt-5 text-center md:text-start">
     <h2 class="text-2xl font-bold text-primary">Article</h2>
    <p class="text-xl text-primary ">อ่านบทความพิเศษช่วงนี้เท่านั้น</p>
    </div>

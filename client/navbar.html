@@ -1,63 +1,114 @@
-<nav class=" w-full bg-white shadow-sm">
-  <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20"
-  >
-    <!-- Logo -->
-    <a href="./index.html" class="flex items-center">
-      <img src="./assets/logo/newlogo.png" alt="Logo" class="w-24 h-auto" />
+<nav class="w-full bg-white shadow-sm py-3 relative z-50">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+    
+    <!-- Logo (ฝั่งซ้าย) -->
+    <a href="./index.html" class="flex items-center gap-3 shrink-0">
+      <img src="./assets/logo/newlogo.png" alt="Logo" class="w-20 md:w-24 h-auto" />
     </a>
 
-    <!-- Menu List -->
-    <ul class="flex items-center gap-6 text-lg font-medium">
-      <li>
-        <button
-          class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition" 
-          id="search-button"
-        >
-          <img src="./assets/icon/search.png" alt="search" class="w-4 h-4" />
+    <div class="flex flex-row gap-2 item-center md:hidden">
+        <button class=inline-flex items-center justify-center p-2 w-10 h-10 text-gray-600 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none transition cursor-pointer">
+          <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center md:hidden">
+            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
+          </a>
         </button>
-      </li>
+    <!-- Hamburger Button (แสดงเฉพาะ Mobile) -->
+    <button 
+      id="hamburger-btn" 
+      type="button" 
+      class="inline-flex items-center justify-center p-2 w-10 h-10 text-gray-600 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none transition cursor-pointer"
+      aria-label="Toggle Navigation"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    </div>
 
-      <li class="text-primary hover:underline decoration-accent underline-offset-4 transition">
-        <a href="./Product_Page.html">PRODUCTS</a>
-      </li>
-      <li class="text-primary hover:underline decoration-accent underline-offset-4 transition">
-        <a href="#">FEATURES</a>
-      </li>
+    <!-- Menu List Container -->
+    <!-- Mobile: เด้งลงมาล่าง Nav | Desktop (md, lg): เรียงแนวนอนชิดขวา พร้อมเส้นกั้นแบบในรูป -->
+    <div 
+      id="mobile-menu" 
+      class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 p-6 md:static md:flex md:items-center md:justify-end md:w-auto md:bg-transparent md:shadow-none md:border-0 md:p-0 "
+    >
+      <ul class="flex flex-col md:flex-row items-center justify-center md:justify-end gap-4 md:gap-0 text-base md:text-base font-medium w-full md:w-auto md:divide-x md:divide-gray-200">
+        
+        <!-- Search Button -->
+        <li class="w-full md:w-auto pb-3 md:pb-0 md:px-4 border-b border-gray-100 md:border-b-0 flex justify-center items-center">
+          <button
+            class="w-9 h-9  md:rounded-full border 
+             border-gray-300  items-center flex gap-2
+             justify-center hover:bg-gray-100 transition border-none rounded-none" 
+            id="search-button"
+          >
+          <img src="./assets/icon/search.png" alt="search" class="w-4 h-4 " />
+            <h1 class="text-primary block text-xl md:hidden ">ค้นหา</h1>
+          </button>
+      
+        </li>
 
-      <li>
-        <a
-          href="./signup.html"
-          class="flex items-center gap-2 text-primary hover:opacity-80 transition"
-        >
-          <img src="./assets/icon/user.png" alt="Sign in" class="w-6 h-6" />
-          <span>SIGN IN</span>
-        </a>
-      </li>
-      <li>
-        <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center">
-          <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
-        </a>
-      </li>
-    </ul>
+        <!-- Products -->
+        <li class="w-full md:w-auto pb-3 md:pb-0 md:px-5 border-b border-gray-100 md:border-b-0 flex justify-center items-center text-primary hover:underline decoration-accent underline-offset-4 transition">
+          <a href="./Product_Page.html" class="whitespace-nowrap">PRODUCTS</a>
+        </li>
+        
+        <!-- Features -->
+        <li class="w-full md:w-auto pb-3 md:pb-0 md:px-5 border-b border-gray-100 md:border-b-0 flex justify-center items-center text-primary hover:underline decoration-accent underline-offset-4 transition">
+          <a href="#" class="whitespace-nowrap">FEATURES</a>
+        </li>
+
+        <!-- Sign In -->
+        <li class="w-full md:w-auto pb-3 md:pb-0 md:px-5 border-b border-gray-100 md:border-b-0 flex justify-center items-center">
+          <a href="./signup.html" class="text-primary hover:opacity-80 transition whitespace-nowrap">
+            SIGN IN
+          </a>
+        </li>
+
+        <!-- Profile Dropdown Trigger -->
+        <li id="profile-modal" class="relative list-none cursor-pointer w-full md:w-auto pb-3 md:pb-0 md:px-5 border-b border-gray-100 md:border-b-0 flex justify-center items-center">
+          <a href="#" class="flex items-center gap-2 text-primary hover:opacity-80 transition select-none whitespace-nowrap">
+            <span>Admin</span>
+            <img src="./assets/icon/down.png" alt="down-btn" class="w-4 h-4" />
+          </a>
+
+          <!-- Dropdown Menu -->
+          <div id="dropdown-menu-btn" class="hidden absolute top-full right-0 z-[100] mt-2 h-auto">
+            <div class="bg-white w-48 min-h-fit rounded-2xl p-4 shadow-2xl border border-gray-100 flex flex-col gap-2">
+              <a href="#profile" class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition text-gray-700 font-medium">
+                <img src="./assets/icon/user.png" alt="profile" class="w-5 h-5 shrink-0" />
+                <span class="text-sm">Profile</span>
+              </a>
+
+              <hr class="border-gray-200 my-1" />
+
+              <a href="#logout" class="flex items-center gap-3 p-2 hover:bg-red-50 rounded-lg transition text-red-600 font-medium">
+                <img src="./assets/icon/logout.png" alt="logout" class="w-5 h-5 shrink-0" />
+                <span class="text-md text-red-600 font-semibold">Logout</span>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Cart -->
+        <li class="w-full hidden md:w-auto md:flex justify-center items-center md:pl-5 pt-2 md:pt-0">
+          <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center">
+            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
   </div>
 </nav>
+<!-- Search Modal -->
 <div id="search-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
   <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl relative">
-    <button id="close-search-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">✕</button>
-    
+    <button id="close-search-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold cursor-pointer">✕</button>
     <h3 class="text-lg font-bold text-gray-800 mb-4">ค้นหาสินค้า</h3>
-    
     <form id="search-form" class="flex gap-2">
-      <input 
-        type="text" 
-        id="search-input" 
-        placeholder="พิมพ์ชื่อสินค้า เช่น เสื้อเชิ้ต, กางเกง..." 
-        class="flex-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none focus:border-primary text-sm"
-      />
-      <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-xl font-medium text-sm hover:opacity-90 transition">
-        ค้นหา
-      </button>
+      <input type="text" id="search-input" placeholder="พิมพ์ชื่อสินค้า..." class="flex-1 border border-gray-300 rounded-xl px-4 py-2.5 focus:outline-none text-sm" />
+      <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:opacity-90 transition cursor-pointer">ค้นหา</button>
     </form>
   </div>
 </div>
