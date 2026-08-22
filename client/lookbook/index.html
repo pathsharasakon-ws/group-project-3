@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCCASION - Lookbook Project</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0046a7",
+            secondary: "#495f8f",
+            accent: "#e2156d",
+            background: "#fcf4ee",
+          },
+          fontFamily: {
+            sans: ["Prompt", "sans-serif"],
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+      <a href="./index.html" class="flex items-center">
+        <img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/logo/newlogo.png" alt="Logo" class="w-24 h-auto" />
+      </a>
+      <ul class="flex items-center gap-6 text-lg font-medium">
+        <li>
+          <button class="rounded-full border border-gray-400 p-2 flex items-center justify-center hover:bg-gray-100 transition">
+            <img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/search.png" alt="search" class="w-4 h-4" />
+          </button>
+        </li>
+        <li class="text-primary decoration-accent hover:underline underline-offset-4">
+          <a href="./Product_Page.html">PRODUCTS</a>
+        </li>
+        <li class="text-primary decoration-accent hover:underline underline-offset-4">
+          <a href="#">FEATURES</a>
+        </li>
+        <li>
+          <a href="./index.html" class="flex items-center gap-2 text-primary hover:opacity-80 transition">
+            <img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/user.png" alt="Sign in" class="w-6 h-6" />
+            <span>SIGN IN</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="hover:opacity-80 transition flex items-center relative">
+            <img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
+            <span id="favCount" class="absolute -top-2 -right-3 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+    <section class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">Occasion Lookbook</h1>
+        <p class="mt-2 text-sm sm:text-base text-gray-600">สนุกกับการจับคู่ Tops & Bottoms ของเราได้หลากหลายสไตล์</p>
+    </section>
+
+    <!-- Filter Bar (คำว่า ตัวกรอง + Dropdown รวมทุกเงื่อนไข รวมถึงราคา) -->
+    <section class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-2 w-full sm:w-auto">
+            <span class="text-sm font-bold text-gray-700">ตัวกรอง:</span>
+        </div>
+        <div class="w-full sm:w-auto flex items-center gap-3">
+            <select id="mainFilter" class="w-full sm:w-80 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-primary focus:border-primary p-2.5 outline-none font-medium">
+                <option value="name_asc">เรียงตามชื่อ Look (A-Z)</option>
+                <option value="name_desc">เรียงตามชื่อ Look (Z-A)</option>
+                <option value="price_low">ราคา: ต่ำไปสูง</option>
+                <option value="price_high">ราคา: สูงไปต่ำ</option>
+                <option value="latest">โพสต์ล่าสุด</option>
+                <option value="oldest">โพสต์เก่าสุด</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Lookbook Grid -->
+    <section id="lookbookGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- รายการสินค้าจะถูก Render ด้วย JavaScript -->
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="Footer" class="bg-accent text-white mt-12">
+    <div class="max-w-6xl w-full mx-auto px-4 py-8">
+      <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-8 rounded-xl shadow-md gap-4">
+        <p class="text-white font-medium text-base sm:text-lg text-center sm:text-left">
+          Become a member and get 10% off for first purchase
+        </p>
+        <button class="bg-white text-primary font-bold px-6 py-2.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap shadow">
+          Subscribe
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 my-10">
+        <div>
+          <h4 class="font-bold text-lg mb-4">SHOP</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Tops</a></li>
+            <li><a href="#" class="hover:underline transition">Bottoms</a></li>
+            <li><a href="#" class="hover:underline transition">LookBooks</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">HELP</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Customer Service</a></li>
+            <li><a href="#" class="hover:underline transition">Terms & Policy</a></li>
+            <li><a href="#" class="hover:underline transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">USER</h4>
+          <ul class="space-y-2 text-sm text-white/90">
+            <li><a href="#" class="hover:underline transition">Become A Member</a></li>
+            <li><a href="#" class="hover:underline transition">My Account</a></li>
+            <li><a href="#" class="hover:underline transition">My Lookbooks</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">Connect with OCCASION</h4>
+          <ul class="flex flex-col space-y-3 text-sm text-white/90">
+            <li><a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition"><img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/facebook.png" alt="facebook" class="w-5 h-5 object-contain" /><span>Facebook</span></a></li>
+            <li><a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition"><img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/instagram.png" alt="instagram" class="w-5 h-5 object-contain" /><span>Instagram</span></a></li>
+            <li><a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition"><img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/line.png" alt="line" class="w-5 h-5 object-contain" /><span>Line Official</span></a></li>
+            <li><a href="#" class="inline-flex items-center gap-2 hover:opacity-80 transition"><img src="/Users/pathsharasakon/software_project/jsd13/group-project-3/client/assets/icon/tiktok.png" alt="tiktok" class="w-5 h-5 object-contain" /><span>TikTok</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/20 pt-6 text-center text-xs text-white/70">
+        &copy; 2026 OCCASION. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- เรียกใช้งานไฟล์ JavaScript ที่แยกออกมา -->
+  <script src="./js/lookbook.js"></script>
+</body>
+</html>
