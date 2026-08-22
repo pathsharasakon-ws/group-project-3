@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - OCCASION</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./output.css" />
+
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .btn-liquid-glass {
+      position: relative;
+      background: rgba(226, 21, 109, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 32px 0 rgba(226, 21, 109, 0.35),
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-liquid-glass:hover {
+      background: rgba(226, 21, 109, 0.9);
+      box-shadow: 0 12px 40px 0 rgba(226, 21, 109, 0.5),
+                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.8);
+      transform: translateY(-2px) scale(1.01);
+    }
+  </style>
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- NAVBAR CONTAINER -->
+  <header id="navbar-container"></header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row overflow-hidden">
+      
+      <!-- SIDEBAR MENU -->
+      <aside class="w-full md:w-64 border-b md:border-b-0 md:border-r border-gray-100 p-4 md:p-6 bg-gray-50/50 flex-shrink-0 md:sticky md:top-0 md:h-screen">
+        <button id="toggle-sidebar" type="button" class="w-full md:hidden flex justify-between items-center py-2.5 px-4 bg-white border border-gray-200 rounded-lg text-xs font-bold uppercase tracking-wider text-gray-700 shadow-sm hover:bg-gray-50 transition">
+          <span>Profile Menu</span>
+          <svg id="menu-arrow" class="w-4 h-4 transform transition-transform duration-200 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <nav id="sidebar-menu" class="hidden md:block space-y-3 text-xs tracking-wide text-gray-500 font-medium mt-3 md:mt-0">
+          <a href="#profile-info" class="block py-1 hover:text-black hover:font-bold transition">Profile</a>
+          <a href="#measurements" class="block py-1 hover:text-black hover:font-bold transition">Measurements</a>
+          <a href="#style-profile" class="block py-1 hover:text-black hover:font-bold transition">Style Profile</a>
+          <a href="#account-details" class="block py-1 hover:text-black hover:font-bold transition">Personal Information</a>
+          <a href="#shipping-addresses" class="block py-1 hover:text-black hover:font-bold transition">Shipping Addresses</a>
+          <a href="#payment-methods" class="block py-1 hover:text-black hover:font-bold transition">Payment Methods</a>
+          <a href="#notifications" class="block py-1 hover:text-black hover:font-bold transition">Notifications</a>
+          <a href="#order-history" class="block py-1 hover:text-black hover:font-bold transition">Order History</a>
+          <a href="#reviews" class="block py-1 hover:text-black hover:font-bold transition">Reviews</a>
+          <a href="#wishlist" class="block py-1 hover:text-black hover:font-bold transition">Your Wishlist</a>
+          <a href="#curated-gallery" class="block py-1 hover:text-black hover:font-bold transition">Curated Gallery</a>
+        </nav>
+      </aside>
+
+      <!-- CONTENT SECTIONS -->
+      <div class="flex-1 p-6 sm:p-12 space-y-16">
+
+        <!-- 1. Profile Info -->
+        <section id="profile-info" class="flex items-center gap-6 scroll-mt-6">
+          <div class="w-24 h-24 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 flex items-center justify-center border border-gray-300">
+            <img id="avatar-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/><circle cx='12' cy='7' r='4'/></svg>" alt="Avatar" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <h1 class="text-3xl font-extrabold text-gray-900"><span id="header-first-name">Alex</span> <span id="header-last-name">Rivera</span></h1>
+            <p class="text-xs text-gray-400 mb-3">Member since 202x</p>
+            <input type="file" id="avatar-input" accept="image/*" class="hidden">
+            <button type="button" id="edit-photo-btn" class="border border-gray-300 text-xs px-3 py-1.5 rounded hover:bg-gray-50 uppercase font-semibold transition">
+              แก้ไขรูปโปรไฟล์
+            </button>
+          </div>
+        </section>
+
+        <!-- 2. Measurements -->
+        <section id="measurements" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">สัดส่วน</h2>
+          </div>
+          <div class="grid grid-cols-3 gap-6 max-w-lg">
+            <div>
+              <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">Chest</label>
+              <div class="flex items-center border-b border-gray-200 py-1">
+                <input type="text" value="0" class="w-full text-sm focus:outline-none bg-transparent">
+                <span class="text-xs text-gray-400">cm.</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">Waist</label>
+              <div class="flex items-center border-b border-gray-200 py-1">
+                <input type="text" value="0" class="w-full text-sm focus:outline-none bg-transparent">
+                <span class="text-xs text-gray-400">cm.</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">Hips</label>
+              <div class="flex items-center border-b border-gray-200 py-1">
+                <input type="text" value="0" class="w-full text-sm focus:outline-none bg-transparent">
+                <span class="text-xs text-gray-400">cm.</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">บันทึกข้อมูล</button>
+        </section>
+
+        <!-- 3. Style Profile -->
+        <section id="style-profile" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">Style Profile</h2>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="bg-black text-white px-4 py-2 rounded uppercase font-semibold cursor-pointer">Minimalist</span>
+            <span class="border border-gray-200 text-gray-600 px-4 py-2 rounded uppercase font-semibold cursor-pointer hover:border-gray-400">Avant-Garde</span>
+            <span class="bg-black text-white px-4 py-2 rounded uppercase font-semibold cursor-pointer">Monochrome</span>
+            <span class="border border-gray-200 text-gray-600 px-4 py-2 rounded uppercase font-semibold cursor-pointer hover:border-gray-400">Business Casual</span>
+            <span class="border border-gray-200 text-gray-600 px-4 py-2 rounded uppercase font-semibold cursor-pointer hover:border-gray-400">Streetwear</span>
+          </div>
+        </section>
+
+        <!-- 4. Personal Information -->
+        <section id="account-details" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">ข้อมูลส่วนบุคคล</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl">
+            <div>
+              <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">ชื่อ</label>
+              <input type="text" id="display-first-name" value="Alex" class="w-full border-b border-gray-200 py-1 text-sm focus:outline-none bg-transparent" readonly>
+            </div>
+            <div>
+              <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">นามสกุล</label>
+              <input type="text" id="display-last-name" value="Rivera" class="w-full border-b border-gray-200 py-1 text-sm focus:outline-none bg-transparent" readonly>
+            </div>
+          </div>
+
+          <div class="max-w-xl">
+            <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">อีเมล</label>
+            <input type="email" id="display-email" value="alex.rivera@example.com" class="w-full border-b border-gray-200 py-1 text-sm focus:outline-none bg-transparent" readonly>
+          </div>
+
+          <div class="max-w-xl">
+            <label class="block text-[10px] text-gray-400 font-bold uppercase mb-1">เบอร์โทร</label>
+            <input type="text" id="display-phone" value="+66 xx xxx xxxx" class="w-full border-b border-gray-200 py-1 text-sm focus:outline-none bg-transparent" readonly>
+          </div>
+
+          <button type="button" id="open-edit-modal-btn" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">เพิ่มข้อมูล</button>
+        </section>
+
+        <!-- EDIT PERSONAL INFORMATION MODAL -->
+        <div id="edit-info-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+          <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative space-y-6 my-auto">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+              <h3 class="text-xl font-bold text-gray-900">แก้ไขข้อมูลส่วนตัว</h3>
+              <button type="button" id="close-modal-btn" class="text-gray-400 hover:text-black font-bold text-lg">✕</button>
+            </div>
+
+            <form id="edit-profile-form" class="space-y-5 text-xs text-gray-700">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800">ชื่อ <span class="text-red-500">*</span></label>
+                  <input type="text" id="input-first-name" value="Alex" required class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800">นามสกุล <span class="text-red-500">*</span></label>
+                  <input type="text" id="input-last-name" value="Rivera" required class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800">วัน/เดือน/ปี เกิด <span class="text-red-500">*</span></label>
+                <input type="date" id="input-dob" required class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800">เบอร์โทร <span class="text-red-500">*</span></label>
+                <input type="tel" id="input-phone" value="+66 xx xxx xxxx" required class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div class="pt-4 flex justify-end gap-3 border-t border-gray-100">
+                <button type="button" id="cancel-modal-btn" class="px-5 py-2.5 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-50 transition">ยกเลิก</button>
+                <button type="submit" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">บันทึก</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 5. Shipping Addresses Section -->
+        <section id="shipping-addresses" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900">ที่อยู่สำหรับจัดส่ง</h2>
+            </div>
+            <button type="button" id="add-address-btn" class="border border-gray-300 text-xs px-3 py-1.5 rounded uppercase font-semibold hover:bg-gray-50 transition">เพิ่มที่อยู่</button>
+          </div>
+          
+          <div id="address-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Dynamic Addresses will be rendered here -->
+          </div>
+        </section>
+
+        <!-- SHIPPING ADDRESS MODAL -->
+        <div id="address-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+          <div class="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative space-y-6 my-auto">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+              <h3 id="address-modal-title" class="text-xl font-bold text-gray-900"> เพิ่มที่อยู่จัดส่ง</h3>
+              <button type="button" id="close-address-modal-btn" class="text-gray-400 hover:text-black font-bold text-lg">✕</button>
+            </div>
+
+            <form id="address-form" class="space-y-4 text-xs text-gray-700">
+              <input type="hidden" id="address-id">
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800"> ที่อยู่ <span class="text-red-500">*</span></label>
+                <input type="text" id="addr-label" required placeholder="(เช่น บ้าน / ที่ทำงาน)" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800"> ชื่อ <span class="text-red-500">*</span></label>
+                <input type="text" id="addr-name" required placeholder="Alex Rivera" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800"> บ้านเลขที่ / ถนน <span class="text-red-500">*</span></label>
+                <input type="text" id="addr-street" required placeholder="123/45 ซอย สุขุมวิท 21" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <!-- Thailand Auto Select Options -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800"> จังหวัด <span class="text-red-500">*</span></label>
+                  <select id="addr-province" required class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+                    <option value="">-- เลือกจังหวัด --</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800"> เขต/อำเภอ <span class="text-red-500">*</span></label>
+                  <div id="district-container">
+                    <select id="addr-district" required disabled class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30 disabled:bg-gray-100">
+                      <option value="">-- เขต/อำเภอ --</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800"> แขวง/ตำบล <span class="text-red-500">*</span></label>
+                  <div id="subdistrict-container">
+                    <select id="addr-subdistrict" required disabled class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30 disabled:bg-gray-100">
+                      <option value="">-- แขวง/ตำบล --</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800"> รหัสไปรษณีย์ <span class="text-red-500">*</span></label>
+                  <input type="text" id="addr-postal" required placeholder="รหัสไปรษณีย์" class="w-full border border-gray-200 rounded-lg p-2.5 bg-gray-50/30 focus:outline-none focus:border-black">
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800">เบอร์โทร <span class="text-red-500">*</span></label>
+                <input type="tel" id="addr-phone" required placeholder="+66 xx xxx xxxx" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div class="pt-4 flex justify-end gap-3 border-t border-gray-100">
+                <button type="button" id="cancel-address-modal-btn" class="px-5 py-2.5 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-50 transition">Cancel</button>
+                <button type="submit" class="w-full text-white text-center py-3.5 rounded-full font-semibold block transition-all duration-300 relative overflow-hidden backdrop-blur-md bg-[#e2156d]/70 border border-white/30 shadow-[0_8px_32px_0_rgba(226,21,109,0.37)] hover:bg-[#e2156d]/90 hover:shadow-[0_8px_32px_0_rgba(226,21,109,0.6)] hover:scale-[1.02] active:scale-[0.98] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-50 pointer-events-auto">Save Address</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 6. Payment Methods Section -->
+        <section id="payment-methods" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900">การชำระเงิน</h2>
+            </div>
+            <button type="button" id="add-payment-btn" class="border border-gray-300 text-xs px-3 py-1.5 rounded uppercase font-semibold hover:bg-gray-50 transition">เพิ่มบัตร</button>
+          </div>
+
+          <div id="payment-list" class="space-y-3 max-w-xl">
+            <!-- Dynamic Payment Methods will be rendered here -->
+          </div>
+        </section>
+
+        <!-- PAYMENT METHOD MODAL -->
+        <div id="payment-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+          <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-2xl relative space-y-6 my-auto">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+              <h3 id="payment-modal-title" class="text-xl font-bold text-gray-900">เพิ่มบัตรเครดิต</h3>
+              <button type="button" id="close-payment-modal-btn" class="text-gray-400 hover:text-black font-bold text-lg">✕</button>
+            </div>
+
+            <form id="payment-form" class="space-y-4 text-xs text-gray-700">
+              <input type="hidden" id="payment-id">
+
+              <div>
+                <label class="block font-semibold mb-1 text-gray-800">Cardholder Name <span class="text-red-500">*</span></label>
+                <input type="text" id="card-name" required placeholder="ชื่อเจ้าของบัตร" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30 uppercase">
+              </div>
+
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <label class="font-semibold text-gray-800">Card Number <span class="text-red-500">*</span></label>
+                  <span id="card-type-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-500"></span>
+                </div>
+                <input type="text" id="card-number" maxlength="19" required placeholder="เลขบัตร 16 หลัก" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800">Expiration Date <span class="text-red-500">*</span></label>
+                  <input type="text" id="card-exp" maxlength="5" required placeholder="MM/YY" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-1 text-gray-800">CVC / CVV <span class="text-red-500">*</span></label>
+                  <input type="password" id="card-cvc" maxlength="4" required placeholder="xxx" class="w-full border border-gray-200 rounded-lg p-2.5 focus:outline-none focus:border-black bg-gray-50/30">
+                </div>
+              </div>
+
+              <div class="pt-4 flex justify-end gap-3 border-t border-gray-100"> 
+                <button type="button" id="cancel-payment-modal-btn" class="px-5 py-2.5 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-50 transition">Cancel</button>
+                <button type="button" id="open-edit-modal-btn" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">Save Card</button>
+              </div> 
+            </form>
+          </div>
+        </div>
+
+        <!-- 7. Notifications -->
+        <section id="notifications" class="space-y-4 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">การแจ้งเตือน</h2>
+          </div>
+          <div class="space-y-4 max-w-xl text-xs">
+            <div class="flex justify-between items-center py-2 border-b border-gray-100">
+              <div>
+                <p class="font-bold">สถานะการจัดส่ง</p>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 accent-[#e2156d]">
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Order History -->
+        <section id="order-history" class="space-y-6 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">ประวัติการสั่งซื้อ</h2>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+            <h3 class="text-lg font-bold text-gray-900">สถานะการจัดส่ง</h3>
+            <p class="text-xs text-gray-500 mt-2">Order #OC-99281 containing the "Midnight Velvet Blazer" is currently departing our distribution center.</p>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-gray-200 text-gray-400 uppercase text-[10px]">
+                  <th class="py-2">Order ID</th>
+                  <th class="py-2">Date</th>
+                  <th class="py-2">Status</th>
+                  <th class="py-2">Total</th>
+                  <th class="py-2 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr>
+                  <td class="py-3 font-semibold">#OC-99281</td>
+                  <td class="py-3 text-gray-500">May 12, 2024</td>
+                  <td class="py-3"><span class="bg-blue-600 text-white text-[9px] px-2 py-0.5 rounded font-bold uppercase">In Transit</span></td>
+                  <td class="py-3 font-semibold">฿1,240.00</td>
+                  <td class="py-3 text-right"><button type="button" class="border border-gray-300 px-2.5 py-1 rounded text-[10px] uppercase font-bold hover:bg-gray-50">View Details</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 9. Reviews -->
+        <section id="reviews" class="space-y-6 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">Reviews</h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 border-b border-gray-200 pb-2">Pending Feedback</h3>
+              <div class="border-l-2 border-red-500 bg-gray-50/50 p-4 space-y-3 text-xs">
+                <span class="text-[9px] text-gray-400 font-mono">ORDER #OC-99281</span>
+                <textarea placeholder="Enter technical evaluation..." class="w-full border border-gray-200 rounded p-2 text-xs h-20 focus:outline-none bg-white"></textarea>
+                <button type="button" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">Submit</button>
+              </div>
+            </div>
+        </section>
+
+        <!-- 10. Your Wishlist -->
+        <section id="wishlist" class="space-y-6 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Member Space</span>
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b border-gray-200 pb-4 gap-4">
+              <h2 class="text-3xl font-extrabold text-gray-900">Your Wishlist</h2>
+              <div class="flex gap-6 text-[11px] font-bold tracking-wider text-gray-400 uppercase overflow-x-auto pb-1">
+                <button type="button" class="text-black border-b-2 border-black pb-1 -mb-1 font-extrabold">All Items</button>
+                <button type="button" class="hover:text-black transition">Outerwear</button>
+                <button type="button" class="hover:text-black transition">Dresses</button>
+                <button type="button" class="hover:text-black transition">Accessories</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="space-y-2 group">
+              <div class="relative bg-gray-100 aspect-[3/4] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Blazer" class="w-full h-full object-cover">
+                <button type="button" class="absolute top-2 right-2 bg-white/80 hover:bg-white w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-gray-700 shadow-sm transition">×</button>
+              </div>
+              <div class="flex justify-between items-start text-xs">
+                <div>
+                  <h3 class="font-bold uppercase tracking-tight text-gray-900">Structured Wool Blazer</h3>
+                  <p class="text-[10px] text-gray-400">Outerwear — Midnight Black</p>
+                </div>
+                <span class="font-bold text-gray-900">฿4,950</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. My Curated Gallery -->
+        <section id="curated-gallery" class="space-y-6 pt-8 border-t border-gray-100 scroll-mt-6">
+          <div>
+            <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Member Area / Saved Lookbooks</span>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-1">
+              <h2 class="text-3xl font-extrabold text-gray-900">My Curated Gallery</h2>
+              <button type="button" class="btn-liquid-glass text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase mt-2">Create New Look +</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER CONTAINER -->
+  <div id="footer-container"></div>
+  <script type="module" src="./script.js"></script>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+  // 1. ประกาศตัวแปรเก็บข้อมูลสากล
+  let rawAddressData = [];
+
+  // 2. ดึงข้อมูล JSON จากไฟล์ในเครื่อง
+  fetch('./thailand_db.json')
+    .then(res => {
+        if (!res.ok) throw new Error('ไม่พบไฟล์ thailand_db.json');
+        return res.json();
+    })
+    .then(data => {
+        window.rawAddressData = Array.isArray(data) ? data : (data.provinces || data.data || []);
+        console.log('ดึงข้อมูลสำเร็จ:', window.rawAddressData.length, 'จังหวัด');
+        console.log('ตัวอย่างข้อมูล:', window.rawAddressData[0]);
+        initProvinces();
+    })
+    .catch(err => console.error('Error loading address data:', err));
+
+  // 3. ฟังก์ชัน Render รายชื่อจังหวัด
+  function initProvinces() {
+  const provinceSelect = document.getElementById('addr-province');
+  if (!provinceSelect || rawAddressData.length === 0) return;
+
+  provinceSelect.innerHTML = '<option value="">-- เลือกจังหวัด --</option>';
+  rawAddressData.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.name_th;
+    opt.textContent = p.name_th;
+    provinceSelect.appendChild(opt);
+  });
+  }
+
+  // 4. ผูก Event Listener เมื่อมีการเลือก Dropdown
+  document.addEventListener('DOMContentLoaded', () => {
+  const provinceSelect = document.getElementById('addr-province');
+  const districtSelect = document.getElementById('addr-district');
+  const subDistrictSelect = document.getElementById('addr-subdistrict');
+  const zipInput = document.getElementById('addr-zip');
+
+// เมื่อเลือก "จังหวัด" -> ดึง "อำเภอ/เขต"
+if (provinceSelect) {
+    provinceSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (districtSelect) districtSelect.innerHTML = '<option value="">-- เลือก เขต/อำเภอ --</option>';
+        if (subDistrictSelect) subDistrictSelect.innerHTML = '<option value="">-- เลือก แขวง/ตำบล --</option>';
+        if (zipInput) zipInput.value = '';
+
+        if (!val) return;
+
+        // 🔍 พิมพ์ดูข้อมูลใน F12 Console ทันที
+        console.log("1. ค่าที่กดเลือกจาก Dropdown:", val);
+        console.log("2. ข้อมูล JSON ทั้งหมด:", rawAddressData);
+
+        if (!rawAddressData || rawAddressData.length === 0) {
+            console.error("❌ ข้อมูล rawAddressData ว่างเปล่า (ไฟล์ json ยังไม่โหลดหรือดึงไม่ผ่าน)");
+            return;
+        }
+
+        // ค้นหาจังหวัดรองรับทุกรูปแบบคีย์ (id, province_id, name_th, name)
+        const province = rawAddressData.find(p => 
+            String(p.id) === String(val) || 
+            String(p.province_id) === String(val) || 
+            p.name_th === val || 
+            p.name === val
+        );
+
+        console.log("3. วัตถุจังหวัดที่หาเจอ:", province);
+
+        if (!province) {
+            console.error("❌ หาจังหวัดไม่เจอ! ค่า value ใน <option> ไม่ตรงกับคีย์ใน JSON");
+            return;
+        }
+
+        // ดึงรายการอำเภอรองรับทุกชื่อคีย์
+        const amphures = province.amphure || province.amphures || province.districts || [];
+        console.log("4. รายการอำเภอที่ดึงได้:", amphures);
+
+        amphures.forEach(d => {
+            const name = d.name_th || d.name || d.amphure_th;
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            districtSelect.appendChild(opt);
+        });
+    });
+}
+
+  // เมื่อเลือก "อำเภอ/เขต" -> ดึง "ตำบล/แขวง"
+  if (districtSelect) {
+    districtSelect.addEventListener('change', (e) => {
+      const selectedProvinceName = provinceSelect.value;
+      const selectedDistrictName = e.target.value;
+      if (subDistrictSelect) subDistrictSelect.innerHTML = '<option value="">-- เลือก แขวง/ตำบล --</option>';
+      if (zipInput) zipInput.value = '';
+
+      const province = rawAddressData.find(p => p.name_th === selectedProvinceName);
+      const district = province?.districts?.find(d => d.name_th === selectedDistrictName);
+
+      if (district && district.sub_districts) {
+        district.sub_districts.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.name_th;
+          opt.textContent = s.name_th;
+          opt.dataset.zip = s.zip_code || '';
+          subDistrictSelect.appendChild(opt);
+        });
+      }
+    });
+  }
+
+  // เมื่อเลือก "ตำบล/แขวง" -> ใส่ "รหัสไปรษณีย์" อัตโนมัติ
+  if (subDistrictSelect) {
+    subDistrictSelect.addEventListener('change', (e) => {
+      const selectedOption = e.target.options[e.target.selectedIndex];
+      if (zipInput) {
+        zipInput.value = selectedOption.dataset.zip || '';
+      }
+    });
+  }
+  });
+
+    // ----------------------------------------------------
+    // Dynamic Stores
+    // ----------------------------------------------------
+    let addresses = [
+      {
+        id: 1,
+        label: "DEFAULT HOME",
+        name: "Alex Rivera",
+        street: "123/45 ซอย สุขุมวิท 21",
+        subdistrict: "คลองเตยเหนือ",
+        district: "เขตวัฒนา",
+        province: "กรุงเทพมหานคร",
+        postal: "10110",
+        phone: "+66 xx xxx xxxx",
+      }
+    ];
+
+    let payments = [
+      {
+        id: 1,
+        cardName: "ALEX RIVERA",
+        cardNumber: "4242",
+        exp: "12/27",
+        type: "VISA"
+      },
+      {
+        id: 2,
+        cardName: "ALEX R",
+        cardNumber: "5123",
+        exp: "12/30",
+        type: "MASTERCARD"
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // 1. Sidebar Toggle Mobile
+      const toggleBtn = document.getElementById('toggle-sidebar');
+      const menu = document.getElementById('sidebar-menu');
+      const arrow = document.getElementById('menu-arrow');
+      if (toggleBtn && menu && arrow) {
+        toggleBtn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          arrow.classList.toggle('rotate-180');
+        });
+      }
+
+      // 2. Profile Photo Controller
+      const editBtn = document.getElementById('edit-photo-btn');
+      const avatarInput = document.getElementById('avatar-input');
+      const avatarImg = document.getElementById('avatar-img');
+      if (editBtn && avatarInput && avatarImg) {
+        editBtn.addEventListener('click', () => avatarInput.click());
+        avatarInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => avatarImg.src = event.target.result;
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      // 3. Edit Personal Info Controller
+      const openModalBtn = document.getElementById('open-edit-modal-btn');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const cancelModalBtn = document.getElementById('cancel-modal-btn');
+      const editModal = document.getElementById('edit-info-modal');
+      const editForm = document.getElementById('edit-profile-form');
+
+      if (openModalBtn) openModalBtn.addEventListener('click', () => editModal.classList.remove('hidden'));
+      const closeEditModal = () => editModal.classList.add('hidden');
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeEditModal);
+      if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeEditModal);
+
+      if (editForm) {
+        editForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const fname = document.getElementById('input-first-name').value;
+          const lname = document.getElementById('input-last-name').value;
+          const phone = document.getElementById('input-phone').value;
+
+          document.getElementById('display-first-name').value = fname;
+          document.getElementById('display-last-name').value = lname;
+          document.getElementById('display-phone').value = phone;
+          document.getElementById('header-first-name').textContent = fname;
+          document.getElementById('header-last-name').textContent = lname;
+
+          closeEditModal();
+        });
+      }
+
+      // ----------------------------------------------------
+      // 4. SHIPPING ADDRESSES CONTROLLER (77 จังหวัด)
+      // ----------------------------------------------------
+      const addressListContainer = document.getElementById('address-list');
+      const addressModal = document.getElementById('address-modal');
+      const addressForm = document.getElementById('address-form');
+      const addAddressBtn = document.getElementById('add-address-btn');
+      const closeAddressModalBtn = document.getElementById('close-address-modal-btn');
+      const cancelAddressModalBtn = document.getElementById('cancel-address-modal-btn');
+
+      const provinceSelect = document.getElementById('addr-province');
+      const districtContainer = document.getElementById('district-container');
+      const subdistrictContainer = document.getElementById('subdistrict-container');
+      const postalInput = document.getElementById('addr-postal');
+
+// ฟังก์ชันตัดคำนำหน้าออกเพื่อป้องกันชื่อไม่ตรงกัน
+function getCleanName(str) {
+  return (str || '').toString().trim().replace(/^(จังหวัด|อำเภอ|เขต|ตำบล|แขวง)/, '');
+}
+
+// 1. โหลดรายชื่อจังหวัดเข้า Dropdown
+function initThailandProvinces() {
+  const provSelect = document.getElementById('addr-province');
+  if (!provSelect || !window.rawAddressData) return;
+
+  const data = window.rawAddressData;
+  const sample = data[0] || {};
+  const isFlat = !sample.amphure && !sample.amphures && !sample.districts && !sample.amphurList;
+
+  let provinces = [];
+  if (isFlat) {
+    provinces = [...new Set(data.map(item => item.province_th || item.province || item.provinceName || item.name_th))].filter(Boolean);
+  } else {
+    provinces = data.map(item => item.name_th || item.name || item.provinceName).filter(Boolean);
+  }
+
+  let options = '<option value="">-- เลือกจังหวัด --</option>';
+  provinces.forEach(p => {
+    options += `<option value="${p}">${p}</option>`;
+  });
+  provSelect.innerHTML = options;
+}
+
+// 2. Event Listener ดักจับการเปลี่ยนแปลงทั้งระบบ
+document.addEventListener('change', (e) => {
+  const targetId = e.target.id;
+  const data = window.rawAddressData;
+  if (!data) return;
+
+  const sample = data[0] || {};
+  const isFlat = !sample.amphure && !sample.amphures && !sample.districts && !sample.amphurList;
+
+  // === เมื่อเปลี่ยน "จังหวัด" ===
+  if (targetId === 'addr-province') {
+    const provName = e.target.value.trim();
+    const distSelect = document.getElementById('addr-district');
+    const subSelect = document.getElementById('addr-subdistrict');
+    const postalInput = document.getElementById('addr-postal');
+
+    if (distSelect) {
+      distSelect.innerHTML = '<option value="">-- เลือก เขต/อำเภอ --</option>';
+      distSelect.disabled = true;
+    }
+    if (subSelect) {
+      subSelect.innerHTML = '<option value="">-- เลือก แขวง/ตำบล --</option>';
+      subSelect.disabled = true;
+    }
+    if (postalInput) postalInput.value = '';
+
+    if (!provName) return;
+
+    let districts = [];
+    if (isFlat) {
+      const filtered = data.filter(item => {
+        const p = item.province_th || item.province || item.provinceName || item.name_th || '';
+        return getCleanName(p) === getCleanName(provName);
+      });
+      districts = [...new Set(filtered.map(item => item.amphure_th || item.district || item.amphure || item.amphureName))].filter(Boolean);
+    } else {
+      const foundProv = data.find(item => {
+        const p = item.name_th || item.name || item.provinceName || '';
+        return getCleanName(p) === getCleanName(provName);
+      });
+      const amphureList = foundProv?.amphure || foundProv?.amphures || foundProv?.districts || foundProv?.amphurList || [];
+      districts = amphureList.map(a => a.name_th || a.name || a.amphureName).filter(Boolean);
+    }
+
+    if (distSelect && districts.length > 0) {
+      let options = '<option value="">-- เลือก เขต/อำเภอ --</option>';
+      districts.forEach(d => {
+        options += `<option value="${d}">${d}</option>`;
+      });
+      distSelect.innerHTML = options;
+      distSelect.disabled = false;
+    }
+  }
+
+  // === เมื่อเปลี่ยน "อำเภอ" ===
+  if (targetId === 'addr-district') {
+    const provName = document.getElementById('addr-province')?.value.trim();
+    const distName = e.target.value.trim();
+    const subSelect = document.getElementById('addr-subdistrict');
+    const postalInput = document.getElementById('addr-postal');
+
+    if (subSelect) {
+      subSelect.innerHTML = '<option value="">-- เลือก แขวง/ตำบล --</option>';
+      subSelect.disabled = true;
+    }
+    if (postalInput) postalInput.value = '';
+
+    if (!distName) return;
+
+    let subdistricts = [];
+    if (isFlat) {
+      const filtered = data.filter(item => {
+        const p = item.province_th || item.province || item.provinceName || item.name_th || '';
+        const d = item.amphure_th || item.district || item.amphure || item.amphureName || '';
+        return getCleanName(p) === getCleanName(provName) && getCleanName(d) === getCleanName(distName);
+      });
+      subdistricts = filtered.map(item => ({
+        name: item.tambon_th || item.subdistrict || item.tambon || item.tambonName,
+        zip: item.zip_code || item.zipcode || item.postal_code || item.zipCode || ''
+      })).filter(item => item.name);
+    } else {
+      const foundProv = data.find(item => {
+        const p = item.name_th || item.name || item.provinceName || '';
+        return getCleanName(p) === getCleanName(provName);
+      });
+      const amphureList = foundProv?.amphure || foundProv?.amphures || foundProv?.districts || foundProv?.amphurList || [];
+      const foundAmphure = amphureList.find(a => {
+        const d = a.name_th || a.name || a.amphureName || '';
+        return getCleanName(d) === getCleanName(distName);
+      });
+      const tambonList = foundAmphure?.tambon || foundAmphure?.tambons || foundAmphure?.subdistricts || foundAmphure?.districtList || [];
+      subdistricts = tambonList.map(t => ({
+        name: t.name_th || t.name || t.tambonName,
+        zip: t.zip_code || t.zipcode || t.postal_code || t.zipCode || ''
+      })).filter(item => item.name);
+    }
+
+    if (subSelect && subdistricts.length > 0) {
+      let options = '<option value="">-- เลือก แขวง/ตำบล --</option>';
+      subdistricts.forEach(s => {
+        options += `<option value="${s.name}" data-zip="${s.zip}">${s.name}</option>`;
+      });
+      subSelect.innerHTML = options;
+      subSelect.disabled = false;
+    }
+  }
+
+  // === เมื่อเปลี่ยน "ตำบล" ===
+  if (targetId === 'addr-subdistrict') {
+    const selectedOpt = e.target.options[e.target.selectedIndex];
+    const postalInput = document.getElementById('addr-postal');
+    if (postalInput) {
+      postalInput.value = selectedOpt?.dataset?.zip || '';
+    }
+  }
+});
+
+// เรียกใช้งานฟังก์ชันเริ่มต้น
+initThailandProvinces();
+      const renderAddresses = () => {
+        addressListContainer.innerHTML = '';
+        addresses.forEach(addr => {
+          addressListContainer.innerHTML += `
+            <div class="border border-gray-200 rounded-lg p-4 text-xs text-gray-600 relative">
+              <div class="flex justify-between items-start mb-2">
+                <p class="font-bold uppercase text-gray-900">${addr.label}</p>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="editAddress(${addr.id})" class="text-gray-400 hover:text-black">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                  </button>
+                  <button type="button" onclick="deleteAddress(${addr.id})" class="text-gray-400 hover:text-red-600">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="font-semibold text-gray-800">${addr.name}</p>
+              <p>${addr.street}</p>
+              <p>${addr.subdistrict}, ${addr.district}, ${addr.province} ${addr.postal}</p>
+              <p class="text-gray-400"> Tel: ${addr.phone}</p>
+            </div>
+          `;
+        });
+      };
+
+      renderAddresses();
+
+      const closeAddressModal = () => addressModal.classList.add('hidden');
+      if (closeAddressModalBtn) closeAddressModalBtn.addEventListener('click', closeAddressModal);
+      if (cancelAddressModalBtn) cancelAddressModalBtn.addEventListener('click', closeAddressModal);
+
+      if (addAddressBtn) {
+        addAddressBtn.addEventListener('click', () => {
+          document.getElementById('address-modal-title').textContent = "เพิ่มที่อยู่จัดส่ง";
+          addressForm.reset();
+          document.getElementById('address-id').value = '';
+          provinceSelect.dispatchEvent(new Event('change'));
+          addressModal.classList.remove('hidden');
+        });
+      }
+
+      addressForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('address-id').value;
+        const payload = {
+          id: id ? parseInt(id) : Date.now(),
+          label: document.getElementById('addr-label').value.toUpperCase(),
+          name: document.getElementById('addr-name').value,
+          street: document.getElementById('addr-street').value,
+          province: provinceSelect.value,
+          district: document.getElementById('addr-district').value,
+          subdistrict: document.getElementById('addr-subdistrict').value,
+          postal: postalInput.value,
+          phone: document.getElementById('addr-phone').value
+        };
+
+        if (id) {
+          addresses = addresses.map(a => a.id === parseInt(id) ? payload : a);
+        } else {
+          addresses.push(payload);
+        }
+
+        renderAddresses();
+        closeAddressModal();
+      });
+
+      window.editAddress = (id) => {
+        const item = addresses.find(a => a.id === id);
+        if (!item) return;
+
+        document.getElementById('address-modal-title').textContent = "Edit Shipping Address";
+        document.getElementById('address-id').value = item.id;
+        document.getElementById('addr-label').value = item.label;
+        document.getElementById('addr-name').value = item.name;
+        document.getElementById('addr-street').value = item.street;
+        document.getElementById('addr-phone').value = item.phone;
+        document.getElementById('addr-postal').value = item.postal;
+
+        provinceSelect.value = item.province;
+        provinceSelect.dispatchEvent(new Event('change'));
+
+        setTimeout(() => {
+          if (document.getElementById('addr-district')) document.getElementById('addr-district').value = item.district;
+          if (document.getElementById('addr-district') && document.getElementById('addr-district').tagName === 'SELECT') {
+            document.getElementById('addr-district').dispatchEvent(new Event('change'));
+          }
+          if (document.getElementById('addr-subdistrict')) document.getElementById('addr-subdistrict').value = item.subdistrict;
+        }, 50);
+
+        addressModal.classList.remove('hidden');
+      };
+
+      window.deleteAddress = (id) => {
+        if (confirm('คุณต้องการลบที่อยู่นี้ใช่หรือไม่?')) {
+          addresses = addresses.filter(a => a.id !== id);
+          renderAddresses();
+        }
+      };
+
+      // ----------------------------------------------------
+      // 5. PAYMENT METHODS CONTROLLER (Visa เลข 4 / Mastercard เลข 5)
+      // ----------------------------------------------------
+      const paymentListContainer = document.getElementById('payment-list');
+      const paymentModal = document.getElementById('payment-modal');
+      const paymentForm = document.getElementById('payment-form');
+      const addPaymentBtn = document.getElementById('add-payment-btn');
+      const closePaymentModalBtn = document.getElementById('close-payment-modal-btn');
+      const cancelPaymentModalBtn = document.getElementById('cancel-payment-modal-btn');
+      const cardNumberInput = document.getElementById('card-number');
+      const cardBadge = document.getElementById('card-type-badge');
+
+      // ตรวจสอบค่ายบัตรอัตโนมัติจากเลขตัวแรก
+      const detectCardType = (number) => {
+        const clean = number.replace(/\s+/g, '');
+        if (clean.startsWith('4')) return 'VISA';
+        if (clean.startsWith('5') || /^2[2-7]/.test(clean)) return 'MASTERCARD';
+        return 'CREDIT CARD';
+      };
+
+      cardNumberInput.addEventListener('input', (e) => {
+        const type = detectCardType(e.target.value);
+        cardBadge.textContent = type;
+        if (type === 'VISA') {
+          cardBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800";
+        } else if (type === 'MASTERCARD') {
+          cardBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-orange-100 text-orange-800";
+        } else {
+          cardBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-500";
+        }
+      });
+
+      const renderPayments = () => {
+        paymentListContainer.innerHTML = '';
+        payments.forEach(card => {
+          let badgeColor = "bg-gray-900 text-white";
+          if (card.type === "VISA") badgeColor = "bg-blue-700 text-white";
+          if (card.type === "MASTERCARD") badgeColor = "bg-orange-600 text-white";
+
+          paymentListContainer.innerHTML += `
+            <div class="border border-gray-200 rounded-lg p-4 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-3">
+                <span class="${badgeColor} px-2.5 py-1 rounded font-extrabold text-[10px] tracking-wider uppercase">${card.type}</span>
+                <div>
+                  <p class="font-bold text-gray-900">${card.type} ending in ${card.cardNumber}</p>
+                  <p class="text-gray-400 text-[10px]">Expires ${card.exp} • ${card.cardName}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="editPayment(${card.id})" class="text-gray-400 hover:text-black">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                </button>
+                <button type="button" onclick="deletePayment(${card.id})" class="text-gray-400 hover:text-red-600">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+      };
+
+      renderPayments();
+
+      const closePaymentModal = () => paymentModal.classList.add('hidden');
+      if (closePaymentModalBtn) closePaymentModalBtn.addEventListener('click', closePaymentModal);
+      if (cancelPaymentModalBtn) cancelPaymentModalBtn.addEventListener('click', closePaymentModal);
+
+      if (addPaymentBtn) {
+        addPaymentBtn.addEventListener('click', () => {
+          document.getElementById('payment-modal-title').textContent = "เพิ่มบัตรเครดิต";
+          paymentForm.reset();
+          document.getElementById('payment-id').value = '';
+          cardBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-500";
+          paymentModal.classList.remove('hidden');
+        });
+      }
+
+      paymentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('payment-id').value;
+        const rawNum = cardNumberInput.value.replace(/\s+/g, '');
+        const last4 = rawNum.slice(-4) || "0000";
+        const detectedType = detectCardType(rawNum);
+
+        const payload = {
+          id: id ? parseInt(id) : Date.now(),
+          cardName: document.getElementById('card-name').value.toUpperCase(),
+          cardNumber: last4,
+          exp: document.getElementById('card-exp').value,
+          type: detectedType
+        };
+
+        if (id) {
+          payments = payments.map(p => p.id === parseInt(id) ? payload : p);
+        } else {
+          payments.push(payload);
+        }
+
+        renderPayments();
+        closePaymentModal();
+      });
+
+      window.editPayment = (id) => {
+        const item = payments.find(p => p.id === id);
+        if (!item) return;
+
+        document.getElementById('payment-modal-title').textContent = "Edit Credit Card";
+        document.getElementById('payment-id').value = item.id;
+        document.getElementById('card-name').value = item.cardName;
+        
+        let prefix = "4000";
+        if (item.type === "MASTERCARD") prefix = "5100";
+        cardNumberInput.value = `${prefix} 0000 0000 ${item.cardNumber}`;
+        cardNumberInput.dispatchEvent(new Event('input'));
+
+        document.getElementById('card-exp').value = item.exp;
+        document.getElementById('card-cvc').value = '***';
+
+        paymentModal.classList.remove('hidden');
+      };
+
+      window.deletePayment = (id) => {
+        if (confirm('คุณต้องการลบบัตรเครดิตนี้ใช่หรือไม่?')) {
+          payments = payments.filter(p => p.id !== id);
+          renderPayments();
+        }
+      };
+      
+    });
+  </script>
+</body>
+</html>
