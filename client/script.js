@@ -19,13 +19,10 @@ async function loadComponent(elementId, filePath) {
     const searchModal = temp.querySelector('#search-modal');
     if (searchModal) {
       document.body.appendChild(searchModal);
+      searchModal.remove(); // ลบ element ออกจาก temp tree เพื่อไม่ให้ติดไปกับ innerHTML
     }
 
-    targetEl.innerHTML = html;
-
-    if (searchModal) {
-      targetEl.querySelector('#search-modal')?.remove();
-    }
+    targetEl.innerHTML = temp.innerHTML;
   } catch (error) {
     console.error(error);
   }
@@ -35,41 +32,29 @@ async function loadComponent(elementId, filePath) {
 // 2. Main Execution (จุดเริ่มต้นระบบ)
 // ==========================================
 document.addEventListener("DOMContentLoaded", async () => {
-  // โหลด Navbar และ Footer ให้เสร็จสมบูรณ์ก่อนเรียกใช้ Event
   await Promise.all([
     loadComponent("navbar-container", "navbar.html"),
     loadComponent("footer-container", "footer.html")
   ]);
 
   console.log("2. โหลด Components เสร็จสิ้น เริ่มผูก Event...");
-  // ระบบควบคุมส่วน Navbar (ทำงานหลัง Navbar โหลดเสร็จ)
   setupSearchSystem();
   dropDownProfile();
   initMobileMenu();
 
-  // อ่าน Query Parameter จาก URL
   const urlParams = new URLSearchParams(window.location.search);
 
-  // ระบบจัดการเนื้อหาแต่ละหน้า
   handleIndexPage();
   handleArticlePage(urlParams);
   handleProductPage(urlParams);
   
-  // ระบบหมวดหมู่
   setupCategoryButtons();
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  hamburgerBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
 });
 
 // ==========================================
 // 3. ระบบควบคุม Navbar & UI Interactivity
 // ==========================================
 
-// Dropdown Profile
 function dropDownProfile() {
   const dropProfile = document.getElementById('profile-modal');
   const dropProfileModal = document.getElementById('dropdown-menu-btn');
@@ -79,7 +64,6 @@ function dropDownProfile() {
   dropProfile.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("You click here")
     dropProfileModal.classList.toggle('hidden');
   });
 
@@ -90,7 +74,6 @@ function dropDownProfile() {
   });
 }
 
-// Mobile Hamburger Menu
 function initMobileMenu() {
   const menuBtn = document.getElementById('hamburger-btn');
   const mobileDropdown = document.getElementById('mobile-dropdown');
@@ -119,7 +102,6 @@ function initMobileMenu() {
   });
 }
 
-// Search Modal System
 function setupSearchSystem() {
   const searchBtn = document.getElementById('search-button');
   const searchModal = document.getElementById('search-modal');
@@ -127,16 +109,13 @@ function setupSearchSystem() {
   const searchForm = document.getElementById('search-form');
   const searchInput = document.getElementById('search-input');
 
-  // 1. เช็กเฉพาะปุ่มก่อน ถ้าไม่มีปุ่มค่อยหลุด
   if (!searchBtn) {
     console.error("❌ หาปุ่ม search-button ไม่เจอ");
     return;
   }
 
-  // Event คลิกปุ่มค้นหา
   searchBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log("You click search"); // Log จะทำงานแน่นอนแล้ว
 
     if (searchModal) {
       searchModal.classList.remove('hidden');
@@ -147,7 +126,6 @@ function setupSearchSystem() {
     }
   });
 
-  // Event ปิด Modal
   if (closeSearchBtn && searchModal) {
     closeSearchBtn.addEventListener('click', () => {
       searchModal.classList.add('hidden');
@@ -155,7 +133,6 @@ function setupSearchSystem() {
     });
   }
 
-  // Event คลิกพื้นหลัง Modal
   if (searchModal) {
     searchModal.addEventListener('click', (e) => {
       if (e.target === searchModal) {
@@ -165,7 +142,6 @@ function setupSearchSystem() {
     });
   }
 
-  // Event Submit Form
   if (searchForm) {
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -361,13 +337,12 @@ function setupCategoryButtons() {
     btn.addEventListener('click', () => {
       const selectedCategory = btn.getAttribute('data-category');
       filterAndRender(selectedCategory);
-      updateActiveButton(selectedCategory);
+      updateActiveButton(categoryBtns, selectedCategory);
     });
   });
 }
 
-function updateActiveButton(selectedCategory) {
-  const categoryBtns = document.querySelectorAll('.category-btn');
+function updateActiveButton(categoryBtns, selectedCategory) {
   categoryBtns.forEach(btn => {
     const category = btn.getAttribute('data-category');
     if (category === selectedCategory) {
