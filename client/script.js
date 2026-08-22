@@ -18,8 +18,8 @@ async function loadComponent(elementId, filePath) {
 
     const searchModal = temp.querySelector('#search-modal');
     if (searchModal) {
+      searchModal.remove(); // ลบออกจาก temp tree ก่อน เพื่อไม่ให้ติดไปกับ innerHTML
       document.body.appendChild(searchModal);
-      searchModal.remove(); // ลบ element ออกจาก temp tree เพื่อไม่ให้ติดไปกับ innerHTML
     }
 
     targetEl.innerHTML = temp.innerHTML;
@@ -76,7 +76,7 @@ function dropDownProfile() {
 
 function initMobileMenu() {
   const menuBtn = document.getElementById('hamburger-btn');
-  const mobileDropdown = document.getElementById('mobile-dropdown');
+  const mobileDropdown = document.getElementById('mobile-menu');
   const hamburgerIcon = document.getElementById('hamburger-icon');
   const closeIcon = document.getElementById('close-icon');
 
