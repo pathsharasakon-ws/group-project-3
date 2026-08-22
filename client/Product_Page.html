@@ -21,45 +21,7 @@
     <!-- ============================================== -->
     <!-- 1. ส่วนหัวเว็บไซต์ (Header / Navbar) -->
     <!-- ============================================== -->
-    <header class="w-full bg-white border-b border-gray-200 sticky top-0 z-40 shadow-xs">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        
-        <!-- Left: Brand Logo -->
-        <a href="./index.html" class="flex items-center gap-2">
-          <img src="./assets/logo/newlogo.png" alt="OCCASION Logo" class="w-24 sm:w-28 h-auto object-contain" />
-        </a>
-
-        <!-- Middle: Nav Links -->
-        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold tracking-wide">
-          <a href="./Product_Page.html" class="text-primary border-b-2 border-primary pb-1 transition">
-            PRODUCTS
-          </a>
-          <a href="./index.html#lookbook" class="text-gray-600 hover:text-primary transition">
-            LOOKBOOK
-          </a>
-          <a href="./article.html" class="text-gray-600 hover:text-primary transition">
-            ARTICLES
-          </a>
-          <a href="./customerService.html" class="text-gray-600 hover:text-primary transition">
-            HELP & SUPPORT
-          </a>
-        </nav>
-
-        <!-- Right: Actions, Profile & Cart -->
-        <div class="flex items-center gap-4 sm:gap-6">
-          <a href="./signup.html" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-primary transition">
-            <img src="./assets/icon/user.png" alt="User" class="w-4 h-4" />
-            <span class="hidden sm:inline">เข้าสู่ระบบ</span>
-          </a>
-
-          <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center relative p-1" aria-label="Cart">
-            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6 object-contain" />
-            <span id="cart-count-badge" class="absolute -top-1 -right-1.5 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs transition-transform">2</span>
-          </a>
-        </div>
-      </div>
-    </header>
-
+     <header id="navbar-container"></header>
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
 
@@ -586,97 +548,9 @@
     </main>
 
     <!-- ============================================== -->
-    <!-- FOOTER (Pink Accent Footer ตามภาพ Wireframe) -->
+    <!-- FOOTER (Dynamic Component Load via script.js) -->
     <!-- ============================================== -->
-    <footer id="footer-container" class="bg-accent text-white mt-16 pt-10 pb-8">
-      <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Member Banner -->
-        <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-7 rounded-2xl shadow-lg gap-4 mb-10 border border-white/10">
-          <p class="text-white font-extrabold text-sm sm:text-base text-center sm:text-left tracking-wide uppercase">
-            BECOME A MEMBER AND GET 10% OFF FOR FIRST PURCHASE
-          </p>
-          <a href="./signup.html" class="bg-white text-primary font-bold px-6 py-2.5 rounded-xl hover:bg-gray-100 transition whitespace-nowrap shadow-md text-xs uppercase tracking-wider">
-            Sign up for free
-          </a>
-        </div>
-
-        <!-- Links 4 Columns -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-xs">
-          <!-- SHOP -->
-          <div>
-            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
-              SHOP
-            </h4>
-            <ul class="space-y-2 text-white/90 font-medium">
-              <li><button onclick="filterCatalog('tops')" class="hover:underline transition cursor-pointer">Tops (เสื้อ)</button></li>
-              <li><button onclick="filterCatalog('bottoms')" class="hover:underline transition cursor-pointer">Bottoms (กางเกง)</button></li>
-              <li><button onclick="filterCatalog('skirts')" class="hover:underline transition cursor-pointer">Skirts (กระโปรง)</button></li>
-              <li><button onclick="filterCatalog('jackets')" class="hover:underline transition cursor-pointer">Jackets (เสื้อคลุม)</button></li>
-              <li><button onclick="filterCatalog('sets')" class="hover:underline transition cursor-pointer">Sets (ชุดเซ็ต)</button></li>
-            </ul>
-          </div>
-
-          <!-- HELP -->
-          <div>
-            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
-              HELP
-            </h4>
-            <ul class="space-y-2 text-white/90 font-medium">
-              <li><a href="./customerService.html" class="hover:underline transition">Customer Service</a></li>
-              <li><a href="./termCondition.html" class="hover:underline transition">Terms & Conditions</a></li>
-              <li><a href="./privacyPolicy.html" class="hover:underline transition">Privacy Policy</a></li>
-            </ul>
-          </div>
-
-          <!-- USER -->
-          <div>
-            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
-              USER
-            </h4>
-            <ul class="space-y-2 text-white/90 font-medium">
-              <li><a href="./signup.html" class="hover:underline transition">Become A Member</a></li>
-              <li><a href="./signup.html" class="hover:underline transition">My Account</a></li>
-              <li><a href="./index.html#lookbook" class="hover:underline transition">My Lookbooks</a></li>
-            </ul>
-          </div>
-
-          <!-- CONNECT WITH US -->
-          <div>
-            <h4 class="font-extrabold text-sm uppercase tracking-wider mb-4 border-b border-white/20 pb-1 inline-block">
-              Connect with OCCASION
-            </h4>
-            <div class="flex items-center gap-3 mt-2">
-              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
-                <img src="./assets/icon/facebook.png" alt="Facebook" class="w-full h-full object-contain invert brightness-0" />
-              </a>
-              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
-                <img src="./assets/icon/instagram.png" alt="Instagram" class="w-full h-full object-contain invert brightness-0" />
-              </a>
-              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
-                <img src="./assets/icon/tiktok.png" alt="TikTok" class="w-full h-full object-contain invert brightness-0" />
-              </a>
-              <a href="#" class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition p-1.5">
-                <img src="./assets/icon/line.png" alt="Line" class="w-full h-full object-contain invert brightness-0" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Payments & Copyright -->
-        <div class="border-t border-white/20 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80">
-          <div class="flex items-center gap-2 text-white font-extrabold tracking-wider">
-            <span>OCCASION FASHION</span>
-            <span>•</span>
-            <span>FOOTER</span>
-          </div>
-          <div>
-            &copy; 2026 OCCASION. All rights reserved. Junior Software Developer Batch 13
-          </div>
-        </div>
-
-      </div>
-    </footer>
+    <div id="footer-container"></div>
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
@@ -684,11 +558,29 @@
       <span id="toast-message">บันทึกเรียบร้อย</span>
     </div>
 
+    <!-- Main Global Scripts -->
+    <script type="module" src="script.js"></script>
+
     <!-- ============================================== -->
     <!-- JAVASCRIPT LOGIC (CATALOG & DETAIL VIEWS) -->
     <!-- ============================================== -->
     <script type="module">
-      import { productsData } from "./api/product.js";
+      import { productData, productsData } from "./api/product.js";
+
+      // Consolidated product dataset
+      const allProducts = (typeof productsData !== "undefined" && productsData.length ? productsData : productData) || [];
+
+      // Helper for image paths
+      function getProductImg(prod, idx = 0) {
+        if (prod.images && prod.images[idx]) return prod.images[idx];
+        if (prod.img) {
+          if (prod.img.startsWith('./assets/') || prod.img.startsWith('assets/')) return prod.img;
+          if (prod.img.startsWith('/assets/')) return '.' + prod.img;
+          if (prod.img.startsWith('/product/')) return './assets' + prod.img;
+          return `./assets/${prod.img}`;
+        }
+        return "./assets/product/style_6.jpg";
+      }
 
       // State
       let currentActiveCategory = "all";
@@ -704,7 +596,6 @@
 
       // DOM Catalog Elements
       const catalogGridContainer = document.getElementById("catalog-grid-container");
-      const catalogFeaturedContainer = document.getElementById("catalog-featured-container");
       const catalogHeading = document.getElementById("catalog-heading");
       const catalogCountDisplay = document.getElementById("catalog-count-display");
       const catalogSearchInput = document.getElementById("catalog-search-input");
@@ -735,12 +626,12 @@
       const detailBreadcrumbTitle = document.getElementById("detail-breadcrumb-title");
 
       // General DOM
-      const cartBadge = document.getElementById("cart-count-badge");
       const toast = document.getElementById("toast");
       const toastMessage = document.getElementById("toast-message");
 
       // Toast Notification
       function showToast(msg) {
+        if (!toast || !toastMessage) return;
         toastMessage.textContent = msg;
         toast.classList.remove("translate-y-20", "opacity-0");
         toast.classList.add("translate-y-0", "opacity-100");
@@ -767,20 +658,25 @@
         const card = document.createElement("div");
         card.className = "bg-white text-gray-900 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-xl transition duration-300 flex flex-col sm:flex-row gap-4 items-center flex-1";
         
+        const imgSrc = getProductImg(prod, 0);
+        const catName = prod.categoryName || (prod.category ? prod.category.toUpperCase() : 'TOPS');
+        const origPrice = prod.originalPrice || Math.round(prod.price * 1.3);
+        const desc = prod.description || 'เนื้อผ้าคุณภาพดี สวมใส่สบาย ดีไซน์ทันสมัย';
+
         card.innerHTML = `
           <div class="w-full sm:w-36 aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 shrink-0 relative cursor-pointer click-to-detail">
-            <img src="${prod.img || prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" />
+            <img src="${imgSrc}" alt="${prod.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" />
             <span class="absolute top-2 left-2 bg-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">RECOMMENDED</span>
           </div>
           <div class="flex flex-col justify-between flex-1 space-y-2 w-full">
             <div>
-              <span class="text-[11px] font-bold uppercase text-primary tracking-wider">${prod.categoryName}</span>
+              <span class="text-[11px] font-bold uppercase text-primary tracking-wider">${catName}</span>
               <h3 class="text-base font-bold text-gray-900 leading-snug cursor-pointer click-to-detail hover:text-primary transition line-clamp-1">${prod.name}</h3>
-              <p class="text-xs text-gray-500 line-clamp-2 mt-1">${prod.description}</p>
+              <p class="text-xs text-gray-500 line-clamp-2 mt-1">${desc}</p>
             </div>
             <div class="flex items-baseline gap-2 pt-1">
               <span class="text-xl font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
-              <span class="text-xs font-medium text-gray-400 line-through">฿${prod.originalPrice.toLocaleString()}</span>
+              <span class="text-xs font-medium text-gray-400 line-through">฿${origPrice.toLocaleString()}</span>
             </div>
             <div class="flex items-center gap-2 pt-2">
               <button type="button" class="btn-goto-detail flex-1 bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
@@ -817,8 +713,8 @@
         featuredDotsContainer.innerHTML = "";
         currentCarouselIndex = 0;
 
-        // Group 6 recommended products into slides (2 per slide on desktop)
-        const recommendedItems = productsData.slice(0, 6);
+        // Group recommended products into slides (2 per slide on desktop)
+        const recommendedItems = allProducts.slice(0, 6);
         const slides = [];
 
         for (let i = 0; i < recommendedItems.length; i += 2) {
@@ -853,7 +749,7 @@
       }
 
       function updateCarouselDisplay() {
-        if (!featuredTrack) return;
+        if (!featuredTrack || !featuredDotsContainer) return;
         featuredTrack.style.transform = `translateX(-${currentCarouselIndex * 100}%)`;
 
         const dots = featuredDotsContainer.querySelectorAll("button");
@@ -967,13 +863,15 @@
 
       if (paginationNextBtn) {
         paginationNextBtn.addEventListener("click", () => {
-          const filtered = productsData.filter((prod) => {
-            const matchCat = currentActiveCategory === "all" || prod.category.toLowerCase() === currentActiveCategory.toLowerCase();
+          const filtered = allProducts.filter((prod) => {
+            const cat = (prod.category || "").toLowerCase();
+            const activeCat = currentActiveCategory.toLowerCase();
+            const matchCat = activeCat === "all" || cat === activeCat || (activeCat === "sets" && (cat === "set" || cat === "sets"));
             const matchSearch =
               currentSearchQuery === "" ||
               prod.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
-              prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
-              prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+              (prod.categoryName && prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase())) ||
+              (prod.description && prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase()));
             return matchCat && matchSearch;
           });
           const totalPages = Math.ceil(filtered.length / catalogItemsPerPage) || 1;
@@ -986,15 +884,18 @@
       }
 
       function renderCatalogGrid() {
+        if (!catalogGridContainer) return;
         catalogGridContainer.innerHTML = "";
 
-        const filtered = productsData.filter((prod) => {
-          const matchCat = currentActiveCategory === "all" || prod.category.toLowerCase() === currentActiveCategory.toLowerCase();
+        const filtered = allProducts.filter((prod) => {
+          const cat = (prod.category || "").toLowerCase();
+          const activeCat = currentActiveCategory.toLowerCase();
+          const matchCat = activeCat === "all" || cat === activeCat || (activeCat === "sets" && (cat === "set" || cat === "sets"));
           const matchSearch =
             currentSearchQuery === "" ||
             prod.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
-            prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase()) ||
-            prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase());
+            (prod.categoryName && prod.categoryName.toLowerCase().includes(currentSearchQuery.toLowerCase())) ||
+            (prod.description && prod.description.toLowerCase().includes(currentSearchQuery.toLowerCase()));
           return matchCat && matchSearch;
         });
 
@@ -1004,17 +905,17 @@
         if (catalogCurrentPage > totalPages) catalogCurrentPage = totalPages;
         if (catalogCurrentPage < 1) catalogCurrentPage = 1;
 
-        catalogCountDisplay.textContent = totalItems;
+        if (catalogCountDisplay) catalogCountDisplay.textContent = totalItems;
 
         if (totalItems === 0) {
           catalogGridContainer.classList.add("hidden");
-          catalogNoProducts.classList.remove("hidden");
+          if (catalogNoProducts) catalogNoProducts.classList.remove("hidden");
           if (paginationContainer) paginationContainer.classList.add("hidden");
           return;
         }
 
         catalogGridContainer.classList.remove("hidden");
-        catalogNoProducts.classList.add("hidden");
+        if (catalogNoProducts) catalogNoProducts.classList.add("hidden");
         if (paginationContainer) paginationContainer.classList.remove("hidden");
 
         const startIndex = (catalogCurrentPage - 1) * catalogItemsPerPage;
@@ -1031,10 +932,14 @@
             });
           }
 
+          const imgSrc = getProductImg(prod, 0);
+          const catName = prod.categoryName || (prod.category ? prod.category.toUpperCase() : 'GENERAL');
+          const origPrice = prod.originalPrice || Math.round(prod.price * 1.3);
+
           card.innerHTML = `
             <div class="aspect-[3/4] bg-gray-100 relative overflow-hidden cursor-pointer img-box">
               <img
-                src="${prod.img || prod.images[0]}"
+                src="${imgSrc}"
                 alt="${prod.name}"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -1048,7 +953,7 @@
 
             <div class="p-4 flex flex-col justify-between flex-1 space-y-3">
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">${prod.categoryName}</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">${catName}</span>
                 <h3 class="text-sm font-bold text-gray-900 line-clamp-1 group-hover:text-primary transition cursor-pointer title-box mt-0.5">
                   ${prod.name}
                 </h3>
@@ -1062,7 +967,7 @@
               <div class="pt-2 border-t border-gray-100 flex items-center justify-between gap-2">
                 <div>
                   <span class="text-base font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
-                  <span class="text-[11px] font-medium text-gray-400 line-through block sm:inline ml-1">฿${prod.originalPrice.toLocaleString()}</span>
+                  <span class="text-[11px] font-medium text-gray-400 line-through block sm:inline ml-1">฿${origPrice.toLocaleString()}</span>
                 </div>
                 <button
                   type="button"
@@ -1122,24 +1027,30 @@
         });
       });
 
-      catalogSearchInput.addEventListener("input", (e) => {
-        currentSearchQuery = e.target.value.trim();
-        catalogCurrentPage = 1; // Reset to page 1 on search
-        renderCatalogGrid();
-      });
+      if (catalogSearchInput) {
+        catalogSearchInput.addEventListener("input", (e) => {
+          currentSearchQuery = e.target.value.trim();
+          catalogCurrentPage = 1; // Reset to page 1 on search
+          renderCatalogGrid();
+        });
+      }
 
-      document.getElementById("catalog-reset-btn").addEventListener("click", () => {
-        catalogSearchInput.value = "";
-        currentSearchQuery = "";
-        catalogCurrentPage = 1;
-        filterCatalog("all");
-      });
+      const resetBtn = document.getElementById("catalog-reset-btn");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          if (catalogSearchInput) catalogSearchInput.value = "";
+          currentSearchQuery = "";
+          catalogCurrentPage = 1;
+          filterCatalog("all");
+        });
+      }
 
       // -------------------------------------------------------------
-      // 2. PRODUCT DETAIL VIEW FUNCTIONS (ตามภาพ Product Card)
+      // 2. PRODUCT DETAIL VIEW FUNCTIONS
       // -------------------------------------------------------------
       window.showDetailView = function (productId) {
-        const prod = productsData.find((p) => p.id === parseInt(productId)) || productsData[0];
+        const prod = allProducts.find((p) => p.id === parseInt(productId)) || allProducts[0];
+        if (!prod) return;
         activeProduct = prod;
         selectedDetailSize = prod.sizes ? prod.sizes[0] : "Free Size";
         selectedDetailColor = prod.colors ? prod.colors[0].name : "มาตรฐาน";
@@ -1148,69 +1059,79 @@
         window.history.pushState({}, "", `?id=${prod.id}`);
 
         document.getElementById("page-title").textContent = `${prod.name} | OCCASION`;
-        detailBreadcrumbTitle.textContent = prod.name;
-        detailProductName.textContent = prod.name;
-        detailCategoryBadge.textContent = prod.categoryName;
-        detailRatingScore.textContent = `⭐ ${prod.rating || 5.0} / 5.0`;
-        detailReviewCount.textContent = `${prod.reviewsCount || 47} รีวิว`;
-        detailSalesCount.textContent = `ขายแล้ว ${prod.sales || 140} ชิ้น`;
-        detailPrice.textContent = `฿${prod.price.toLocaleString()}.00`;
-        detailOriginalPrice.textContent = `฿${prod.originalPrice.toLocaleString()}`;
+        if (detailBreadcrumbTitle) detailBreadcrumbTitle.textContent = prod.name;
+        if (detailProductName) detailProductName.textContent = prod.name;
+        if (detailCategoryBadge) detailCategoryBadge.textContent = prod.categoryName || (prod.category ? prod.category.toUpperCase() : 'GENERAL');
+        if (detailRatingScore) detailRatingScore.textContent = `⭐ ${prod.rating || 5.0} / 5.0`;
+        if (detailReviewCount) detailReviewCount.textContent = `${prod.reviewsCount || 47} รีวิว`;
+        if (detailSalesCount) detailSalesCount.textContent = `ขายแล้ว ${prod.sales || 140} ชิ้น`;
+        if (detailPrice) detailPrice.textContent = `฿${prod.price.toLocaleString()}.00`;
+        
+        const origPrice = prod.originalPrice || Math.round(prod.price * 1.3);
+        if (detailOriginalPrice) detailOriginalPrice.textContent = `฿${origPrice.toLocaleString()}`;
 
-        const discountPercent = Math.round(((prod.originalPrice - prod.price) / prod.originalPrice) * 100);
-        detailDiscountTag.textContent = `ลด ${discountPercent}%`;
+        const discountPercent = Math.round(((origPrice - prod.price) / origPrice) * 100);
+        if (detailDiscountTag) detailDiscountTag.textContent = `ลด ${discountPercent}%`;
 
-        detailDescText.textContent = `• ${prod.description} ตัดเย็บประณีต ผ้าเนื้อนุ่ม สวมใส่สบาย ระบายอากาศได้ดี`;
-        detailQtyVal.textContent = detailQty;
+        if (detailDescText) detailDescText.textContent = `• ${prod.description || prod.name} ตัดเย็บประณีต ผ้าเนื้อนุ่ม สวมใส่สบาย ระบายอากาศได้ดี`;
+        if (detailQtyVal) detailQtyVal.textContent = detailQty;
 
-        if (prod.quantity > 0) {
-          detailStockStatus.textContent = `✓ มีสินค้าพร้อมส่ง (คงเหลือ ${prod.quantity} ชิ้น)`;
-          detailStockStatus.className = "text-emerald-600 font-bold text-[11px]";
-        } else {
-          detailStockStatus.textContent = "✕ สินค้าหมดชั่วคราว";
-          detailStockStatus.className = "text-red-500 font-bold text-[11px]";
+        const stockQty = prod.quantity !== undefined ? prod.quantity : 15;
+        if (detailStockStatus) {
+          if (stockQty > 0) {
+            detailStockStatus.textContent = `✓ มีสินค้าพร้อมส่ง (คงเหลือ ${stockQty} ชิ้น)`;
+            detailStockStatus.className = "text-emerald-600 font-bold text-[11px]";
+          } else {
+            detailStockStatus.textContent = "✕ สินค้าหมดชั่วคราว";
+            detailStockStatus.className = "text-red-500 font-bold text-[11px]";
+          }
         }
 
         // Tags
-        detailTagContainer.innerHTML = "";
-        if (prod.tags && prod.tags.length > 0) {
-          prod.tags.forEach((tag) => {
-            const badge = document.createElement("span");
-            badge.className = `${tag.bg || 'bg-accent'} text-white px-2.5 py-1 text-[11px] font-bold rounded-md shadow-xs`;
-            badge.textContent = tag.text;
-            detailTagContainer.appendChild(badge);
-          });
+        if (detailTagContainer) {
+          detailTagContainer.innerHTML = "";
+          if (prod.tags && prod.tags.length > 0) {
+            prod.tags.forEach((tag) => {
+              const badge = document.createElement("span");
+              badge.className = `${tag.bg || 'bg-accent'} text-white px-2.5 py-1 text-[11px] font-bold rounded-md shadow-xs`;
+              badge.textContent = tag.text;
+              detailTagContainer.appendChild(badge);
+            });
+          }
         }
 
         // Main Image & 6 Thumbnails
-        const allImages = prod.images && prod.images.length > 0 ? prod.images : [prod.img];
-        detailMainImg.src = allImages[0];
-        detailThumbnailsRow.innerHTML = "";
+        const allImages = (prod.images && prod.images.length > 0) ? prod.images : [getProductImg(prod, 0)];
+        if (detailMainImg) detailMainImg.src = allImages[0];
+        if (detailThumbnailsRow) {
+          detailThumbnailsRow.innerHTML = "";
 
-        // Fill up to 6 thumbnails
-        for (let i = 0; i < 6; i++) {
-          const imgUrl = allImages[i % allImages.length];
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 transition cursor-pointer ${
-            i === 0 ? "border-white shadow-md scale-105" : "border-white/40 hover:border-white"
-          }`;
-          btn.innerHTML = `<img src="${imgUrl}" alt="${prod.name} ${i+1}" class="w-full h-full object-cover">`;
-          
-          btn.addEventListener("click", () => {
-            detailMainImg.src = imgUrl;
-            document.querySelectorAll(".detail-thumb").forEach((t) => {
-              t.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white/40 hover:border-white transition cursor-pointer";
+          // Fill up to 6 thumbnails
+          for (let i = 0; i < 6; i++) {
+            const imgUrl = allImages[i % allImages.length];
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = `detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 transition cursor-pointer ${
+              i === 0 ? "border-white shadow-md scale-105" : "border-white/40 hover:border-white"
+            }`;
+            btn.innerHTML = `<img src="${imgUrl}" alt="${prod.name} ${i+1}" class="w-full h-full object-cover">`;
+            
+            btn.addEventListener("click", () => {
+              if (detailMainImg) detailMainImg.src = imgUrl;
+              document.querySelectorAll(".detail-thumb").forEach((t) => {
+                t.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white/40 hover:border-white transition cursor-pointer";
+              });
+              btn.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white shadow-md scale-105 transition cursor-pointer";
             });
-            btn.className = "detail-thumb rounded-xl overflow-hidden aspect-[4/3] bg-white/20 border-2 border-white shadow-md scale-105 transition cursor-pointer";
-          });
-          detailThumbnailsRow.appendChild(btn);
+            detailThumbnailsRow.appendChild(btn);
+          }
         }
 
         // Colors
-        detailColorSwatches.innerHTML = "";
-        if (prod.colors) {
-          prod.colors.forEach((col, idx) => {
+        if (detailColorSwatches) {
+          detailColorSwatches.innerHTML = "";
+          const colorsList = prod.colors || [{ name: "มาตรฐาน", hex: "#0046a7" }];
+          colorsList.forEach((col, idx) => {
             const colBtn = document.createElement("button");
             colBtn.type = "button";
             colBtn.className = `color-btn px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-2 transition cursor-pointer ${
@@ -1220,7 +1141,7 @@
             
             colBtn.addEventListener("click", () => {
               selectedDetailColor = col.name;
-              detailSelectedColorText.textContent = col.name;
+              if (detailSelectedColorText) detailSelectedColorText.textContent = col.name;
               document.querySelectorAll(".color-btn").forEach((b) => {
                 b.className = "color-btn px-3 py-1.5 rounded-xl border border-gray-300 bg-white text-gray-700 hover:border-gray-400 text-xs font-semibold flex items-center gap-2 transition cursor-pointer";
               });
@@ -1229,55 +1150,64 @@
             detailColorSwatches.appendChild(colBtn);
           });
         }
-        detailSelectedColorText.textContent = selectedDetailColor;
+        if (detailSelectedColorText) detailSelectedColorText.textContent = selectedDetailColor;
 
         // Sizes
-        detailSizeOptions.innerHTML = "";
-        const availableSizes = prod.sizes || ["XS", "S", "M", "L", "XL", "2XL"];
-        availableSizes.forEach((sz, idx) => {
-          const szBtn = document.createElement("button");
-          szBtn.type = "button";
-          szBtn.className = `size-btn py-2 text-xs font-bold rounded-xl border transition cursor-pointer text-center ${
-            idx === 0 ? "border-primary bg-primary text-white shadow-xs" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
-          }`;
-          szBtn.textContent = sz;
-          szBtn.addEventListener("click", () => {
-            selectedDetailSize = sz;
-            document.querySelectorAll(".size-btn").forEach((b) => {
-              b.className = "size-btn py-2 text-xs font-bold rounded-xl border border-gray-300 bg-white text-gray-700 hover:border-gray-400 transition cursor-pointer text-center";
+        if (detailSizeOptions) {
+          detailSizeOptions.innerHTML = "";
+          const availableSizes = prod.sizes || ["XS", "S", "M", "L", "XL", "2XL"];
+          availableSizes.forEach((sz, idx) => {
+            const szBtn = document.createElement("button");
+            szBtn.type = "button";
+            szBtn.className = `size-btn py-2 text-xs font-bold rounded-xl border transition cursor-pointer text-center ${
+              idx === 0 ? "border-primary bg-primary text-white shadow-xs" : "border-gray-300 bg-white text-gray-700 hover:border-gray-400"
+            }`;
+            szBtn.textContent = sz;
+            szBtn.addEventListener("click", () => {
+              selectedDetailSize = sz;
+              document.querySelectorAll(".size-btn").forEach((b) => {
+                b.className = "size-btn py-2 text-xs font-bold rounded-xl border border-gray-300 bg-white text-gray-700 hover:border-gray-400 transition cursor-pointer text-center";
+              });
+              szBtn.className = "size-btn py-2 text-xs font-bold rounded-xl border border-primary bg-primary text-white shadow-xs transition cursor-pointer text-center";
             });
-            szBtn.className = "size-btn py-2 text-xs font-bold rounded-xl border border-primary bg-primary text-white shadow-xs transition cursor-pointer text-center";
+            detailSizeOptions.appendChild(szBtn);
           });
-          detailSizeOptions.appendChild(szBtn);
-        });
+        }
 
         // Similar Products (4 items)
         renderSimilarProducts(prod);
 
         // Switch View
-        viewCatalog.classList.add("hidden");
-        viewDetail.classList.remove("hidden");
+        if (viewCatalog && viewDetail) {
+          viewCatalog.classList.add("hidden");
+          viewDetail.classList.remove("hidden");
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
       function renderSimilarProducts(currentProd) {
+        if (!detailSimilarGrid) return;
         detailSimilarGrid.innerHTML = "";
-        const others = productsData.filter((p) => p.id !== currentProd.id).slice(0, 4);
+        const others = allProducts.filter((p) => p.id !== currentProd.id).slice(0, 4);
 
         others.forEach((prod) => {
           const card = document.createElement("div");
           card.className = "bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-lg transition flex flex-col group cursor-pointer";
           
+          const imgSrc = getProductImg(prod, 0);
+          const catName = prod.categoryName || (prod.category ? prod.category.toUpperCase() : 'GENERAL');
+          const origPrice = prod.originalPrice || Math.round(prod.price * 1.3);
+
           card.innerHTML = `
             <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
-              <img src="${prod.img || prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+              <img src="${imgSrc}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
             </div>
             <div class="p-3.5 space-y-1">
-              <span class="text-[10px] font-bold text-primary uppercase">${prod.categoryName}</span>
+              <span class="text-[10px] font-bold text-primary uppercase">${catName}</span>
               <h4 class="text-xs font-bold text-gray-900 line-clamp-1 group-hover:text-primary transition">${prod.name}</h4>
               <div class="flex items-baseline gap-1.5 pt-1">
                 <span class="text-sm font-extrabold text-primary">฿${prod.price.toLocaleString()}</span>
-                <span class="text-[10px] font-medium text-gray-400 line-through">฿${prod.originalPrice.toLocaleString()}</span>
+                <span class="text-[10px] font-medium text-gray-400 line-through">฿${origPrice.toLocaleString()}</span>
               </div>
             </div>
           `;
@@ -1290,53 +1220,71 @@
       window.showCatalogView = function () {
         window.history.pushState({}, "", `Product_Page.html`);
         document.getElementById("page-title").textContent = "รายการสินค้าทั้งหมด | OCCASION";
-        viewDetail.classList.add("hidden");
-        viewCatalog.classList.remove("hidden");
+        if (viewDetail && viewCatalog) {
+          viewDetail.classList.add("hidden");
+          viewCatalog.classList.remove("hidden");
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
       // Quantity Controls
-      detailQtyMinus.addEventListener("click", () => {
-        if (detailQty > 1) {
-          detailQty--;
-          detailQtyVal.textContent = detailQty;
-        }
-      });
+      if (detailQtyMinus) {
+        detailQtyMinus.addEventListener("click", () => {
+          if (detailQty > 1) {
+            detailQty--;
+            if (detailQtyVal) detailQtyVal.textContent = detailQty;
+          }
+        });
+      }
 
-      detailQtyPlus.addEventListener("click", () => {
-        if (activeProduct && detailQty < activeProduct.quantity) {
-          detailQty++;
-          detailQtyVal.textContent = detailQty;
-        } else {
-          showToast(`สินค้ามีจำกัดสูงสุด ${activeProduct.quantity} ชิ้น`);
-        }
-      });
+      if (detailQtyPlus) {
+        detailQtyPlus.addEventListener("click", () => {
+          const maxStock = activeProduct?.quantity !== undefined ? activeProduct.quantity : 15;
+          if (activeProduct && detailQty < maxStock) {
+            detailQty++;
+            if (detailQtyVal) detailQtyVal.textContent = detailQty;
+          } else {
+            showToast(`สินค้ามีจำกัดสูงสุด ${maxStock} ชิ้น`);
+          }
+        });
+      }
 
       // Add to Cart
       function addToCart(prod, size, color, qty) {
         showToast(`เพิ่ม "${prod.name}" (${size}, ${color}) x${qty} ชิ้น ลงตะกร้าแล้ว!`);
-        cartBadge.textContent = parseInt(cartBadge.textContent || "0") + qty;
-        cartBadge.classList.add("scale-125");
-        setTimeout(() => cartBadge.classList.remove("scale-125"), 300);
+        const cartBadge = document.getElementById("cart-count-badge");
+        if (cartBadge) {
+          cartBadge.textContent = parseInt(cartBadge.textContent || "0") + qty;
+          cartBadge.classList.add("scale-125");
+          setTimeout(() => cartBadge.classList.remove("scale-125"), 300);
+        }
       }
 
-      btnDetailAddCart.addEventListener("click", () => {
-        if (activeProduct) {
-          addToCart(activeProduct, selectedDetailSize, selectedDetailColor, detailQty);
-        }
-      });
-
-      document.getElementById("btn-detail-share").addEventListener("click", () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-          showToast("คัดลอกลิงก์สินค้านี้แล้ว! พร้อมแชร์ให้เพื่อน");
-        }).catch(() => {
-          showToast("คัดลอกลิงก์เรียบร้อยแล้ว");
+      if (btnDetailAddCart) {
+        btnDetailAddCart.addEventListener("click", () => {
+          if (activeProduct) {
+            addToCart(activeProduct, selectedDetailSize, selectedDetailColor, detailQty);
+          }
         });
-      });
+      }
 
-      document.getElementById("btn-detail-wishlist").addEventListener("click", () => {
-        showToast("บันทึกสินค้านี้ลงในรายการโปรดแล้ว!");
-      });
+      const shareBtn = document.getElementById("btn-detail-share");
+      if (shareBtn) {
+        shareBtn.addEventListener("click", () => {
+          navigator.clipboard?.writeText(window.location.href).then(() => {
+            showToast("คัดลอกลิงก์สินค้านี้แล้ว! พร้อมแชร์ให้เพื่อน");
+          }).catch(() => {
+            showToast("คัดลอกลิงก์เรียบร้อยแล้ว");
+          });
+        });
+      }
+
+      const wishlistBtn = document.getElementById("btn-detail-wishlist");
+      if (wishlistBtn) {
+        wishlistBtn.addEventListener("click", () => {
+          showToast("บันทึกสินค้านี้ลงในรายการโปรดแล้ว!");
+        });
+      }
 
       // -------------------------------------------------------------
       // 3. INITIALIZATION ON LOAD
@@ -1347,11 +1295,16 @@
       const urlParams = new URLSearchParams(window.location.search);
       const idFromUrl = urlParams.get("id");
       const categoryFromUrl = urlParams.get("category");
+      const searchFromUrl = urlParams.get("search");
 
       if (idFromUrl) {
         showDetailView(idFromUrl);
       } else if (categoryFromUrl) {
         filterCatalog(categoryFromUrl.toLowerCase());
+      } else if (searchFromUrl) {
+        if (catalogSearchInput) catalogSearchInput.value = searchFromUrl;
+        currentSearchQuery = searchFromUrl.trim();
+        renderCatalogGrid();
       }
     </script>
   </body>
