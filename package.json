@@ -1,0 +1,10 @@
+{
+  "name": "group-project-3",
+  "version": "1.0.0",
+  "description": "OCCASION E-Commerce Web Application",
+  "scripts": {
+    "dev": "npx -y concurrently \"npx @tailwindcss/cli -i ./client/style.css -o ./client/output.css --watch\" \"npx -y live-server client --port=5500 --entry-file=index.html\"",
+    "serve": "npx -y live-server client --port=5500",
+    "build": "npx @tailwindcss/cli -i ./client/style.css -o ./client/output.css --minify"
+  }
+}
