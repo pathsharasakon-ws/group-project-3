@@ -21,45 +21,7 @@
     <!-- ============================================== -->
     <!-- 1. ส่วนหัวเว็บไซต์ (Header / Navbar) -->
     <!-- ============================================== -->
-    <header class="w-full bg-white border-b border-gray-200 sticky top-0 z-40 shadow-xs">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        
-        <!-- Left: Brand Logo -->
-        <a href="./index.html" class="flex items-center gap-2">
-          <img src="./assets/logo/newlogo.png" alt="OCCASION Logo" class="w-24 sm:w-28 h-auto object-contain" />
-        </a>
-
-        <!-- Middle: Nav Links -->
-        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold tracking-wide">
-          <a href="./Product_Page.html" class="text-primary border-b-2 border-primary pb-1 transition">
-            PRODUCTS
-          </a>
-          <a href="./index.html#lookbook" class="text-gray-600 hover:text-primary transition">
-            LOOKBOOK
-          </a>
-          <a href="./article.html" class="text-gray-600 hover:text-primary transition">
-            ARTICLES
-          </a>
-          <a href="./customerService.html" class="text-gray-600 hover:text-primary transition">
-            HELP & SUPPORT
-          </a>
-        </nav>
-
-        <!-- Right: Actions, Profile & Cart -->
-        <div class="flex items-center gap-4 sm:gap-6">
-          <a href="./signup.html" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-primary transition">
-            <img src="./assets/icon/user.png" alt="User" class="w-4 h-4" />
-            <span class="hidden sm:inline">เข้าสู่ระบบ</span>
-          </a>
-
-          <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center relative p-1" aria-label="Cart">
-            <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6 object-contain" />
-            <span id="cart-count-badge" class="absolute -top-1 -right-1.5 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-xs transition-transform">2</span>
-          </a>
-        </div>
-      </div>
-    </header>
-
+     <header id="navbar-container"></header>
     <!-- Main Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-10">
 
@@ -684,6 +646,9 @@
       <span id="toast-message">บันทึกเรียบร้อย</span>
     </div>
 
+  <div id="footer-container"></div>
+
+  <script type="module" src="script.js"></script>
     <!-- ============================================== -->
     <!-- JAVASCRIPT LOGIC (CATALOG & DETAIL VIEWS) -->
     <!-- ============================================== -->

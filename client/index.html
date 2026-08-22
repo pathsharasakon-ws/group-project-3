@@ -14,53 +14,9 @@
 
 <body class="w-full bg-background font-sans">
   <!-- navbar -->
-  <header id="navbar-container">
-    <nav class="w-full bg-white shadow-xs sticky top-0 z-40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-        <!-- Logo -->
-        <a href="./index.html" class="flex items-center">
-          <img src="./assets/logo/newlogo.png" alt="Logo" class="w-24 h-auto" />
-        </a>
-
-        <!-- Menu List -->
-        <ul class="flex items-center gap-6 text-sm md:text-base font-medium">
-          <li>
-            <a
-              href="./Product_Page.html"
-              class="rounded-full border border-gray-300 p-2 flex items-center justify-center hover:bg-gray-100 transition" 
-              id="search-button"
-              aria-label="Search Products"
-            >
-              <img src="./assets/icon/search.png" alt="search" class="w-4 h-4" />
-            </a>
-          </li>
-          <li class="text-primary hover:text-primary font-bold hover:underline decoration-accent underline-offset-4 transition">
-            <a href="./Product_Page.html">PRODUCTS</a>
-          </li>
-          <li class="text-gray-700 hover:text-primary hover:underline decoration-accent underline-offset-4 transition">
-            <a href="#main">FEATURES</a>
-          </li>
-          <li>
-            <a
-              href="./signup.html"
-              class="flex items-center gap-1.5 text-primary hover:opacity-80 transition font-semibold"
-            >
-              <img src="./assets/icon/user.png" alt="Sign in" class="w-5 h-5" />
-              <span>SIGN IN</span>
-            </a>
-          </li>
-          <li>
-            <a href="./cart-page.html" class="hover:opacity-80 transition flex items-center relative" aria-label="Cart">
-              <img src="./assets/icon/cartBag.png" alt="Cart" class="w-6 h-6" />
-              <span class="absolute -top-1.5 -right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+   <header id="navbar-container"></header>
   <!-- hero section -->
-  <section class="relative" id="new">
+   <section class="relative" id="new">
     <img src="./assets/bg-hero.jpg" alt="Two models wearing black and white minimal tailoring in a concrete studio" 
     width="1920" height="1080" class="h-[78vh] w-full object-cover" >
   <div class="absolute inset-0 flex justify-center items-end bg-foreground/35">
@@ -206,48 +162,40 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
         <!-- Card 1 -->
-<<<<<<< HEAD
-        <a href="./Product_Page.html" class="block relative overflow-hidden w-full max-w-sm aspect-[3/4] rounded-xl group shadow-md cursor-pointer">
-=======
         <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
->>>>>>> origin/develop
           <img src="./assets/lookbook/lookbook_set1.jpg" alt="เสื้อ" 
             class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-lg">
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg">
             <h4 class="text-3xl font-bold uppercase tracking-tight 
                bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
-               [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)]">เสื้อ</h4>
-            <h6 class="text-sm font-normal">สำรวจหมวดหมู่ &rarr;</h6>
+               [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)] ">เสื้อ</h4>
+            <h6 class="text-sm font-normal ">สำรวจหมวดหมู่</h6>
           </div>
-        </a>
+        </div>
 
         <!-- Card 2 -->
-<<<<<<< HEAD
-        <a href="./Product_Page.html" class="block w-full max-w-sm aspect-[3/4] rounded-xl relative overflow-hidden group shadow-md cursor-pointer">
-=======
         <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md ">
->>>>>>> origin/develop
           <img src="./assets/lookbook/lookbook_set2.jpg" alt="กางเกง"
             class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-105" />
-          <div class="absolute bottom-4 left-4 font-bold drop-shadow-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-lg">
+          <div class="absolute bottom-4 left-4 font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg" >
             <h4 class="text-3xl font-bold uppercase tracking-tight 
                bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
                [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)]">กางเกง</h4>
-            <h6 class="text-sm text-gray-200 opacity-90">สำรวจหมวดหมู่ &rarr;</h6>
+            <h6 class="text-sm text-gray-200 opacity-90 ">สำรวจหมวดหมู่</h6>
           </div>
-        </a>
+        </div>
 
         <!-- Card 3 -->
-        <a href="./Product_Page.html" class="block w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md cursor-pointer">
+        <div class="w-full max-w-sm mx-auto rounded-xl relative overflow-hidden group shadow-md">
           <img src="./assets/lookbook/lookbook_3.png" alt="กระโปรง"
-            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-full object-cover" />
-          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-lg">
+            class="transition duration-300 ease-in-out group-hover:scale-105 rounded-xl w-full h-auto object-cover" />
+          <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg font-bold drop-shadow-lg bg-black/10 backdrop-blur-md  px-3 py-1 rounded-lg">
             <h4 class="text-3xl font-bold uppercase tracking-tight 
                bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-200
                [text-shadow:0_4px_8px_rgba(0,0,0,0.3),_0_2px_4px_rgba(255,255,255,0.4)]">กระโปรง</h4>
-            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่ &rarr;</h6>
+            <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
           </div>
-        </a>
+        </div>
       </div>
     </div>
 <!-- 1. คอนเทนเนอร์หลัก: ต้องมี w-full และ overflow-hidden เพื่อซ่อนส่วนที่เกินขอบจอ -->
@@ -266,36 +214,36 @@
     <!-- === ชุดรูปภาพที่ 1 === -->
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_5.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/1" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">เสื้อคลุมคาร์ดิแกน</h4>
+        <h4 class="text-3xl">เครื่องประดับ</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
 
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_1.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/2" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">เสื้อยืดมินิมอล</h4>
+        <h4 class="text-3xl">กางเกง</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
 
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_2.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/3" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">กางเกงยีนส์วินเทจ</h4>
+        <h4 class="text-3xl">เสื้อ</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
@@ -303,36 +251,36 @@
     <!-- === ชุดรูปภาพที่ 2 (ก๊อปปี้ชุดที่ 1 มาต่อท้ายตรงๆ เพื่อความต่อเนื่อง) === -->
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_6.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/1" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">เสื้อเชิ้ตโอเวอร์ไซส์</h4>
+        <h4 class="text-3xl">เครื่องประดับ</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
 
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_3.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/2" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">เสื้อเบลเซอร์</h4>
+        <h4 class="text-3xl">กางเกง</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
 
     <div class="shrink-0 relative group rounded-xl overflow-hidden cursor-pointer">
       <img src="./assets/product/style_4.jpg" class="w-96 h-100 object-cover transition-transform duration-300 group-hover:scale-105" />
-      <a href="./Product_Page.html" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      <a href="/product/3" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
         <span class="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">ดูสินค้า</span>
       </a>
       <span class="absolute top-0 left-1"><img src="./assets/icon/new.png" alt="new-icon" class="w-13 h-12"></span>
       <div class="absolute bottom-4 left-4 text-white font-bold drop-shadow-lg">
-        <h4 class="text-3xl">เซ็ตเสื้อและกางเกง</h4>
+        <h4 class="text-3xl">เสื้อ</h4>
         <h6 class="text-sm font-normal opacity-90">สำรวจหมวดหมู่</h6>
       </div>
     </div>
@@ -346,100 +294,19 @@
     <h2 class="text-2xl font-bold text-primary">Article</h2>
    <p class="text-xl text-primary ">อ่านบทความพิเศษช่วงนี้เท่านั้น</p>
    </div>
-  <div class="max-w-7xl mx-auto py-5"> 
+  <div class="max-w-7xl mx-auto  py-5 "> 
   <!-- Grid แสดงผลการ์ดบทความ -->
-  <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <article class="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-lg transition border border-gray-100">
-      <img src="./assets/product/style_6.jpg" alt="Article 1" class="w-full h-48 object-cover" />
-      <div class="p-5">
-        <span class="text-xs text-primary font-bold">Fashion Trend 2026</span>
-        <h3 class="font-bold text-gray-900 text-base mt-1">เทคนิคการแต่งตัวสไตล์มินิมอลให้ดูแพง</h3>
-        <p class="text-xs text-gray-500 mt-2 line-clamp-2">เคล็ดลับการเลือกเสื้อเชิ้ตโอเวอร์ไซส์และโทนสีเอิร์ธโทน ให้เข้ากับทุกลุคในชีวิตประจำวัน</p>
-      </div>
-    </article>
-    <article class="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-lg transition border border-gray-100">
-      <img src="./assets/product/style_3.jpg" alt="Article 2" class="w-full h-48 object-cover" />
-      <div class="p-5">
-        <span class="text-xs text-primary font-bold">Mix & Match Guide</span>
-        <h3 class="font-bold text-gray-900 text-base mt-1">วิธีแมตช์เบลเซอร์สำหรับวันทำงานและวันพักผ่อน</h3>
-        <p class="text-xs text-gray-500 mt-2 line-clamp-2">เปลี่ยนลุคทางการให้ดูแคชชวลสบายตา เพียงจับคู่กับกางเกงยีนส์ขากระบอกตรง</p>
-      </div>
-    </article>
-    <article class="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-lg transition border border-gray-100">
-      <img src="./assets/product/style_5.jpg" alt="Article 3" class="w-full h-48 object-cover" />
-      <div class="p-5">
-        <span class="text-xs text-primary font-bold">Fabric Care</span>
-        <h3 class="font-bold text-gray-900 text-base mt-1">ดูแลเสื้อผ้าคอตตอนและไหมพรมให้อยู่ทรงนาน</h3>
-        <p class="text-xs text-gray-500 mt-2 line-clamp-2">วิธีซักและตากผ้าไหมพรมไม่ให้ย้วย พร้อมยืดอายุการใช้งานเสื้อผ้าตัวโปรด</p>
-      </div>
-    </article>
+  <div id="article-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p">
+    <!-- DOM Render ตรงนี้ -->
   </div>
 </div>
 
   </section>
+    <!-- main section  ทดสอบสีจาก component ข้างนอก-->
 
-  <!-- Footer -->
-  <footer id="footer-container" class="bg-accent text-white mt-16">
-    <div class="max-w-6xl w-full mx-auto px-4 py-8">
-      <!-- Banner สีฟ้า -->
-      <div class="bg-primary flex flex-col sm:flex-row justify-between items-center p-6 sm:p-8 rounded-xl shadow-md gap-4">
-        <p class="text-white font-medium text-base sm:text-lg text-center sm:text-left">
-          Become a member and get 10% off for first purchase
-        </p>
-        <button class="bg-white text-primary font-bold px-6 py-2.5 rounded-md hover:bg-gray-100 transition whitespace-nowrap shadow">
-          Subscribe
-        </button>
-      </div>
+  <div id="footer-container"></div>
 
-      <!-- ส่วน Footer Links และ Social -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 my-10">
-        <!-- SHOP -->
-        <div>
-          <h4 class="font-bold text-lg mb-4">SHOP</h4>
-          <ul class="space-y-2 text-sm text-white/90">
-            <li><a href="./Product_Page.html" class="hover:underline transition">Tops</a></li>
-            <li><a href="./Product_Page.html" class="hover:underline transition">Bottoms</a></li>
-            <li><a href="./Product_Page.html" class="hover:underline transition">LookBooks</a></li>
-          </ul>
-        </div>
-
-        <!-- HELP -->
-        <div>
-          <h4 class="font-bold text-lg mb-4">HELP</h4>
-          <ul class="space-y-2 text-sm text-white/90">
-            <li><a href="./customerService.html" class="hover:underline transition">Customer Service</a></li>
-            <li><a href="./termCondition.html" class="hover:underline transition">Terms & Policy</a></li>
-            <li><a href="./privacyPolicy.html" class="hover:underline transition">Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <!-- USER -->
-        <div>
-          <h4 class="font-bold text-lg mb-4">USER</h4>
-          <ul class="space-y-2 text-sm text-white/90">
-            <li><a href="./signup.html" class="hover:underline transition">Become A Member</a></li>
-            <li><a href="./signup.html" class="hover:underline transition">My Account</a></li>
-            <li><a href="#" class="hover:underline transition">My Lookbooks</a></li>
-          </ul>
-        </div>
-
-        <!-- SOCIAL -->
-        <div>
-          <h4 class="font-bold text-lg mb-4">SOCIAL</h4>
-          <ul class="space-y-2 text-sm text-white/90">
-            <li><a href="#" class="hover:underline transition">Facebook</a></li>
-            <li><a href="#" class="hover:underline transition">Instagram</a></li>
-            <li><a href="#" class="hover:underline transition">Tiktok</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="border-t border-white/20 pt-6 text-center text-xs text-white/70">
-        &copy; 2026 OCCASION. All rights reserved.
-      </div>
-    </div>
-  </footer>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
