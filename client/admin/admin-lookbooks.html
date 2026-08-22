@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasion Admin Panel - Lookbooks Management</title>
+
+  <!-- Tailwind & FontAwesome CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
+
+  <div class="flex h-screen overflow-hidden">
+
+    <div x-cloak x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"
+         class="fixed inset-0 bg-gray-900/40 z-30 lg:hidden" aria-hidden="true"></div>
+
+    <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
+    <aside x-cloak
+           class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-40 transform transition-transform duration-200 ease-out lg:static lg:translate-x-0 lg:z-20"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" aria-label="Sidebar Navigation">
+      
+      <div class="flex flex-col h-full">
+        <!-- Admin Profile / Brand Header -->
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
+            ADMIN
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
+          </div>
+          <button type="button" @click="sidebarOpen = false" class="ml-auto p-2 text-gray-400 hover:text-gray-700 lg:hidden" aria-label="ปิดเมนู">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </header>
+
+        <!-- Navigation Links (5 Core Groups) -->
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
+          
+          <!-- GROUP 1: OVERVIEW -->
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
+            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+              <i class="fa-solid fa-chart-pie text-sm w-4"></i>
+              <span>Dashboard</span>
+            </a>
+          </section>
+
+          <!-- GROUP 2: CATALOG MANAGEMENT (Active Group) -->
+          <section aria-labelledby="nav-catalog" x-data="{ open: true }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-shirt text-sm w-4"></i>
+                <span>Product Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <!-- Accordion Sub-menu (Active Link: Lookbooks) -->
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-products.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • สินค้าทั้งหมด (Products)
+              </a>
+              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • หมวดหมู่ (Categories)
+              </a>
+              <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold" aria-current="page">
+                • Lookbooks ( Mix & Match )
+              </a>
+              <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • ปรับสต็อก (Stock Adjustments)
+              </a>
+            </div>
+          </section>
+
+          <!-- GROUP 3: SALES & FULFILLMENT -->
+          <section aria-labelledby="nav-sales" x-data="{ open: false }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-receipt text-sm w-4"></i>
+                <span>Order Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
+              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
+            </div>
+          </section>
+
+          <!-- GROUP 4: USERS & COMMUNITY -->
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
+            <div class="space-y-1">
+              <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-users text-sm w-4"></i>
+                <span>Customers (สมาชิก & สัดส่วน)</span>
+              </a>
+              <a href="admin-reviews.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-star text-sm w-4"></i>
+                <span>Reviews Management</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- GROUP 5: SYSTEM & AUDIT -->
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
+            <div class="space-y-1">
+              <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
+                <span>Admin Audit Logs</span>
+              </a>
+            </div>
+          </section>
+
+        </nav>
+
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
+          <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
+            <i class="fa-solid fa-gear w-4"></i> Settings
+          </a>
+          <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
+            <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+          </a>
+        </footer>
+      </div>
+
+    </aside>
+
+    <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
+    <div class="flex-1 min-w-0 flex flex-col overflow-y-auto">
+
+      <!-- TOP HEADER BAR -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-10">
+        <button type="button" @click="sidebarOpen = true" class="flex-shrink-0 p-2 -ml-2 mr-2 text-gray-500 hover:text-gray-800 lg:hidden" aria-label="เปิดเมนู">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+        <div class="flex items-center gap-4 min-w-0 flex-1 sm:flex-none sm:w-1/2 lg:w-1/3">
+          <div class="relative w-full hidden sm:block">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+            <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-4 text-xs">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
+            <i class="fa-regular fa-bell text-base"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="h-6 w-px bg-gray-200 hidden sm:block"></div>
+          
+          <div class="flex items-center gap-2">
+            <span class="font-semibold text-gray-700 hidden sm:inline">Pathsharasakon (Super Admin)</span><span class="font-semibold text-gray-700 sm:hidden">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY (LOOKBOOKS MAIN CONTENT) -->
+      <main class="p-4 sm:p-6 lg:p-8 space-y-6">
+        
+        <!-- Header & Action Button -->
+        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">จัดการ Lookbooks (เซ็ต Mix & Match)</h1>
+            <p class="text-xs text-gray-500 mt-1">สร้างและแก้ไขชุดจัดเซ็ตแฟชั่นเพื่อกระตุ้นยอดขายและนำเสนอสไตล์ให้ลูกค้า</p>
+          </div>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-medium shadow-sm flex items-center justify-center gap-2 transition">
+            <i class="fa-solid fa-plus"></i> เพิ่ม Lookbook เซตใหม่
+          </button>
+        </header>
+
+        <!-- Filter & Search Section -->
+        <section aria-label="Filters" class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div class="relative w-full md:w-80">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+            <input type="text" placeholder="ค้นหาชื่อเซต Lookbook..." class="w-full pl-9 pr-4 py-2 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto">
+            <select aria-label="Filter by Status" class="bg-gray-50 border border-gray-200 text-gray-600 rounded-lg px-3 py-2 outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="">ทุกสถานะ (Status)</option>
+              <option value="active">เผยแพร่แล้ว (Published)</option>
+              <option value="draft">ฉบับร่าง (Draft)</option>
+            </select>
+            <small class="text-gray-400 text-[11px] block">ทั้งหมด 4 เซต</small>
+          </div>
+        </section>
+
+        <!-- LOOKBOOK CARDS GRID SECTION -->
+        <section aria-label="Lookbooks List" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          
+          <!-- Card 1 -->
+          <article class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <figure class="h-52 bg-pink-50 relative flex items-center justify-center border-b border-gray-100 m-0">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-pink-300"></i>
+                <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+                  เผยแพร่แล้ว
+                </span>
+                <span class="absolute bottom-3 right-3 bg-gray-900/70 text-white text-[10px] font-medium px-2 py-1 rounded-md backdrop-blur-sm">
+                  <i class="fa-solid fa-shirt"></i> 3 ชิ้นในเซต
+                </span>
+              </figure>
+
+              <div class="p-4 space-y-2">
+                <h3 class="font-bold text-gray-800 text-sm hover:text-blue-600 cursor-pointer">Summer Casual Vibe</h3>
+                <p class="text-xs text-gray-500 line-clamp-2">
+                  เซตเสื้อครอปซาตินจับคู่กระโปรงทรงเอ ให้ลุคซัมเมอร์เรียบหรูแต่น่ารัก
+                </p>
+                <small class="pt-2 flex items-center gap-2 text-[11px] text-gray-400 block">
+                  <i class="fa-regular fa-calendar"></i> อัปเดตล่าสุด: <time datetime="2026-08-10">10 ส.ค. 2026</time>
+                </small>
+              </div>
+            </div>
+
+            <footer class="p-4 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-gray-800">฿3,870 <small class="text-[10px] font-normal text-gray-400">(รวมเซต)</small></span>
+              <div class="flex items-center gap-1">
+                <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไข Lookbook" title="แก้ไข">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบ Lookbook" title="ลบ">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <figure class="h-52 bg-blue-50 relative flex items-center justify-center border-b border-gray-100 m-0">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-blue-300"></i>
+                <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+                  เผยแพร่แล้ว
+                </span>
+                <span class="absolute bottom-3 right-3 bg-gray-900/70 text-white text-[10px] font-medium px-2 py-1 rounded-md backdrop-blur-sm">
+                  <i class="fa-solid fa-shirt"></i> 2 ชิ้นในเซต
+                </span>
+              </figure>
+
+              <div class="p-4 space-y-2">
+                <h3 class="font-bold text-gray-800 text-sm hover:text-blue-600 cursor-pointer">Elegant Evening Gala</h3>
+                <p class="text-xs text-gray-500 line-clamp-2">
+                  ชุดเดรสยาว Satin Pink สำหรับออกงานกลางคืน หรูหรามีระดับ
+                </p>
+                <small class="pt-2 flex items-center gap-2 text-[11px] text-gray-400 block">
+                  <i class="fa-regular fa-calendar"></i> อัปเดตล่าสุด: <time datetime="2026-08-08">08 ส.ค. 2026</time>
+                </small>
+              </div>
+            </div>
+
+            <footer class="p-4 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-gray-800">฿4,380 <small class="text-[10px] font-normal text-gray-400">(รวมเซต)</small></span>
+              <div class="flex items-center gap-1">
+                <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไข Lookbook" title="แก้ไข">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบ Lookbook" title="ลบ">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <figure class="h-52 bg-amber-50 relative flex items-center justify-center border-b border-gray-100 m-0">
+                <i class="fa-solid fa-wand-magic-sparkles text-4xl text-amber-300"></i>
+                <span class="absolute top-3 left-3 bg-gray-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+                  ฉบับร่าง (Draft)
+                </span>
+                <span class="absolute bottom-3 right-3 bg-gray-900/70 text-white text-[10px] font-medium px-2 py-1 rounded-md backdrop-blur-sm">
+                  <i class="fa-solid fa-shirt"></i> 4 ชิ้นในเซต
+                </span>
+              </figure>
+
+              <div class="p-4 space-y-2">
+                <h3 class="font-bold text-gray-800 text-sm hover:text-blue-600 cursor-pointer">Office Look Working Girl</h3>
+                <p class="text-xs text-gray-500 line-clamp-2">
+                  เซตเบลเซอร์เข้ารูปกับกางเกงสแล็ค คล่องตัวสำหรับวันทำงาน
+                </p>
+                <small class="pt-2 flex items-center gap-2 text-[11px] text-gray-400 block">
+                  <i class="fa-regular fa-calendar"></i> อัปเดตล่าสุด: <time datetime="2026-08-01">01 ส.ค. 2026</time>
+                </small>
+              </div>
+            </div>
+
+            <footer class="p-4 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-gray-800">฿5,120 <small class="text-[10px] font-normal text-gray-400">(รวมเซต)</small></span>
+              <div class="flex items-center gap-1">
+                <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไข Lookbook" title="แก้ไข">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบ Lookbook" title="ลบ">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Card 4: Add New Card -->
+          <article class="border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-gray-50/50 hover:border-blue-300 transition cursor-pointer min-h-[360px]">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-xl mb-3 select-none">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <h3 class="font-bold text-gray-700 text-sm">สร้าง Lookbook ใหม่</h3>
+            <p class="text-xs text-gray-400 mt-1 max-w-[180px]">จัดเซ็ตจับคู่เสื้อผ้า เพิ่มรูปภาพ และกำหนดราคาพิเศษ</p>
+          </article>
+
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

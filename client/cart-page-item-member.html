@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cart Page - Not Member</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================= -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         TAILWIND CSS
+    ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="./output.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           PAGE LAYOUT
+        ========================================= */
+
+        html,
+        body {
+
+            margin: 0;
+            padding: 0;
+
+            min-height: 100vh;
+
+        }
+
+
+        body {
+
+            display: flex;
+            flex-direction: column;
+
+        }
+
+
+        #navbar-container {
+
+            flex-shrink: 0;
+
+        }
+
+
+        main {
+
+            flex: 1 0 auto;
+
+        }
+
+
+        #footer-container {
+
+            flex-shrink: 0;
+
+        }
+
+
+
+        /* =========================================
+           MAIN CART CONTAINER
+
+           SAME SIZE AS PAGE 1
+        ========================================= */
+
+        .cart-container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+            background-color: white;
+
+            padding: 48px;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        /* =========================================
+           INFORMATION BOX
+
+           SAME SIZE AS PAGE 1
+        ========================================= */
+
+        .information-box {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+            margin-bottom: 32px;
+
+            border: 1px solid #555;
+
+            padding: 8px 20px;
+
+            box-sizing: border-box;
+
+            font-size: 11px;
+
+            line-height: 1.55;
+
+        }
+
+
+        .information-box p {
+
+            margin: 0;
+
+        }
+
+
+
+        /* =========================================
+           CART LAYOUT
+
+           LEFT  = PRODUCTS
+           RIGHT = SUMMARY
+        ========================================= */
+
+        .cart-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.65fr)
+                minmax(300px, 0.9fr);
+
+            column-gap: 60px;
+
+            align-items: start;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCTS AREA
+        ========================================= */
+
+        .products-area {
+
+            min-width: 0;
+
+        }
+
+
+        .cart-title {
+
+            margin: 0 0 24px 0;
+
+            font-size: 18px;
+
+            font-weight: 500;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT ITEM
+
+           SAME SIZE AS PAGE 1
+        ========================================= */
+
+        .cart-item {
+
+            display: grid;
+
+            grid-template-columns:
+                150px
+                minmax(0, 1fr);
+
+            column-gap: 24px;
+
+            position: relative;
+
+            min-height: 170px;
+
+            padding-bottom: 24px;
+
+            margin-bottom: 24px;
+
+            border-bottom: 1px solid #d8d8d8;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT IMAGE
+
+           150 x 170
+        ========================================= */
+
+        .product-image {
+
+            width: 150px;
+
+            height: 170px;
+
+            object-fit: cover;
+
+            background-color: #f3f3f3;
+
+            display: block;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT INFORMATION
+        ========================================= */
+
+        .product-info {
+
+            min-width: 0;
+
+            position: relative;
+
+            min-height: 170px;
+
+        }
+
+
+        .product-name {
+
+            margin: 2px 35px 16px 0;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            line-height: 1.4;
+
+        }
+
+
+        .product-detail {
+
+            margin: 3px 0;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+
+            color: #333;
+
+        }
+
+
+        .product-color {
+
+            color: #555;
+
+        }
+
+
+        .product-size {
+
+            color: #555;
+
+        }
+
+
+
+        /* =========================================
+           REMOVE BUTTON
+        ========================================= */
+
+        .remove-button {
+
+            position: absolute;
+
+            top: 0;
+
+            right: 0;
+
+            border: 0;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            font-weight: 300;
+
+            color: #555;
+
+            padding: 0;
+
+        }
+
+
+
+        /* =========================================
+           QUANTITY
+        ========================================= */
+
+        .quantity-box {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            margin-top: 12px;
+
+            border: 1px solid #cfcfcf;
+
+            height: 30px;
+
+        }
+
+
+        .quantity-button {
+
+            width: 30px;
+
+            height: 28px;
+
+            border: 0;
+
+            background: white;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+        }
+
+
+        .quantity-number {
+
+            width: 30px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+        }
+
+
+
+        /* =========================================
+           PRODUCT BOTTOM
+        ========================================= */
+
+        .product-bottom {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            bottom: 0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-end;
+
+        }
+
+
+        .product-links {
+
+            display: flex;
+
+            gap: 5px;
+
+            font-size: 10px;
+
+        }
+
+
+        .product-links a {
+
+            color: #111;
+
+            text-decoration: underline;
+
+        }
+
+
+        .product-price {
+
+            text-align: right;
+
+        }
+
+
+        .current-price {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .old-price {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #999;
+
+            font-size: 10px;
+
+            text-decoration: line-through;
+
+        }
+
+
+
+        /* =========================================
+           SUMMARY
+        ========================================= */
+
+        .summary-area {
+
+            min-width: 0;
+
+        }
+
+
+        .help-title {
+
+            margin: 0 0 24px 0;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .promo-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 24px;
+
+            font-size: 11px;
+
+        }
+
+
+        .promo-row a {
+
+            color: #111;
+
+            text-decoration: underline;
+
+        }
+
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 7px 0;
+
+            border-bottom: 1px solid #dedede;
+
+            font-size: 11px;
+
+        }
+
+
+        .summary-total {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 14px 0 12px 0;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+
+        /* =========================================
+           CHECKOUT
+        ========================================= */
+
+        .checkout-button {
+
+            width: 100%;
+
+            height: 36px;
+
+            border: 0;
+
+            background: #e80064;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: opacity 0.2s ease;
+
+        }
+
+
+        .checkout-button:hover {
+
+            opacity: 0.85;
+
+        }
+
+
+        .checkout-description {
+
+            margin-top: 14px;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            color: #555;
+
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .cart-container {
+
+                padding: 30px;
+
+            }
+
+
+            .cart-layout {
+
+                grid-template-columns: 1fr;
+
+                row-gap: 40px;
+
+            }
+
+
+            .summary-area {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .cart-container {
+
+                padding: 20px;
+
+            }
+
+
+            .information-box {
+
+                font-size: 9px;
+
+            }
+
+
+            .cart-item {
+
+                grid-template-columns:
+                    110px
+                    minmax(0, 1fr);
+
+                column-gap: 16px;
+
+            }
+
+
+            .product-image {
+
+                width: 110px;
+
+                height: 130px;
+
+            }
+
+
+            .product-info {
+
+                min-height: 130px;
+
+            }
+
+
+            .product-bottom {
+
+                position: static;
+
+                margin-top: 10px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header id="navbar-container"></header>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main class="bg-background py-10">
+
+
+        <!-- =========================================
+             MAIN WHITE BOX
+        ========================================= -->
+
+        <div class="cart-container">
+
+
+            <!-- =====================================
+                 INFORMATION BOX
+            ====================================== -->
+
+            <div class="information-box">
+
+
+                <p>
+
+                    <span class="text-blue-500">
+                        ⓘ
+                    </span>
+
+                    <strong>
+                        1. Sale Items:
+                    </strong>
+
+                    No returns or exchanges.
+                    See our returns policy for details.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        2. Duty and Tax:
+                    </strong>
+
+                    Relevant import duty and tax are included
+                    in product price.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        3. International Transaction Fee:
+                    </strong>
+
+                    Your bank may charge international fees.
+                    Learn more on our policy.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 CART LAYOUT
+            ====================================== -->
+
+            <div class="cart-layout">
+
+
+                <!-- =================================
+                     LEFT : PRODUCTS
+                ================================== -->
+
+                <section class="products-area">
+
+
+                    <!-- CART TITLE -->
+
+                    <h2 class="cart-title">
+
+                        My Bag (3)
+
+                    </h2>
+
+
+
+                    <!-- =================================
+                         PRODUCT 1
+                    ================================== -->
+
+                    <div class="cart-item">
+
+
+                        <img
+                            src="./images/easyset-shirt.jpg"
+                            alt="EasySet Training Long-Sleeve Shirt"
+                            class="product-image"
+                        >
+
+
+                        <div class="product-info">
+
+
+                            <h3 class="product-name">
+
+                                EasySet Training Long-Sleeve Shirt
+
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-button"
+                            >
+                                ×
+                            </button>
+
+
+                            <p class="product-detail">
+
+                                Final Sale ●
+
+                            </p>
+
+
+                            <p class="product-detail product-color">
+
+                                Walnut Crunch
+
+                            </p>
+
+
+                            <p class="product-detail product-size">
+
+                                Size US L
+
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div class="quantity-box">
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    −
+                                </button>
+
+
+                                <span class="quantity-number">
+
+                                    1
+
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    +
+
+                                </button>
+
+
+                            </div>
+
+
+                            <!-- PRODUCT BOTTOM -->
+
+                            <div class="product-bottom">
+
+
+                                <div class="product-links">
+
+                                    <a href="#">
+                                        Edit
+                                    </a>
+
+                                    <a href="#">
+                                        Save for Later
+                                    </a>
+
+                                </div>
+
+
+                                <div class="product-price">
+
+                                    <span class="current-price">
+
+                                        ฿ 2,380.00
+
+                                    </span>
+
+
+                                    <span class="old-price">
+
+                                        ฿ 3,400.00
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         PRODUCT 2
+                    ================================== -->
+
+                    <div class="cart-item">
+
+
+                        <img
+                            src="./images/training-short.jpg"
+                            alt="Training Short"
+                            class="product-image"
+                        >
+
+
+                        <div class="product-info">
+
+
+                            <h3 class="product-name">
+
+                                Training Short
+
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-button"
+                            >
+                                ×
+                            </button>
+
+
+                            <p class="product-detail">
+
+                                Final Sale ●
+
+                            </p>
+
+
+                            <p class="product-detail product-color">
+
+                                Black
+
+                            </p>
+
+
+                            <p class="product-detail product-size">
+
+                                Size US M
+
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div class="quantity-box">
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    −
+                                </button>
+
+
+                                <span class="quantity-number">
+
+                                    1
+
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    +
+
+                                </button>
+
+
+                            </div>
+
+
+                            <!-- PRODUCT BOTTOM -->
+
+                            <div class="product-bottom">
+
+
+                                <div class="product-links">
+
+                                    <a href="#">
+                                        Edit
+                                    </a>
+
+                                    <a href="#">
+                                        Save for Later
+                                    </a>
+
+                                </div>
+
+
+                                <div class="product-price">
+
+                                    <span class="current-price">
+
+                                        ฿ 1,890.00
+
+                                    </span>
+
+
+                                    <span class="old-price">
+
+                                        ฿ 2,500.00
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         PRODUCT 3
+                    ================================== -->
+
+                    <div class="cart-item">
+
+
+                        <img
+                            src="./images/everyday-tshirt.jpg"
+                            alt="Everyday T-Shirt"
+                            class="product-image"
+                        >
+
+
+                        <div class="product-info">
+
+
+                            <h3 class="product-name">
+
+                                Everyday T-Shirt
+
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-button"
+                            >
+                                ×
+                            </button>
+
+
+                            <p class="product-detail">
+
+                                Final Sale ●
+
+                            </p>
+
+
+                            <p class="product-detail product-color">
+
+                                White
+
+                            </p>
+
+
+                            <p class="product-detail product-size">
+
+                                Size US L
+
+                            </p>
+
+
+                            <!-- QUANTITY -->
+
+                            <div class="quantity-box">
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    −
+                                </button>
+
+
+                                <span class="quantity-number">
+
+                                    1
+
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="quantity-button"
+                                >
+                                    +
+
+                                </button>
+
+
+                            </div>
+
+
+                            <!-- PRODUCT BOTTOM -->
+
+                            <div class="product-bottom">
+
+
+                                <div class="product-links">
+
+                                    <a href="#">
+                                        Edit
+                                    </a>
+
+                                    <a href="#">
+                                        Save for Later
+                                    </a>
+
+                                </div>
+
+
+                                <div class="product-price">
+
+                                    <span class="current-price">
+
+                                        ฿ 1,590.00
+
+                                    </span>
+
+
+                                    <span class="old-price">
+
+                                        ฿ 2,100.00
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     RIGHT : SUMMARY
+                ================================== -->
+
+                <aside class="summary-area">
+
+
+                    <!-- HELP -->
+
+                    <h4 class="help-title">
+
+                        Need Help? 088 888 8888
+
+                    </h4>
+
+
+
+                    <!-- PROMO -->
+
+                    <div class="promo-row">
+
+                        <span>
+                            +
+                        </span>
+
+                        <a href="#">
+                            Enter promo code
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- SUBTOTAL -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span>
+                            ฿ 5,860.00
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- SHIPPING -->
+
+                    <div class="summary-row">
+
+                        <span>
+                            Shipping cost
+                        </span>
+
+                        <span>
+                            ฿ 180.00
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- TOTAL -->
+
+                    <div class="summary-total">
+
+                        <strong>
+                            Estimated Total
+                        </strong>
+
+                        <strong>
+                            ฿ 6,040.00
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- CHECKOUT -->
+
+                    <button
+                        type="button"
+                        class="checkout-button"
+                    >
+
+                        CHECKOUT
+
+                    </button>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p class="checkout-description">
+
+                        By clicking "Checkout", you will be redirected
+                        to the checkout page where payment will be taken
+                        and your order fulfilled by ESW, Occasion's
+                        partner for international sales.
+
+                    </p>
+
+
+                </aside>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <div id="footer-container"></div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>

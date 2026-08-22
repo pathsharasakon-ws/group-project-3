@@ -5,6 +5,6 @@
     "tailwindcss": "^4.3.3"
   },
   "scripts": {
-    "watch": "tailwindcss -i ./style.css -o ./output.css --watch"
+   "watch": "npx @tailwindcss/cli -i ./style.css -o ./output.css --watch"
   }
 }
