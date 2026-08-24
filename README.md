@@ -1,147 +1,128 @@
-# OCCASION - Mix & Match Fashion E-Commerce
+# OCCASION — Mix & Match Fashion E-commerce
 
-OCCASION เป็นเว็บไซต์ E-Commerce สำหรับแบรนด์แฟชั่นที่ช่วยให้ลูกค้าค้นหาและเลือกซื้อเสื้อผ้าได้สะดวกขึ้น พร้อมฟีเจอร์ **Lookbook / Mix & Match** สำหรับแนะนำการจับคู่สินค้า รวมถึงระบบจัดการข้อมูลสัดส่วนร่างกาย รายการโปรด ตะกร้าสินค้า คำสั่งซื้อ การชำระเงิน การติดตามการจัดส่ง และรีวิวสินค้า
+OCCASION เป็นเว็บไซต์ E-commerce แฟชั่นแบบ Unisex ที่ช่วยให้ลูกค้าค้นหา เลือกซื้อ และจับคู่เสื้อผ้าได้สะดวกขึ้นผ่านฟีเจอร์ Lookbook / Mix & Match
 
-ระบบแบ่งผู้ใช้งานออกเป็น 3 กลุ่มหลัก ได้แก่ **Guest, Member และ Admin** โดย Guest สามารถเลือกดูสินค้าและจัดการตะกร้าเบื้องต้นได้ แต่ต้องสมัครสมาชิกหรือเข้าสู่ระบบก่อนดำเนินการ Checkout
+ระบบรองรับการเลือกสินค้าและตัวเลือกสีหรือไซซ์ การจัดการตะกร้า การ Checkout และระบบจัดการสินค้าสำหรับ Admin
 
-> Developed as a MERN Stack project for **Junior Software Developer Batch 13**
+> Group Project for Junior Software Developer Bootcamp — Batch 13
 
 ---
 
-# Table of Contents
+## Table of Contents
 
-- [About Project](#about-project)
-- [Objectives](#objectives)
+- [About the Project](#about-the-project)
+- [Project Objectives](#project-objectives)
 - [Team Members](#team-members)
-- [Tech Stack](#tech-stack)
-- [Business Model Canvas](#business-model-canvas)
+- [Technology](#technology)
 - [User Roles](#user-roles)
-- [Features](#features)
+- [Core Features](#core-features)
 - [System Architecture](#system-architecture)
-- [Wireframes](#wireframes)
-- [Database Design](#database-design)
-- [API Documentation](#api-documentation)
+- [Core Business Rules](#core-business-rules)
+- [Sprint 1 Status](#sprint-1-status)
+- [Sprint 2 Goal](#sprint-2-goal)
+- [Product Data](#product-data)
 - [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [API Documentation](#api-documentation)
+- [Project Documents](#project-documents)
 - [Git Workflow](#git-workflow)
-- [Documents](#documents)
-- [Progress Checklist](#progress-checklist)
+- [Progress](#progress)
 - [Phase 1 Scope](#phase-1-scope)
 - [Future Improvements](#future-improvements)
-- [License](#license)
 
 ---
 
-# About Project
+# About the Project
 
-การซื้อเสื้อผ้าออนไลน์มักมีปัญหา เช่น
+การเลือกซื้อเสื้อผ้าออนไลน์อาจมีปัญหา เช่น:
 
-- ไม่มั่นใจว่าจะเลือกสินค้าแบบใดให้เข้ากัน
-- เลือกไซส์หรือ Variant ได้ไม่เหมาะสม
-- ใช้เวลานานในการค้นหาและจับคู่สินค้า
-- ต้องการบันทึกสินค้าหรือชุดที่สนใจไว้ดูภายหลัง
-- ต้องการติดตามคำสั่งซื้อและสถานะการจัดส่งได้สะดวก
+- ไม่แน่ใจว่าสินค้าชิ้นใดสามารถนำมาจับคู่กันได้
+- เลือกสีหรือไซซ์ไม่เหมาะสม
+- ใช้เวลานานในการค้นหาและเปรียบเทียบสินค้า
+- ต้องการบันทึกสินค้าหรือชุดที่สนใจ
+- ต้องการตรวจสอบตะกร้าและยอดรวมก่อน Checkout
+- ต้องการติดตามคำสั่งซื้อหลังจากยืนยันการสั่งซื้อ
 
-OCCASION จึงถูกพัฒนาขึ้นเป็นระบบ E-Commerce ที่เน้นประสบการณ์การเลือกซื้อเสื้อผ้าและการจับคู่สินค้า ผ่านฟีเจอร์ **Lookbook / Mix & Match** พร้อมระบบสมาชิกและระบบจัดการร้านค้าสำหรับ Admin
-
-Phase 1 ของโครงการเน้นการสร้างระบบ E-Commerce Core ให้สามารถใช้งานได้ครบตั้งแต่การเลือกสินค้าไปจนถึงการสั่งซื้อและติดตามการจัดส่ง
+OCCASION จึงถูกออกแบบเป็นระบบ E-commerce สำหรับแฟชั่นแบบ Unisex โดยมี Lookbook / Mix & Match เป็นฟีเจอร์สำคัญสำหรับแนะนำการจับคู่ Tops และ Bottoms
 
 ---
 
-# Objectives
+# Project Objectives
 
-- พัฒนาเว็บไซต์ E-Commerce ด้วย MERN Stack
-- ออกแบบระบบตามหลัก Software Engineering
-- พัฒนา RESTful API ระหว่าง Frontend และ Backend
-- ออกแบบฐานข้อมูลด้วย MongoDB และ Mongoose
-- รองรับ Responsive Web Design
+- พัฒนาเว็บไซต์ E-commerce ด้วย MERN Stack
+- เปลี่ยน Static HTML Prototype เป็น React
+- สร้าง REST API ด้วย Node.js และ Express
+- จัดเก็บข้อมูลด้วย MongoDB และ Mongoose
+- รองรับ Product Variants เช่น สีและไซซ์
+- รองรับ Product, Cart และ Checkout Flow
 - รองรับ Guest, Member และ Admin
-- รองรับ Lookbook / Mix & Match
-- รองรับ Cart, Checkout, Payment และ Order Management
-- ใช้ Git และ GitHub เพื่อสนับสนุนการทำงานร่วมกันของทีม
-- จัดทำเอกสารระบบให้สมาชิกในทีมสามารถใช้อ้างอิงร่วมกันได้
+- ตรวจสอบข้อมูลใน Form และแสดงข้อความที่เข้าใจง่าย
+- พัฒนา Responsive Web Design
+- ฝึกการทำงานร่วมกันด้วย Git, GitHub, Trello และ Pull Request
+- ให้สมาชิกสามารถอธิบาย Flow และโค้ดที่ตนเองรับผิดชอบได้
 
 ---
 
 # Team Members
 
-| Name | Role |
-|------|------|
-| Nae | Team Leader / Backend Developer |
-| Mos | Frontend Developer |
-| BM | Frontend Developer |
-| Bird | Backend Developer |
-| LukNok | Backend Developer |
+ทีมใช้หลัก Feature Ownership โดยสมาชิกไม่ได้รับผิดชอบเพียงหน้าเว็บ แต่รับผิดชอบให้ Flow ของ Feature ทำงานตั้งแต่ต้นทางถึงปลายทาง
+
+| Name | Team Role | Feature Ownership |
+|---|---|---|
+| Nae | Team Leader / Full-stack Developer | Admin Panel, Product Mock Data, Lookbook Data, Integration และ Sprint Demo |
+| Mos | Technical Setup / Frontend Developer | React Setup, Shared Components, Layout, Landing และ Content Pages |
+| BM | Product Developer | Product List, Product Detail, Product Model และ Product API |
+| Bird | Cart Developer | Shopping Cart, Checkout, Cart Model และ Cart API |
+| LukNok | User Developer | Authentication UI, Profile, Form Validation และ Testing |
+
+Feature Owner ไม่จำเป็นต้องเขียนทุกส่วนเพียงคนเดียว แต่ต้อง:
+
+- เข้าใจข้อมูลที่ Feature รับเข้ามา
+- เข้าใจข้อมูลที่ต้องส่งต่อ
+- ประสานงานกับ Feature ที่เกี่ยวข้อง
+- ทดสอบ Flow ที่ตนเองรับผิดชอบ
+- อธิบายพฤติกรรมของโค้ดได้
 
 ---
 
-# Tech Stack
+# Technology
 
-## Frontend
+## Sprint 1 Prototype
+
+- HTML
+- CSS
+- JavaScript
+- Tailwind CSS
+
+## Sprint 2 Target
+
+### Frontend
 
 - React
-- TailwindCSS
+- React Router
+- Tailwind CSS
 - Axios
 
-## Backend
+### Backend
 
 - Node.js
-- Express.js
-
-## Database
-
-- MongoDB
+- Express
 - Mongoose
 
-## Tools
+### Database
+
+- MongoDB
+
+### Development Tools
 
 - Git
 - GitHub
-- VS Code
+- Trello
 - Postman
 - Figma
 - dbdiagram.io
-
-## API Documentation
-
-- Markdown API Specification
-
----
-
-# Business Model Canvas
-
-## Customer Segments
-
-- ผู้ที่ต้องการไอเดียในการจับคู่เสื้อผ้า
-- ผู้ซื้อเสื้อผ้าออนไลน์
-- ลูกค้าที่ต้องการเลือกซื้อสินค้าเป็นชุด
-- ลูกค้าเดิมของแบรนด์ที่ต้องการค้นหาและบันทึกสินค้าที่สนใจ
-
-## Value Proposition
-
-- Lookbook / Mix & Match
-- Body Measurements Profile
-- Product Variant Selection
-- Favorites
-- Convenient Online Shopping Experience
-- Order & Shipment Tracking
-
-## Channels
-
-- Responsive Website
-- Facebook
-- Instagram
-- TikTok
-- LINE Official Account
-
-## Customer Relationship
-
-- Guest
-- Member
-
-## Revenue Streams
-
-- Direct Product Sales
-- Lookbook / Mix & Match Set Sales
+- Visual Studio Code
 
 ---
 
@@ -149,195 +130,532 @@ Phase 1 ของโครงการเน้นการสร้างระ
 
 ## Guest
 
-- ค้นหาและเลือกสินค้า
-- ดูรายละเอียดสินค้า
-- ดู Variant
-- ดู Lookbook / Mix & Match
-- เพิ่มสินค้าในตะกร้า
-- ดูและแก้ไขตะกร้า
-- สมัครสมาชิก
-- เข้าสู่ระบบ
+Guest สามารถ:
 
-> Guest สามารถมี Cart ฝั่ง Frontend เช่น `localStorage` แต่ **ไม่สามารถ Checkout ได้**
+- ดูรายการสินค้า
+- ดูรายละเอียดสินค้า
+- เลือกสีและไซซ์
+- ดู Lookbook
+- เพิ่มสินค้าเข้าตะกร้า
+- แก้จำนวนสินค้าในตะกร้า
+- ลบสินค้าออกจากตะกร้า
+- สมัครสมาชิก
+- Login
+
+Guest Cart สามารถเก็บใน Frontend เช่น `localStorage` ได้ แต่ Guest ต้องสมัครสมาชิกหรือ Login ก่อน Checkout ตามข้อตกลงของระบบ Phase 1
 
 ## Member
 
-Member สามารถใช้งานฟังก์ชันของ Guest ได้ทั้งหมด และมีความสามารถเพิ่มเติม ได้แก่
+Member สามารถใช้ความสามารถของ Guest และสามารถ:
 
-- จัดการรายการโปรด
-- จัดการข้อมูลส่วนตัว
-- จัดการข้อมูลสัดส่วนร่างกาย
+- จัดการข้อมูล Profile
 - จัดการที่อยู่จัดส่ง
+- จัดการรายการโปรด
 - Checkout
-- เลือกและยืนยันที่อยู่
-- เลือกวิธีชำระเงิน
-- ชำระเงิน
-- ดูประวัติคำสั่งซื้อ
-- ดูรายละเอียดคำสั่งซื้อ
-- ติดตามการจัดส่ง
-- รีวิวสินค้า
+- ดูประวัติ Order
+- ดูรายละเอียด Order
+- ติดตาม Shipment
+- Review สินค้าที่เคยซื้อ
 
 ## Admin
 
-- Dashboard
-- จัดการหมวดหมู่สินค้า
-- จัดการสินค้า
-- จัดการ Variant
+Admin สามารถ:
+
+- ดู Admin Dashboard
+- ดู เพิ่ม แก้ไข และลบสินค้า
+- จัดการ Product Variants
 - จัดการ Stock
-- จัดการ Lookbook / Mix & Match
-- จัดการคำสั่งซื้อ
-- จัดการลูกค้า
-- จัดการข้อมูลการจัดส่ง
+- จัดการ Lookbook
+- จัดการ Order
+- จัดการข้อมูลลูกค้า
+- จัดการ Shipment
 - ดู Audit Log
 
 ---
 
-# Features
+# Core Features
 
-## Customer
+## Product
 
-- Product Search
 - Product List
 - Product Detail
-- Product Variant Selection
-- Lookbook / Mix & Match
-- Shopping Cart
-- Register
-- Login
+- Product Card
+- Product Variants
+- Color Selection
+- Size Selection
+- Product Tags
+- Stock Information
+- Search and Filter
 
-## Member Features
+## Lookbook
 
-- Favorites
-- User Profile
-- Body Measurements
-- Shipping Addresses
-- Shopping Cart
-- Checkout
-- Payment
-- Order History
-- Order Detail
-- Shipment Tracking
-- Product Reviews
+- แสดงการจับคู่ Tops และ Bottoms
+- สินค้าแต่ละชิ้นสามารถอยู่ในหลาย Lookbooks
+- Phase 1 กำหนดให้สินค้าตัวอย่างแต่ละชิ้นปรากฏใน 2 Looks
 
-## Admin Features
+## Cart
 
-- Dashboard
-- Category Management
-- Product Management
-- Variant Management
-- Inventory / Stock Management
-- Lookbook / Mix & Match Management
-- Order Management
-- Customer Management
-- Shipment Management
-- Audit Log
-- Order Management
+- เพิ่มสินค้าเข้า Cart
+- เลือก Product Variant
+- แก้จำนวน
+- ลบสินค้า
+- คำนวณ Subtotal
+- คำนวณ Total
+- ตรวจสอบ Stock
+
+## Checkout
+
+- แสดงรายการสินค้า
+- แสดง Order Summary
+- แสดงยอดรวม
+- ยืนยันข้อมูลก่อนสร้าง Order
+- สามารถจำลอง Payment สำเร็จได้โดยไม่ต้องเชื่อมระบบจ่ายเงินจริง
+
+## Admin Product Management
+
+- ดูรายการสินค้า
+- เพิ่มสินค้า
+- แก้ไขสินค้า
+- ลบสินค้า
+- ตรวจสอบ Product Form
+- จัดการสี ไซซ์ ราคา SKU และ Stock
 
 ---
 
 # System Architecture
 
 ```text
-React + TailwindCSS
-        │
-      Axios
-        │
-        ▼
-Node.js + Express.js
-        │
-     Mongoose
-        │
-        ▼
-      MongoDB
+React + Tailwind CSS
+          |
+        Axios
+          |
+          v
+Node.js + Express
+          |
+       Mongoose
+          |
+          v
+       MongoDB
+```
+
+Flow การอ่านข้อมูลสินค้า:
+
+```text
+React ขอรายการสินค้า
+          |
+          v
+Express รับคำขอ
+          |
+          v
+Mongoose อ่านข้อมูลจาก MongoDB
+          |
+          v
+Express ส่งข้อมูลกลับ
+          |
+          v
+React แสดง Product List
+```
+
+Flow การเพิ่มสินค้าเข้า Cart:
+
+```text
+เลือก Product
+      |
+เลือกสีและไซซ์
+      |
+กด Add to Cart
+      |
+ส่ง productId + variantId + quantity
+      |
+Server ตรวจ Product, Variant และ Stock
+      |
+บันทึก Cart ใน MongoDB
+      |
+แสดง Cart ที่อัปเดตแล้ว
 ```
 
 ---
 
 # Core Business Rules
 
-- Guest สามารถเลือกสินค้าและจัดการ Cart ได้ แต่ Checkout ไม่ได้
-- Guest ต้อง Register หรือ Login ก่อน Checkout
-- Member Cart ถูกจัดเก็บใน Database
-- Guest Cart สามารถเก็บใน Frontend เช่น `localStorage`
-- Backend เป็น Source of Truth สำหรับราคา Stock ยอดรวม และ Role
+- Backend เป็นแหล่งข้อมูลหลักสำหรับราคา Stock ยอดรวม และ Role
 - Stock ต้องไม่ติดลบ
+- Price ต้องไม่ติดลบ
 - Product Variant SKU ต้องไม่ซ้ำ
-- Favorite ต้องเป็น Product หรือ Lookbook อย่างใดอย่างหนึ่ง
-- Member สามารถเข้าถึงได้เฉพาะข้อมูลของตนเอง
+- ผู้ใช้ต้องเลือกสีและไซซ์ก่อนเพิ่มสินค้าเข้า Cart
+- Cart Item ต้องระบุ Product และ Variant
+- Quantity ใน Cart ต้องไม่น้อยกว่า 1
+- Quantity ใน Cart ต้องไม่เกิน Stock
+- เมื่อเพิ่ม Product Variant เดิมซ้ำ ระบบควรเพิ่ม Quantity ใน Cart Item เดิม
+- Member สามารถเข้าถึงข้อมูลของตนเองเท่านั้น
+- Guest สามารถจัดการ Cart ได้ แต่ต้อง Login ก่อน Checkout
+- Favorite ต้องอ้างอิง Product หรือ Lookbook อย่างใดอย่างหนึ่ง
 - Review ต้องอ้างอิงสินค้าที่ Member เคยซื้อจริง
-- 1 Order Item สามารถ Review ได้สูงสุด 1 ครั้ง
-- Phase 1 กำหนดให้ 1 Order มี Shipment ได้สูงสุด 1 รายการ
-- Admin Actions สำคัญควรถูกบันทึกใน Audit Log
+- Order Item หนึ่งรายการ Review ได้สูงสุดหนึ่งครั้ง
+- Phase 1 กำหนดให้หนึ่ง Order มี Shipment ได้สูงสุดหนึ่งรายการ
+- Admin Actions ที่สำคัญควรถูกบันทึกใน Audit Log
 
 ---
 
-# Wireframes
+# Sprint 1 Status
 
-| Page | Status |
-|---|---|
-| Landing Page | ✅ |
-| Login | ✅ |
-| Register | ✅ |
-| Product List | ✅ |
-| Product Detail | ✅ |
-| Lookbook / Mix & Match | ✅ |
-| Shopping Cart | ✅ |
-| Checkout | ✅ |
-| User Profile | ✅ |
-| Order History | ✅ |
-| Order Detail | ✅ |
-| Admin Dashboard | ✅ |
+Sprint 1 เน้นการวิเคราะห์ ออกแบบ และสร้าง Static UI Prototype ด้วย HTML, CSS, JavaScript และ Tailwind CSS
+
+## Analysis and Design
+
+- [x] Business Model Canvas
+- [x] Use Case Diagram
+- [x] Use Case Description
+- [x] Entity-Relationship Diagram
+- [x] MongoDB Schema Design
+- [x] API Specification
+- [x] Desktop Wireframes
+
+## Static UI Prototype
+
+- [x] Landing Page
+- [x] Navbar and Footer
+- [x] Login
+- [x] Registration
+- [x] Forgot Password
+- [x] Profile
+- [x] Product List
+- [x] Product Detail
+- [x] Lookbook
+- [x] Shopping Cart
+- [x] Checkout
+- [x] Admin Dashboard
+- [x] Content Pages
+
+Static HTML files will be retained as UI references during the Sprint 2 React migration. They should not be deleted until their React replacements are completed and tested.
 
 ---
 
-# Database Design
+# Sprint 2 Goal
 
-เอกสารทั้งหมดจะถูกจัดเก็บไว้ในโฟลเดอร์ `docs/`
+Sprint 2 focuses on converting the core E-commerce Flow from Static HTML into React and connecting Product and Cart operations to Express, Mongoose and MongoDB.
 
-ประกอบด้วย
+## Required Deliverables
 
-- Business Model Canvas
-- Use Case Diagram
-- ER Diagram
-- MongoDB Schema
-- API Documentation
+- [ ] React application is set up
+- [ ] Express server is set up
+- [ ] Mongoose connects to MongoDB without errors
+- [ ] Product component is implemented with React
+- [ ] Product List component is implemented with React
+- [ ] Cart component is implemented with React
+- [ ] Checkout component is implemented with React
+- [ ] Product Form validates submitted data
+- [ ] Meaningful validation messages are displayed
+- [ ] Admin can create a Product
+- [ ] Admin can read Products
+- [ ] Admin can update a Product
+- [ ] Admin can delete a Product
+- [ ] Customer can read their Cart
+- [ ] Customer can add a Product Variant to their Cart
+- [ ] Customer can update Cart Item Quantity
+- [ ] Customer can remove a Cart Item
+- [ ] Product and Cart operations interact with MongoDB
+- [ ] Every member can explain the Flow and code they own
+
+## Sprint 2 Priorities
+
+### High Priority
+
+- React Setup
+- Express and MongoDB Setup
+- Product Model and API
+- Product List and Product Detail
+- Admin Product Management
+- Product Form Validation
+- Cart Model and API
+- Cart and Checkout
+- Product-to-Cart Integration
+
+### After the Required Flow Works
+
+- Landing Page React Migration
+- Authentication UI React Migration
+- Profile React Migration
+- Lookbook React Migration
+
+### Optional During Sprint 2
+
+- Article React Migration
+- Customer Service React Migration
+- Terms and Conditions React Migration
+- Privacy Policy React Migration
+- Advanced Lookbook Features
+- Advanced Admin Dashboard
+- Payment
+- Shipment
+- Review
+- Rewards
+- AI Features
+
+---
+
+# Product Data
+
+Sprint 2 will start with 10 Unisex Products:
+
+- 5 Tops
+- 5 Bottoms
+- 2 Colors per Product
+- Sizes S, M and L
+- 6 Variants per Product
+- Approximately 60 Product Variants
+
+Each Product should appear in 2 Lookbook Looks.
+
+## Product Example
+
+```js
+{
+  name: "Oversized T-Shirt",
+  description: "เสื้อยืดทรง Oversized สำหรับการแต่งตัวแบบ Casual",
+  category: "tops",
+  gender: "unisex",
+  tags: ["casual", "minimal"],
+  imageUrl: "/images/products/oversized-tshirt-white.jpg",
+  variants: [
+    {
+      sku: "TOP-001-WHT-S",
+      color: "white",
+      size: "S",
+      price: 590,
+      stockQuantity: 10
+    },
+    {
+      sku: "TOP-001-WHT-M",
+      color: "white",
+      size: "M",
+      price: 590,
+      stockQuantity: 8
+    }
+  ]
+}
+```
+
+## Add-to-Cart Data
+
+When a customer adds a Product to the Cart, the Frontend sends:
+
+```js
+{
+  productId: "PRODUCT_ID",
+  variantId: "VARIANT_ID",
+  quantity: 1
+}
+```
+
+The Backend must retrieve the actual Product price and Stock from MongoDB.
 
 ---
 
 # Project Structure
 
+The following structure is the Sprint 2 target structure:
+
 ```text
 occasion/
-
 ├── client/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── hooks/
-│   ├── context/
-│   └── services/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       │   └── images/
+│       │       ├── products/
+│       │       └── lookbooks/
+│       ├── components/
+│       │   ├── common/
+│       │   ├── layout/
+│       │   ├── product/
+│       │   ├── lookbook/
+│       │   ├── cart/
+│       │   ├── checkout/
+│       │   ├── user/
+│       │   └── admin/
+│       ├── pages/
+│       │   ├── Landing/
+│       │   ├── Products/
+│       │   ├── Lookbook/
+│       │   ├── Cart/
+│       │   ├── Checkout/
+│       │   ├── Auth/
+│       │   ├── Profile/
+│       │   ├── Orders/
+│       │   ├── Admin/
+│       │   └── NotFound/
+│       ├── services/
+│       │   ├── apiClient.js
+│       │   ├── authService.js
+│       │   ├── productService.js
+│       │   ├── lookbookService.js
+│       │   ├── cartService.js
+│       │   └── orderService.js
+│       ├── context/
+│       ├── hooks/
+│       ├── routes/
+│       ├── utils/
+│       ├── App.jsx
+│       └── main.jsx
 │
 ├── server/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   └── uploads/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.js
+│   │   ├── models/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── middleware/
+│   │   ├── validators/
+│   │   ├── utils/
+│   │   ├── data/
+│   │   │   └── products.json
+│   │   ├── scripts/
+│   │   │   └── seedProducts.js
+│   │   ├── app.js
+│   │   └── server.js
+│   ├── tests/
+│   ├── .env.example
+│   └── package.json
 │
 ├── docs/
+│   ├── api-spec/
 │   ├── bmc/
-│   ├── usecase/
 │   ├── er-diagram/
 │   ├── schema/
-│   ├── wireframes/
-│   └── api/
+│   ├── usecase/
+│   └── wireframes/
 │
 ├── README.md
 ├── CONTRIBUTING.md
-├── .env.example
 └── .gitignore
 ```
+
+---
+
+# Getting Started
+
+The React and Express setup will be completed during Sprint 2. Update this section if the setup commands change.
+
+## Prerequisites
+
+- Node.js
+- npm
+- MongoDB or MongoDB Atlas
+- Git
+
+## Clone the Repository
+
+```bash
+git clone <repository-url>
+cd group-project-3
+```
+
+## Start the Client
+
+After the React migration setup is completed:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+## Start the Server
+
+After the Express setup is completed:
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+## Current Sprint 1 Tailwind Command
+
+The current Static HTML Prototype uses:
+
+```bash
+cd client
+npm install
+npm run watch
+```
+
+---
+
+# Environment Variables
+
+Do not commit `.env` files or passwords to Git.
+
+The Server should provide a `.env.example` containing variable names without secret values:
+
+```env
+PORT=5000
+MONGODB_URI=
+CLIENT_URL=http://localhost:5173
+```
+
+When a new environment variable is introduced:
+
+1. Add its name to `.env.example`
+2. Explain its purpose
+3. Do not commit the real value
+4. Notify the team
+
+---
+
+# API Documentation
+
+The API specification is located at:
+
+```text
+docs/api-spec/Occasion - api-spec.md
+```
+
+Sprint 2 will prioritize:
+
+```text
+GET    /api/products
+GET    /api/products/:productId
+POST   /api/products
+PUT    /api/products/:productId
+DELETE /api/products/:productId
+
+GET    /api/users/:userId/cart
+POST   /api/users/:userId/cart/items
+PUT    /api/users/:userId/cart/items/:itemId
+DELETE /api/users/:userId/cart/items/:itemId
+```
+
+API endpoint names may be refined during Sprint 2, but the Frontend and Backend must use the same agreed contract.
+
+---
+
+# Project Documents
+
+Project documents are stored in the `docs/` directory:
+
+```text
+docs/
+├── api-spec/
+├── bmc/
+├── er-diagram/
+├── schema/
+├── usecase/
+└── wireframes/
+```
+
+The directory contains:
+
+- Business Model Canvas
+- Use Case Diagram
+- Use Case Description
+- Entity-Relationship Diagram
+- MongoDB Schema Design
+- API Specification
+- Desktop Wireframes
 
 ---
 
@@ -345,200 +663,175 @@ occasion/
 
 ```text
 main
-│
+  |
 develop
-├── feature/auth
-├── feature/product
-├── feature/cart
-├── feature/profile
-├── feature/admin
-├── bugfix/*
-└── hotfix/*
+  |
+  ├── feature/react-setup
+  ├── feature/server-setup
+  ├── feature/product-model
+  ├── feature/product-api
+  ├── feature/product-react
+  ├── feature/admin-product-form
+  ├── feature/cart-model
+  ├── feature/cart-api
+  ├── feature/cart-react
+  ├── feature/auth-react
+  └── feature/form-validation
 ```
 
-## Branch Naming
+Team members must:
 
-```text
-feature/auth
-feature/product
-feature/cart
-feature/profile
-feature/admin
-bugfix/*
-hotfix/*
-```
+1. Create a Feature Branch from `develop`
+2. Work on one clear task
+3. Test their work
+4. Open a Pull Request into `develop`
+5. Request at least one Review
+6. Move the Trello Card through Code Review and Testing
+7. Merge only after the Review passes
 
-## Commit Convention
+Do not push directly to `main` or `develop`.
 
-```text
-feat:
-fix:
-docs:
-style:
-refactor:
-test:
-chore:
-```
+For complete contribution rules, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-# Documents
+# Progress
 
-```text
-docs/
+## Sprint 1
 
-├── Business Model Canvas
-├── Use Case Diagram
-├── ER Diagram
-├── MongoDB Schema
-├── Wireframes
-└── API Documentation
-```
+- [x] Project analysis
+- [x] Database design
+- [x] API design
+- [x] Desktop wireframes
+- [x] Static HTML prototype
+- [x] Tailwind CSS prototype
 
----
+## Sprint 2
 
-# Progress Checklist
+### Setup
 
-## Analysis
+- [ ] React Setup
+- [ ] React Router Setup
+- [ ] Shared Layout Setup
+- [ ] Express Setup
+- [ ] MongoDB Connection
+- [ ] Mongoose Setup
+- [ ] Environment Variables
 
-- [x] Business Model Canvas
-- [x] Use Case Diagram
-- [x] Use Case Description
-- [x] ER Diagram
-- [x] MongoDB Schema
-- [x] API Specification
+### Product
 
-## Frontend
-
-- [ ] Landing Page
-- [ ] Login
-- [ ] Register
-- [ ] Product List
-- [ ] Product Detail
-- [ ] Lookbook / Mix & Match
-- [ ] Shopping Cart
-- [ ] Checkout
-- [ ] User Profile
-- [ ] Body Measurements
-- [ ] Address Management
-- [ ] Favorites
-- [ ] Order History
-- [ ] Order Detail
-- [ ] Shipment Tracking
-- [ ] Product Review
-- [ ] Admin Dashboard
-
-## Backend
-
-- [ ] Authentication API
-- [ ] Profile API
-- [ ] Address API
-- [ ] Category API
+- [ ] Product Mock Data
+- [ ] Product Images
+- [ ] Product Model
 - [ ] Product API
-- [ ] Lookbook API
-- [ ] Favorites API
+- [ ] Product Card React Component
+- [ ] Product List React Component
+- [ ] Product Detail React Page
+- [ ] Product Variant Selection
+- [ ] Product Form Validation
+
+### Admin
+
+- [ ] Admin Product List
+- [ ] Create Product
+- [ ] Update Product
+- [ ] Delete Product
+
+### Cart and Checkout
+
+- [ ] Cart Model
 - [ ] Cart API
-- [ ] Checkout API
-- [ ] Order API
-- [ ] Payment API
-- [ ] Shipment API
-- [ ] Review API
-- [ ] Admin Category Management
-- [ ] Admin Product Management
-- [ ] Admin Variant Management
-- [ ] Admin Stock Management
-- [ ] Admin Lookbook Management
-- [ ] Admin Order Management
-- [ ] Admin Customer Management
-- [ ] Admin Shipment Management
-- [ ] Admin Audit Log
+- [ ] Cart React Components
+- [ ] Add to Cart
+- [ ] Update Cart Item
+- [ ] Delete Cart Item
+- [ ] Cart Summary
+- [ ] Checkout React Page
 
-## Deployment
+### Integration and Testing
 
-- [ ] Frontend Deployment
-- [ ] Backend Deployment
-- [ ] MongoDB Atlas
-- [ ] Environment Variables Setup
-- [ ] Production Testing
+- [ ] Product-to-Cart Integration
+- [ ] MongoDB CRUD Testing
+- [ ] Error State Testing
+- [ ] Form Validation Testing
+- [ ] Sprint Demo Preparation
+
+## Sprint 3
+
+- [ ] Connect all required CRUD operations
+- [ ] Deploy React application
+- [ ] Deploy Express API
+- [ ] Connect deployed Frontend and Backend
+- [ ] Production testing
+- [ ] Final presentation and Demo
 
 ---
+
 # Phase 1 Scope
 
 ```text
-Browse Product
-      ↓
-Select Variant
-      ↓
-Cart
-      ↓
-Login / Register
-      ↓
+Browse Products
+       |
+Select Product Variant
+       |
+Add to Cart
+       |
+Update or Remove Cart Items
+       |
+Login or Register
+       |
 Checkout
-      ↓
-Payment
-      ↓
-Order
-      ↓
-Shipment
-      ↓
-Review
+       |
+Confirm Order
+       |
+Simulate Payment
+       |
+View Order Status
 ```
 
-รวมถึง Lookbook / Mix & Match, Favorites, Body Measurements, Address Management, Admin Management และ Audit Log
+Phase 1 also includes:
+
+- Lookbook / Mix & Match
+- Profile
+- Address Management
+- Favorites
+- Admin Product Management
+- Admin Order Management
+- Stock Management
+- Shipment Tracking
+- Product Reviews
+- Audit Log
+
+The team will complete the required Product and Cart Flow before implementing optional or advanced features.
 
 ---
 
 # Future Improvements
 
-เพื่อพัฒนา OCCASION ให้เป็นมากกว่าเว็บไซต์ E-Commerce โครงการมีแนวทางการพัฒนาต่อดังนี้
+The following features are outside the current Sprint 2 priority:
 
-## Personal Color Recommendation
-
-แนะนำสีเสื้อผ้าที่เหมาะกับผู้ใช้งาน โดยอ้างอิงจากโทนสีผิว และสีผม เพื่อช่วยเสริมบุคลิกและความมั่นใจในการแต่งตัว
-
----
-
-## Daily Outfit Recommendation
-
-แนะนำสีเสื้อผ้าประจำวันตามวันเกิดหรือสีมงคล เพื่อสร้างประสบการณ์การใช้งานที่สนุกและตอบโจทย์ผู้ใช้ที่สนใจเรื่องความเชื่อ
-
----
-
-## Lookbook Creator
-
-ผู้ใช้สามารถสร้าง Lookbook ของตนเองผ่าน Canvas โดยสามารถลากและวางสินค้า Mix & Match เสื้อผ้า บันทึกชุดโปรด และแชร์ให้ผู้อื่นได้
+- Personal Color Recommendation
+- Daily Outfit Recommendation
+- Lookbook Creator
+- Community Fashion Sharing
+- Rewards System
+- AI Fashion Assistant
+- Real Payment Integration
+- Multiple Shipments per Order
+- Advanced Inventory Analytics
+- Advanced Admin Dashboard
 
 ---
 
-## Community Fashion Sharing
+# License and Educational Use
 
-เปิดพื้นที่ให้สมาชิกแชร์ Complete Look จากการแต่งตัวจริง
+This project is created for educational purposes as part of the Junior Software Developer Bootcamp.
 
-ผู้ใช้งานสามารถ
+Product images from third-party websites must be treated as temporary references unless the team has permission to use them. Before public deployment, third-party product images should be replaced with:
 
-- โพสต์รูปการแต่งตัว
-- แชร์ไอเดียการแต่งตัว
-- กด Like
-- แสดงความคิดเห็น
-- บันทึกชุดที่ชื่นชอบ
+- Images created by the team
+- Properly licensed images
+- Royalty-free images
+- Original generated images
 
-เพื่อสร้างแรงบันดาลใจจากผู้ใช้งานจริง
-
----
-
-## AI Fashion Assistant
-
-พัฒนา AI เพื่อวิเคราะห์ข้อมูลของผู้ใช้งาน เช่น
-
-- ประวัติการซื้อ
-- สีที่ชอบ
-- สไตล์การแต่งตัว
-- ขนาดตัว
-
-เพื่อแนะนำสินค้าและชุดที่เหมาะสมกับแต่ละบุคคล
-
----
-
-# License
-
-This project was developed for educational purposes only and is not intended for commercial use.
+The project must not imply an official relationship with any third-party fashion brand.
