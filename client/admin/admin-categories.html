@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasion Admin Panel - Categories Management</title>
+
+  <!-- Tailwind & FontAwesome CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- เชื่อมต่อไฟล์ CSS กลาง -->
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="bg-gray-100 font-sans antialiased" x-data="{ sidebarOpen: false }" @keydown.escape.window="sidebarOpen = false">
+
+  <div class="flex h-screen overflow-hidden">
+
+    <div x-cloak x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"
+         class="fixed inset-0 bg-gray-900/40 z-30 lg:hidden" aria-hidden="true"></div>
+
+    <!-- ==================== 1. SIDEBAR NAVIGATION ==================== -->
+    <aside x-cloak
+           class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 flex flex-col justify-between flex-shrink-0 z-40 transform transition-transform duration-200 ease-out lg:static lg:translate-x-0 lg:z-20"
+           :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" aria-label="Sidebar Navigation">
+      
+      <div class="flex flex-col h-full">
+        <!-- Admin Profile / Brand Header -->
+        <header class="p-5 flex items-center gap-3 border-b border-gray-100">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-sm select-none">
+            ADMIN
+          </div>
+          <div>
+            <h2 class="font-bold text-gray-800 text-sm">OCCASION</h2>
+            <small class="text-[11px] text-gray-400 font-medium tracking-wider uppercase block">Admin Control Panel</small>
+          </div>
+          <button type="button" @click="sidebarOpen = false" class="ml-auto p-2 text-gray-400 hover:text-gray-700 lg:hidden" aria-label="ปิดเมนู">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </header>
+
+        <!-- Navigation Links (5 Core Groups) -->
+        <nav class="flex-1 overflow-y-auto p-4 space-y-6 text-xs" aria-label="Main Navigation">
+          
+          <!-- GROUP 1: OVERVIEW -->
+          <section aria-labelledby="nav-overview">
+            <h3 id="nav-overview" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ภาพรวม (Overview)</h3>
+            <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+              <i class="fa-solid fa-chart-pie text-sm w-4"></i>
+              <span>Dashboard</span>
+            </a>
+          </section>
+
+          <!-- GROUP 2: CATALOG MANAGEMENT (Active Group) -->
+          <section aria-labelledby="nav-catalog" x-data="{ open: true }">
+            <h3 id="nav-catalog" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">สินค้า & เซตเสื้อผ้า</h3>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-shirt text-sm w-4"></i>
+                <span>Product Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <!-- Accordion Sub-menu (Active Link: Categories) -->
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-products.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • สินค้าทั้งหมด (Products)
+              </a>
+              <a href="admin-categories.html" class="block px-3 py-2 rounded-md text-blue-600 bg-blue-50 font-semibold" aria-current="page">
+                • หมวดหมู่ (Categories)
+              </a>
+              <a href="admin-lookbooks.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • Lookbooks ( Mix & Match )
+              </a>
+              <a href="admin-stock-adjustments.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">
+                • ปรับสต็อก (Stock Adjustments)
+              </a>
+            </div>
+          </section>
+
+          <!-- GROUP 3: SALES & FULFILLMENT -->
+          <section aria-labelledby="nav-sales" x-data="{ open: false }">
+            <h3 id="nav-sales" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">การขาย & ขนส่ง</h3>
+            
+            <button @click="open = !open" class="w-full flex items-center justify-between px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <i class="fa-solid fa-receipt text-sm w-4"></i>
+                <span>Order Management</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+
+            <div x-show="open" class="mt-1 pl-7 space-y-1">
+              <a href="admin-orders.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• คำสั่งซื้อ & ชำระเงิน</a>
+              <a href="admin-shipping.html" class="block px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">• การจัดส่ง & Tracking</a>
+            </div>
+          </section>
+
+          <!-- GROUP 4: USERS & COMMUNITY -->
+          <section aria-labelledby="nav-community">
+            <h3 id="nav-community" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ผู้ใช้งาน & คอนเทนต์</h3>
+            <div class="space-y-1">
+              <a href="admin-customers.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-users text-sm w-4"></i>
+                <span>Customers (สมาชิก & สัดส่วน)</span>
+              </a>
+              <a href="admin-reviews.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-star text-sm w-4"></i>
+                <span>Reviews Management</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- GROUP 5: SYSTEM & AUDIT -->
+          <section aria-labelledby="nav-system">
+            <h3 id="nav-system" class="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">ระบบหลังบ้าน</h3>
+            <div class="space-y-1">
+              <a href="admin-audit-logs.html" class="flex items-center gap-3 px-3 py-2.5 font-medium text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition">
+                <i class="fa-solid fa-clock-rotate-left text-sm w-4"></i>
+                <span>Admin Audit Logs</span>
+              </a>
+            </div>
+          </section>
+
+        </nav>
+
+        <!-- Sidebar Footer / Settings & Logout -->
+        <footer class="p-4 border-t border-gray-100 text-xs space-y-1">
+          <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-2 font-medium text-gray-600 rounded-lg hover:bg-gray-50">
+            <i class="fa-solid fa-gear w-4"></i> Settings
+          </a>
+          <a href="admin.html" class="flex items-center gap-3 px-3 py-2 font-medium text-pink-600 hover:bg-pink-50 rounded-lg">
+            <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+          </a>
+        </footer>
+      </div>
+
+    </aside>
+
+    <!-- ==================== 2. MAIN CONTENT AREA ==================== -->
+    <div class="flex-1 min-w-0 flex flex-col overflow-y-auto">
+
+      <!-- TOP HEADER BAR -->
+      <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-6 lg:px-8 sticky top-0 z-10">
+        <button type="button" @click="sidebarOpen = true" class="flex-shrink-0 p-2 -ml-2 mr-2 text-gray-500 hover:text-gray-800 lg:hidden" aria-label="เปิดเมนู">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+        <div class="flex items-center gap-4 min-w-0 flex-1 sm:flex-none sm:w-1/2 lg:w-1/3">
+          <div class="relative w-full hidden sm:block">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+            <input type="text" placeholder="ค้นหาข้อมูลระบบ..." class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-4 text-xs">
+          <button class="p-2 text-gray-400 hover:text-gray-600 relative" aria-label="Notifications">
+            <i class="fa-regular fa-bell text-base"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="h-6 w-px bg-gray-200 hidden sm:block"></div>
+          
+          <div class="flex items-center gap-2">
+            <span class="font-semibold text-gray-700 hidden sm:inline">Pathsharasakon (Super Admin)</span><span class="font-semibold text-gray-700 sm:hidden">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY (CATEGORIES MAIN CONTENT) -->
+      <main class="p-4 sm:p-6 lg:p-8 space-y-6">
+        
+        <!-- Header Page -->
+        <header>
+          <h1 class="text-xl font-bold text-gray-800">จัดการหมวดหมู่สินค้า (Categories)</h1>
+          <p class="text-xs text-gray-500 mt-1">จัดระเบียบหมวดหมู่สินค้าหลักและย่อยเพื่อช่วยให้ลูกค้าค้นหาสินค้าได้ง่ายขึ้น</p>
+        </header>
+
+        <!-- Layout Grid: Form (Left) & Table (Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+          <!-- ฝั่งซ้าย: ฟอร์มเพิ่มหมวดหมู่ -->
+          <section aria-labelledby="form-add-category" class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+            <header class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <h2 id="form-add-category" class="font-bold text-gray-800 text-sm">เพิ่มหมวดหมู่ใหม่</h2>
+              <span class="text-[10px] bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">New</span>
+            </header>
+
+            <form class="space-y-4 text-xs">
+              <!-- ชื่อหมวดหมู่ -->
+              <div>
+                <label for="category_name" class="block font-medium text-gray-700 mb-1">ชื่อหมวดหมู่ <span class="text-red-500">*</span></label>
+                <input type="text" id="category_name" placeholder="เช่น เสื้อ (Tops)" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+
+              <!-- Slug (URL) -->
+              <div>
+                <label for="category_slug" class="block font-medium text-gray-700 mb-1">Slug (URL)</label>
+                <input type="text" id="category_slug" placeholder="เช่น tops" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <small class="text-[10px] text-gray-400 mt-1 block">ใช้นำหน้า URL เช่น domain.com/category/tops</small>
+              </div>
+
+              <!-- หมวดหมู่หลัก (Parent Category) -->
+              <div>
+                <label for="parent_category" class="block font-medium text-gray-700 mb-1">หมวดหมู่หลัก (Parent)</label>
+                <select id="parent_category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-600">
+                  <option value="">ไม่มี (ตั้งเป็นหมวดหมู่หลัก)</option>
+                  <option value="1">เสื้อ (Tops)</option>
+                  <option value="2">เดรส (Dresses)</option>
+                  <option value="3">กระโปรง/กางเกง (Bottoms)</option>
+                </select>
+              </div>
+
+              <!-- คำอธิบาย -->
+              <div>
+                <label for="category_desc" class="block font-medium text-gray-700 mb-1">คำอธิบายหมวดหมู่</label>
+                <textarea id="category_desc" rows="3" placeholder="ระบุรายละเอียดหมวดหมู่สังเขป..." class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+              </div>
+
+              <!-- รูปภาพปกหมวดหมู่ -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1">รูปภาพหมวดหมู่</label>
+                <div class="border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:bg-gray-50 transition cursor-pointer">
+                  <i class="fa-solid fa-cloud-arrow-up text-gray-400 text-xl mb-1"></i>
+                  <p class="text-[11px] font-medium text-gray-600">คลิกเพื่ออัปโหลด หรือลากไฟล์มาวาง</p>
+                  <small class="text-[10px] text-gray-400 block">PNG, JPG ขนาดไม่เกิน 2MB</small>
+                </div>
+              </div>
+
+              <!-- สถานะการแสดงผล -->
+              <div class="flex items-center justify-between pt-2">
+                <span class="font-medium text-gray-700">เปิดใช้งานบนหน้าเว็บ</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer">
+                  <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+
+              <!-- ปุ่มบันทึก -->
+              <div class="pt-3 flex gap-2">
+                <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition shadow-sm">
+                  บันทึกหมวดหมู่
+                </button>
+                <button type="reset" class="px-3 bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium py-2 rounded-lg transition">
+                  ยกเลิก
+                </button>
+              </div>
+
+            </form>
+          </section>
+
+          <!-- ฝั่งขวา: ตารางรายการหมวดหมู่ -->
+          <section aria-labelledby="category-table-title" class="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            
+            <!-- Table Toolbar Header -->
+            <header class="p-4 border-b border-gray-100 flex items-center justify-between gap-4 text-xs">
+              <div class="relative w-full max-w-xs">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                <input type="text" placeholder="ค้นหาชื่อหมวดหมู่..." class="w-full pl-9 pr-4 py-1.5 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500">
+              </div>
+
+              <small id="category-table-title" class="text-gray-400 text-[11px] block">
+                ทั้งหมด 5 หมวดหมู่
+              </small>
+            </header>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-gray-600">
+                <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold border-b border-gray-100">
+                  <tr>
+                    <th scope="col" class="py-3 px-5">รูปปก</th>
+                    <th scope="col" class="py-3 px-5">ชื่อหมวดหมู่</th>
+                    <th scope="col" class="py-3 px-5">Slug</th>
+                    <th scope="col" class="py-3 px-5">จำนวนสินค้า</th>
+                    <th scope="col" class="py-3 px-5">สถานะ</th>
+                    <th scope="col" class="py-3 px-5 text-right">จัดการ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  
+                  <!-- Category Row 1 (Main Category) -->
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3 px-5">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
+                        <i class="fa-solid fa-image"></i>
+                      </figure>
+                    </td>
+                    <td class="py-3 px-5 font-bold text-gray-800">
+                      เสื้อ (Tops)
+                    </td>
+                    <td class="py-3 px-5 font-mono text-[11px] text-gray-500">tops</td>
+                    <td class="py-3 px-5 font-semibold text-gray-700">12 รายการ</td>
+                    <td class="py-3 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-semibold text-[10px]">เปิดใช้งาน</span>
+                    </td>
+                    <td class="py-3 px-5 text-right">
+                      <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Category Row 2 (Sub Category) -->
+                  <tr class="hover:bg-gray-50 transition bg-gray-50/30">
+                    <td class="py-3 px-5">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
+                        <i class="fa-solid fa-image"></i>
+                      </figure>
+                    </td>
+                    <td class="py-3 px-5 font-medium text-gray-700 pl-8 relative">
+                      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 select-none">└</span>
+                      เสื้อเชิ้ต & เบลเซอร์
+                    </td>
+                    <td class="py-3 px-5 font-mono text-[11px] text-gray-500">shirts-blazers</td>
+                    <td class="py-3 px-5 font-semibold text-gray-700">5 รายการ</td>
+                    <td class="py-3 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-semibold text-[10px]">เปิดใช้งาน</span>
+                    </td>
+                    <td class="py-3 px-5 text-right">
+                      <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Category Row 3 (Main Category) -->
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3 px-5">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
+                        <i class="fa-solid fa-image"></i>
+                      </figure>
+                    </td>
+                    <td class="py-3 px-5 font-bold text-gray-800">
+                      เดรส (Dresses)
+                    </td>
+                    <td class="py-3 px-5 font-mono text-[11px] text-gray-500">dresses</td>
+                    <td class="py-3 px-5 font-semibold text-gray-700">8 รายการ</td>
+                    <td class="py-3 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-semibold text-[10px]">เปิดใช้งาน</span>
+                    </td>
+                    <td class="py-3 px-5 text-right">
+                      <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Category Row 4 (Main Category) -->
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3 px-5">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
+                        <i class="fa-solid fa-image"></i>
+                      </figure>
+                    </td>
+                    <td class="py-3 px-5 font-bold text-gray-800">
+                      กระโปรง/กางเกง (Bottoms)
+                    </td>
+                    <td class="py-3 px-5 font-mono text-[11px] text-gray-500">bottoms</td>
+                    <td class="py-3 px-5 font-semibold text-gray-700">10 รายการ</td>
+                    <td class="py-3 px-5">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-semibold text-[10px]">เปิดใช้งาน</span>
+                    </td>
+                    <td class="py-3 px-5 text-right">
+                      <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Category Row 5 (Draft / Disabled) -->
+                  <tr class="hover:bg-gray-50 transition">
+                    <td class="py-3 px-5">
+                      <figure class="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 m-0">
+                        <i class="fa-solid fa-image"></i>
+                      </figure>
+                    </td>
+                    <td class="py-3 px-5 font-bold text-gray-800">
+                      เครื่องประดับ (Accessories)
+                    </td>
+                    <td class="py-3 px-5 font-mono text-[11px] text-gray-500">accessories</td>
+                    <td class="py-3 px-5 font-semibold text-gray-400">0 รายการ</td>
+                    <td class="py-3 px-5">
+                      <span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-semibold text-[10px]">ปิดใช้งาน</span>
+                    </td>
+                    <td class="py-3 px-5 text-right">
+                      <div class="flex items-center justify-end gap-2">
+                        <button class="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition" aria-label="แก้ไขหมวดหมู่" title="แก้ไข">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition" aria-label="ลบหมวดหมู่" title="ลบ">
+                          <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </section>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

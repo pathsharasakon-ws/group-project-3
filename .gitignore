@@ -1,0 +1,32 @@
+# Operating System Files (Mac/Windows system files)
+.DS_Store
+Thumbs.db
+
+# Secret Keys & Environment Variables (Never upload these!)
+.env
+.env.local
+
+# IDE & Code Editor Folders (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+
+# Common Log Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node.js & Dependencies
+node_modules/
+jspm_packages/
+
+# Build Outputs & Cache
+dist/
+build/
+.npm/
+.cache/
+.node_repl_history
+
+# Misc
+*.tgz

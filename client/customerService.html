@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service - ศูนย์บริการลูกค้า</title>
+    <link href="https://fonts.googleapis.com/css?family=Prompt:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./output.css" />
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col font-['Prompt']">
+    <header id="navbar-container"></header>
+
+    <!-- Main Container -->
+    <div class="w-full flex-1 flex justify-center py-10 px-4">
+        <main class="w-full max-w-4xl text-left">
+            
+            <div class="text-center mb-10">
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">ศูนย์บริการลูกค้า</h1>
+                <p class="text-sm sm:text-base text-gray-600">เรายินดีให้คำแนะนำและช่วยเหลือคุณในทุกขั้นตอนการบริการ</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-2xs text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-base mb-1">ศูนย์บริการลูกค้า</h3>
+                    <p class="text-xs text-gray-500 mb-2">จันทร์ - ศุกร์ (09:00 - 18:00 น.)</p>
+                    <a href="tel:1800013640" class="text-sm font-semibold text-blue-600 hover:underline">1800-013-640</a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-2xs text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-base mb-1">อีเมลฝ่ายสนับสนุน</h3>
+                    <p class="text-xs text-gray-500 mb-2">ตอบกลับภายใน 24 ชั่วโมง</p>
+                    <a href="mailto:support@example.com" class="text-sm font-semibold text-emerald-600 hover:underline">support@example.com</a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-2xs text-center flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-base mb-1">LINE Official</h3>
+                    <p class="text-xs text-gray-500 mb-2">สอบถามด่วนผ่านแชท</p>
+                    <a href="#" class="text-sm font-semibold text-amber-600 hover:underline">@YourBrand</a>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">คำถามที่พบบ่อย (FAQ)</h2>
+                <div class="space-y-3 text-sm">
+                    <details class="bg-white border border-gray-200 rounded-xl p-4 group transition">
+                        <summary class="font-medium text-gray-900 cursor-pointer flex justify-between items-center list-none">
+                            <span>การติดตามสถานะการจัดส่งสินค้าทำอย่างไร?</span>
+                            <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pt-3 border-t border-gray-100 text-xs sm:text-sm">
+                            ท่านสามารถตรวจสอบสถานะการจัดส่งได้โดยไปที่เมนู "คำสั่งซื้อของฉัน" จากนั้นเลือกหมายเลขคำสั่งซื้อที่ต้องการ เพื่อดูหมายเลขพัสดุและลิงก์ติดตามการจัดส่ง
+                        </p>
+                    </details>
+
+                    <details class="bg-white border border-gray-200 rounded-xl p-4 group transition">
+                        <summary class="font-medium text-gray-900 cursor-pointer flex justify-between items-center list-none">
+                            <span>เงื่อนไขการคืนสินค้าและการรับคืนเงินเป็นอย่างไร?</span>
+                            <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pt-3 border-t border-gray-100 text-xs sm:text-sm">
+                            สามารถแจ้งขอเปลี่ยนหรือคืนสินค้าได้ภายใน 14 วันนับจากวันที่ได้รับสินค้า โดยสินค้าต้องอยู่ในสภาพสมบูรณ์ ไม่ผ่านการใช้งาน และป้ายสินค้ายังอยู่ครบถ้วน
+                        </p>
+                    </details>
+
+                    <details class="bg-white border border-gray-200 rounded-xl p-4 group transition">
+                        <summary class="font-medium text-gray-900 cursor-pointer flex justify-between items-center list-none">
+                            <span>ช่องทางการชำระเงินรองรับอะไรบ้าง?</span>
+                            <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pt-3 border-t border-gray-100 text-xs sm:text-sm">
+                            รองรับการชำระผ่านบัตรเครดิต/เดบิต, สแกน QR Code PromptPay, และการโอนเงินผ่านธนาคาร
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-2xs">
+                <h2 class="text-xl font-bold text-gray-900 mb-2">ส่งข้อความถึงเรา</h2>
+                <p class="text-xs sm:text-sm text-gray-500 mb-6">หากท่านมีข้อสงสัยเพิ่มเติมหรือต้องการความช่วยเหลือ สามารถกรอกฟอร์มด้านล่างนี้ได้เลย</p>
+
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">ชื่อ - นามสกุล <span class="text-red-500">*</span></label>
+                            <input type="text" placeholder="ระบุชื่อและนามสกุล" class="w-full text-xs sm:text-sm p-3 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">อีเมลติดต่อ <span class="text-red-500">*</span></label>
+                            <input type="email" placeholder="example@email.com" class="w-full text-xs sm:text-sm p-3 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500" required />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">เบอร์โทรศัพท์</label>
+                            <input type="tel" placeholder="08X-XXX-XXXX" class="w-full text-xs sm:text-sm p-3 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-700 mb-1">หัวข้อเรื่อง <span class="text-red-500">*</span></label>
+                            <select class="w-full text-xs sm:text-sm p-3 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500 bg-white" required>
+                                <option value="" disabled selected>เลือกหัวข้อสอบถาม</option>
+                                <option value="order">สอบถามคำสั่งซื้อ / สถานะพัสดุ</option>
+                                <option value="return">การคืนสินค้าและการคืนเงิน</option>
+                                <option value="payment">ปัญหาการชำระเงิน</option>
+                                <option value="other">เรื่องอื่นๆ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 mb-1">รายละเอียดข้อความ <span class="text-red-500">*</span></label>
+                        <textarea rows="4" placeholder="อธิบายรายละเอียดหรือคำถามของท่าน..." class="w-full text-xs sm:text-sm p-3 border border-gray-300 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-medium text-xs sm:text-sm rounded-lg transition">
+                            ส่งข้อความ
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <footer id="footer-container"></footer>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

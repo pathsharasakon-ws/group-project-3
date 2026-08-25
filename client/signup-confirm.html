@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirm Phone Number - OCCASION</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./output.css" />
+
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="navbar-container"></header>
+
+  <!-- ================= MAIN CONTENT: CONFIRM PHONE NUMBER ================= -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <div class="bg-white p-8 sm:p-12 rounded-xl shadow-sm max-w-lg w-full text-center">
+      
+      <h1 id="title" class="text-3xl font-bold text-gray-900 mb-3">
+        Confirm<br />Phone Number
+      </h1>
+      
+      <p id="subtitle" class="text-xs text-gray-500 mb-8">
+        Enter the code we've sent via SMS to +66 xx xxx xxxx
+      </p>
+
+      <form action="#" class="space-y-6">
+        <!-- ช่องกรอก Code / OTP -->
+        <div class="relative max-w-xs mx-auto">
+          <input 
+            type="text" 
+            placeholder="- - - - " 
+            maxlength="6"
+            class="w-full border border-gray-300 rounded-md py-2.5 text-center text-lg tracking-[0.5em] text-gray-600 focus:outline-none focus:border-gray-500"
+          />
+        </div>
+
+        <!-- ปุ่ม Continue -->
+        <a 
+          href="./signup-success.html" 
+          class="w-full text-white text-center py-3.5 rounded-full font-semibold block transition-all duration-300 relative overflow-hidden backdrop-blur-md bg-[#e2156d]/70 border border-white/30 shadow-[0_8px_32px_0_rgba(226,21,109,0.37)] hover:bg-[#e2156d]/90 hover:shadow-[0_8px_32px_0_rgba(226,21,109,0.6)] hover:scale-[1.02] active:scale-[0.98] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-50 pointer-events-auto">
+          <span class="relative z-10">Continue</span>
+        </a>
+      </form>
+
+      <!-- ส่วนเลือกตัวเลือกยืนยันเพิ่มเติม (Verify via Email) -->
+      <div class="mt-8 space-y-2">
+        <button 
+          id="toggleMethodBtn" 
+          onclick="toggleVerificationMethod()" 
+          class="text-xs text-gray-600 underline hover:text-black transition block mx-auto"
+        >
+          Verify via Email instead
+        </button>
+        
+        <div>
+          <a href="./signup.html" class="text-xs text-gray-400 hover:text-gray-600 transition">
+            Back to Create Account
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script สำหรับสลับโหมดการยืนยัน SMS <-> Email -->
+  <script>
+    let isEmailMode = false;
+
+    function toggleVerificationMethod() {
+      const title = document.getElementById('title');
+      const subtitle = document.getElementById('subtitle');
+      const btn = document.getElementById('toggleMethodBtn');
+
+      if (!isEmailMode) {
+        title.innerHTML = 'Confirm<br />Email Address';
+        subtitle.innerText = "Enter the code we've sent to your email address";
+        btn.innerText = 'Verify via SMS instead';
+        isEmailMode = true;
+      } else {
+        title.innerHTML = 'Confirm<br />Phone Number';
+        subtitle.innerText = "Enter the code we've sent via SMS to +66 81 234 5678";
+        btn.innerText = 'Verify via Email instead';
+        isEmailMode = false;
+      }
+    }
+  </script>
+
+<div id="footer-container"></div>
+
+  <script type="module" src="./script.js"></script>
+
+</body>
+</html>

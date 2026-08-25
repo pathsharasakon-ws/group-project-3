@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - OCCASION</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./output.css" />
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="navbar-container"></header>
+
+  <!-- ================= MAIN CONTENT: CREATE ACCOUNT ================= -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <div class="bg-white p-8 sm:p-10 rounded-xl shadow-sm max-w-lg w-full">
+      <h1 class="text-3xl font-bold text-left mb-8 text-gray-900">Create Account</h1>
+
+      <!-- FORM REGISTER -->
+      <form action="#" class="space-y-5">
+        <!-- First Name & Last Name -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="relative">
+            <label class="absolute -top-2.5 left-3 bg-white px-1 text-xs text-gray-500">First Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500" />
+          </div>
+          <div class="relative">
+            <label class="absolute -top-2.5 left-3 bg-white px-1 text-xs text-gray-500">Last Name</label>
+            <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="relative">
+          <label class="absolute -top-2.5 left-3 bg-white px-1 text-xs text-gray-500">Email</label>
+          <input type="email" placeholder="youremail@example.com"class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500" />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="relative">
+          <label class="absolute -top-2.5 left-3 bg-white px-1 text-xs text-gray-500">Phone Number</label>
+          <input type="tel" placeholder="+66 xx xxx xxxx" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500" />
+        </div>
+
+        <!-- Password -->
+        <div class="relative">
+          <label class="absolute -top-2.5 left-3 bg-white px-1 text-xs text-gray-500">Password</label>
+          <input type="password" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500" />
+        </div>
+
+        <!-- ปุ่ม Create Account -->
+        <a href="./signup-confirm.html" class="w-full text-white text-center py-3.5 rounded-full font-semibold block transition-all duration-300 relative overflow-hidden backdrop-blur-md bg-[#e2156d]/70 border border-white/30 shadow-[0_8px_32px_0_rgba(226,21,109,0.37)] hover:bg-[#e2156d]/90 hover:shadow-[0_8px_32px_0_rgba(226,21,109,0.6)] hover:scale-[1.02] active:scale-[0.98] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-50 pointer-events-auto">
+            <span class="relative z-10">Create Account</span>
+        </a>
+      </form>
+
+      <!-- Already have an account? Login -->
+      <p class="text-xs text-gray-500 text-left mt-4">
+        Already have an account? <a href="./log-in.html" class="text-blue-600 underline">Login</a>
+      </p>
+
+      <!-- Divider -->
+      <div class="relative my-6 text-center">
+        <span class="bg-white px-2 text-xs text-gray-400 relative z-10">or</span>
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-200"></div>
+        </div>
+      </div>
+
+      <!-- Social Logins -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Google Sign In -->
+        <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="border border-gray-300 rounded-md py-2 px-3 text-xs flex items-center justify-center gap-2 hover:bg-gray-50 transition">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-4 h-4">
+          <span>Sign in with Google</span>
+        </a>
+        
+        <!-- Facebook Sign In -->
+        <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="border border-gray-300 rounded-md py-2 px-3 text-xs flex items-center justify-center gap-2 hover:bg-gray-50 transition">
+          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" class="w-4 h-4">
+          <span>Sign in with Facebook</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+<div id="footer-container"></div>
+
+  <script type="module" src="./script.js"></script>
+
+</body>
+</html>
+

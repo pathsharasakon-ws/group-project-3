@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Successful - OCCASION</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./output.css" />
+
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+    <!-- ================= NAVBAR ================= -->
+  <header id="navbar-container"></header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <!-- Card Container จัดแนวตั้ง flex-col -->
+    <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-sm max-w-md w-full flex flex-col items-center text-center">
+      
+      <!-- เครื่องหมายถูก สี #e2156d -->
+      <div class="w-24 h-24 rounded-full border-4 border-[#e2156d] flex items-center justify-center mb-6">
+        <svg class="w-12 h-12 text-[#e2156d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+
+      <!-- หัวข้อ -->
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2 leading-tight">
+        Registration<br>Successful!
+      </h1>
+
+      <!-- คำอธิบาย -->
+      <p class="text-gray-500 text-sm mb-8">
+        Your account is ready! Welcome to OCCASION.
+      </p>
+
+      <!-- ปุ่ม Explore Products -->
+      <a href="./profile-page.html" class="w-full text-white text-center py-3.5 rounded-full font-semibold block transition-all duration-300 relative overflow-hidden backdrop-blur-md bg-[#e2156d]/70 border border-white/30 shadow-[0_8px_32px_0_rgba(226,21,109,0.37)] hover:bg-[#e2156d]/90 hover:shadow-[0_8px_32px_0_rgba(226,21,109,0.6)] hover:scale-[1.02] active:scale-[0.98] before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-50 pointer-events-auto">
+        <span class="relative z-10">Explore Profile</span>
+      </a>
+
+    </div>
+  </main>
+
+<div id="footer-container"></div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@source "./*.html";
+/* Custom Keyframes & Animations */
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+@theme {
+  --color-primary: #0046a7;  /* เปลี่ยนเป็นรหัสสีฟ้า Primary ของคุณ */
+  --color-accent: #e2156d;   /* เปลี่ยนเป็นรหัสสีเข้ม Accent ของคุณ */
+  --color-secondary:#495f8f;
+  --color-background:#fcf4ee;
+}
+.animate-gradient {
+  background: linear-gradient(90deg, #ffffff, #ffd6e7, #ffe066, #ffffff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s ease infinite;
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+      /* ซ่อน Scrollbar แนวนอน */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+/* Custom Components */
+@layer components {
+  /* คลาสหลักสำหรับโครงสร้างปุ่ม */
+  .btn {
+    @apply px-5 py-2.5 rounded-lg font-medium transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 shadow-sm;
+  }
+
+  /* คลาสสำหรับสีต่าง ๆ (ตัด @apply btn ออก) */
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+}

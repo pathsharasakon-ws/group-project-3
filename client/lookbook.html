@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCCASION - Lookbook Project</title>
+
+  <!-- Google Fonts (Prompt) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./output.css" />
+</head>
+
+<body class="bg-background font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+   <header id="navbar-container"></header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        
+    <section class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">Occasion Lookbook</h1>
+        <p class="mt-2 text-sm sm:text-base text-gray-600">สนุกกับการจับคู่ Tops & Bottoms ของเราได้หลากหลายสไตล์</p>
+    </section>
+
+    <!-- Filter Bar (คำว่า ตัวกรอง + Dropdown รวมทุกเงื่อนไข รวมถึงราคา) -->
+    <section class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-2 w-full sm:w-auto">
+            <span class="text-sm font-bold text-gray-700">ตัวกรอง:</span>
+        </div>
+        <div class="w-full sm:w-auto flex items-center gap-3">
+            <select id="mainFilter" class="w-full sm:w-80 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-primary focus:border-primary p-2.5 outline-none font-medium">
+                <option value="name_asc">เรียงตามชื่อ Look (A-Z)</option>
+                <option value="name_desc">เรียงตามชื่อ Look (Z-A)</option>
+                <option value="price_low">ราคา: ต่ำไปสูง</option>
+                <option value="price_high">ราคา: สูงไปต่ำ</option>
+                <option value="latest">โพสต์ล่าสุด</option>
+                <option value="oldest">โพสต์เก่าสุด</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Lookbook Grid -->
+    <section id="lookbookGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- รายการสินค้าจะถูก Render ด้วย JavaScript -->
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+ <div id="footer-container"></div>
+
+  <!-- เรียกใช้งานไฟล์ JavaScript ที่แยกออกมา -->
+  <script src="../client/lookbook/js/lookbook.js"></script>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

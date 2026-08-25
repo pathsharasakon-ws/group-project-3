@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page - Not Member</title>
+
+    <!-- GOOGLE FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TAILWIND CSS -->
+     <link rel="stylesheet" href="./output.css" />
+
+  </head>
+
+  <body class="m-0 p-0 min-h-screen flex flex-col font-sans">
+    <!-- NAVBAR -->
+    <header id="navbar-container" class="shrink-0"></header>
+
+    <!-- MAIN -->
+    <main class="flex-[1_0_auto] bg-gray-100 py-10">
+      <!-- MAIN WHITE BOX -->
+      <div class="w-full max-w-[1100px] mx-auto bg-white p-5 sm:p-7 md:p-12 box-border">
+        
+        <!-- INFORMATION BOX -->
+        <div class="w-full max-w-[900px] mx-auto mb-8 border border-[#555] px-[20px] py-[8px] box-border text-[9px] sm:text-[11px] leading-[1.55]">
+          <p class="m-0">
+            <span class="text-blue-500"> ⓘ </span>
+            <strong> 1. Sale Items: </strong>
+            No returns or exchanges. See our returns policy for details.
+          </p>
+          <p class="m-0">
+            <strong> 2. Duty and Tax: </strong>
+            Relevant import duty and tax are included in product price.
+          </p>
+          <p class="m-0">
+            <strong> 3. International Transaction Fee: </strong>
+            Your bank may charge international fees. Learn more on our policy.
+          </p>
+        </div>
+
+        <!-- CART LAYOUT -->
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1.65fr)_minmax(300px,0.9fr)] gap-10 md:gap-x-[60px] items-start">
+          
+          <!-- LEFT : PRODUCTS -->
+          <section class="min-w-0">
+            <h2 class="m-0 mb-6 text-[18px] font-medium">My Bag (3)</h2>
+
+            <!-- PRODUCT 1 -->
+            <div class="grid grid-cols-[110px_minmax(0,1fr)] sm:grid-cols-[150px_minmax(0,1fr)] gap-4 sm:gap-6 relative min-h-[130px] sm:min-h-[170px] pb-6 mb-6 border-b border-[#d8d8d8]">
+              <img
+                src="./assets/lookbook/lookbook_set1.jpg"
+                alt="EasySet Training Long-Sleeve Shirt"
+                class="w-[110px] h-[130px] sm:w-[150px] sm:h-[170px] object-cover bg-[#f3f3f3] block"
+              />
+
+              <div class="min-w-0 relative min-h-[130px] sm:min-h-[170px]">
+                <h3 class="mt-[2px] mr-[35px] mb-[16px] ml-0 text-[13px] font-semibold leading-[1.4]">
+                  EasySet Training Long-Sleeve Shirt
+                </h3>
+
+                <button type="button" class="absolute top-0 right-0 border-0 bg-transparent cursor-pointer text-[18px] font-light text-[#555] p-0">
+                  ×
+                </button>
+
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#333]">Final Sale ●</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">Walnut Crunch</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">Size US L</p>
+
+                <!-- QUANTITY -->
+                <div class="inline-flex items-center mt-3 border border-[#cfcfcf] h-[30px]">
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">−</button>
+                  <span class="w-[30px] text-center text-[11px]"> 1 </span>
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">+</button>
+                </div>
+
+                <!-- PRODUCT BOTTOM -->
+                <div class="static sm:absolute left-0 right-0 bottom-0 mt-[10px] sm:mt-0 flex justify-between items-end">
+                  <div class="flex gap-[5px] text-[10px]">
+                    <a href="#" class="text-[#111] underline"> Edit </a>
+                    <a href="#" class="text-[#111] underline"> Save for Later </a>
+                  </div>
+
+                  <div class="text-right">
+                    <span class="block text-[13px] font-semibold"> ฿ 2,380.00 </span>
+                    <span class="block mt-[2px] text-[#999] text-[10px] line-through"> ฿ 3,400.00 </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUCT 2 -->
+            <div class="grid grid-cols-[110px_minmax(0,1fr)] sm:grid-cols-[150px_minmax(0,1fr)] gap-4 sm:gap-6 relative min-h-[130px] sm:min-h-[170px] pb-6 mb-6 border-b border-[#d8d8d8]">
+              <img
+                src="./assets/lookbook/lookbook_set2.jpg"
+                alt="Training Short"
+                class="w-[110px] h-[130px] sm:w-[150px] sm:h-[170px] object-cover bg-[#f3f3f3] block"
+              />
+
+              <div class="min-w-0 relative min-h-[130px] sm:min-h-[170px]">
+                <h3 class="mt-[2px] mr-[35px] mb-[16px] ml-0 text-[13px] font-semibold leading-[1.4]">
+                  Training Short
+                </h3>
+
+                <button type="button" class="absolute top-0 right-0 border-0 bg-transparent cursor-pointer text-[18px] font-light text-[#555] p-0">
+                  ×
+                </button>
+
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#333]">Final Sale ●</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">Black</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">Size US M</p>
+
+                <!-- QUANTITY -->
+                <div class="inline-flex items-center mt-3 border border-[#cfcfcf] h-[30px]">
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">−</button>
+                  <span class="w-[30px] text-center text-[11px]"> 1 </span>
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">+</button>
+                </div>
+
+                <!-- PRODUCT BOTTOM -->
+                <div class="static sm:absolute left-0 right-0 bottom-0 mt-[10px] sm:mt-0 flex justify-between items-end">
+                  <div class="flex gap-[5px] text-[10px]">
+                    <a href="#" class="text-[#111] underline"> Edit </a>
+                    <a href="#" class="text-[#111] underline"> Save for Later </a>
+                  </div>
+
+                  <div class="text-right">
+                    <span class="block text-[13px] font-semibold"> ฿ 1,890.00 </span>
+                    <span class="block mt-[2px] text-[#999] text-[10px] line-through"> ฿ 2,500.00 </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PRODUCT 3 -->
+            <div class="grid grid-cols-[110px_minmax(0,1fr)] sm:grid-cols-[150px_minmax(0,1fr)] gap-4 sm:gap-6 relative min-h-[130px] sm:min-h-[170px] pb-6 mb-6 border-b border-[#d8d8d8]">
+              <img
+                src="./assets/lookbook/lookbook_3.png"
+                alt="Everyday T-Shirt"
+                class="w-[110px] h-[130px] sm:w-[150px] sm:h-[170px] object-cover bg-[#f3f3f3] block"
+              />
+
+              <div class="min-w-0 relative min-h-[130px] sm:min-h-[170px]">
+                <h3 class="mt-[2px] mr-[35px] mb-[16px] ml-0 text-[13px] font-semibold leading-[1.4]">
+                  Everyday T-Shirt
+                </h3>
+
+                <button type="button" class="absolute top-0 right-0 border-0 bg-transparent cursor-pointer text-[18px] font-light text-[#555] p-0">
+                  ×
+                </button>
+
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#333]">Final Sale ●</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">White</p>
+                <p class="my-[3px] mx-0 text-[11px] leading-[1.4] text-[#555]">Size US L</p>
+
+                <!-- QUANTITY -->
+                <div class="inline-flex items-center mt-3 border border-[#cfcfcf] h-[30px]">
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">−</button>
+                  <span class="w-[30px] text-center text-[11px]"> 1 </span>
+                  <button type="button" class="w-[30px] h-[28px] border-0 bg-white cursor-pointer text-[12px]">+</button>
+                </div>
+
+                <!-- PRODUCT BOTTOM -->
+                <div class="static sm:absolute left-0 right-0 bottom-0 mt-[10px] sm:mt-0 flex justify-between items-end">
+                  <div class="flex gap-[5px] text-[10px]">
+                    <a href="#" class="text-[#111] underline"> Edit </a>
+                    <a href="#" class="text-[#111] underline"> Save for Later </a>
+                  </div>
+
+                  <div class="text-right">
+                    <span class="block text-[13px] font-semibold"> ฿ 1,590.00 </span>
+                    <span class="block mt-[2px] text-[#999] text-[10px] line-through"> ฿ 2,100.00 </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT : SUMMARY -->
+          <aside class="min-w-0 w-full">
+            <h4 class="m-0 mb-6 text-[13px] font-semibold">Need Help? 088 888 8888</h4>
+
+            <!-- PROMO -->
+            <div class="flex items-center gap-[10px] mb-6 text-[11px]">
+              <span> + </span>
+              <a href="#" class="text-[#111] underline"> Enter promo code </a>
+            </div>
+
+            <!-- SUBTOTAL -->
+            <div class="flex justify-between items-center py-[7px] border-b border-[#dedede] text-[11px]">
+              <span> Subtotal </span>
+              <span> ฿ 5,860.00 </span>
+            </div>
+
+            <!-- SHIPPING -->
+            <div class="flex justify-between items-center py-[7px] border-b border-[#dedede] text-[11px]">
+              <span> Shipping cost </span>
+              <span> ฿ 180.00 </span>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="flex justify-between items-center pt-[14px] pb-[12px] text-[12px] font-bold">
+              <strong> Estimated Total </strong>
+              <strong> ฿ 6,040.00 </strong>
+            </div>
+
+            <!-- CHECKOUT -->
+            <a href="./check-out-page-02.html" class="block w-full">
+              <button
+                type="button"
+                class="w-full h-[36px] border-0 bg-[#e80064] text-white text-[11px] font-semibold cursor-pointer transition-opacity duration-200 hover:opacity-85"
+              >
+                CHECKOUT
+              </button>
+            </a>
+
+            <!-- DESCRIPTION -->
+            <p class="mt-[14px] text-[10px] leading-[1.6] text-[#555]">
+              By clicking "Checkout", you will be redirected to the checkout page where payment will be taken and your order fulfilled by ESW, Occasion's partner for international sales.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-container" class="shrink-0"></div>
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
