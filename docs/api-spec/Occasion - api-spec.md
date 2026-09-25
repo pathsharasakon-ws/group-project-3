@@ -1,4 +1,8 @@
-# Occasion API Spec — Phase 1
+# Occasion API Contract (Design Draft) - Sprint 1
+
+> **สถานะ:** เอกสารออกแบบเท่านั้น ตรวจเทียบกับ repository เมื่อ 25 กันยายน 2026 แล้วพบว่า Sprint 1 ไม่มี Backend/API server เส้นทางและ response ทั้งหมดในเอกสารนี้เป็น contract เป้าหมายสำหรับการพัฒนาต่อ ไม่ใช่ endpoint ที่เปิดใช้งานได้ใน repository นี้
+
+คำว่า Phase 1 ด้านล่างหมายถึงขอบเขตระบบที่ทีมออกแบบไว้ ไม่ได้หมายความว่าทุก feature ถูก implement ใน Sprint 1 ดูสถานะผลงานจริงที่ [Sprint 1 Scope and Closeout](../SPRINT1_SCOPE.md)
 
 ---
 
@@ -1386,9 +1390,9 @@ GET    /admin/audit-logs
 
 ---
 
-## 33. Definition of Done สำหรับ API
+## 33. Definition of Done สำหรับการพัฒนา API ในอนาคต
 
-Endpoint ถือว่าเสร็จเมื่อ:
+เมื่อเริ่ม implement backend ใน sprint ถัดไป Endpoint จึงจะถือว่าเสร็จเมื่อ:
 
 - Request Validation ครบ
 - Authentication / Authorization ถูกต้อง
@@ -1401,6 +1405,7 @@ Endpoint ถือว่าเสร็จเมื่อ:
 
 ---
 
-**Document:** Occasion API Spec  
-**Phase:** 1  
-**Base URL:** `/api/v1`
+**Document:** Occasion API Contract - Design Draft<br>
+**Designed scope:** Phase 1<br>
+**Implementation status in this repository:** Not implemented<br>
+**Proposed Base URL:** `/api/v1`
