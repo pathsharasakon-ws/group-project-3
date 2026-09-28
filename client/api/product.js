@@ -1,4 +1,12 @@
 const SIZES = ["S", "M", "L"];
+
+// Product tags (3 different tags across the sample products)
+const TAGS = {
+  new: { text: "NEW COLLECTION", bg: "bg-primary" },
+  best: { text: "BEST SELLER", bg: "bg-accent" },
+  sale: { text: "SALE", bg: "bg-secondary" },
+};
+const TAG_BY_INDEX = ["best", "new", "sale", "new", "best", "new", "sale", "best", "new", "sale"];
 // Placeholder photos from assets/product/ - replace with real product photos later.
 const IMAGE_POOL = [
   "./assets/product/style_1.jpg",
@@ -48,7 +56,7 @@ export const productData = catalog.map(([name, category, price, description, ...
     sales: 116 - index * 4,
     reviewsCount: 27 + index * 3,
     quantity: 18,
-    tags: [{ text: "NEW COLLECTION", bg: "bg-primary" }],
+    tags: [TAGS[TAG_BY_INDEX[index]]],
     sizes: SIZES,
     colors,
     variants: colors.flatMap((color) => SIZES.map((size) => ({
