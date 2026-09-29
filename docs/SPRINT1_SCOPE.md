@@ -1,7 +1,5 @@
 # Sprint 1 Scope and Closeout
 
-**ตรวจล่าสุด:** 29 กันยายน 2026<br>
-**Baseline:** branch `develop` หลัง Pull Request #46 (Sprint 1 scope cleanup)<br>
 **รูปแบบผลงาน:** static frontend prototype + design documentation
 
 ## สรุปสถานะ
@@ -19,14 +17,6 @@ Sprint 1 ส่งมอบแนวคิดธุรกิจ แบบจำ�
 | Authentication | signup, confirmation, login, forgot/reset password screens | ไม่มีบัญชี, session, OTP หรือ email จริง |
 | Profile | profile/address/payment UI และ province data interaction | ข้อมูลอยู่ในหน้า browser; ไม่มี user database |
 | Content/Support | article, privacy, terms และ customer service pages | ฟอร์มไม่ส่งเข้า support backend |
-
-## งานที่แยกออกจาก baseline นี้
-
-งานต่อไปนี้เกินขอบเขต Sprint 1 จึงไม่อยู่ใน `develop` แล้ว แต่ยังกู้ได้จาก branch `feature/admin`, `feature/lookbook` และ Git history ที่ commit `832d70f`
-
-- Admin UI (Dashboard พร้อม Chart.js และหน้าจัดการข้อมูล) — Sprint 1 ส่งมอบเป็น wireframe ใน `docs/wireframes`
-- หน้า Lookbook และตะกร้า localStorage
-- ร่าง API Spec (`/api/v1`) สำหรับ backend ในอนาคต
 
 ## Design Artifacts
 
@@ -57,14 +47,6 @@ Use Case Diagram และ PDF ระบุ UC-01 ถึง UC-30 ครอบ�
 - Payment gateway, shipping integration, review verification และ audit logging
 - Personalized Size Recommendation/AI processing
 - Automated tests, CI/CD, monitoring และ deployed staging/production environment
-
-## Known Prototype Gaps
-
-หลังทำความสะอาด (PR #46) และแก้ลิงก์ ตรวจ static references แล้วไม่พบลิงก์หรือรูปที่ชี้ไปยังไฟล์ที่ไม่มีอยู่ ข้อจำกัดที่ยังเหลือและควรระบุเป็นสถานะของ Sprint 1:
-
-- รูปสินค้าใน `client/api/product.js` เป็นรูปตัวอย่างชั่วคราวจาก `client/assets/product/` (`IMAGE_POOL`) ไม่ใช่รูปสินค้าจริง และมีการใช้รูปซ้ำ
-- วันที่และเวลาใน Order Confirmation และประวัติสั่งซื้อ (Purchase Date/Time) เป็นข้อความตัวอย่างใน layout ไม่ได้มาจากระบบ
-- ไม่มี automated test จึงตรวจได้เฉพาะโครงสร้างไฟล์ ลิงก์ และการทำงานใน browser แบบ manual
 
 ## เกณฑ์ปิด Sprint 1
 
