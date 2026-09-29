@@ -1,31 +1,43 @@
 const SIZES = ["S", "M", "L"];
-const ASSET = "./assets/collection-2026/products/";
-const DETAIL_ASSET = "./assets/collection-2026/product-detail/";
+
+// Product tags (3 different tags across the sample products)
+const TAGS = {
+  new: { text: "NEW COLLECTION", bg: "bg-primary" },
+  best: { text: "BEST SELLER", bg: "bg-accent" },
+  sale: { text: "SALE", bg: "bg-secondary" },
+};
+const TAG_BY_INDEX = ["best", "new", "sale", "new", "best", "new", "sale", "best", "new", "sale"];
+// Placeholder photos from assets/product/ - replace with real product photos later.
+const IMAGE_POOL = [
+  "./assets/product/style_1.jpg",
+  "./assets/product/style_2.jpg",
+  "./assets/product/style_3.jpg",
+  "./assets/product/style_4.jpg",
+  "./assets/product/style_5.jpg",
+  "./assets/product/style_6.jpg",
+  "./assets/product/man_style_2.jpg",
+];
 
 const catalog = [
-  ["เสื้อยืดคอตตอนทรง Relaxed", "tops", 490, "เสื้อยืดคอตตอนเนื้อแน่น ทรงผ่อนคลาย ใส่ได้ทุกเพศและทุกวัน", ["top-01-off-white.png", "Off White", "OW", "#F2EFE7"], ["top-01-charcoal.png", "Charcoal", "CH", "#282828"]],
-  ["เสื้อเชิ้ตลินิน Oversized", "tops", 790, "เชิ้ตลินินผสมเนื้อเบา สำหรับใส่เดี่ยวหรือคลุมเป็นเลเยอร์", ["top-02-sky-blue.png", "Sky Blue", "SB", "#B9D5EA"], ["top-02-white.png", "White", "WH", "#F8F8F5"]],
-  ["เสื้อโปโลผ้าถัก Compact Knit", "tops", 690, "โปโลผ้าถักเนื้อละเอียด แมตช์ได้ทั้งลุคทำงานและวันหยุด", ["top-03-forest.png", "Forest Green", "FG", "#243E2C"], ["top-03-sand.png", "Sand", "SD", "#C8B99F"]],
-  ["เสื้อคลุม Utility Overshirt", "tops", 990, "โอเวอร์เชิ้ตน้ำหนักเบาทรงบ็อกซี เพิ่มเลเยอร์ให้ลุคประจำวัน", ["top-04-olive.png", "Muted Olive", "MO", "#66705A"], ["top-04-navy.png", "Navy", "NV", "#253247"]],
-  ["เสื้อแขนยาวลายทาง Breton", "tops", 590, "เสื้อคอกลมแขนยาวผ้าคอตตอนนุ่ม ลายทางคลาสสิก", ["top-05-navy-stripe.png", "Navy Stripe", "NS", "#293A55"], ["top-05-red-stripe.png", "Red Stripe", "RS", "#9F4B3D"]],
-  ["กางเกงยีนส์ทรงตรง Relaxed", "bottoms", 990, "เดนิมทรงตรงผ่อนคลาย เคลื่อนไหวง่ายและเข้ากับเสื้อทุกแบบ", ["bottom-01-indigo.png", "Medium Indigo", "MI", "#526D8A"], ["bottom-01-black.png", "Washed Black", "WB", "#343536"]],
-  ["กางเกง Easy Pleated ขากว้าง", "bottoms", 890, "กางเกงจีบหน้าขากว้าง ผ้าทิ้งตัวและเอวหลังยืด", ["bottom-02-charcoal.png", "Charcoal", "CH", "#444548"], ["bottom-02-taupe.png", "Warm Taupe", "WT", "#A08E79"]],
-  ["กางเกง Utility Cargo ทรง Tapered", "bottoms", 990, "คาร์โก้ทรงเทเปอร์พร้อมกระเป๋าเรียบแบน", ["bottom-03-olive.png", "Muted Olive", "MO", "#65705A"], ["bottom-03-black.png", "Matte Black", "MB", "#222426"]],
-  ["กางเกงขาสั้น Nylon Easy", "bottoms", 590, "กางเกงขาสั้นไนลอนน้ำหนักเบา แห้งไว", ["bottom-04-navy.png", "Deep Navy", "DN", "#27364B"], ["bottom-04-terracotta.png", "Terracotta", "TC", "#B45F45"]],
-  ["กางเกง Jersey Jogger", "bottoms", 690, "จ็อกเกอร์เจอร์ซีย์เนื้อนุ่ม ทรงเรียบคม", ["bottom-05-gray.png", "Heather Gray", "HG", "#9B9B98"], ["bottom-05-forest.png", "Forest Green", "FG", "#294638"]],
+  ["เสื้อยืดคอตตอนทรง Relaxed", "tops", 490, "เสื้อยืดคอตตอนเนื้อแน่น ทรงผ่อนคลาย ใส่ได้ทุกเพศและทุกวัน", ["Off White", "OW", "#F2EFE7"], ["Charcoal", "CH", "#282828"]],
+  ["เสื้อเชิ้ตลินิน Oversized", "tops", 790, "เชิ้ตลินินผสมเนื้อเบา สำหรับใส่เดี่ยวหรือคลุมเป็นเลเยอร์", ["Sky Blue", "SB", "#B9D5EA"], ["White", "WH", "#F8F8F5"]],
+  ["เสื้อโปโลผ้าถัก Compact Knit", "tops", 690, "โปโลผ้าถักเนื้อละเอียด แมตช์ได้ทั้งลุคทำงานและวันหยุด", ["Forest Green", "FG", "#243E2C"], ["Sand", "SD", "#C8B99F"]],
+  ["เสื้อคลุม Utility Overshirt", "tops", 990, "โอเวอร์เชิ้ตน้ำหนักเบาทรงบ็อกซี เพิ่มเลเยอร์ให้ลุคประจำวัน", ["Muted Olive", "MO", "#66705A"], ["Navy", "NV", "#253247"]],
+  ["เสื้อแขนยาวลายทาง Breton", "tops", 590, "เสื้อคอกลมแขนยาวผ้าคอตตอนนุ่ม ลายทางคลาสสิก", ["Navy Stripe", "NS", "#293A55"], ["Red Stripe", "RS", "#9F4B3D"]],
+  ["กางเกงยีนส์ทรงตรง Relaxed", "bottoms", 990, "เดนิมทรงตรงผ่อนคลาย เคลื่อนไหวง่ายและเข้ากับเสื้อทุกแบบ", ["Medium Indigo", "MI", "#526D8A"], ["Washed Black", "WB", "#343536"]],
+  ["กางเกง Easy Pleated ขากว้าง", "bottoms", 890, "กางเกงจีบหน้าขากว้าง ผ้าทิ้งตัวและเอวหลังยืด", ["Charcoal", "CH", "#444548"], ["Warm Taupe", "WT", "#A08E79"]],
+  ["กางเกง Utility Cargo ทรง Tapered", "bottoms", 990, "คาร์โก้ทรงเทเปอร์พร้อมกระเป๋าเรียบแบน", ["Muted Olive", "MO", "#65705A"], ["Matte Black", "MB", "#222426"]],
+  ["กางเกงขาสั้น Nylon Easy", "bottoms", 590, "กางเกงขาสั้นไนลอนน้ำหนักเบา แห้งไว", ["Deep Navy", "DN", "#27364B"], ["Terracotta", "TC", "#B45F45"]],
+  ["กางเกง Jersey Jogger", "bottoms", 690, "จ็อกเกอร์เจอร์ซีย์เนื้อนุ่ม ทรงเรียบคม", ["Heather Gray", "HG", "#9B9B98"], ["Forest Green", "FG", "#294638"]],
 ];
 
 export const productData = catalog.map(([name, category, price, description, ...colorRows], index) => {
   const itemNo = index < 5 ? index + 1 : index - 4;
   const prefix = category === "tops" ? "TOP" : "BOT";
   const sku = prefix + String(itemNo).padStart(3, "0");
-  const colors = colorRows.map(([file, colorName, code, hex]) => {
-    const baseName = file.replace(".png", "");
-    const images = [
-      DETAIL_ASSET + baseName + "-front.png",
-      DETAIL_ASSET + baseName + "-back.png",
-      DETAIL_ASSET + baseName + "-detail.png",
-    ];
+  const colors = colorRows.map(([colorName, code, hex], colorIndex) => {
+    const start = index * 2 + colorIndex;
+    const images = [0, 1, 2].map((k) => IMAGE_POOL[(start + k) % IMAGE_POOL.length]);
     return { name: colorName, code, hex, image: images[0], images };
   });
 
@@ -44,7 +56,7 @@ export const productData = catalog.map(([name, category, price, description, ...
     sales: 116 - index * 4,
     reviewsCount: 27 + index * 3,
     quantity: 18,
-    tags: [{ text: "NEW COLLECTION", bg: "bg-primary" }],
+    tags: [TAGS[TAG_BY_INDEX[index]]],
     sizes: SIZES,
     colors,
     variants: colors.flatMap((color) => SIZES.map((size) => ({

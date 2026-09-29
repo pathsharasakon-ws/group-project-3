@@ -5,7 +5,7 @@
 ## Branch ที่ใช้จริง
 
 - `develop` เป็น branch ที่รวมผลงาน Sprint 1 ใน repository นี้
-- `main` เป็น branch เริ่มต้นเก่าและยังไม่ใช่ baseline ที่รวมงาน Sprint 1
+- `main` รับงานจาก `develop` ผ่าน Pull Request เมื่อพร้อมส่งมอบ
 - งานแก้ไขให้สร้าง branch จาก `develop` เช่น `docs/<topic>`, `fix/<topic>` หรือ `feature/<topic>`
 
 repository นี้ไม่มี branch ชื่อ `sprint-1` จึงไม่ควรใช้คำสั่งหรือเปิด Pull Request เข้า branch ดังกล่าว

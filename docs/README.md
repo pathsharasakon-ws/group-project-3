@@ -1,13 +1,12 @@
 # OCCASION Documentation Index
 
-เอกสารชุดนี้ได้รับการตรวจเทียบกับ source code ของ Sprint 1 เมื่อวันที่ 25 กันยายน 2026 จุดประสงค์คือเก็บหลักฐานการออกแบบและอธิบายสถานะให้ตรงกับ frontend prototype ใน repository นี้
+เอกสารชุดนี้ได้รับการตรวจเทียบกับ source code ของ Sprint 1 เมื่อวันที่ 29 กันยายน 2026 จุดประสงค์คือเก็บหลักฐานการออกแบบและอธิบายสถานะให้ตรงกับ frontend prototype ใน repository นี้
 
 ## เอกสารหลัก
 
 | เอกสาร | ประเภท | สถานะและวิธีตีความ |
 | --- | --- | --- |
 | [Sprint 1 Scope and Closeout](SPRINT1_SCOPE.md) | Closeout | แหล่งอ้างอิงหลักว่าส่วนใดทำจริง ส่วนใดเป็น mock และส่วนใดเป็นแผน |
-| [API Spec](api-spec/Occasion%20-%20api-spec.md) | Design contract | ร่าง API สำหรับพัฒนาต่อ ยังไม่มี server ใน repository |
 | [Business Model Canvas](bmc/Occasion%20Business%20Model%20Canvas%20v1.png) | Business design | แนวคิดธุรกิจและ value proposition บางรายการเป็นอนาคต เช่น Size Recommendation และ AI-ready Phase 2 |
 | [Use Case Diagram](usecase/Occasion%20Use%20Case%20Diagram.png) | System design | ขอบเขตระบบเป้าหมาย ไม่ใช่รายการฟีเจอร์ที่ implement ครบแล้ว |
 | [Use Case Description](usecase/Occasion_Use_Case_Description_Phase1.pdf) | System design | รายละเอียด UC-01 ถึง UC-30 สำหรับระบบเป้าหมาย |
@@ -19,7 +18,7 @@
 ## หลักการอ่านเอกสาร
 
 1. ใช้ [Sprint 1 Scope and Closeout](SPRINT1_SCOPE.md) เป็นตัวตัดสินสถานะ implementation
-2. BMC, Use Case, ERD, Schema และ API Spec เป็นผลงานการออกแบบที่ส่งมอบได้ แม้ยังไม่มีระบบหลังบ้าน
+2. BMC, Use Case, ERD และ Schema เป็นผลงานการออกแบบที่ส่งมอบได้ แม้ยังไม่มีระบบหลังบ้าน
 3. ERD ใช้โครงสร้างตาราง ส่วน MongoDB Schema ใช้ embedded documents จึงเป็นคนละทางเลือกในการออกแบบ ไม่ควรอ้างว่าทั้งสองเป็นฐานข้อมูลที่ deploy แล้ว
 4. หน้าเว็บใน `client/` เป็น prototype ที่ใช้ mock data และ browser-side JavaScript
 5. เอกสาร Target Architecture อธิบายทิศทางหลัง Sprint 1 และต้องไม่ใช้เป็นหลักฐานว่า React/Backend ถูก implement แล้ว

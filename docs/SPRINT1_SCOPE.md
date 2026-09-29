@@ -1,7 +1,7 @@
 # Sprint 1 Scope and Closeout
 
-**ตรวจล่าสุด:** 25 กันยายน 2026<br>
-**Baseline:** branch `develop` หลัง commit `f356542`<br>
+**ตรวจล่าสุด:** 29 กันยายน 2026<br>
+**Baseline:** branch `develop` หลัง Pull Request #46 (Sprint 1 scope cleanup)<br>
 **รูปแบบผลงาน:** static frontend prototype + design documentation
 
 ## สรุปสถานะ
@@ -14,13 +14,19 @@ Sprint 1 ส่งมอบแนวคิดธุรกิจ แบบจำ�
 | --- | --- | --- |
 | Landing/Navigation | หน้าแรก, navbar/footer, sections และลิงก์ไปหน้าหลัก | static content |
 | Product catalog | สินค้าตัวอย่าง, search/filter, pagination, detail view, สี/ไซส์ และ carousel | mock data; ไม่มี Product API/stock จริง |
-| Lookbook | รายการ, sort/filter, detail และเพิ่มชุดลง local cart | mock data/localStorage บางส่วน |
 | Cart | หน้าว่าง, guest/member layouts และตัวอย่างสินค้า | หลายหน้าคือ visual prototype; state ไม่เชื่อมครบทุกหน้า |
 | Checkout | contact/shipping, payment และ confirmation/shipped screens | เดินหน้าด้วย link/button; ไม่มี order/payment transaction จริง |
 | Authentication | signup, confirmation, login, forgot/reset password screens | ไม่มีบัญชี, session, OTP หรือ email จริง |
 | Profile | profile/address/payment UI และ province data interaction | ข้อมูลอยู่ในหน้า browser; ไม่มี user database |
 | Content/Support | article, privacy, terms และ customer service pages | ฟอร์มไม่ส่งเข้า support backend |
-| Admin | login mock, dashboard/chart และหน้ารายการ Categories, Products, Stock, Orders, Shipping, Customers, Reviews, Lookbooks, Audit Logs, Settings | เป็น static/mock admin UI; ไม่มี role protection หรือ CRUD API จริง |
+
+## งานที่แยกออกจาก baseline นี้
+
+งานต่อไปนี้เกินขอบเขต Sprint 1 จึงไม่อยู่ใน `develop` แล้ว แต่ยังกู้ได้จาก branch `feature/admin`, `feature/lookbook` และ Git history ที่ commit `832d70f`
+
+- Admin UI (Dashboard พร้อม Chart.js และหน้าจัดการข้อมูล) — Sprint 1 ส่งมอบเป็น wireframe ใน `docs/wireframes`
+- หน้า Lookbook และตะกร้า localStorage
+- ร่าง API Spec (`/api/v1`) สำหรับ backend ในอนาคต
 
 ## Design Artifacts
 
@@ -38,10 +44,6 @@ Use Case Diagram และ PDF ระบุ UC-01 ถึง UC-30 ครอบ�
 - MongoDB Schema เสนอ document model ที่ embed บางข้อมูล เช่น variants, addresses และ order items
 - ทั้งสองเป็นแบบออกแบบทางเลือก ไม่มี migration, model หรือ database connection ใน Sprint 1
 
-### API Spec
-
-API Spec เป็น contract draft ของ `/api/v1` สำหรับพัฒนา backend ในอนาคต รายการ endpoint ไม่ใช่ API ที่เรียกใช้งานได้จาก repository นี้
-
 ### Wireframes
 
 มี desktop/mobile wireframes 13 คู่ รวม 26 ภาพ สำหรับ Landing, Product List/Detail, Cart, Checkout, Auth, User/Admin Dashboard, Article, Customer Service, Privacy และ Terms บางหน้าถูกสร้างเป็น HTML prototype แล้ว แต่ไม่ควรใช้จำนวน wireframe เป็นหลักฐานว่า business flow ทำงานครบ
@@ -58,11 +60,10 @@ API Spec เป็น contract draft ของ `/api/v1` สำหรับพ�
 
 ## Known Prototype Gaps
 
-การตรวจ static references พบข้อจำกัดเดิมที่ควรเก็บเป็นสถานะของ Sprint 1 แทนการอ้างว่า flow สมบูรณ์:
+หลังทำความสะอาด (PR #46) และแก้ลิงก์ ตรวจ static references แล้วไม่พบลิงก์หรือรูปที่ชี้ไปยังไฟล์ที่ไม่มีอยู่ ข้อจำกัดที่ยังเหลือและควรระบุเป็นสถานะของ Sprint 1:
 
-- `cart-page-item-guest.html` อ้างรูปตัวอย่างสามไฟล์ใน `client/images/` ที่ไม่มีอยู่
-- `forgot-password.html` ส่ง form ไป `forgot-password-sent.html` แต่ไฟล์ที่มีจริงชื่อ `forgot-password-check-email.html`
-- mock catalog ใน `client/admin/js/admin-main.js` ใช้ path รูป `./assets/collection-2026/...` ซึ่งไม่มีใต้ `client/admin/`
+- รูปสินค้าใน `client/api/product.js` เป็นรูปตัวอย่างชั่วคราวจาก `client/assets/product/` (`IMAGE_POOL`) ไม่ใช่รูปสินค้าจริง และมีการใช้รูปซ้ำ
+- วันที่และเวลาใน Order Confirmation และประวัติสั่งซื้อ (Purchase Date/Time) เป็นข้อความตัวอย่างใน layout ไม่ได้มาจากระบบ
 - ไม่มี automated test จึงตรวจได้เฉพาะโครงสร้างไฟล์ ลิงก์ และการทำงานใน browser แบบ manual
 
 ## เกณฑ์ปิด Sprint 1

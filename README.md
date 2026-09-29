@@ -11,18 +11,18 @@ OCCASION เป็นต้นแบบเว็บไซต์ E-Commerce เ�
 | Business Model Canvas | แบบออกแบบเสร็จ | [`docs/bmc`](docs/bmc/) |
 | Use Case Diagram และ Use Case Description | แบบออกแบบเสร็จ | [`docs/usecase`](docs/usecase/) |
 | ERD และ MongoDB Schema | แบบออกแบบเสร็จ ยังไม่ได้สร้างฐานข้อมูลจริง | [`docs/er-diagram`](docs/er-diagram/) และ [`docs/schema`](docs/schema/) |
-| API Contract | Design draft สำหรับพัฒนาต่อ ยังไม่มี API server | [`docs/api-spec`](docs/api-spec/) |
 | Desktop/Mobile Wireframes | แบบออกแบบเสร็จ 26 ภาพ | [`docs/wireframes`](docs/wireframes/) |
-| Customer frontend prototype | มีหน้า Landing, Product, Lookbook, Cart, Checkout mock, Auth, Profile และบทความ | [`client`](client/) |
-| Admin frontend prototype | มี Dashboard และหน้าจัดการข้อมูลแบบ mock | [`client/admin`](client/admin/) |
+| Customer frontend prototype | มีหน้า Landing, Product, Cart, Checkout mock, Auth, Profile และบทความ | [`client`](client/) |
 
-หน้าเว็บบางส่วนมี interaction ฝั่ง browser เช่น ค้นหา/กรองสินค้า, carousel, pagination, เลือก variant, Lookbook, ตะกร้าบาง flow และแบบฟอร์ม Profile แต่ข้อมูลส่วนใหญ่เป็น mock data ใน JavaScript หรือ HTML และไม่ถูกบันทึกผ่าน server
+หน้าเว็บบางส่วนมี interaction ฝั่ง browser เช่น ค้นหา/กรองสินค้า, carousel, pagination, เลือก variant, ตะกร้าบาง flow และแบบฟอร์ม Profile แต่ข้อมูลส่วนใหญ่เป็น mock data ใน JavaScript หรือ HTML และไม่ถูกบันทึกผ่าน server
+
+> **หมายเหตุ:** Admin UI, หน้า Lookbook และร่าง API Spec เป็นงานนอกขอบเขต Sprint 1 จึงถูกแยกออกจาก baseline นี้ (Pull Request #46) ยังดูได้จาก branch `feature/admin`, `feature/lookbook` และ Git history ที่ commit `832d70f`
 
 ## สิ่งที่ยังไม่ได้ implement ใน repository นี้
 
 - React application, Express server และ MongoDB connection
 - Authentication/authorization และ password reset ที่ทำงานจริง
-- REST API ตามเอกสาร API contract
+- REST API
 - การชำระเงิน การจัดส่ง รีวิว และ Audit Log ที่บันทึกจริง
 - Personalized Size Recommendation และ AI/Mix & Match ที่ประมวลผลจริง
 - Automated test suite, CI/CD และ production deployment
@@ -53,9 +53,8 @@ npm run watch --prefix client
 
 ```text
 group-project-3/
-├── client/                  # Static customer/admin prototype
+├── client/                  # Static customer prototype
 ├── docs/
-│   ├── api-spec/            # API design draft
 │   ├── bmc/                 # Business Model Canvas
 │   ├── er-diagram/          # Conceptual relational ERD
 │   ├── schema/              # Proposed MongoDB schemas
