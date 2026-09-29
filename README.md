@@ -10,7 +10,7 @@
 
 ### 1. ระบบฐานข้อมูลและการออกแบบ (Database & System Design)
 * **Business Model Canvas (BMC)**: กำหนดกลุ่มเป้าหมาย คุณค่าของสินค้า และโมเดลธุรกิจ
-* **Use Case Diagram**: แผน감การใช้งานของผู้ใช้และผู้ดูแลระบบ (Admin)
+* **Use Case Diagram**: แผนภาพการใช้งานของผู้ใช้และผู้ดูแลระบบ (Admin)
 * **Entity-Relationship Diagram (ERD)** & **MongoDB Schema Design**: ออกแบบโครงสร้างข้อมูลที่สอดคล้องกับฟิลด์ข้อมูลทั้งหมด (Users, Products, Cart, Orders)
 
 ### 2. ออกแบบโครงร่างส่วนติดต่อผู้ใช้ (App Wireframes)
