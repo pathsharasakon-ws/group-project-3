@@ -1,51 +1,46 @@
-# 🤝 Contribution Guidelines (Sprint 1 Completed)
+# Contribution Guidelines - Sprint 1 Archive
 
-ยินดีต้อนรับสู่โปรเจกต์ E-Commerce ของพวกเรา! เอกสารนี้จัดทำขึ้นเพื่อกำหนดแนวทางปฏิบัติและการทำงานร่วมกันของทีมในช่วง **Sprint 1** ที่ผ่านมา ซึ่งเราได้โฟกัสที่การออกแบบระบบ (System & Database Design), การทำ Wireframes และการพัฒนา Frontend Layouts เบื้องต้น
+เอกสารนี้อธิบายวิธีดูแลผลงาน Sprint 1 หลังปิดงานแล้ว โปรเจกต์เป็น static frontend prototype และเอกสารออกแบบ การเปลี่ยนแปลงหลังจากนี้ควรเน้นแก้ข้อผิดพลาด รักษาหลักฐานของ Sprint 1 และทำให้เอกสารตรงกับสิ่งที่ repository มีจริง
 
----
+## Branch ที่ใช้จริง
 
-## 📌 Team Workflow & Principles (Sprint 1)
-ในช่วง Sprint 1 นี้ ทีมเราได้ร่วมมือกันทำตามเป้าหมายหลักดังนี้:
-* **Collaborative Planning**: ร่วมกันวางแผนธุรกิจผ่าน Business Model Canvas (BMC) และออกแบบสถาปัตยกรรมระบบ (ERD & MongoDB Schema)
-* **UI/UX Design Alignment**: ออกแบบ Wireframes ให้ครบถ้วนตามโจทย์ (Landing Page, Product Card/List, Cart, Checkout, Dashboards และหน้า Auth)
-* **Frontend Implementation**: พัฒนา Product Card และ Product List Layouts ด้วย CSS / Tailwind CSS ตามเกณฑ์ประเมิน
+- `develop` เป็น branch ที่รวมผลงาน Sprint 1 ใน repository นี้
+- `main` รับงานจาก `develop` ผ่าน Pull Request เมื่อพร้อมส่งมอบ
+- งานแก้ไขให้สร้าง branch จาก `develop` เช่น `docs/<topic>`, `fix/<topic>` หรือ `feature/<topic>`
 
----
+repository นี้ไม่มี branch ชื่อ `sprint-1` จึงไม่ควรใช้คำสั่งหรือเปิด Pull Request เข้า branch ดังกล่าว
 
-## 🌿 Git Branching Strategy
-เพื่อให้การจัดการโค้ดเป็นระเบียบในช่วงเริ่มต้น:
-* `main` / `master`: สำหรับเวอร์ชันสมบูรณ์ที่พร้อมส่งมอบ
-* `sprint-1`: Branch หลักที่รวบรวมฟีเจอร์และงานทั้งหมดของ Sprint 1
-* `feature/<feature-name>`: Branch ย่อยสำหรับสมาชิกแต่ละคนใช้ทำงานของตัวเอง (เช่น `feature/wireframe-design`, `feature/product-card-layout`)
+## ขั้นตอนแก้ไข
 
----
+```bash
+git switch develop
+git pull origin develop
+git switch -c docs/update-sprint1-documentation
+```
 
-## 🔄 How to Contribute / Submit Your Work
+ตรวจเฉพาะไฟล์ที่ตั้งใจแก้ แล้ว commit ด้วยข้อความที่บอกผลลัพธ์ชัดเจน:
 
-1. **ดึงข้อมูลล่าสุด (Pull Latest Code):**
-   ```bash
-   git checkout sprint-1
-   git pull origin sprint-1
+```bash
+git status
+git diff --check
+git add README.md CONTRIBUTING.md docs/
+git commit -m "docs: align Sprint 1 documentation with delivered prototype"
+git push -u origin docs/update-sprint1-documentation
+```
 
-2. **สร้าง Branch ของตัวเองสำหรับงานใหม่:
-   ```bash
-   git checkout -b feature/ชื่อฟีเจอร์ของคุณ
+เปิด Pull Request เข้า `develop` และให้เพื่อนอย่างน้อยหนึ่งคนตรวจเนื้อหาก่อน merge
 
-3. **ตรวจสอบไฟล์ก่อน Commit:
-ก่อนทำการบันทึกโค้ด ให้เช็คสถานะไฟล์ทุกครั้งเพื่อป้องกันไฟล์ที่ไม่จำเป็นหลุดขึ้นไป
-   ```bash
-   git status
-   git add <ชื่อไฟล์ที่ต้องการ>
+## เกณฑ์ตรวจงานเอกสาร
 
-4. **Commit ด้วยข้อความที่สื่อความหมาย:
-ใช้คำนำหน้าตามมาตรฐาน (เช่น feat:, docs:, style:)
-   ```bash
-   git commit -m "feat: implement product card layout with tailwind css"
+- แยกคำว่า **implemented prototype**, **design artifact** และ **future target** ให้ชัดเจน
+- อย่าอ้างว่ามี Backend, Database, API, Authentication หรือ Payment จริง หาก repository ยังไม่มี implementation
+- ลิงก์ไฟล์และรูปภาพต้องเปิดได้จาก Markdown
+- API, ERD, MongoDB Schema และ Use Case ต้องใช้ชื่อฟิลด์/แนวคิดสอดคล้องกัน หรืออธิบายเมื่อเป็นคนละแบบจำลอง
+- ไม่ commit `.DS_Store`, `node_modules`, environment secrets หรือไฟล์ชั่วคราว
+- หากแก้ UI ให้เปิดผ่าน static server และตรวจทั้ง desktop/mobile ที่เกี่ยวข้อง
 
-5. **Push และสร้าง Pull Request (PR):
-   ```bash
-   git push origin feature/ชื่อฟีเจอร์ของคุณ
+## ขอบเขตการดูแลหลังปิด Sprint 1
 
-ไปที่หน้า GitHub แล้วเปิด Pull Request จาก Branch ของคุณเข้ามาที่ sprint-1
+การเพิ่มระบบ React/Express/MongoDB หรือ feature ใหม่ควรทำใน repository/sprint ถัดไป งานดังกล่าวไม่ควรถูกเขียนย้อนหลังว่าเป็นสิ่งที่ส่งมอบใน Sprint 1
 
-แท็กเพื่อนร่วมทีมเพื่อช่วย Review โค้ดก่อนทำการ Merge
+ดูสถานะรายฟีเจอร์ที่ [docs/SPRINT1_SCOPE.md](docs/SPRINT1_SCOPE.md) และสารบัญเอกสารที่ [docs/README.md](docs/README.md)
